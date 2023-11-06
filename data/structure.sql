@@ -7,3 +7,16 @@ CREATE TABLE products (
     price DECIMAL(10, 2) NOT NULL,
     image VARCHAR(255)
 );
+
+DROP TABLE IF EXISTS news_posts;
+
+CREATE TABLE news_posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    short_description VARCHAR(255),
+    content TEXT NOT NULL,
+    image VARCHAR(255),
+    image_alt VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
