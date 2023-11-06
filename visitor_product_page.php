@@ -21,7 +21,7 @@ include 'navbar.php';
 <div class="container mx-auto p-6">
     <div class="flex justify-between items-center pb-6">
         <div>
-            <a class="text-xl text-blue" href="/dwp/view_cart.php">Cart</a>
+            <a class="text-xl text-blue" href="view_cart.php">Cart</a>
             <h2 class="text-4xl font-semibold">Products</h2>
         </div>
     </div>
