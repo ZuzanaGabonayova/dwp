@@ -2,14 +2,6 @@
 
 require 'db.php'; // Make sure this points to the correct path where your db.php file is
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
 /**
  * Sanitize input data
  */
