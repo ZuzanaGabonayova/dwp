@@ -1,5 +1,5 @@
 <?php
-$servername = "zuzanagabonayova.eu";
+$servername = "zuzanagabonayova.eu.mysql";
 $username = "zuzanagabonayova_euwebshopdb"; // default XAMPP username
 $password = "dwp2023"; // default XAMPP password
 $dbname = "zuzanagabonayova_euwebshopdb";
