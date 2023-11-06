@@ -1,3 +1,3 @@
-CREATE DATABASE IF NOT EXISTS shoes_shop CHARACTER SET UTF8 COLLATE UTF8_UNICODE_CI;
-USE shoes_shop;
+
+USE zuzanagabonayova_euwebshopdb;
 
