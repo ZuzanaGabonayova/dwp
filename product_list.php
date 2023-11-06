@@ -9,7 +9,7 @@ $products = readProducts();
 // Function to get the base URL of the script
 function baseUrl() {
     // Normally you would make this dynamic or configured, but for localhost it's simple
-    return 'http://localhost/dwp/';
+    return 'https://zuzanagabonayova.eu/';
 }
 
 ?>

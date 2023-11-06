@@ -8,7 +8,7 @@ $newsPosts = readNewsPosts();
 
 // Function to get the base URL of the script
 function baseUrl() {
-    return 'http://localhost/dwp/'; // Adjust this to your actual base URL
+    return 'https://zuzanagabonayova.eu/'; // Adjust this to your actual base URL
 }
 
 ?>

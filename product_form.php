@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 function baseUrl() {
     // Normally you would make this dynamic or configured, but for localhost it's simple
-    return 'http://localhost/dwp/';
+    return 'https://zuzanagabonayova.eu/';
 }
 
 ?>

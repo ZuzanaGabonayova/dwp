@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 function baseUrl() {
-    return 'http://localhost/dwp/'; // Adjust this to your actual base URL
+    return 'https://zuzanagabonayova.eu/'; // Adjust this to your actual base URL
 }
 
 ?>
