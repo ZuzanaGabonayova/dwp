@@ -5,8 +5,6 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php'; // If using Composer
 require 'db.php'; // Your database connection file
 
-// The rest of your
-
 // Function to sanitize form input
 function test_input($data) {
   $data = trim($data);
@@ -15,16 +13,21 @@ function test_input($data) {
   return $data;
 }
 
+header('Content-Type: application/json'); // Specify the content type as JSON
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Sanitize input
     $name = test_input($_POST["name"]);
     $email = test_input($_POST["email"]);
     $message = test_input($_POST["message"]);
 
-   // Save to database
+    // Save to database
     $stmt = $conn->prepare("INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $name, $email, $message);
-    $stmt->execute();
+    if (!$stmt->execute()) {
+        echo json_encode(['status' => 'error', 'message' => 'Could not save to database.']);
+        exit;
+    }
     $stmt->close();
 
     // Send email using PHPMailer
@@ -32,30 +35,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         // Server settings
-        $mail->isSMTP();
-        $mail->Host       = 'send.one.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'info@zuzanagabonayova.eu';
-        $mail->Password   = 'dwp2023'; // Replace with your password
-        $mail->SMTPSecure = 'ssl';
-        $mail->Port       = 465;
-
-        // Recipients
-        $mail->setFrom('info@zuzanagabonayova.eu', 'Website Contact Form');
-        $mail->addAddress('vitkai.laca1@gmail.com'); // Replace with your email
-
-        // Content
-        $mail->isHTML(true);
-        $mail->Subject = 'New Contact Form Submission';
-        $mail->Body    = "You have received a new message from $name.<br>Email: $email<br>Message: $message";
-        $mail->AltBody = "You have received a new message from $name.\nEmail: $email\nMessage: $message";
+        // ... your existing code ...
 
         $mail->send();
-        echo 'Message has been sent';
+        echo json_encode(['status' => 'success', 'message' => 'Message has been sent.']);
     } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        echo json_encode(['status' => 'error', 'message' => "Message could not be sent. Mailer Error: {$mail->ErrorInfo}"]);
     }
 } else {
-    header('Location: contact_form.php');
+    echo json_encode(['status' => 'error', 'message' => 'Request must be POST.']);
 }
 ?>

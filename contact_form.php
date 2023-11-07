@@ -32,6 +32,8 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     var form = document.getElementById('contactForm');
+    var formResponse = document.getElementById('formResponse');
+
     form.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the default form submit action
 
@@ -40,18 +42,22 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.text())
-        .then(text => {
-            document.getElementById('formResponse').innerText = text;
-            // Clear the form if needed, or handle UI changes
-            form.reset();
+        .then(response => response.json()) // Parse the JSON response
+        .then(data => {
+            // Handle the response based on the status
+            formResponse.innerText = data.message;
+            if (data.status === 'success') {
+                // Clear the form or any other success actions
+                form.reset();
+            }
         })
         .catch(error => {
-            document.getElementById('formResponse').innerText = 'An error occurred: ' + error;
+            formResponse.innerText = 'An error occurred: ' + error;
         });
     });
 });
 </script>
+
 
 </body>
 </html>
