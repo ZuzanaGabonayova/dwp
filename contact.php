@@ -5,6 +5,8 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php'; // If using Composer
 require 'db.php'; // Your database connection file
 
+// The rest of your
+
 // Function to sanitize form input
 function test_input($data) {
   $data = trim($data);
