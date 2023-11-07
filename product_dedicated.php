@@ -28,7 +28,7 @@ $conn->close();
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-
+<h1>dedicated product page</h1>
 <div class="container mx-auto px-4 py-6">
     <!-- Main Image Display -->
     <?php if (!empty($images)): ?>
