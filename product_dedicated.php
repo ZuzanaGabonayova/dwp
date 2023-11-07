@@ -29,15 +29,27 @@ $conn->close();
 </head>
 <body>
 
-<div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <?php foreach ($images as $image): ?>
-            <div class="border rounded overflow-hidden">
-                <img src="<?php echo htmlspecialchars($image['image_path']); ?>" alt="<?php echo htmlspecialchars($image['alt_text']); ?>" class="w-full h-auto">
-            </div>
-        <?php endforeach; ?>
-    </div>
+<div class="container mx-auto px-4 py-6">
+    <!-- Main Image Display -->
+    <?php if (!empty($images)): ?>
+        <div class="w-full mb-4">
+            <img id="mainImage" src="<?php echo htmlspecialchars($images[0]['image_path']); ?>" alt="<?php echo htmlspecialchars($images[0]['alt_text']); ?>" class="w-full h-auto object-cover rounded-lg shadow-md">
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="flex -mx-2">
+            <?php foreach (array_slice($images, 1) as $image): ?>
+                <div class="flex-1 px-2">
+                    <img src="<?php echo htmlspecialchars($image['image_path']); ?>" alt="<?php echo htmlspecialchars($image['alt_text']); ?>" class="w-full h-auto object-cover rounded-lg shadow-md cursor-pointer" onclick="document.getElementById('mainImage').src='<?php echo htmlspecialchars($image['image_path']); ?>'">
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
 </div>
+
+<script>
+    // You can add additional JavaScript here if needed
+</script>
 
 </body>
 </html>
