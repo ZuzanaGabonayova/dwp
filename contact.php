@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Port       = 465;
 
         // Recipients
-        $mail->setFrom('info@zuzanagabonyova.eu', 'Website Contact Form');
+        $mail->setFrom('info@zuzanagabonayova.eu', 'Website Contact Form');
         $mail->addAddress('vitkai.laca1@gmail.com'); // Replace with your email
 
         // Content
