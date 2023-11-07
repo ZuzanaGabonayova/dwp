@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Send email to the owner
         $to = 'vitkai.laca1@gmail.com'; // Replace with the owner's email address
         $subject = 'New Contact Form Submission - DWP';
-        $headers = "From: info" . "\r\n" . // Replace with the sender's email address
+        $headers = "From: info@zuzanagabonyova.eu" . "\r\n" . // Replace with the sender's email address
                    "Reply-To: $email" . "\r\n" .
                    "X-Mailer: PHP/" . phpversion();
         $email_content = "You have received a new message from the contact form on your website.\n\n" .
