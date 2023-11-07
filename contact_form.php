@@ -5,27 +5,7 @@
     <title>Contact Form</title>
     <!-- Include Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // Function to handle the form submission
-        function submitForm(event) {
-            event.preventDefault(); // Prevent the default form submission
-
-            var xhr = new XMLHttpRequest();
-            var url = event.target.action; // The URL to send the POST request to
-            var formData = new FormData(event.target); // Get the form data
-
-            xhr.open("POST", url, true);
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    // Handle the response from the server
-                    alert(xhr.responseText);
-                }
-            };
-
-            xhr.send(formData);
-        }
-    </script>
+    
 </head>
 <body>
 
