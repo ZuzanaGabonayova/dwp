@@ -1,70 +1,59 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-require 'db.php'; // Include the database connection
+require 'vendor/autoload.php'; // If using Composer
+require 'db.php'; // Your database connection file
 
-// Function to validate input data
+// Function to sanitize form input
 function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
 }
 
-// Create connection using PDO to utilize prepared statements
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    // Set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-    exit;
-}
-
-// Process the form data if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate and sanitize input data
-    $name = test_input($_POST['name']);
-    $email = test_input($_POST['email']);
-    $message = test_input($_POST['message']);
+    // Sanitize input
+    $name = test_input($_POST["name"]);
+    $email = test_input($_POST["email"]);
+    $message = test_input($_POST["message"]);
 
-    // Check if email is a valid email address
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Invalid email format";
-        exit;
-    }
+    // Save to database
+    $stmt = $mysqli->prepare("INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $name, $email, $message);
+    $stmt->execute();
+    $stmt->close();
 
-    // Prepare and bind
-    $stmt = $conn->prepare("INSERT INTO contacts (name, email, message) VALUES (:name, :email, :message)");
-    $stmt->bindParam(':name', $name);
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':message', $message);
+    // Send email using PHPMailer
+    $mail = new PHPMailer(true);
 
     try {
-        $stmt->execute();
+        // Server settings
+        $mail->isSMTP();
+        $mail->Host       = 'send.one.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'info@zuzanagabonyova.eu';
+        $mail->Password   = 'dwp2023'; // Replace with your password
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port       = 465;
 
-        // Send email to the owner
-        $to = 'vitkai.laca1@gmail.com'; // Replace with the owner's email address
-        $subject = 'New Contact Form Submission - DWP';
-        $headers = "From: info@zuzanagabonyova.eu" . "\r\n" . // Replace with the sender's email address
-                   "Reply-To: $email" . "\r\n" .
-                   "X-Mailer: PHP/" . phpversion();
-        $email_content = "You have received a new message from the contact form on your website.\n\n" .
-                         "Name: $name\n" .
-                         "Email: $email\n\n" .
-                         "Message:\n$message\n";
+        // Recipients
+        $mail->setFrom('info@zuzanagabonyova.eu', 'Website Contact Form');
+        $mail->addAddress('vitkai.laca1@gmail.com'); // Replace with your email
 
-        if (mail($to, $subject, $email_content, $headers)) {
-            echo "Thank you for contacting us, $name. We will get back to you shortly.";
-        } else {
-            echo "The email could not be sent.";
-        }
-    } catch(PDOException $e) {
-        echo "Error: " . $stmt->errorInfo()[2];
+        // Content
+        $mail->isHTML(true);
+        $mail->Subject = 'New Contact Form Submission';
+        $mail->Body    = "You have received a new message from $name.<br>Email: $email<br>Message: $message";
+        $mail->AltBody = "You have received a new message from $name.\nEmail: $email\nMessage: $message";
+
+        $mail->send();
+        echo 'Message has been sent';
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
+} else {
+    header('Location: contact.html');
 }
-
-// Close connection
-$conn = null;
 ?>
-
-
