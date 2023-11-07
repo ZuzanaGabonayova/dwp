@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isSMTP();
         $mail->Host       = 'send.one.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'info@zuzanagabonyova.eu';
+        $mail->Username   = 'info@zuzanagabonayova.eu';
         $mail->Password   = 'dwp2023'; // Replace with your password
         $mail->SMTPSecure = 'ssl';
         $mail->Port       = 465;
