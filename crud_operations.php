@@ -32,7 +32,7 @@ function createProduct($productNumber, $model, $color, $size, $description, $pri
     // Prepare statement
     $stmt = $conn->prepare("INSERT INTO Product (ProductNumber, Model, Color, Size, Description, Price, StockQuantity, ProductMainImage, CategoryID, BrandID, CreatedAt, EditedAt, Author) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW(), ?)");
     $stmt->bind_param("sssssdisisi", $productNumber, $model, $color, $size, $description, $price, $stockQuantity, $productMainImage, $categoryID, $brandID, $author);
-    echo("<script>console.log('PHP: ".$productMainImage."');</script>");
+    
     if($stmt->execute()) {
         return $conn->insert_id; // Return the id of the inserted product
     } else {
@@ -77,7 +77,7 @@ function updateProduct($productID, $productNumber, $model, $color, $size, $descr
 
     // Prepare statement
     $stmt = $conn->prepare("UPDATE Product SET ProductNumber = ?, Model = ?, Color = ?, Size = ?, Description = ?, Price = ?, StockQuantity = ?, ProductMainImage = ?, CategoryID = ?, BrandID = ?, EditedAt = NOW() WHERE ProductID = ?");
-    $stmt->bind_param("sssssdiiisi", $productNumber, $model, $color, $size, $description, $price, $stockQuantity, $productMainImage, $categoryID, $brandID, $productID);
+    $stmt->bind_param("sssssdisisi", $productNumber, $model, $color, $size, $description, $price, $stockQuantity, $productMainImage, $categoryID, $brandID, $productID);
     
     return $stmt->execute();
 }
