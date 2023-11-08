@@ -53,13 +53,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<script>
-    <?php if (!empty($message)) { ?>
-    window.onload = function() {
-      <?php echo $message; ?>
-    }
-    <?php } ?>
-</script>
-
 </body>
 </html>

@@ -7,8 +7,8 @@ require 'db.php'; // Your database connection file
 
 // The rest of your
 
-// Initialize the message variable
-$message = '';
+/* // Initialize the message variable
+$message = ''; */
 
 // Function to sanitize form input
 function test_input($data) {
@@ -56,10 +56,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $mail->send();
         /* echo 'Message has been sent'; */
-        $message = "Message has been sent";
+        /* $message = "Message has been sent"; */
+        echo '<script>alert("Message has been sent");</script>';
+
     } catch (Exception $e) {
         /* echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}"; */
-        $message = "Message could not be sent. Mailer Error: " . $mail->ErrorInfo;
+        /* $message = "Message could not be sent. Mailer Error: " . $mail->ErrorInfo; */
     }
 } else {
     header('Location: contact_form.php');
