@@ -1,21 +1,38 @@
-DROP TABLE IF EXISTS products;
+/* DROP TABLE IF EXISTS products; */
 
 CREATE TABLE ProductCategory (
     CategoryID INT AUTO_INCREMENT PRIMARY KEY,
     CategoryName VARCHAR(255) NOT NULL
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE ProductBrand (
     BrandID INT AUTO_INCREMENT PRIMARY KEY,
     BrandName VARCHAR(255) NOT NULL
-);
+)ENGINE=InnoDB;
 
-CREATE TABLE product (
+
+CREATE TABLE DailySpecialOffer
+(
+    DailySpecialOfferID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    ProductID INT NOT NULL,
+    FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+) ENGINE=InnoDB;
+
+CREATE TABLE Admin
+(
+    AdminID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    FirstName VARCHAR(200) NOT NULL,
+    LastName VARCHAR(200) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    UpdatedAt DateTime NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE Product (
     ProductID INT AUTO_INCREMENT PRIMARY KEY,
     ProductNumber VARCHAR(255) NOT NULL UNIQUE,
     Model VARCHAR(255) NOT NULL,
     Color VARCHAR(50),
-    Size VARCHAR(50),
+    Size INT,
     Description TEXT,
     Price DECIMAL(10, 2) NOT NULL,
     StockQuantity INT DEFAULT 0,
@@ -24,19 +41,85 @@ CREATE TABLE product (
     BrandID INT,
     CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
     EditedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    Author VARCHAR(255),
+    Author INT NOT NULL,
     FOREIGN KEY (CategoryID) REFERENCES ProductCategory(CategoryID),
-    FOREIGN KEY (BrandID) REFERENCES ProductBrand(BrandID)
-);
+    FOREIGN KEY (BrandID) REFERENCES ProductBrand(BrandID),
+    FOREIGN KEY (Author) REFERENCES Admin (AdminID)
+)ENGINE=InnoDB;
 
+CREATE TABLE ProductGallery
+(
+    ProductGalleryID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    ProductID INT NOT NULL,
+    ProductImage VARCHAR(500) NOT NULL,
+    FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+) ENGINE=InnoDB;
 
-CREATE TABLE products (
+CREATE TABLE PostalCode
+(
+    PostalCodeID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    PostalCode VARCHAR(70) NOT NULL,
+    City VARCHAR(500) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE Address
+(
+    AddressID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    Street VARCHAR(255) NOT NULL,
+    HouseNumber VARCHAR(50) NOT NULL,
+    PostalCodeID INT NOT NULL,
+    FOREIGN KEY (PostalCodeID) REFERENCES PostalCode(PostalCodeID)
+) ENGINE=InnoDB;
+
+CREATE TABLE Customer
+(
+    CustomerID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    FirstName VARCHAR(200) NOT NULL,
+    LastName VARCHAR(200) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    Phone VARCHAR(100) NOT NULL,
+    AddressID INT NOT NULL,
+    FOREIGN KEY (AddressID) REFERENCES Address(AddressID)
+) ENGINE=InnoDB;
+
+CREATE TABLE BillingAddress
+(
+    BillingAddressID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    Street VARCHAR(255) NOT NULL,
+    HouseNumber VARCHAR(50) NOT NULL,
+    PostalCodeID INT NOT NULL,
+    FOREIGN KEY (PostalCodeID) REFERENCES PostalCode(PostalCodeID)
+) ENGINE=InnoDB;
+
+CREATE TABLE OrderP
+(
+    OrderID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    OrderDate DateTime NOT NULL,
+    OrderStatus Boolean NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE OrderDetails
+(
+    OrderDetailsID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    Quantity INT NOT NULL,
+    Price DECIMAL(8,2) NOT NULL,
+    OrderID INT NOT NULL,
+    ProductID INT NOT NULL,
+    CustomerID INT NOT NULL,
+    BillingAddressID INT NOT NULL,
+    FOREIGN KEY (OrderID) REFERENCES OrderP(OrderID),
+    FOREIGN KEY (ProductID) REFERENCES Product(ProductID),
+    FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
+    FOREIGN KEY (BillingAddressID) REFERENCES BillingAddress(BillingAddressID)
+) ENGINE=InnoDB;
+
+/* CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     description TEXT,
     price DECIMAL(10, 2) NOT NULL,
     image VARCHAR(255)
-);
+); */
 
 DROP TABLE IF EXISTS news_posts;
 
@@ -51,6 +134,17 @@ CREATE TABLE news_posts (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+CREATE TABLE PresentationOfCompany
+(
+    DescriptionOfCompany VARCHAR(2000) NOT NULL,
+    OpeningHours VARCHAR(500) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    Phone VARCHAR(100) NOT NULL,
+    Street VARCHAR(255) NOT NULL,
+    HouseNumber VARCHAR(50) NOT NULL,
+    PostalCodeID INT NOT NULL,
+    FOREIGN KEY (PostalCodeID) REFERENCES PostalCode(PostalCodeID)
+) ENGINE=InnoDB;
 
 -- -- Create a table for the product images
 -- CREATE TABLE product_images (
