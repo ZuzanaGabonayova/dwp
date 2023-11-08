@@ -7,6 +7,9 @@ require 'db.php'; // Your database connection file
 
 // The rest of your
 
+// Initialize the message variable
+$message = '';
+
 // Function to sanitize form input
 function test_input($data) {
   $data = trim($data);
