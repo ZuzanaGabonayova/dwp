@@ -82,11 +82,9 @@ $conn->close();
         <div class="grid gap-10">
             <!-- Main Image Display -->
         <?php if (!empty($images)): ?>
-        <div class="w-full mb-4">
+        <div class=" mb-4">
             <img id="mainImage" src="<?php echo htmlspecialchars($images[0]['image_path']); ?>" alt="<?php echo htmlspecialchars($images[0]['alt_text']); ?>" class="w-full h-auto object-cover rounded-lg shadow-md">
-        </div>
-
-        <!-- Thumbnails -->
+            <!-- Thumbnails -->
         <div class="flex -mx-2">
             <?php foreach (array_slice($images, 1) as $image): ?>
                 <div class="flex-1 px-2">
@@ -94,6 +92,9 @@ $conn->close();
                 </div>
             <?php endforeach; ?>
         </div>
+        </div>
+
+        
     <?php endif; ?>
         </div>
     </div>
