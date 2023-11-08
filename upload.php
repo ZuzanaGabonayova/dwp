@@ -5,7 +5,7 @@
  */
 function uploadFile($file, $uploadDir = 'assets/images/') {
     // Define the allowed file types
-    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif, image/webp'];
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
     $maxFileSize = 5 * 1024 * 1024; // 5 MB
 
     // Check if there was an error
