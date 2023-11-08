@@ -25,7 +25,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Gallery</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 <h1>dedicated product page</h1>
@@ -80,7 +80,7 @@ $conn->close();
     <!-- Image gallery -->
     <div class="mx-auto mt-6 max-w-2xl sm:px-6  lg:max-w-7xl lg:gap-x-8 lg:px-8">
       <div class=" rounded-lg lg:block">
-        <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg" alt="Two each of gray, white, and black shirts laying flat." class="h-full sm:w-full w-[32rem] object-cover object-center">
+        <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg" alt="Two each of gray, white, and black shirts laying flat." class="h-full w-full sm:w-[32rem] object-cover object-center">
       </div>
     </div>
 
