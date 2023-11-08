@@ -1,41 +1,42 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 // Include CRUD operations file
 require 'crud_operations.php';
-require 'db.php';
 
 // Assume $productID is provided to query the product
 $productID = 8; // Example product ID
 
 // Fetch product data
 $product = readProduct($productID);
-
-// Check if product data is available
-if ($product) {
-    // Start of HTML content
-    echo '<div class="container mx-auto mt-10">';
-    echo '<div class="flex flex-wrap -mx-4">';
-
-    // Display product details
-    echo '<div class="w-full md:w-1/2 px-4 mb-8">';
-    echo '<img class="w-full h-auto rounded shadow" src="' . $product['ProductMainImage'] . '" alt="Product Image">';
-    echo '</div>';
-
-    echo '<div class="w-full md:w-1/2 px-4 mb-8">';
-    echo '<h2 class="text-2xl font-bold mb-2">' . $product['Model'] . '</h2>';
-    echo '<p class="text-gray-700 mb-4">' . $product['Description'] . '</p>';
-    echo '<p class="text-gray-700 mb-4"><strong>Price:</strong> $' . $product['Price'] . '</p>';
-    echo '<p class="text-gray-700 mb-4"><strong>Color:</strong> ' . $product['Color'] . '</p>';
-    echo '<p class="text-gray-700 mb-4"><strong>Size:</strong> ' . $product['Size'] . '</p>';
-    echo '<p class="text-gray-700 mb-4"><strong>Stock Quantity:</strong> ' . $product['StockQuantity'] . '</p>';
-    echo '</div>';
-
-    // End of HTML content
-    echo '</div>';
-    echo '</div>';
-} else {
-    echo 'Product not found.';
-}
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <!-- Tailwind CSS Link -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto mt-10">
+        <?php if ($product): ?>
+            <div class="flex flex-wrap -mx-4">
+                <div class="w-full md:w-1/2 px-4 mb-8">
+                    <img class="w-full h-auto rounded shadow" src="<?php echo htmlspecialchars($product['ProductMainImage']); ?>" alt="Product Image">
+                </div>
+                <div class="w-full md:w-1/2 px-4 mb-8">
+                    <h2 class="text-2xl font-bold mb-2"><?php echo htmlspecialchars($product['Model']); ?></h2>
+                    <p class="text-gray-700 mb-4"><?php echo htmlspecialchars($product['Description']); ?></p>
+                    <p class="text-gray-700 mb-4"><strong>Price:</strong> $<?php echo htmlspecialchars($product['Price']); ?></p>
+                    <p class="text-gray-700 mb-4"><strong>Color:</strong> <?php echo htmlspecialchars($product['Color']); ?></p>
+                    <p class="text-gray-700 mb-4"><strong>Size:</strong> <?php echo htmlspecialchars($product['Size']); ?></p>
+                    <p class="text-gray-700 mb-4"><strong>Stock Quantity:</strong> <?php echo htmlspecialchars($product['StockQuantity']); ?></p>
+                </div>
+            </div>
+        <?php else: ?>
+            <p>Product not found.</p>
+        <?php endif; ?>
+    </div>
+</body>
+</html>
