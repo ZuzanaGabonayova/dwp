@@ -42,7 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Recipients
         $mail->setFrom('info@zuzanagabonayova.eu', 'Website Contact Form');
-        $mail->addAddress('vitkai.laca1@gmail.com'); // Replace with your email
+        /* $mail->addAddress('vitkai.laca1@gmail.com');  */// Replace with your email
+        $mail->addAddress('zuza0466@easv365.dk'); 
 
         // Content
         $mail->isHTML(true);
