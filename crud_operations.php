@@ -1,6 +1,6 @@
 <?php
 
-require 'db.php'; // Make sure this points to the correct path where your db.php file is
+require 'db.php'; // ensures that the file is included only once
 
 /**
  * Sanitize input data
@@ -10,21 +10,28 @@ function sanitizeInput($data) {
     return htmlspecialchars($conn->real_escape_string($data));
 }
 
+
 /**
  * Create a new product
  */
-function createProduct($name, $description, $price, $image) {
+function createProduct($productNumber, $model, $color, $size, $description, $price, $stockQuantity, $productMainImage, $categoryID, $brandID) {
     global $conn;
     
     // Sanitize input
-    $name = sanitizeInput($name);
+    $productNumber = sanitizeInput($productNumber);
+    $model = sanitizeInput($model);
+    $color = sanitizeInput($color);
+    $size = sanitizeInput($size);
     $description = sanitizeInput($description);
     $price = sanitizeInput($price);
-    $image = sanitizeInput($image);
+    $stockQuantity = sanitizeInput($stockQuantity);
+    $productMainImage = sanitizeInput($productMainImage);
+    $categoryID = sanitizeInput($categoryID);
+    $brandID = sanitizeInput($brandID);
 
     // Prepare statement
-    $stmt = $conn->prepare("INSERT INTO products (name, description, price, image) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssds", $name, $description, $price, $image);
+    $stmt = $conn->prepare("INSERT INTO product (ProductNumber, Model, Color, Size, Description, Price, StockQuantity, ProductMainImage, CategoryID, BrandID, CreatedAt, EditedAt, Author) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW(), ?)");
+    $stmt->bind_param("sssssdiiisi", $productNumber, $model, $color, $size, $description, $price, $stockQuantity, $productMainImage, $categoryID, $brandID, $author);
     
     if($stmt->execute()) {
         return $conn->insert_id; // Return the id of the inserted product
@@ -39,7 +46,7 @@ function createProduct($name, $description, $price, $image) {
 function readProducts() {
     global $conn;
     
-    $sql = "SELECT * FROM products";
+    $sql = "SELECT * FROM product";
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {
@@ -52,19 +59,25 @@ function readProducts() {
 /**
  * Update a product
  */
-function updateProduct($id, $name, $description, $price, $image) {
+function updateProduct($productID, $productNumber, $model, $color, $size, $description, $price, $stockQuantity, $productMainImage, $categoryID, $brandID) {
     global $conn;
     
     // Sanitize input
-    $id = sanitizeInput($id);
-    $name = sanitizeInput($name);
+    $productID = sanitizeInput($productID);
+    $productNumber = sanitizeInput($productNumber);
+    $model = sanitizeInput($model);
+    $color = sanitizeInput($color);
+    $size = sanitizeInput($size);
     $description = sanitizeInput($description);
     $price = sanitizeInput($price);
-    $image = sanitizeInput($image);
+    $stockQuantity = sanitizeInput($stockQuantity);
+    $productMainImage = sanitizeInput($productMainImage);
+    $categoryID = sanitizeInput($categoryID);
+    $brandID = sanitizeInput($brandID);
 
     // Prepare statement
-    $stmt = $conn->prepare("UPDATE products SET name = ?, description = ?, price = ?, image = ? WHERE id = ?");
-    $stmt->bind_param("ssdsi", $name, $description, $price, $image, $id);
+    $stmt = $conn->prepare("UPDATE product SET ProductNumber = ?, Model = ?, Color = ?, Size = ?, Description = ?, Price = ?, StockQuantity = ?, ProductMainImage = ?, CategoryID = ?, BrandID = ?, EditedAt = NOW() WHERE ProductID = ?");
+    $stmt->bind_param("sssssdiiisi", $productNumber, $model, $color, $size, $description, $price, $stockQuantity, $productMainImage, $categoryID, $brandID, $productID);
     
     return $stmt->execute();
 }
@@ -72,28 +85,28 @@ function updateProduct($id, $name, $description, $price, $image) {
 /**
  * Delete a product
  */
-function deleteProduct($id) {
+function deleteProduct($productID) {
     global $conn;
     
     // Sanitize input
-    $id = sanitizeInput($id);
+    $productID = sanitizeInput($productID);
 
     // Prepare statement
-    $stmt = $conn->prepare("DELETE FROM products WHERE id = ?");
-    $stmt->bind_param("i", $id);
+    $stmt = $conn->prepare("DELETE FROM product WHERE ProductID = ?");
+    $stmt->bind_param("i", $productID);
     
     return $stmt->execute();
 }
 
 /**
- * Read a single product by its ID
+ * Read a single product by its ProductID
  */
-function readProduct($id) {
+function readProduct($productID) {
     global $conn;
     
     // Prepare the SQL statement to prevent SQL injection
-    $stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
-    $stmt->bind_param("i", $id);
+    $stmt = $conn->prepare("SELECT * FROM product WHERE ProductID = ?");
+    $stmt->bind_param("i", $productID);
     
     // Execute the statement and get the result
     $stmt->execute();
@@ -103,9 +116,10 @@ function readProduct($id) {
     if ($product = $result->fetch_assoc()) {
         return $product;
     } else {
-        return null; // No product found with the given ID
+        return null; // No product found with the given ProductID
     }
 }
+
 
 
 
