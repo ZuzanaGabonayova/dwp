@@ -2,21 +2,6 @@
 // Database configuration
 require 'db.php';
 // SQL to fetch image paths
-$sql = "SELECT image_path, alt_text FROM product_images WHERE product_id = 4 LIMIT 4";
-$result = $conn->query($sql);
-
-$images = [];
-
-if ($result->num_rows > 0) {
-    // Fetch images
-    while($row = $result->fetch_assoc()) {
-        $images[] = $row;
-    }
-} else {
-    echo "No images found.";
-}
-
-$conn->close();
 ?>
 
 <!DOCTYPE html>
