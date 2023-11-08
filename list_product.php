@@ -1,3 +1,17 @@
+<?php 
+require 'db.php'; // Include the database
+require 'crud_operations.php'; // Include the CRUD operations
+
+function listProducts($conn) {
+    $sql = "SELECT p.*, GROUP_CONCAT(DISTINCT ps.SizeID) as Sizes, GROUP_CONCAT(DISTINCT pc.ColorID) as Colors FROM Product p LEFT JOIN ProductSize ps ON p.ProductID = ps.ProductID LEFT JOIN ProductColor pc ON p.ProductID = pc.ProductID GROUP BY p.ProductID";
+    
+    $result = $conn->query($sql);
+    
+    // Process result and return an array of products
+    // Each product will have an array of size IDs and color IDs
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,37 +26,33 @@
     <h1 class="text-2xl font-bold my-8">Product Listing</h1>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <?php
-            // Assume $products is an array of product data you've fetched from your database
-            foreach ($products as $product) {
+        <?php foreach ($products as $product): ?>
+            <?php
                 // Extract product sizes and colors
                 $sizes = explode(',', $product['Sizes']);
                 $colors = explode(',', $product['Colors']);
-
-                echo "<div class='max-w-sm rounded overflow-hidden shadow-lg bg-white'>";
-                echo "<img class='w-full' src='assets/images" . htmlspecialchars($product['ProductMainImage']) . "' alt='" . htmlspecialchars($product['Model']) . "'>";
-                echo "<div class='px-6 py-4'>";
-                echo "<div class='font-bold text-xl mb-2'>" . htmlspecialchars($product['Model']) . "</div>";
-                echo "<p class='text-gray-700 text-base'>" . htmlspecialchars($product['Description']) . "</p>";
-                echo "<p class='text-gray-900 text-base font-bold'>Price: $" . htmlspecialchars($product['Price']) . "</p>";
-                echo "</div>";
-                echo "<div class='px-6 pt-4 pb-2'>";
-                
-                // Sizes
-                foreach ($sizes as $size) {
-                    echo "<span class='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>Size: " . htmlspecialchars($size) . "</span>";
-                }
-                // Colors
-                foreach ($colors as $color) {
-                    echo "<span class='inline-block bg-" . htmlspecialchars($color) . "-200 rounded-full px-3 py-1 text-sm font-semibold text-" . htmlspecialchars($color) . "-700 mr-2 mb-2'>" . htmlspecialchars($color) . "</span>";
-                }
-                
-                echo "</div>";
-                echo "</div>";
-            }
-        ?>
+            ?>
+            <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+                <img class="w-full" src="/path/to/images/<?= htmlspecialchars($product['ProductMainImage']) ?>" alt="<?= htmlspecialchars($product['Model']) ?>">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2"><?= htmlspecialchars($product['Model']) ?></div>
+                    <p class="text-gray-700 text-base"><?= htmlspecialchars($product['Description']) ?></p>
+                    <p class="text-gray-900 text-base font-bold">Price: $<?= htmlspecialchars($product['Price']) ?></p>
+                </div>
+                <div class="px-6 pt-4 pb-2">
+                    <?php foreach ($sizes as $size): ?>
+                        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Size: <?= htmlspecialchars($size) ?></span>
+                    <?php endforeach; ?>
+                    <?php foreach ($colors as $color): ?>
+                        <!-- Example color class name, replace 'blue' with actual color logic -->
+                        <span class="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-blue-700 mr-2 mb-2"><?= htmlspecialchars($color) ?></span>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
 </div>
 
 </body>
 </html>
+
