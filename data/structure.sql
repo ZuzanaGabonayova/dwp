@@ -1,5 +1,35 @@
 DROP TABLE IF EXISTS products;
 
+CREATE TABLE ProductCategory (
+    CategoryID INT AUTO_INCREMENT PRIMARY KEY,
+    CategoryName VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE ProductBrand (
+    BrandID INT AUTO_INCREMENT PRIMARY KEY,
+    BrandName VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE product (
+    ProductID INT AUTO_INCREMENT PRIMARY KEY,
+    ProductNumber VARCHAR(255) NOT NULL UNIQUE,
+    Model VARCHAR(255) NOT NULL,
+    Color VARCHAR(50),
+    Size VARCHAR(50),
+    Description TEXT,
+    Price DECIMAL(10, 2) NOT NULL,
+    StockQuantity INT DEFAULT 0,
+    ProductMainImage VARCHAR(255),
+    CategoryID INT,
+    BrandID INT,
+    CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    EditedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    Author VARCHAR(255),
+    FOREIGN KEY (CategoryID) REFERENCES ProductCategory(CategoryID),
+    FOREIGN KEY (BrandID) REFERENCES ProductBrand(BrandID)
+);
+
+
 CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
