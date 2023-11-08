@@ -59,7 +59,7 @@ function baseUrl() {
                     <td class="py-3 px-6 text-left"><?php echo htmlspecialchars($product['Model']); ?></td>
                     <td class="py-3 px-6 text-left"><?php echo htmlspecialchars($product['Color']); ?></td>
                     <td class="py-3 px-6 text-left"><?php echo htmlspecialchars($product['Size']); ?></td>
-                    <td class="py-3 px-6 text-left line-clamp-4"><?php echo htmlspecialchars($product['Description']); ?></td>
+                    <td class="py-3 px-6 text-left line-clamp-4 overflow-auto"><?php echo htmlspecialchars($product['Description']); ?></td>
                     <td class="py-3 px-6 text-center"><?php echo htmlspecialchars($product['Price']); ?></td>
                     <td class="py-3 px-6 text-center"><?php echo htmlspecialchars($product['StockQuantity']); ?></td>
                     <td class="py-3 px-6 text-center">
