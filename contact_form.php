@@ -54,11 +54,11 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <script>
-    // Check if the 'message' variable is not empty
-    if ('<?php echo $message; ?>' !== '') {
-      // Display the message in a popup
+    <?php if (!empty($message)) { ?>
+    window.onload = function() {
       alert('<?php echo $message; ?>');
     }
+    <?php } ?>
 </script>
 
 </body>
