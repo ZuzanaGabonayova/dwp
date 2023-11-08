@@ -105,7 +105,9 @@ function baseUrl() {
                 <form action="product_form.php" method="post" enctype="multipart/form-data" class="mt-4">
                     <input type="hidden" name="ProductID" value="<?php echo htmlspecialchars($product['ProductID']); ?>">
 
-                    <label class="block">
+                    <!-- Here you will have other input fields for the product attributes -->
+
+                    <label class="block mt-3">
                         <span class="text-gray-700">Product Number</span>
                         <input type="text" name="ProductNumber" value="<?php echo htmlspecialchars($product['ProductNumber']); ?>" class="mt-1 block w-full" required>
                     </label>
@@ -155,6 +157,7 @@ function baseUrl() {
                         <input type="text" name="Author" value="<?php echo htmlspecialchars($product['Author']); ?>" class="mt-1 block w-full">
                     </label>
 
+                    <!-- Image upload field -->
                     <label class="block mt-3">
                         <span class="text-gray-700">Product Image</span>
                         <input type="file" name="ProductMainImage" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none p-1">
@@ -178,4 +181,5 @@ function baseUrl() {
     </div>
 </body>
 </html>
+
 
