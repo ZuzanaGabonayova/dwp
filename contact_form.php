@@ -54,10 +54,10 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <script>
-    // Check if the 'message' variable is set
-    if (typeof message !== 'undefined') {
+    // Check if the 'message' variable is not empty
+    if ('<?php echo $message; ?>' !== '') {
       // Display the message in a popup
-      alert(message);
+      alert('<?php echo $message; ?>');
     }
 </script>
 
