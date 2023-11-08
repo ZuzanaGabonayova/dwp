@@ -6,7 +6,7 @@ require 'crud_operations.php'; // Include the CRUD operations
 // Function to get the base URL of the script
 function baseUrl() {
     // Normally you would make this dynamic or configured, but for localhost it's simple
-    return 'http://localhost/dwp/';
+    return 'https://zuzanagabonayova.eu/';
 }
 
 // Check if the 'id' GET parameter is set and the form has been submitted
