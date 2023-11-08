@@ -6,13 +6,13 @@ require 'crud_operations.php'; // Include the CRUD operations
 // Function to get the base URL of the script
 function baseUrl() {
     // Normally you would make this dynamic or configured, but for localhost it's simple
-    return 'https://zuzanagabonayova.eu/';
+    return 'http://localhost/dwp/';
 }
 
 // Check if the 'id' GET parameter is set and the form has been submitted
 if (isset($_POST['productID']) && isset($_POST['confirm']) && $_POST['confirm'] === 'yes') {
-    $id = $_POST['productID'];
-    $result = deleteProduct($id);
+    $productID = $_POST['productID'];
+    $result = deleteProduct($productID);
 
     if ($result) {
         // If the product was deleted successfully, redirect back to the product list
@@ -26,7 +26,7 @@ if (isset($_POST['productID']) && isset($_POST['confirm']) && $_POST['confirm'] 
 
 // If there's a GET request without form submission, display the confirmation
 if (isset($_GET['productID']) && !isset($_POST['confirm'])) {
-    $id = $_GET['productID'];
+    $productID = $_GET['productID'];
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +44,7 @@ if (isset($_GET['productID']) && !isset($_POST['confirm'])) {
         <p class="mb-4">Are you sure you want to delete this product?</p>
 
         <form action="delete_product.php" method="post">
-            <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
+            <input type="hidden" name="productID" value="<?php echo htmlspecialchars($productID); ?>">
             <button type="submit" name="confirm" value="yes" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                 Yes, delete it!
             </button>
