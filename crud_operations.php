@@ -1,7 +1,6 @@
 <?php
 
 require 'db.php'; // ensures that the file is included only once
-require 'upload.php';
 
 /**
  * Sanitize input data
