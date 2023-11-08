@@ -80,7 +80,7 @@ $conn->close();
     <!-- Image gallery -->
     <div class="mx-auto mt-6 max-w-2xl sm:px-6  lg:max-w-7xl lg:gap-x-8 lg:px-8">
       <div class=" rounded-lg lg:block">
-        <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg" alt="Two each of gray, white, and black shirts laying flat." class="h-full w-full object-cover object-center">
+        <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg" alt="Two each of gray, white, and black shirts laying flat." class="h-full w-full sm:w-[32rem] object-cover object-center">
       </div>
     </div>
 
