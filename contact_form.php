@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
     <?php if (!empty($message)) { ?>
     window.onload = function() {
-      alert('<?php echo $message; ?>');
+      <?php echo $message; ?>
     }
     <?php } ?>
 </script>
