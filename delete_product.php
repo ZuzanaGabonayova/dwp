@@ -10,8 +10,8 @@ function baseUrl() {
 }
 
 // Check if the 'id' GET parameter is set and the form has been submitted
-if (isset($_POST['productID']) && isset($_POST['confirm']) && $_POST['confirm'] === 'yes') {
-    $productID = $_POST['productID'];
+if (isset($_POST['ProductID']) && isset($_POST['confirm']) && $_POST['confirm'] === 'yes') {
+    $productID = $_POST['ProductID'];
     $result = deleteProduct($productID);
 
     if ($result) {
@@ -25,8 +25,8 @@ if (isset($_POST['productID']) && isset($_POST['confirm']) && $_POST['confirm'] 
 }
 
 // If there's a GET request without form submission, display the confirmation
-if (isset($_GET['productID']) && !isset($_POST['confirm'])) {
-    $productID = $_GET['productID'];
+if (isset($_GET['ProductID']) && !isset($_POST['confirm'])) {
+    $productID = $_GET['ProductID'];
 ?>
 
 <!DOCTYPE html>
