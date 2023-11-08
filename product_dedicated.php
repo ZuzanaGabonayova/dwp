@@ -78,7 +78,8 @@ $conn->close();
     </nav>
 
     <!-- Image gallery -->
-     <!-- Main Image Display -->
+    <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl  lg:gap-x-8 lg:px-8">
+    <!-- Main Image Display -->
     <?php if (!empty($images)): ?>
         <div class="w-full mb-4">
             <img id="mainImage" src="<?php echo htmlspecialchars($images[0]['image_path']); ?>" alt="<?php echo htmlspecialchars($images[0]['alt_text']); ?>" class="w-full h-auto object-cover rounded-lg shadow-md">
@@ -93,6 +94,8 @@ $conn->close();
             <?php endforeach; ?>
         </div>
     <?php endif; ?>
+    </div>
+     
 
     <!-- Product info -->
     <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
