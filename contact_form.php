@@ -53,5 +53,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<script>
+    // Check if the 'message' variable is set
+    if (typeof message !== 'undefined') {
+      // Display the message in a popup
+      alert(message);
+    }
+</script>
+
 </body>
 </html>

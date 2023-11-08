@@ -51,9 +51,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->AltBody = "You have received a new message from $name.\nEmail: $email\nMessage: $message";
 
         $mail->send();
-        echo 'Message has been sent';
+        /* echo 'Message has been sent'; */
+        echo '<script>var message = "Message has been sent";</script>';
     } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        /* echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}"; */
+        echo '<script>var message = "Message could not be sent. Mailer Error: ' . $mail->ErrorInfo . '";</script>';
     }
 } else {
     header('Location: contact_form.php');
