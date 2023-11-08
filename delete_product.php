@@ -44,7 +44,7 @@ if (isset($_GET['ProductID']) && !isset($_POST['confirm'])) {
         <p class="mb-4">Are you sure you want to delete this product?</p>
 
         <form action="delete_product.php" method="post">
-            <input type="hidden" name="productID" value="<?php echo htmlspecialchars($productID); ?>">
+            <input type="hidden" name="ProductID" value="<?php echo htmlspecialchars($productID); ?>">
             <button type="submit" name="confirm" value="yes" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                 Yes, delete it!
             </button>
