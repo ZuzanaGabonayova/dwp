@@ -70,7 +70,7 @@ function baseUrl() {
                     <td class="py-3 px-6 text-center"><?php echo htmlspecialchars($product['CreatedAt']); ?></td>
                     <td class="py-3 px-6 text-center"><?php echo htmlspecialchars($product['EditedAt']); ?></td>
                     <td class="py-3 px-6 text-center"><?php echo htmlspecialchars($product['Author']); ?></td>
-                    <td class="py-3 px-6 text-center">
+                    <td class="py-3 px-6 text-center flex gap-3">
                         <a href="<?php echo baseUrl(); ?>product_form.php?ProductID=<?php echo $product['ProductID']; ?>" class="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600">Edit</a>
                         <a href="<?php echo baseUrl(); ?>delete_product.php?ProductID=<?php echo $product['ProductID']; ?>" onclick="return confirm('Are you sure you want to delete this product?');" class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600">Delete</a>
                     </td>
