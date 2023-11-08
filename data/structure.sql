@@ -10,14 +10,6 @@ CREATE TABLE ProductBrand (
     BrandName VARCHAR(255) NOT NULL
 )ENGINE=InnoDB;
 
-
-CREATE TABLE DailySpecialOffer
-(
-    DailySpecialOfferID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    ProductID INT NOT NULL,
-    FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
-) ENGINE=InnoDB;
-
 CREATE TABLE Admin
 (
     AdminID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -46,6 +38,13 @@ CREATE TABLE Product (
     FOREIGN KEY (BrandID) REFERENCES ProductBrand(BrandID),
     FOREIGN KEY (Author) REFERENCES Admin (AdminID)
 )ENGINE=InnoDB;
+
+CREATE TABLE DailySpecialOffer
+(
+    DailySpecialOfferID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    ProductID INT NOT NULL,
+    FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+) ENGINE=InnoDB;
 
 CREATE TABLE ProductGallery
 (
