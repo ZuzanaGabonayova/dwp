@@ -2,14 +2,6 @@
 require 'db.php'; // Include the database
 require 'crud_operations.php'; // Include the CRUD operations
 
-function listProducts($conn) {
-    $sql = "SELECT p.*, GROUP_CONCAT(DISTINCT ps.SizeID) as Sizes, GROUP_CONCAT(DISTINCT pc.ColorID) as Colors FROM Product p LEFT JOIN ProductSize ps ON p.ProductID = ps.ProductID LEFT JOIN ProductColor pc ON p.ProductID = pc.ProductID GROUP BY p.ProductID";
-    
-    $result = $conn->query($sql);
-    
-    // Process result and return an array of products
-    // Each product will have an array of size IDs and color IDs
-}
 ?>
 
 <!DOCTYPE html>
