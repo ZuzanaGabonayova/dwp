@@ -1,50 +1,90 @@
-<?php 
+<?php
 require 'db.php'; // Include the database
-require 'crud_operations.php'; // Include the CRUD operations
 
+
+
+/* // Database configuration
+$host = 'localhost'; // or your host name/IP
+$user = 'your_username'; // your database username
+$password = 'your_password'; // your database password
+$dbname = 'your_database_name'; // your database name
+ */
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Function to get color names for a product
+function getProductColors($productId, $conn) {
+    $colors = [];
+    $sql = "SELECT c.ColorName FROM `ProductColor` pc
+            JOIN `Color` c ON pc.ColorID = c.ColorID
+            WHERE pc.ProductID = " . intval($productId);
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $colors[] = $row["ColorName"];
+        }
+    }
+    return $colors;
+}
+
+// Function to get size names for a product
+function getProductSizes($productId, $conn) {
+    $sizes = [];
+    $sql = "SELECT s.Size FROM `ProductSize` ps
+            JOIN `Size` s ON ps.SizeID = s.SizeID
+            WHERE ps.ProductID = " . intval($productId);
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $sizes[] = $row["Size"];
+        }
+    }
+    return $sizes;
+}
+
+// SQL query to select all records from the Product table
+$sql = "SELECT * FROM `Product`";
+
+// Execute the query
+$result = $conn->query($sql);
+
+// Check if there are results
+if ($result->num_rows > 0) {
+    // Output data of each row
+    while($product = $result->fetch_assoc()) {
+        $productColors = getProductColors($product["ProductID"], $conn);
+        $productSizes = getProductSizes($product["ProductID"], $conn);
+
+        echo "ProductID: " . $product["ProductID"] .
+             " - Product Number: " . $product["ProductNumber"] .
+             " - Model: " . $product["Model"] .
+             " - Description: " . $product["Description"] .
+             " - Price: " . $product["Price"] .
+             " - Main Image: " . $product["ProductMainImage"] .
+             " - CategoryID: " . $product["CategoryID"] .
+             " - BrandID: " . $product["BrandID"] .
+             " - Created At: " . $product["CreatedAt"] .
+             " - Edited At: " . $product["EditedAt"] .
+             " - Author: " . $product["Author"] .
+             " - Stock Quantity: " . $product["StockQuantity"] .
+             " - Colors: " . implode(", ", $productColors) .
+             " - Sizes: " . implode(", ", $productSizes) . "<br>";
+    }
+} else {
+    echo "0 results";
+}
+
+// Close connection
+$conn->close();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Listing</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100">
 
-<div class="container mx-auto px-4">
-    <h1 class="text-2xl font-bold my-8">Product Listing</h1>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <?php foreach ($products as $product): ?>
-            <?php
-                // Extract product sizes and colors
-                $sizes = explode(',', $product['Sizes']);
-                $colors = explode(',', $product['Colors']);
-            ?>
-            <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
-                <img class="w-full" src="/path/to/images/<?= htmlspecialchars($product['ProductMainImage']) ?>" alt="<?= htmlspecialchars($product['Model']) ?>">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2"><?= htmlspecialchars($product['Model']) ?></div>
-                    <p class="text-gray-700 text-base"><?= htmlspecialchars($product['Description']) ?></p>
-                    <p class="text-gray-900 text-base font-bold">Price: $<?= htmlspecialchars($product['Price']) ?></p>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                    <?php foreach ($sizes as $size): ?>
-                        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Size: <?= htmlspecialchars($size) ?></span>
-                    <?php endforeach; ?>
-                    <?php foreach ($colors as $color): ?>
-                        <!-- Example color class name, replace 'blue' with actual color logic -->
-                        <span class="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-blue-700 mr-2 mb-2"><?= htmlspecialchars($color) ?></span>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        <?php endforeach; ?>
-    </div>
-</div>
-
-</body>
-</html>
 
