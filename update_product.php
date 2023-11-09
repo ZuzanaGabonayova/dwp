@@ -13,6 +13,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["ProductID"])) {
     $productMainImage = $conn->real_escape_string($_POST["ProductMainImage"]);
     $stockQuantity = $conn->real_escape_string($_POST["StockQuantity"]);
     
+    if (isset($_FILES['ProductMainImage']) && $_FILES['ProductMainImage']['error'] !== UPLOAD_ERR_NO_FILE) {
+        $uploadResult = uploadFile($_FILES['ProductMainImage']);
+        if (isset($uploadResult['error'])) {
+            // Handle error - for example, return a message to the user
+            $error = $uploadResult['error'];
+        } else {
+            $productMainImage = $uploadResult['success'];
+        }
+    }
     // Assume $conn is your mysqli connection
     $stmt = $conn->prepare("UPDATE Product SET ProductNumber = ?, Model = ?, Description = ?, Price = ?, ProductMainImage = ?, StockQuantity = ? WHERE ProductID = ?");
     $stmt->bind_param("sssdsii", $productNumber, $model, $description, $price, $productMainImage, $stockQuantity, $productID);
