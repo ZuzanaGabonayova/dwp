@@ -1,5 +1,6 @@
 <?php
 require 'db.php'; // Include the database configuration
+require 'upload.php'; // Include the upload helper
 
 // Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["ProductID"])) {
@@ -9,11 +10,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["ProductID"])) {
     $model = $conn->real_escape_string($_POST["Model"]);
     $description = $conn->real_escape_string($_POST["Description"]);
     $price = $conn->real_escape_string($_POST["Price"]);
+    $productMainImage = $conn->real_escape_string($_POST["ProductMainImage"]);
     $stockQuantity = $conn->real_escape_string($_POST["StockQuantity"]);
     
     // Assume $conn is your mysqli connection
-    $stmt = $conn->prepare("UPDATE Product SET ProductNumber = ?, Model = ?, Description = ?, Price = ?, StockQuantity = ? WHERE ProductID = ?");
-    $stmt->bind_param("sssdii", $ProductNumber, $model, $description, $price, $stockQuantity, $productID);
+    $stmt = $conn->prepare("UPDATE Product SET ProductNumber = ?, Model = ?, Description = ?, Price = ?, ProductMainImage = ?, StockQuantity = ? WHERE ProductID = ?");
+    $stmt->bind_param("sssdsii", $ProductNumber, $model, $description, $price, $ProductMainImage, $stockQuantity, $productID);
 
     if ($stmt->execute()) {
         // Redirect back to the product list with a success message
@@ -45,6 +47,11 @@ if (isset($_GET["ProductID"])) {
     $product = readProduct($_GET["ProductID"], $conn);
 }
 
+function baseUrl() {
+    // Normally you would make this dynamic or configured, but for localhost it's simple
+    return 'https://zuzanagabonayova.eu/';
+}
+
 // Close the connection
 $conn->close();
 ?>
@@ -71,7 +78,7 @@ $conn->close();
                 <input type="hidden" name="ProductID" value="<?= $product["ProductID"] ?>">
 
                 <label for="Model">Product Number:</label>
-                <input type="text" id="ProductNumber" name="ProductNumber" value="<?= htmlspecialchars($product["ProductNumber"]); ?>">
+                <p id="ProductNumber" name="ProductNumber" value="<?= htmlspecialchars($product["ProductNumber"]); ?>"></p>
                 
                 <label for="Model">Model:</label>
                 <input type="text" id="Model" name="Model" value="<?= htmlspecialchars($product["Model"]); ?>">
@@ -85,6 +92,15 @@ $conn->close();
                 <label for="StockQuantity">Stock Quantity:</label>
                 <input type="number" id="StockQuantity" name="StockQuantity" value="<?= htmlspecialchars($product["StockQuantity"]); ?>">
                 
+
+                <label class="block mt-3">
+                        <span class="text-gray-700">Product Image</span>
+                        <input type="file" name="ProductMainImage" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none p-1">
+                        <?php if ($product['ProductMainImage']): ?>
+                            <img src="<?php echo baseUrl() . htmlspecialchars($product['ProductMainImage']); ?>" class="w-16 h-16 rounded mt-2" alt="Product Image">
+                        <?php endif; ?>
+                </label>
+
                 <!-- Add more fields as needed -->
                 
                 <input type="submit" value="Update Product" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
