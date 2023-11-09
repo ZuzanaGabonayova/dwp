@@ -124,10 +124,10 @@ function getAuthorName($AdminID, $conn) {
                             $brandName = getBrandName($product["BrandID"], $conn);
                             $authorName = getAuthorName($product["AdminID"], $conn); // If you have an authors table
                             ?>
-                            <tr class='border-b border-gray-200 hover:bg-gray-100'>
+                            <tr class='border-b border-gray-200 odd:bg-gray-100 odd:hover:bg-white even:bg-white hover:even:bg-gray-100 '>
                                 <td class='py-3 px-6 text-left whitespace-nowrap'><?= $product["ProductNumber"]; ?></td>
                                 <td class='py-3 px-6 text-left'><?= $product["Model"]; ?></td>
-                                <td class='py-3 px-6 text-left line-clamp-3 overflow-auto'><?= $product["Description"]; ?></td>
+                                <td class='py-3 px-6 text-left line-clamp-3 overflow-y-auto'><?= $product["Description"]; ?></td>
                                 <td class='py-3 px-6 text-center'><?= $product["Price"]; ?></td>
                                 <td class='py-3 px-6 text-center'><?= implode(", ", $productColors); ?></td>
                                 <td class='py-3 px-6 text-center'><?= implode(", ", $productSizes); ?></td>
