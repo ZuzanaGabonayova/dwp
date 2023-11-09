@@ -112,6 +112,11 @@ function getAuthorName($AdminID, $conn) {
 <body class="bg-gray-100">
     <div class="container mx-auto px-4">
         <h1 class="text-xl font-semibold text-gray-800 my-6">Product List</h1>
+
+        <a href="<?php echo baseUrl(); ?>add_product.php" class="mb-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Add Product
+        </a>
+
         <div class="bg-white shadow-md rounded my-6 overflow-x-auto">
             <table class="min-w-max w-full table-fixed">
                 <thead>
