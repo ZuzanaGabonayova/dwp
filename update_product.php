@@ -104,7 +104,7 @@ if (!$productID) {
     die('ProductID must be provided.');
 }
 
-$product = readProduct($conn, $productID);
+$product = readProducts ($conn, $productID);
 
 if (!$product) {
     die('Product not found.');
