@@ -1,6 +1,16 @@
 <?php
 // Database configuration
 require 'db.php'; // Include the database
+require 'crud_operations.php'; // Include the CRUD operations
+
+// Attempt to fetch all products
+$products = readProducts();
+
+// Function to get the base URL of the script
+function baseUrl() {
+    // Normally you would make this dynamic or configured, but for localhost it's simple
+    return 'https://zuzanagabonayova.eu/';
+}
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
