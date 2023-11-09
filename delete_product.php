@@ -16,7 +16,7 @@ if (isset($_POST['ProductID']) && isset($_POST['confirm']) && $_POST['confirm'] 
 
     if ($result) {
         // If the product was deleted successfully, redirect back to the product list
-        header('Location: product_list.php');
+        header('Location: list_product.php');
         exit;
     } else {
         $error = 'There was an error deleting the product.';
@@ -48,7 +48,7 @@ if (isset($_GET['ProductID']) && !isset($_POST['confirm'])) {
             <button type="submit" name="confirm" value="yes" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                 Yes, delete it!
             </button>
-            <a href="<?php echo baseUrl(); ?>product_list.php" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+            <a href="<?php echo baseUrl(); ?>list_product.php" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                 No, go back
             </a>
         </form>
@@ -61,5 +61,5 @@ if (isset($_GET['ProductID']) && !isset($_POST['confirm'])) {
     exit;
 }
 // Redirect to the product list if the id parameter is not set
-header('Location: product_list.php');
+header('Location: list_product.php');
 exit;
