@@ -82,6 +82,7 @@ function updateProduct($conn, $productId, $productData, $colors, $sizes) {
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,7 +97,12 @@ function updateProduct($conn, $productId, $productData, $colors, $sizes) {
         <h1 class="text-xl font-semibold text-gray-800 my-6">Update Product</h1>
         <?php if ($products): ?>
             <?php foreach ($products as $product): ?>
+        <!-- Assuming that we are updating one product at a time, we only need one form. -->
+        <!-- Therefore, we should break the loop or ensure only one product is passed to this page. -->
         <form action="update_product.php" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <!-- Hidden field for the ProductID -->
+            <input type="hidden" name="productID" value="<?php echo htmlspecialchars($product['ProductID']); ?>">
+
             <div class="mb-4">
                 <label for="productNumber" class="block text-gray-700 text-sm font-bold mb-2">Product Number:</label>
                 <input type="text" id="productNumber" name="productNumber" value="<?php echo htmlspecialchars($product['ProductNumber']); ?>" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
@@ -107,7 +113,7 @@ function updateProduct($conn, $productId, $productData, $colors, $sizes) {
             <div class="mb-4">
                 <label for="colors" class="block text-gray-700 text-sm font-bold mb-2">Colors:</label>
                 <select id="colors" name="colors[]" multiple class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <!-- Options should be generated based on available colors in the database -->
+                    <!-- Options should be generated based on available colors in the database and selected based on the product's current colors -->
                     <option value="1">Red</option>
                     <option value="2">White</option>
                     <option value="3">Black</option>
@@ -120,7 +126,7 @@ function updateProduct($conn, $productId, $productData, $colors, $sizes) {
             <div class="mb-4">
                 <label for="sizes" class="block text-gray-700 text-sm font-bold mb-2">Sizes:</label>
                 <select id="sizes" name="sizes[]" multiple class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <!-- Options should be generated based on available sizes in the database -->
+                    <!-- Options should be generated based on available sizes in the database and selected based on the product's current sizes -->
                     <option value="1">35</option>
                     <option value="2">36</option>
                     <option value="3">37</option>
@@ -141,10 +147,11 @@ function updateProduct($conn, $productId, $productData, $colors, $sizes) {
                 </button>
             </div>
         </form>
+        <?php break; // Stop the loop after the first iteration since we only need one form ?>
         <?php endforeach; ?>
         <?php else: ?>
             <p>No products found.</p>
-            <?php endif; ?>
+        <?php endif; ?>
     </div>
 </body>
 </html>

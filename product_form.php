@@ -18,7 +18,7 @@ $product = [
     'BrandID' => '', 
     'CreatedAt' => '', 
     'EditedAt' => '', 
-    'Author' => ''
+    'AdminID' => ''
 ];
 
 // Check if we're editing an existing product
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // ... other fields
     $categoryID = $_POST['CategoryID'];
     $brandID = $_POST['BrandID'];
-    $author = $_POST['Author']; // This should probably come from session or auth context
+    $adminID = $_POST['AdminID']; // This should probably come from session or auth context
 
     $imagePath = $product['ProductMainImage']; // Default to the current image
 
@@ -154,7 +154,7 @@ function baseUrl() {
 
                     <label class="block mt-3">
                         <span class="text-gray-700">Author</span>
-                        <input type="text" name="Author" value="<?php echo htmlspecialchars($product['Author']); ?>" class="mt-1 block w-full">
+                        <input type="text" name="AdminID" value="<?php echo htmlspecialchars($product['AdminID']); ?>" class="mt-1 block w-full">
                     </label>
 
                     <!-- Image upload field -->
