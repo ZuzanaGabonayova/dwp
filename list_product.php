@@ -88,7 +88,7 @@ function getAuthorName($AdminID, $conn) {
     <div class="container mx-auto px-4">
         <h1 class="text-xl font-semibold text-gray-800 my-6">Product List</h1>
         <div class="bg-white shadow-md rounded my-6">
-            <table class="min-w-max w-full table-auto">
+            <table class="min-w-max w-full table-fixed">
                 <thead>
                     <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                         <th class="py-3 px-6 text-left">Product Number</th>
@@ -127,7 +127,7 @@ function getAuthorName($AdminID, $conn) {
                             <tr class='border-b border-gray-200 hover:bg-gray-100'>
                                 <td class='py-3 px-6 text-left whitespace-nowrap'><?= $product["ProductNumber"]; ?></td>
                                 <td class='py-3 px-6 text-left'><?= $product["Model"]; ?></td>
-                                <td class='py-3 px-6 text-left'><?= $product["Description"]; ?></td>
+                                <td class='py-3 px-6 text-left line-clamp-3 overflow-auto'><?= $product["Description"]; ?></td>
                                 <td class='py-3 px-6 text-center'><?= $product["Price"]; ?></td>
                                 <td class='py-3 px-6 text-center'><?= implode(", ", $productColors); ?></td>
                                 <td class='py-3 px-6 text-center'><?= implode(", ", $productSizes); ?></td>
