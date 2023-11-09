@@ -78,7 +78,7 @@ $conn->close();
                 <input type="hidden" name="ProductID" value="<?= $product["ProductID"] ?>">
 
                 <label for="Model">Product Number:</label>
-                <p id="ProductNumber" name="ProductNumber" value="<?= htmlspecialchars($product["ProductNumber"]); ?>"></p>
+                <input type="text" id="ProductNumber" name="ProductNumber" value="<?= htmlspecialchars($product["ProductNumber"]); ?>">
                 
                 <label for="Model">Model:</label>
                 <input type="text" id="Model" name="Model" value="<?= htmlspecialchars($product["Model"]); ?>">
