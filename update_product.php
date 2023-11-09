@@ -6,6 +6,16 @@ require 'crud_operations.php'; // Include the CRUD operations
 // Attempt to fetch all products
 $products = readProducts();
 
+// Check if we're editing an existing product
+if (isset($_GET['ProductID'])) {
+    // Retrieve the product details from the database
+    $productDetails = readProduct($_GET['ProductID']);
+    if ($productDetails) {
+        $product = array_merge($product, $productDetails);
+    }
+}
+
+
 // Function to get the base URL of the script
 function baseUrl() {
     // Normally you would make this dynamic or configured, but for localhost it's simple
