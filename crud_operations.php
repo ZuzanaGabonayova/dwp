@@ -60,7 +60,7 @@ function readProducts() {
 /**
  * Update a product
  */
-function updateProduct($productID, $productNumber, $model, $color, $size, $description, $price, $stockQuantity, $productMainImage, $categoryID, $brandID) {
+/* function updateProduct($productID, $productNumber, $model, $color, $size, $description, $price, $stockQuantity, $productMainImage, $categoryID, $brandID) {
     global $conn;
     
     // Sanitize input
@@ -82,7 +82,7 @@ function updateProduct($productID, $productNumber, $model, $color, $size, $descr
     
     return $stmt->execute();
 }
-
+ */
 /**
  * Delete a product
  */

@@ -1,4 +1,7 @@
 <?php
+require 'db.php'; // Include the database connection
+require 'upload.php'; // Include the CRUD operations
+
 function updateProduct($conn, $productId, $productData, $colors, $sizes) {
     // Start transaction
     $conn->begin_transaction();
@@ -14,9 +17,9 @@ function updateProduct($conn, $productId, $productData, $colors, $sizes) {
                                 `CategoryID` = ?, 
                                 `BrandID` = ?, 
                                 `StockQuantity` = ?, 
-                                `Author` = ? 
+                                `AdminID` = ? 
                                 WHERE `ProductID` = ?");
-        $stmt->bind_param("sssdiiiiii",
+        $stmt->bind_param("sssdisiiii",
             $productData['ProductNumber'],
             $productData['Model'],
             $productData['Description'],
@@ -25,7 +28,7 @@ function updateProduct($conn, $productId, $productData, $colors, $sizes) {
             $productData['CategoryID'],
             $productData['BrandID'],
             $productData['StockQuantity'],
-            $productData['Author'],
+            $productData['AdminID'],
             $productId
         );
         $stmt->execute();
