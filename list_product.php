@@ -158,7 +158,10 @@ function getAuthorName($AdminID, $conn) {
                             <tr class='border-b border-gray-200 odd:bg-white even:bg-gray-100'>
                             <td class="py-4 px-2 text-center flex gap-3 flex-col">
                                 <a href="<?php echo baseUrl(); ?>update_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600">Edit</a>
-                                <a href="<?php echo baseUrl(); ?>delete_product.php?ProductID=<?php echo $product['ProductID']; ?>" onclick="return confirm('Are you sure you want to delete this product?');" class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600">Delete</a>
+                                <a class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600" href="delete_product.php?ProductID=<?php echo $product['ProductID']; ?>"
+                                onclick="return confirm('Are you sure you want to delete this product?');">
+                                Delete
+                                </a>
                             </td>
                                 <td class='py-3 px-6 text-left whitespace-nowrap'><?= $product["ProductNumber"]; ?></td>
                                 <td class='py-3 px-6 text-left'><?= $product["Model"]; ?></td>

@@ -1,65 +1,26 @@
 <?php
+require 'db.php';
 
-require 'db.php'; // Include the database connection
-require 'crud_operations.php'; // Include the CRUD operations
-
-// Function to get the base URL of the script
-function baseUrl() {
-    // Normally you would make this dynamic or configured, but for localhost it's simple
-    return 'https://zuzanagabonayova.eu/';
+function deleteProduct($productId, $conn) {
+    // Delete associations in related tables first
+    $conn->query("DELETE FROM ProductColor WHERE ProductID = " . intval($productId));
+    $conn->query("DELETE FROM ProductSize WHERE ProductID = " . intval($productId));
+    
+    // Now delete the product
+    $stmt = $conn->prepare("DELETE FROM Product WHERE ProductID = ?");
+    $stmt->bind_param("i", $productId);
+    return $stmt->execute();
 }
 
-// Check if the 'id' GET parameter is set and the form has been submitted
-if (isset($_POST['ProductID']) && isset($_POST['confirm']) && $_POST['confirm'] === 'yes') {
-    $productID = $_POST['ProductID'];
-    $result = deleteProduct($productID);
-
-    if ($result) {
-        // If the product was deleted successfully, redirect back to the product list
-        header('Location: list_product.php');
-        exit;
+if (isset($_GET['ProductID'])) {
+    $productId = $_GET['ProductID'];
+    if (deleteProduct($productId, $conn)) {
+        header("Location: list_product.php?delete=success");
     } else {
-        $error = 'There was an error deleting the product.';
-        // Handle the error, perhaps pass the message back to product_list.php
+        header("Location: list_product.php?delete=fail");
     }
+} else {
+    header("Location: list_product.php?delete=fail");
 }
 
-// If there's a GET request without form submission, display the confirmation
-if (isset($_GET['ProductID']) && !isset($_POST['confirm'])) {
-    $productID = $_GET['ProductID'];
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Confirmation</title>
-    <!-- Include Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 p-10">
-    <div class="container mx-auto">
-        <h2 class="text-xl font-bold mb-4">Confirm Deletion</h2>
-        <p class="mb-4">Are you sure you want to delete this product?</p>
-
-        <form action="delete_product.php" method="post">
-            <input type="hidden" name="ProductID" value="<?php echo htmlspecialchars($productID); ?>">
-            <button type="submit" name="confirm" value="yes" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                Yes, delete it!
-            </button>
-            <a href="<?php echo baseUrl(); ?>list_product.php" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                No, go back
-            </a>
-        </form>
-    </div>
-</body>
-</html>
-
-<?php
-    // End the script to not display anything else
-    exit;
-}
-// Redirect to the product list if the id parameter is not set
-header('Location: list_product.php');
-exit;
+$conn->close();
