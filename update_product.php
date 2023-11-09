@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["ProductID"])) {
     
     // Assume $conn is your mysqli connection
     $stmt = $conn->prepare("UPDATE Product SET ProductNumber = ?, Model = ?, Description = ?, Price = ?, ProductMainImage = ?, StockQuantity = ? WHERE ProductID = ?");
-    $stmt->bind_param("sssdsii", $ProductNumber, $model, $description, $price, $ProductMainImage, $stockQuantity, $productID);
+    $stmt->bind_param("sssdsii", $productNumber, $model, $description, $price, $productMainImage, $stockQuantity, $productID);
 
     if ($stmt->execute()) {
         // Redirect back to the product list with a success message
