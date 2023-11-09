@@ -70,10 +70,23 @@ $conn->close();
             <div class="mx-auto max-w-2xl">
             <div class="sm:col-span-4">
                 <label class="block text-sm font-medium leading-6 text-gray-900" for="ProductNumber">Product Number</label>
-                <input type="text" name="ProductNumber" placeholder="Product Number" required>
+                <div class="mt-2">
+                    <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="text" name="ProductNumber" placeholder="Product Number" required>
+                </div>
             </div>
-            <input type="text" name="Model" placeholder="Model" required>
-            <textarea name="Description" placeholder="Description" required></textarea>
+            <div class="sm:col-span-4">
+                <label class="block text-sm font-medium leading-6 text-gray-900" for="ProductNumber">Model</label>
+                <div class="mt-2">
+                    <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="text" name="Model" placeholder="Model" required>
+                </div>
+            </div>
+            <div class="col-span-full">
+                <label for="Description" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
+                <div class="mt-2">
+                    <textarea rows="3" name="Description" placeholder="Description" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required></textarea>
+                </div>
+                <p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p>
+            </div>
             <input type="number" name="Price" step="0.01" placeholder="Price" required>
             <input type="number" name="StockQuantity" placeholder="Stock Quantity" required>
             <select name="CategoryID" required>
