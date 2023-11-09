@@ -62,11 +62,16 @@ $conn->close();
     <title>Add New Product</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
-    <div class="container mx-auto px-4">
-        <h1 class="text-xl font-semibold text-gray-800 my-6">Add New Product</h1>
-        <form action="add_product.php" method="post" enctype="multipart/form-data" class="mb-4">
-            <input type="text" name="ProductNumber" placeholder="Product Number" required>
+<body>
+    <div class="bg-white">
+        <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+        <h1 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-900">Add New Product</h1>
+            <form action="add_product.php" method="post" enctype="multipart/form-data" class="">
+            <div class="mx-auto max-w-2xl">
+            <div class="sm:col-span-4">
+                <label class="block text-sm font-medium leading-6 text-gray-900" for="ProductNumber">Product Number</label>
+                <input type="text" name="ProductNumber" placeholder="Product Number" required>
+            </div>
             <input type="text" name="Model" placeholder="Model" required>
             <textarea name="Description" placeholder="Description" required></textarea>
             <input type="number" name="Price" step="0.01" placeholder="Price" required>
@@ -95,7 +100,10 @@ $conn->close();
             <?php endforeach; ?>
             <input type="file" name="ProductMainImage">
             <input type="submit" value="Add Product" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+            </div>
         </form>
     </div>
+    </div>
+    
 </body>
 </html>
