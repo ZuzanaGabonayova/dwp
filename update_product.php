@@ -5,14 +5,15 @@ require 'db.php'; // Include the database configuration
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["ProductID"])) {
     // Sanitize and validate the input data here as per your requirements
     $productID = $conn->real_escape_string($_POST["ProductID"]);
+    $productNumber = $conn->real_escape_string($_POST["ProductNumber"]);
     $model = $conn->real_escape_string($_POST["Model"]);
     $description = $conn->real_escape_string($_POST["Description"]);
     $price = $conn->real_escape_string($_POST["Price"]);
     $stockQuantity = $conn->real_escape_string($_POST["StockQuantity"]);
     
     // Assume $conn is your mysqli connection
-    $stmt = $conn->prepare("UPDATE Product SET Model = ?, Description = ?, Price = ?, StockQuantity = ? WHERE ProductID = ?");
-    $stmt->bind_param("ssdii", $model, $description, $price, $stockQuantity, $productID);
+    $stmt = $conn->prepare("UPDATE Product SET ProductNumber = ?, Model = ?, Description = ?, Price = ?, StockQuantity = ? WHERE ProductID = ?");
+    $stmt->bind_param("sssdii", $ProductNumber, $model, $description, $price, $stockQuantity, $productID);
 
     if ($stmt->execute()) {
         // Redirect back to the product list with a success message
@@ -68,18 +69,21 @@ $conn->close();
             <?php endif; ?>
             <form action="update_product.php" method="post" class="mb-4">
                 <input type="hidden" name="ProductID" value="<?= $product["ProductID"] ?>">
+
+                <label for="Model">Product Number:</label>
+                <input type="text" id="ProductNumber" name="ProductNumber" value="<?= htmlspecialchars($product["ProductNumber"]); ?>">
                 
                 <label for="Model">Model:</label>
-                <input type="text" id="Model" name="Model" value="<?= htmlspecialchars($product["Model"]); ?>" required>
+                <input type="text" id="Model" name="Model" value="<?= htmlspecialchars($product["Model"]); ?>">
                 
                 <label for="Description">Description:</label>
                 <textarea id="Description" name="Description" required><?= htmlspecialchars($product["Description"]); ?></textarea>
                 
                 <label for="Price">Price:</label>
-                <input type="number" id="Price" name="Price" step="0.01" value="<?= htmlspecialchars($product["Price"]); ?>" required>
+                <input type="number" id="Price" name="Price" step="0.01" value="<?= htmlspecialchars($product["Price"]); ?>">
                 
                 <label for="StockQuantity">Stock Quantity:</label>
-                <input type="number" id="StockQuantity" name="StockQuantity" value="<?= htmlspecialchars($product["StockQuantity"]); ?>" required>
+                <input type="number" id="StockQuantity" name="StockQuantity" value="<?= htmlspecialchars($product["StockQuantity"]); ?>">
                 
                 <!-- Add more fields as needed -->
                 
