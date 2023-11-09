@@ -64,59 +64,67 @@ $conn->close();
 </head>
 <body>
     <div class="bg-white">
-        <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+    <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
         <h1 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-900">Add New Product</h1>
-            <form action="add_product.php" method="post" enctype="multipart/form-data" class="">
+        <form action="add_product.php" method="post" enctype="multipart/form-data" class="">
             <div class="mx-auto max-w-2xl">
-            <div class="sm:col-span-4">
-                <label class="block text-sm font-medium leading-6 text-gray-900" for="ProductNumber">Product Number</label>
-                <div class="mt-2">
-                    <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="text" name="ProductNumber" placeholder="Product Number" required>
+                <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                    <div class="sm:col-span-4">
+                        <label class="block text-sm font-medium leading-6 text-gray-900" for="ProductNumber">Product Number</label>
+                        <div class="mt-2">
+                            <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="text" name="ProductNumber" required>
+                        </div>
+                    </div>
+                    <div class="sm:col-span-4">
+                        <label class="block text-sm font-medium leading-6 text-gray-900" for="Model">Model</label>
+                        <div class="mt-2">
+                            <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="text" name="Model" required>
+                        </div>
+                    </div>
+                    <div class="col-span-full">
+                        <label for="Description" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
+                        <div class="mt-2">
+                            <textarea rows="3" name="Description" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required></textarea>
+                        </div>
+                        <p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="block text-sm font-medium leading-6 text-gray-900" for="Price">Price</label>
+                        <div class="mt-2">
+                            <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="number" name="Price" step="0.01" required>
+                        </div>
+                    </div>
+                    <input type="number" name="StockQuantity" placeholder="Stock Quantity" required>
+                    <select name="CategoryID" required>
+                        <option value="">Select Category</option>
+                        <?php foreach ($categories as $category): ?>
+                            <option value="<?= $category["CategoryID"]; ?>"><?= htmlspecialchars($category["CategoryName"]); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <select name="BrandID" required>
+                        <option value="">Select Brand</option>
+                        <?php foreach ($brands as $brand): ?>
+                            <option value="<?= $brand["BrandID"]; ?>"><?= htmlspecialchars($brand["BrandName"]); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <?php foreach ($colors as $color): ?>
+                        <label>
+                            <input type="checkbox" name="colors[]" value="<?= $color["ColorID"]; ?>"><?= htmlspecialchars($color["ColorName"]); ?>
+                        </label>
+                    <?php endforeach; ?>
+                    <?php foreach ($sizes as $size): ?>
+                        <label>
+                            <input type="checkbox" name="sizes[]" value="<?= $size["SizeID"]; ?>"><?= htmlspecialchars($size["Size"]); ?>
+                        </label>
+                    <?php endforeach; ?>
+                    <input type="file" name="ProductMainImage">
+                    <input type="submit" value="Add Product" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
                 </div>
-            </div>
-            <div class="sm:col-span-4">
-                <label class="block text-sm font-medium leading-6 text-gray-900" for="ProductNumber">Model</label>
-                <div class="mt-2">
-                    <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="text" name="Model" placeholder="Model" required>
-                </div>
-            </div>
-            <div class="col-span-full">
-                <label for="Description" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
-                <div class="mt-2">
-                    <textarea rows="3" name="Description" placeholder="Description" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required></textarea>
-                </div>
-                <p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p>
-            </div>
-            <input type="number" name="Price" step="0.01" placeholder="Price" required>
-            <input type="number" name="StockQuantity" placeholder="Stock Quantity" required>
-            <select name="CategoryID" required>
-                <option value="">Select Category</option>
-                <?php foreach ($categories as $category): ?>
-                <option value="<?= $category["CategoryID"]; ?>"><?= htmlspecialchars($category["CategoryName"]); ?></option>
-                <?php endforeach; ?>
-            </select>
-            <select name="BrandID" required>
-                <option value="">Select Brand</option>
-                <?php foreach ($brands as $brand): ?>
-                <option value="<?= $brand["BrandID"]; ?>"><?= htmlspecialchars($brand["BrandName"]); ?></option>
-                <?php endforeach; ?>
-            </select>
-            <?php foreach ($colors as $color): ?>
-            <label>
-                <input type="checkbox" name="colors[]" value="<?= $color["ColorID"]; ?>"><?= htmlspecialchars($color["ColorName"]); ?>
-            </label>
-            <?php endforeach; ?>
-            <?php foreach ($sizes as $size): ?>
-            <label>
-                <input type="checkbox" name="sizes[]" value="<?= $size["SizeID"]; ?>"><?= htmlspecialchars($size["Size"]); ?>
-            </label>
-            <?php endforeach; ?>
-            <input type="file" name="ProductMainImage">
-            <input type="submit" value="Add Product" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
             </div>
         </form>
     </div>
-    </div>
+</div>
+
     
 </body>
 </html>
