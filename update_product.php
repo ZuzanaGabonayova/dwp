@@ -2,6 +2,15 @@
 require 'db.php'; // Include the database connection
 require 'upload.php'; // Include the CRUD operations
 
+// Attempt to fetch all products
+$products = readProducts();
+
+// Function to get the base URL of the script
+function baseUrl() {
+    // Normally you would make this dynamic or configured, but for localhost it's simple
+    return 'https://zuzanagabonayova.eu/';
+}
+
 function updateProduct($conn, $productId, $productData, $colors, $sizes) {
     // Start transaction
     $conn->begin_transaction();
@@ -84,6 +93,8 @@ function updateProduct($conn, $productId, $productData, $colors, $sizes) {
 <body class="bg-gray-100">
     <div class="container mx-auto px-4">
         <h1 class="text-xl font-semibold text-gray-800 my-6">Update Product</h1>
+        <?php if ($products): ?>
+            <?php foreach ($products as $product): ?>
         <form action="update_product.php" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div class="mb-4">
                 <label for="productNumber" class="block text-gray-700 text-sm font-bold mb-2">Product Number:</label>
@@ -129,6 +140,10 @@ function updateProduct($conn, $productId, $productData, $colors, $sizes) {
                 </button>
             </div>
         </form>
+        <?php endforeach; ?>
+        <?php else: ?>
+            <p>No products found.</p>
+            <?php endif; ?>
     </div>
 </body>
 </html>
