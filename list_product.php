@@ -1,7 +1,22 @@
 <?php
 // Database configuration
 require 'db.php'; // Include the database
-require 'crud_operations.php'; // Include the CRUD operations
+
+/**
+ * Read all products
+ */
+function readProducts() {
+    global $conn;
+    
+    $sql = "SELECT * FROM Product";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        return $result;
+    } else {
+        return false;
+    }
+}
 
 // Attempt to fetch all products
 $products = readProducts();

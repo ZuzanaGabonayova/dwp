@@ -1,153 +1,93 @@
 <?php
-require 'db.php'; // Include the database connection
-require 'upload.php'; // Include the CRUD operations
-require 'crud_operations.php'; // Include the CRUD operations
+require 'db.php'; // Include the database configuration
 
-// Attempt to fetch all products
-$products = readProducts();
+// Check if the form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["ProductID"])) {
+    // Sanitize and validate the input data here as per your requirements
+    $productID = $conn->real_escape_string($_POST["ProductID"]);
+    $model = $conn->real_escape_string($_POST["Model"]);
+    $description = $conn->real_escape_string($_POST["Description"]);
+    $price = $conn->real_escape_string($_POST["Price"]);
+    $stockQuantity = $conn->real_escape_string($_POST["StockQuantity"]);
+    
+    // Assume $conn is your mysqli connection
+    $stmt = $conn->prepare("UPDATE Product SET Model = ?, Description = ?, Price = ?, StockQuantity = ? WHERE ProductID = ?");
+    $stmt->bind_param("ssdii", $model, $description, $price, $stockQuantity, $productID);
 
-
-
-// Function to get the base URL of the script
-function baseUrl() {
-    // Normally you would make this dynamic or configured, but for localhost it's simple
-    return 'https://zuzanagabonayova.eu/';
+    if ($stmt->execute()) {
+        // Redirect back to the product list with a success message
+        header("Location: list_product.php?update=success");
+        exit();
+    } else {
+        // Handle error here
+        $error = $stmt->error;
+    }
+    $stmt->close();
 }
 
-function updateProduct($conn, $productId, $productData, $colors, $sizes) {
-    // Start transaction
-    $conn->begin_transaction();
-
-    try {
-        // Update product base information
-        $stmt = $conn->prepare("UPDATE `Product` SET 
-                                `ProductNumber` = ?, 
-                                `Model` = ?, 
-                                `Description` = ?, 
-                                `Price` = ?, 
-                                `ProductMainImage` = ?, 
-                                `CategoryID` = ?, 
-                                `BrandID` = ?, 
-                                `StockQuantity` = ?, 
-                                `AdminID` = ? 
-                                WHERE `ProductID` = ?");
-        $stmt->bind_param("sssdisiiii",
-            $productData['ProductNumber'],
-            $productData['Model'],
-            $productData['Description'],
-            $productData['Price'],
-            $productData['ProductMainImage'],
-            $productData['CategoryID'],
-            $productData['BrandID'],
-            $productData['StockQuantity'],
-            $productData['AdminID'],
-            $productId
-        );
-        $stmt->execute();
-        $stmt->close();
-
-        // Update product colors
-        $stmt = $conn->prepare("DELETE FROM `ProductColor` WHERE `ProductID` = ?");
-        $stmt->bind_param("i", $productId);
-        $stmt->execute();
-        $stmt->close();
-
-        $stmt = $conn->prepare("INSERT INTO `ProductColor` (`ProductID`, `ColorID`) VALUES (?, ?)");
-        foreach ($colors as $colorId) {
-            $stmt->bind_param("ii", $productId, $colorId);
-            $stmt->execute();
-        }
-        $stmt->close();
-
-        // Update product sizes
-        $stmt = $conn->prepare("DELETE FROM `ProductSize` WHERE `ProductID` = ?");
-        $stmt->bind_param("i", $productId);
-        $stmt->execute();
-        $stmt->close();
-
-        $stmt = $conn->prepare("INSERT INTO `ProductSize` (`ProductID`, `SizeID`) VALUES (?, ?)");
-        foreach ($sizes as $sizeId) {
-            $stmt->bind_param("ii", $productId, $sizeId);
-            $stmt->execute();
-        }
-        $stmt->close();
-
-        // Commit transaction
-        $conn->commit();
-        echo "Product updated successfully with colors and sizes.";
-    } catch (Exception $e) {
-        // An error occurred, rollback changes
-        $conn->rollback();
-        echo "Error updating product: " . $e->getMessage();
+// Function to read a single product
+function readProduct($productId, $conn) {
+    $stmt = $conn->prepare("SELECT * FROM Product WHERE ProductID = ?");
+    $stmt->bind_param("i", $productId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        return $result->fetch_assoc();
+    } else {
+        return false;
     }
 }
 
-?>
+// Get the product data
+$product = false;
+if (isset($_GET["ProductID"])) {
+    $product = readProduct($_GET["ProductID"], $conn);
+}
 
+// Close the connection
+$conn->close();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Product</title>
+    <title>Edit Product</title>
     <!-- Include Tailwind CSS from CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto px-4">
-        <h1 class="text-xl font-semibold text-gray-800 my-6">Update Product</h1>
-      
-        <!-- Assuming that we are updating one product at a time, we only need one form. -->
-        <!-- Therefore, we should break the loop or ensure only one product is passed to this page. -->
-        <form action="update_product.php" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-           
-
-            <div class="mb-4">
-                <label for="productNumber" class="block text-gray-700 text-sm font-bold mb-2">Product Number:</label>
-                <input type="text" id="productNumber" name="productNumber" value="<?php echo htmlspecialchars($productData['ProductNumber']); ?>" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
-            
-            <!-- ... other product fields ... -->
-
-            <div class="mb-4">
-                <label for="colors" class="block text-gray-700 text-sm font-bold mb-2">Colors:</label>
-                <select id="colors" name="colors[]" multiple class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <!-- Options should be generated based on available colors in the database and selected based on the product's current colors -->
-                    <option value="1">Red</option>
-                    <option value="2">White</option>
-                    <option value="3">Black</option>
-                    <option value="4">Yellow</option>
-                    <option value="5">Pink</option>
-                    <!-- ... other color options ... -->
-                </select>
-            </div>
-
-            <div class="mb-4">
-                <label for="sizes" class="block text-gray-700 text-sm font-bold mb-2">Sizes:</label>
-                <select id="sizes" name="sizes[]" multiple class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <!-- Options should be generated based on available sizes in the database and selected based on the product's current sizes -->
-                    <option value="1">35</option>
-                    <option value="2">36</option>
-                    <option value="3">37</option>
-                    <option value="4">38</option>
-                    <option value="5">39</option>
-                    <option value="6">40</option>
-                    <option value="7">41</option>
-                    <option value="8">42</option>
-                    <option value="9">43</option>
-                    <!-- ... other size options ... -->
-                </select>
-            </div>
-
-            <!-- Submit button -->
-            <div class="mb-4">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                    Update Product
-                </button>
-            </div>
-        </form>
-        
+        <h1 class="text-xl font-semibold text-gray-800 my-6">Edit Product</h1>
+        <?php if ($product): ?>
+            <?php if(isset($error)): ?>
+                <div class="text-red-500">
+                    <?= "Error: " . $error; ?>
+                </div>
+            <?php endif; ?>
+            <form action="update_product.php" method="post" class="mb-4">
+                <input type="hidden" name="ProductID" value="<?= $product["ProductID"] ?>">
+                
+                <label for="Model">Model:</label>
+                <input type="text" id="Model" name="Model" value="<?= htmlspecialchars($product["Model"]); ?>" required>
+                
+                <label for="Description">Description:</label>
+                <textarea id="Description" name="Description" required><?= htmlspecialchars($product["Description"]); ?></textarea>
+                
+                <label for="Price">Price:</label>
+                <input type="number" id="Price" name="Price" step="0.01" value="<?= htmlspecialchars($product["Price"]); ?>" required>
+                
+                <label for="StockQuantity">Stock Quantity:</label>
+                <input type="number" id="StockQuantity" name="StockQuantity" value="<?= htmlspecialchars($product["StockQuantity"]); ?>" required>
+                
+                <!-- Add more fields as needed -->
+                
+                <input type="submit" value="Update Product" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+            </form>
+        <?php else: ?>
+            <p class="text-red-500">Product not found.</p>
+        <?php endif; ?>
     </div>
 </body>
 </html>
