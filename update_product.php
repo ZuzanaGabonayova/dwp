@@ -1,6 +1,7 @@
 <?php
 require 'db.php'; // Include the database connection
 require 'upload.php'; // Include the CRUD operations
+require 'crud_operations.php'; // Include the CRUD operations
 
 // Attempt to fetch all products
 $products = readProducts();
