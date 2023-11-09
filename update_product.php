@@ -1,23 +1,7 @@
 <?php
 require 'db.php'; // Include the database connection
 require 'upload.php'; // Include the CRUD operations
-
-/**
- * Read all products
- */
-function readProducts() {
-    global $conn;
-    
-    $sql = "SELECT * FROM Product";
-    $result = $conn->query($sql);
-    
-    if ($result->num_rows > 0) {
-        return $result;
-    } else {
-        return false;
-    }
-}
-
+require 'crud_operations.php'; // Include the CRUD operations
 
 // Attempt to fetch all products
 $products = readProducts();
@@ -98,46 +82,6 @@ function updateProduct($conn, $productId, $productData, $colors, $sizes) {
     }
 }
 
-$productID = $_GET['ProductID'] ?? null;
-
-if (!$productID) {
-    die('ProductID must be provided.');
-}
-
-$product = readProducts ($conn, $productID);
-
-if (!$product) {
-    die('Product not found.');
-}
-
-
-// Check if the form was submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validate and assign POST data to variables
-    // ...
-
-    // Assuming $_POST['colors'] and $_POST['sizes'] are arrays of selected color and size IDs
-    $colors = $_POST['colors'] ?? [];
-    $sizes = $_POST['sizes'] ?? [];
-
-    // Handle file upload if a file was sent
-    // ...
-
-    // Update the product
-    $result = updateProduct($conn, $productID, $_POST, $colors, $sizes);
-
-    // Based on $result, redirect or display a success/error message
-    if ($result) {
-        // Redirect to product list or display success message
-        header('Location: product_list.php');
-        exit;
-    } else {
-        // Handle error
-        $error = 'There was an error updating the product.';
-    }
-}
-
-
 ?>
 
 
@@ -153,21 +97,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="bg-gray-100">
     <div class="container mx-auto px-4">
         <h1 class="text-xl font-semibold text-gray-800 my-6">Update Product</h1>
-
-        <?php if (isset($error)): ?>
-            <p class="text-red-500 text-xs italic"><?php echo $error; ?></p>
-        <?php endif; ?>
-
-        <form action="update_product.php?ProductID=<?php echo htmlspecialchars($productID); ?>" method="post" enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <!-- Hidden field for the ProductID -->
-            <input type="hidden" name="ProductID" value="<?php echo htmlspecialchars($product['ProductID']); ?>">
+      
+        <!-- Assuming that we are updating one product at a time, we only need one form. -->
+        <!-- Therefore, we should break the loop or ensure only one product is passed to this page. -->
+        <form action="update_product.php" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+           
 
             <div class="mb-4">
                 <label for="productNumber" class="block text-gray-700 text-sm font-bold mb-2">Product Number:</label>
-                <input type="text" id="productNumber" name="productNumber" value="<?php echo htmlspecialchars($product['ProductNumber']); ?>" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input type="text" id="productNumber" name="productNumber" value="" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            
+            <!-- ... other product fields ... -->
+
+            <div class="mb-4">
+                <label for="colors" class="block text-gray-700 text-sm font-bold mb-2">Colors:</label>
+                <select id="colors" name="colors[]" multiple class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <!-- Options should be generated based on available colors in the database and selected based on the product's current colors -->
+                    <option value="1">Red</option>
+                    <option value="2">White</option>
+                    <option value="3">Black</option>
+                    <option value="4">Yellow</option>
+                    <option value="5">Pink</option>
+                    <!-- ... other color options ... -->
+                </select>
             </div>
 
-            <!-- ... other product fields ... -->
+            <div class="mb-4">
+                <label for="sizes" class="block text-gray-700 text-sm font-bold mb-2">Sizes:</label>
+                <select id="sizes" name="sizes[]" multiple class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <!-- Options should be generated based on available sizes in the database and selected based on the product's current sizes -->
+                    <option value="1">35</option>
+                    <option value="2">36</option>
+                    <option value="3">37</option>
+                    <option value="4">38</option>
+                    <option value="5">39</option>
+                    <option value="6">40</option>
+                    <option value="7">41</option>
+                    <option value="8">42</option>
+                    <option value="9">43</option>
+                    <!-- ... other size options ... -->
+                </select>
+            </div>
 
             <!-- Submit button -->
             <div class="mb-4">
@@ -176,6 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </button>
             </div>
         </form>
+        
     </div>
 </body>
 </html>
