@@ -94,13 +94,13 @@ $conn->close();
                             <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="number" name="Price" step="0.01" required>
                         </div>
                     </div>
-                    <div class="sm:col-span-2">
+                    <div class="sm:col-span-4">
                         <label class="block text-sm font-medium leading-6 text-gray-900" for="StockQuantity">Stock Quantity</label>
                         <div class="mt-2">
                             <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="number" name="StockQuantity" required>
                         </div>
                     </div>
-                    <div class="sm:col-span-2">
+                    <div class="sm:col-span-4">
                         <label class="block text-sm font-medium leading-6 text-gray-900" for="StockQuantity">Category</label>
                         <select name="CategoryID" required>
                             <option value="">Select Category</option>
@@ -109,7 +109,7 @@ $conn->close();
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="sm:col-span-2">
+                    <div class="sm:col-span-4">
                         <label class="block text-sm font-medium leading-6 text-gray-900" for="StockQuantity">Brand</label>
                         <select name="BrandID" required>
                             <option value="">Select Brand</option>
