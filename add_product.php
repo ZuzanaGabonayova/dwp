@@ -94,7 +94,12 @@ $conn->close();
                             <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="number" name="Price" step="0.01" required>
                         </div>
                     </div>
-                    <input type="number" name="StockQuantity" placeholder="Stock Quantity" required>
+                     <div class="sm:col-span-2">
+                        <label class="block text-sm font-medium leading-6 text-gray-900" for="StockQuantity">Stock Quantity</label>
+                        <div class="mt-2">
+                            <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="number" name="StockQuantity" required>
+                        </div>
+                    </div>
                     <select name="CategoryID" required>
                         <option value="">Select Category</option>
                         <?php foreach ($categories as $category): ?>
@@ -107,11 +112,16 @@ $conn->close();
                             <option value="<?= $brand["BrandID"]; ?>"><?= htmlspecialchars($brand["BrandName"]); ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <?php foreach ($colors as $color): ?>
-                        <label>
-                            <input type="checkbox" name="colors[]" value="<?= $color["ColorID"]; ?>"><?= htmlspecialchars($color["ColorName"]); ?>
-                        </label>
-                    <?php endforeach; ?>
+                    <div class="col-span-full">
+                        <label for="colors" class="block text-sm font-medium leading-6 text-gray-900">Color</label>
+                        <div class="mt-2">
+                            <div class="flex gap-x-3">
+                                <?php foreach ($colors as $color): ?>
+                                    <input type="checkbox" name="colors[]" value="<?= $color["ColorID"]; ?>"><?= htmlspecialchars($color["ColorName"]); ?>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
                     <?php foreach ($sizes as $size): ?>
                         <label>
                             <input type="checkbox" name="sizes[]" value="<?= $size["SizeID"]; ?>"><?= htmlspecialchars($size["Size"]); ?>
