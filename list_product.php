@@ -87,7 +87,7 @@ function getAuthorName($AdminID, $conn) {
 <body class="bg-gray-100">
     <div class="container mx-auto px-4">
         <h1 class="text-xl font-semibold text-gray-800 my-6">Product List</h1>
-        <div class="bg-white shadow-md rounded my-6">
+        <div class="bg-white shadow-md rounded my-6 overflow-x-auto">
             <table class="min-w-max w-full table-fixed">
                 <thead>
                     <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
