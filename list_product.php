@@ -61,10 +61,10 @@ function getBrandName($brandId, $conn) {
 }
 
 // Function to get the author name for a product
-function getAuthorName($authorId, $conn) {
+function getAuthorName($AdminID, $conn) {
     // This assumes you have a table named `Authors` with fields `AuthorID` and `AuthorName`
     // Adjust the table and field names according to your schema
-    $sql = "SELECT FirstName, LastName FROM Admin WHERE AdminID = " . intval($authorId);
+    $sql = "SELECT FirstName, LastName FROM Admin WHERE AdminID = " . intval($AdminID);
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
@@ -122,7 +122,7 @@ function getAuthorName($authorId, $conn) {
                             $productSizes = getProductSizes($product["ProductID"], $conn);
                             $categoryName = getCategoryName($product["CategoryID"], $conn);
                             $brandName = getBrandName($product["BrandID"], $conn);
-                            $authorName = getAuthorName($product["Author"], $conn); // If you have an authors table
+                            $authorName = getAuthorName($product["AdminID"], $conn); // If you have an authors table
                             ?>
                             <tr class='border-b border-gray-200 hover:bg-gray-100'>
                                 <td class='py-3 px-6 text-left whitespace-nowrap'><?= $product["ProductNumber"]; ?></td>
