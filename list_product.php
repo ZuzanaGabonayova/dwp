@@ -1,4 +1,5 @@
 <?php
+// Database configuration
 require 'db.php'; // Include the database
 
 // Create connection
@@ -58,6 +59,20 @@ function getBrandName($brandId, $conn) {
         return null;
     }
 }
+
+// Function to get the author name for a product
+function getAuthorName($authorId, $conn) {
+    // This assumes you have a table named `Authors` with fields `AuthorID` and `AuthorName`
+    // Adjust the table and field names according to your schema
+    $sql = "SELECT FirstName, LastName FROM Admin WHERE AdminID = " . intval($authorId);
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["FirstName"] . " " . $row["LastName"];
+    } else {
+        return null;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -67,8 +82,7 @@ function getBrandName($brandId, $conn) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
     <!-- Include Tailwind CSS from CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto px-4">
@@ -77,6 +91,7 @@ function getBrandName($brandId, $conn) {
             <table class="min-w-max w-full table-auto">
                 <thead>
                     <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                        <th class="py-3 px-6 text-left">Product Number</th>
                         <th class="py-3 px-6 text-left">Product</th>
                         <th class="py-3 px-6 text-left">Description</th>
                         <th class="py-3 px-6 text-center">Price</th>
@@ -85,6 +100,10 @@ function getBrandName($brandId, $conn) {
                         <th class="py-3 px-6 text-center">Category</th>
                         <th class="py-3 px-6 text-center">Brand</th>
                         <th class="py-3 px-6 text-center">Stock Quantity</th>
+                        <th class="py-3 px-6 text-center">Image</th>
+                        <th class="py-3 px-6 text-center">Created At</th>
+                        <th class="py-3 px-6 text-center">Edited At</th>
+                        <th class="py-3 px-6 text-center">Author</th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-600 text-sm font-light">
@@ -103,9 +122,11 @@ function getBrandName($brandId, $conn) {
                             $productSizes = getProductSizes($product["ProductID"], $conn);
                             $categoryName = getCategoryName($product["CategoryID"], $conn);
                             $brandName = getBrandName($product["BrandID"], $conn);
+                            $authorName = getAuthorName($product["Author"], $conn); // If you have an authors table
                             ?>
                             <tr class='border-b border-gray-200 hover:bg-gray-100'>
-                                <td class='py-3 px-6 text-left whitespace-nowrap'><?= $product["Model"]; ?></td>
+                                <td class='py-3 px-6 text-left whitespace-nowrap'><?= $product["ProductNumber"]; ?></td>
+                                <td class='py-3 px-6 text-left'><?= $product["Model"]; ?></td>
                                 <td class='py-3 px-6 text-left'><?= $product["Description"]; ?></td>
                                 <td class='py-3 px-6 text-center'><?= $product["Price"]; ?></td>
                                 <td class='py-3 px-6 text-center'><?= implode(", ", $productColors); ?></td>
@@ -113,12 +134,18 @@ function getBrandName($brandId, $conn) {
                                 <td class='py-3 px-6 text-center'><?= $categoryName; ?></td>
                                 <td class='py-3 px-6 text-center'><?= $brandName; ?></td>
                                 <td class='py-3 px-6 text-center'><?= $product["StockQuantity"]; ?></td>
+                                <td class='py-3 px-6 text-center'>
+                                    <img src="<?= $product["ProductMainImage"]; ?>" alt="Product Image" class="h-10 w-10 rounded-full">
+                                </td>
+                                <td class='py-3 px-6 text-center'><?= $product["CreatedAt"]; ?></td>
+                                <td class='py-3 px-6 text-center'><?= $product["EditedAt"]; ?></td>
+                                <td class='py-3 px-6 text-center'><?= $authorName; ?></td>
                             </tr>
                             <?php
                         endwhile;
                     else:
                         ?>
-                        <tr><td colspan='8' class='py-3 px-6 text-center'>No products found</td></tr>
+                        <tr><td colspan='13' class='py-3 px-6 text-center'>No products found</td></tr>
                         <?php
                     endif;
 
