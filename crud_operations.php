@@ -3,43 +3,6 @@
 
 require 'db.php'; // ensures that the file is included only once
 
-/**
- * Sanitize input data
- */
-function sanitizeInput($data) {
-    global $conn;
-    return htmlspecialchars($conn->real_escape_string($data));
-}
-
-
-/**
- * Create a new product
- */
-function createProduct($productNumber, $model, $color, $size, $description, $price, $stockQuantity, $productMainImage, $categoryID, $brandID) {
-    global $conn;
-    
-    // Sanitize input
-    $productNumber = sanitizeInput($productNumber);
-    $model = sanitizeInput($model);
-    $color = sanitizeInput($color);
-    $size = sanitizeInput($size);
-    $description = sanitizeInput($description);
-    $price = sanitizeInput($price);
-    $stockQuantity = sanitizeInput($stockQuantity);
-    $productMainImage = sanitizeInput($productMainImage);
-    $categoryID = sanitizeInput($categoryID);
-    $brandID = sanitizeInput($brandID);
-
-    // Prepare statement
-    $stmt = $conn->prepare("INSERT INTO Product (ProductNumber, Model, Color, Size, Description, Price, StockQuantity, ProductMainImage, CategoryID, BrandID, CreatedAt, EditedAt, Author) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW(), ?)");
-    $stmt->bind_param("sssssdisisi", $productNumber, $model, $color, $size, $description, $price, $stockQuantity, $productMainImage, $categoryID, $brandID, $author);
-    
-    if($stmt->execute()) {
-        return $conn->insert_id; // Return the id of the inserted product
-    } else {
-        return false;
-    }
-}
 
 /**
  * Read all products
@@ -55,48 +18,6 @@ function readProducts() {
     } else {
         return false;
     }
-}
-
-/**
- * Update a product
- */
-/* function updateProduct($productID, $productNumber, $model, $color, $size, $description, $price, $stockQuantity, $productMainImage, $categoryID, $brandID) {
-    global $conn;
-    
-    // Sanitize input
-    $productID = sanitizeInput($productID);
-    $productNumber = sanitizeInput($productNumber);
-    $model = sanitizeInput($model);
-    $color = sanitizeInput($color);
-    $size = sanitizeInput($size);
-    $description = sanitizeInput($description);
-    $price = sanitizeInput($price);
-    $stockQuantity = sanitizeInput($stockQuantity);
-    $productMainImage = sanitizeInput($productMainImage);
-    $categoryID = sanitizeInput($categoryID);
-    $brandID = sanitizeInput($brandID);
-
-    // Prepare statement
-    $stmt = $conn->prepare("UPDATE Product SET ProductNumber = ?, Model = ?, Color = ?, Size = ?, Description = ?, Price = ?, StockQuantity = ?, ProductMainImage = ?, CategoryID = ?, BrandID = ?, EditedAt = NOW() WHERE ProductID = ?");
-    $stmt->bind_param("sssssdisisi", $productNumber, $model, $color, $size, $description, $price, $stockQuantity, $productMainImage, $categoryID, $brandID, $productID);
-    
-    return $stmt->execute();
-}
- */
-/**
- * Delete a product
- */
-function deleteProduct($productID) {
-    global $conn;
-    
-    // Sanitize input
-    $productID = sanitizeInput($productID);
-
-    // Prepare statement
-    $stmt = $conn->prepare("DELETE FROM Product WHERE ProductID = ?");
-    $stmt->bind_param("i", $productID);
-    
-    return $stmt->execute();
 }
 
 /**
@@ -120,8 +41,6 @@ function readProduct($productID) {
         return null; // No product found with the given ProductID
     }
 }
-
-
 
 
 /**
