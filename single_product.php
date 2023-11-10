@@ -37,7 +37,14 @@ $conn->close();
                     <p><?= nl2br(htmlspecialchars($product['Description'])) ?></p>
                     <p class="font-bold mt-3">Price: $<?= htmlspecialchars($product['Price']) ?></p>
                     <p class="mt-3">Colors: <?= htmlspecialchars(implode(", ", $productColors)) ?></p>
-                    <p class="mt-1">Sizes: <?= htmlspecialchars(implode(", ", $productSizes)) ?></p>
+                    <div class="mt-10">
+                        <div class="grid grid-cols-3 gap-4 sm:grid-cols-6 lg:grid-cols-3">
+                            <div <?= htmlspecialchars(implode(", ", $productSizes)) ?> class="group relative flex items-center justify-center rounded-md border border-[#F39200] py-3 px-4 text-sm font-medium uppercase sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm undefined">
+
+                            </div>
+                            <p class="mt-1">Sizes: <?= htmlspecialchars(implode(", ", $productSizes)) ?></p>
+                        </div>
+                    </div>
                     <p class="mt-1">Category: <?= htmlspecialchars($categoryName) ?></p>
                     <p class="mt-1">Brand: <?= htmlspecialchars($brandName) ?></p>
                     <p class="mt-1">Posted by: <?= htmlspecialchars($authorName) ?></p>
