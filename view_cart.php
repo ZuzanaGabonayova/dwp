@@ -26,11 +26,11 @@ function removeCartItem($productId) {
 // Check if update/remove actions have been requested
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['update'])) {
-        $productId = intval($_POST['product_id']);
+        $productId = intval($_POST['ProductID']);
         $quantity = intval($_POST['quantity']);
         updateCartItem($productId, $quantity);
     } elseif (isset($_POST['remove'])) {
-        $productId = intval($_POST['product_id']);
+        $productId = intval($_POST['ProductID']);
         removeCartItem($productId);
     }
     // After updating, redirect back to the cart page to see the changes
@@ -69,10 +69,10 @@ foreach ($_SESSION['cart'] as $productId => $quantity) {
             <?php foreach ($cartItems as $id => $item): ?>
                 <div class="flex justify-between items-center bg-white p-4 mb-4 rounded shadow">
                     <div class="flex items-center">
-                        <img class="w-16 h-16 mr-4" src="<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>">
+                        <img class="w-16 h-16 mr-4" src="<?php echo htmlspecialchars($item['ProductMainImage']); ?>" alt="<?php echo htmlspecialchars($item['Model']); ?>">
                         <div>
-                            <div class="font-bold"><?php echo htmlspecialchars($item['name']); ?></div>
-                            <div>$<?php echo htmlspecialchars(number_format($item['price'], 2)); ?></div>
+                            <div class="font-bold"><?php echo htmlspecialchars($item['Model']); ?></div>
+                            <div>$<?php echo htmlspecialchars(number_format($item['Price'], 2)); ?></div>
                         </div>
                     </div>
                     <form class="flex items-center" action="view_cart.php" method="post">
