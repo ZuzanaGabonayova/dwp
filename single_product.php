@@ -45,7 +45,7 @@ $conn->close();
                             <span>Sizes:</span>
                             <div class="flex flex-wrap gap-2">
                                 <?php foreach ($productSizes as $size): ?>
-                                    <div class="border border-gray-200 rounded px-2 py-1"><?= htmlspecialchars($size['Size']) ?></div>
+                                   <div class="border border-gray-200 rounded px-2 py-1"><?= htmlspecialchars($size) ?></div>
                                 <?php endforeach; ?>
                             </div>
                         </div>
