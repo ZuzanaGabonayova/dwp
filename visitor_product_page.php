@@ -147,7 +147,7 @@ include 'navbar.php';
 
 
 
-                <div class="w-full grid grid-cols-3 gap-20">
+                <!-- <div class="w-full grid grid-cols-3 gap-20"> -->
                     <div class="border-2 border-solid rounded-3xl shadow-lg h-[500px]">
                         <div class="flex justify-center border-b-2 border-solid shadow-lg">
                             <img class="object-cover h-72 w-[450px]" src="<?php echo htmlspecialchars($product['ProductMainImage']); ?>" alt="<?php echo htmlspecialchars($product['Model']); ?>"/>
@@ -175,7 +175,7 @@ include 'navbar.php';
                             </div>
                         </div>
                     </div>
-                </div>
+                <!-- </div> -->
 
 
             <?php endwhile; ?>
