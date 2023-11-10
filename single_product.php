@@ -35,21 +35,22 @@ $conn->close();
                 <div class="px-8 mt-20 lg:mt-0 sm:px:0 sm:mt-16 ">
                     <h1 class="text-3xl font-bold mb-2 tracking-tight"><?= htmlspecialchars($product['Model']) ?></h1>
                     <p><?= nl2br(htmlspecialchars($product['Description'])) ?></p>
-                    <p class="font-bold mt-3">Price: $<?= htmlspecialchars($product['Price']) ?></p>
-                    <p class="mt-3">Colors: <?= htmlspecialchars(implode(", ", $productColors)) ?></p>
-                        <div class="mt-10">
-                            <div class="flex items-center justify-between">
-                                <h3 class="text-sm font-medium text-gray-900">Size</h3>
-                                <a href="#" class="text-sm font-medium text-[#F39200] hover:text-[#F39200]/80">Size guide</a>
-                            </div>
-                            <div class="mt-4">
-                                <div class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
-                                    <?php foreach ($productSizes as $size): ?>
-                                        <div class="border border-[#F39200] group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase sm:flex-1 sm:py-4 cursor-pointer bg-white text-gray-900 shadow-sm undefined "><?= htmlspecialchars($size) ?></div>
+                    <div class="mt-10">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-sm font-medium text-gray-900">Size</h3>
+                            <a href="#" class="text-sm font-medium text-[#F39200] hover:text-[#F39200]/80">Size guide</a>
+                        </div>
+                        <div class="mt-4">
+                            <div class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
+                                <?php foreach ($productSizes as $size): ?>
+                                    <div class="border border-[#F39200] group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase sm:flex-1 sm:py-4 cursor-pointer bg-white text-gray-900 shadow-sm undefined "><?= htmlspecialchars($size) ?></div>
                                     <?php endforeach; ?>
-                                </div>
                             </div>
                         </div>
+                    </div>
+                    <p class="font-bold mt-3">Price: $<?= htmlspecialchars($product['Price']) ?></p>
+                    <p class="mt-3">Colors: <?= htmlspecialchars(implode(", ", $productColors)) ?></p>
+                        
                     <p class="mt-1">Category: <?= htmlspecialchars($categoryName) ?></p>
                     <p class="mt-1">Brand: <?= htmlspecialchars($brandName) ?></p>
                     <p class="mt-1">Posted by: <?= htmlspecialchars($authorName) ?></p>
