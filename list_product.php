@@ -1,22 +1,7 @@
 <?php
 // Database configuration
 require 'db.php'; // Include the database
-
-/**
- * Read all products
- */
-function readProducts() {
-    global $conn;
-    
-    $sql = "SELECT * FROM Product";
-    $result = $conn->query($sql);
-    
-    if ($result->num_rows > 0) {
-        return $result;
-    } else {
-        return false;
-    }
-}
+require 'crud_operations.php'; // Include CRUD operations
 
 // Attempt to fetch all products
 $products = readProducts();
@@ -25,14 +10,6 @@ $products = readProducts();
 function baseUrl() {
     // Normally you would make this dynamic or configured, but for localhost it's simple
     return 'https://zuzanagabonayova.eu/';
-}
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
 }
 
 // Function to get color names for a product
