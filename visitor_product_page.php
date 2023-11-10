@@ -156,20 +156,11 @@ include 'navbar.php';
                             <div class="my-4 w-10/12">
                                 <div class="font-bold text-xl mb-2"><?php echo htmlspecialchars($product['Model']); ?></div>
 
-                                <div class="mt-10 flex flex-col w-24 items-center">
+                                <div class="mt-10 flex flex-col items-center">
                                     <div class="my-2">
-                                        <p class="py-2"><?php echo htmlspecialchars(number_format($product['Price'], 2)); ?></p>
+                                        <p class="py-2"><?php echo htmlspecialchars(number_format($product['Price'], 2)); ?> kr</p>
+                                        <a href="#" class="text-[#FF8C42] font-bold border-b-2 border-solid border-[#FF8C42] hover:border-[#000000]">DETAILS</a>
                                     </div>
-
-                                    <!-- Add to Cart Button -->
-                                    <form action="add_to_cart.php" method="post" style="display: inline;">
-                                        <input type="hidden" name="product_id" value="<?php echo $product['ProductID']; ?>">
-                                        <input type="hidden" name="quantity" value="1">
-                                        <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded">
-                                            Add to Cart
-                                        </button>
-                                    </form>
-
                                 </div>
                             </div>
                         </div>
