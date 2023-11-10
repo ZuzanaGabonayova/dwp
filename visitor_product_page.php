@@ -65,6 +65,7 @@ include 'navbar.php';
                                                 <?php echo htmlspecialchars($product['Model']); ?>
                                             </a>
                                         </h3>
+                                        <p class="mt-1 text-sm text-primary underline">Details</p>
                                     </div>
                                     <p class="text-sm font-medium text-gray-900"><?php echo htmlspecialchars(number_format($product['Price'], 2)); ?> kr</p>
                                     
