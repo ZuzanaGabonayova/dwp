@@ -5,12 +5,13 @@ require 'db.php'; // Include the database
 /**
  * Read all products
  */
-function readProducts() {
+function readProducts()
+{
     global $conn;
-    
+
     $sql = "SELECT * FROM Product";
     $result = $conn->query($sql);
-    
+
     if ($result->num_rows > 0) {
         return $result;
     } else {
@@ -22,7 +23,8 @@ function readProducts() {
 $products = readProducts();
 
 // Function to get the base URL of the script
-function baseUrl() {
+function baseUrl()
+{
     // Normally you would make this dynamic or configured, but for localhost it's simple
     return 'https://zuzanagabonayova.eu/';
 }
@@ -36,7 +38,8 @@ if ($conn->connect_error) {
 }
 
 // Function to get color names for a product
-function getProductColors($productId, $conn) {
+function getProductColors($productId, $conn)
+{
     $colors = [];
     $sql = "SELECT c.ColorName FROM `ProductColor` pc
             JOIN `Color` c ON pc.ColorID = c.ColorID
@@ -49,7 +52,8 @@ function getProductColors($productId, $conn) {
 }
 
 // Function to get size names for a product
-function getProductSizes($productId, $conn) {
+function getProductSizes($productId, $conn)
+{
     $sizes = [];
     $sql = "SELECT s.Size FROM `ProductSize` ps
             JOIN `Size` s ON ps.SizeID = s.SizeID
@@ -62,7 +66,8 @@ function getProductSizes($productId, $conn) {
 }
 
 // Function to get the category name for a product
-function getCategoryName($categoryId, $conn) {
+function getCategoryName($categoryId, $conn)
+{
     $sql = "SELECT CategoryName FROM `ProductCategory` WHERE CategoryID = " . intval($categoryId);
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -74,7 +79,8 @@ function getCategoryName($categoryId, $conn) {
 }
 
 // Function to get the brand name for a product
-function getBrandName($brandId, $conn) {
+function getBrandName($brandId, $conn)
+{
     $sql = "SELECT BrandName FROM `ProductBrand` WHERE BrandID = " . intval($brandId);
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -86,7 +92,8 @@ function getBrandName($brandId, $conn) {
 }
 
 // Function to get the author name for a product
-function getAuthorName($AdminID, $conn) {
+function getAuthorName($AdminID, $conn)
+{
     // This assumes you have a table named `Authors` with fields `AuthorID` and `AuthorName`
     // Adjust the table and field names according to your schema
     $sql = "SELECT FirstName, LastName FROM Admin WHERE AdminID = " . intval($AdminID);
@@ -104,31 +111,72 @@ include 'navbar.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Catalog</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-100">
 
-<?php
-include 'inc/hero.php';
-?>
+    <?php
+    include 'inc/hero.php';
+    ?>
 
-<div class="container mx-auto p-6">
-    <!-- <div class="flex justify-between items-center pb-6">
+    <div class="container mx-auto p-6">
+        <!-- <div class="flex justify-between items-center pb-6">
         <div>
             <a class="text-xl text-blue" href="view_cart.php">Cart</a>
             <h2 class="text-4xl font-semibold">Products</h2>
         </div>
     </div> -->
 
-    <!-- Products Grid -->
-    <div class="grid md:grid-cols-3 gap-6">
-        <?php if ($products): ?>
-            <?php while ($product = $products->fetch_assoc()): ?>
-                <!-- <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+        <!-- Products Grid -->
+        <div class="bg-white">
+            <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900">
+                    Our top categories
+                </h2>
+                
+                <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+                    <?php if ($products) : ?>
+                        <?php while ($product = $products->fetch_assoc()) : ?>
+
+                            <div class="group relative bg-white p-4 shadow-lg rounded-md">
+                                <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75">
+                                    <img class="h-full w-full object-cover object-center lg:h-full lg:w-full" src="<?php echo htmlspecialchars($product['ProductMainImage']); ?>" alt="<?php echo htmlspecialchars($product['Model']); ?>" />
+                                </div>
+                                <div class="mt-4 flex justify-between">
+                                    <div>
+                                        <h3 class="text-sm text-gray-700">
+                                            <a href="#">
+                                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                                <?php echo htmlspecialchars($product['Model']); ?>
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <p class="text-sm font-medium text-gray-900"><?php echo htmlspecialchars(number_format($product['Price'], 2)); ?> kr</p>
+                                    <a href="#" class="text-[#FF8C42] font-bold border-b-2 border-solid border-[#FF8C42] hover:border-[#000000]">DETAILS</a>
+                                </div>
+                            </div> <!-- More products... -->
+
+
+                        <?php endwhile; ?>
+
+                        <?php else : ?>
+                            <p>No products found.</p>
+                        <?php endif; ?>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <?php if ($products) : ?>
+                <?php while ($product = $products->fetch_assoc()) : ?>
+                    <!-- <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
                     <img class="w-full" src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
                     <div class="px-6 py-4">
                         <div class="font-bold text-xl mb-2"><?php echo htmlspecialchars($product['name']); ?></div>
@@ -151,10 +199,10 @@ include 'inc/hero.php';
 
 
 
-                <!-- <div class="w-full grid grid-cols-3 gap-20"> -->
-                    <div class="border-2 border-solid rounded-3xl shadow-lg">
+                    <!-- <div class="w-full grid grid-cols-3 gap-20"> -->
+                    <!-- <div class="border-2 border-solid rounded-3xl shadow-lg">
                         <div class="flex justify-center border-b-2 border-solid shadow-lg">
-                            <img class="object-cover h-72 w-[450px]" src="<?php echo htmlspecialchars($product['ProductMainImage']); ?>" alt="<?php echo htmlspecialchars($product['Model']); ?>"/>
+                            <img class="object-cover h-72" src="<?php echo htmlspecialchars($product['ProductMainImage']); ?>" alt="<?php echo htmlspecialchars($product['Model']); ?>" />
                         </div>
                         <div class="flex mx-10 align-center w-full">
                             <div class="my-7">
@@ -168,16 +216,17 @@ include 'inc/hero.php';
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <!-- </div> -->
+                    </div> -->
+                    <!-- </div> -->
 
 
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p>No products found.</p>
-        <?php endif; ?>
+                <?php endwhile; ?>
+            <?php else : ?>
+                <p>No products found.</p>
+            <?php endif; ?>
+        </div>
     </div>
-</div>
 
 </body>
+
 </html>
