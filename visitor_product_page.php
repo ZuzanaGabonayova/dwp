@@ -112,13 +112,17 @@ include 'navbar.php';
 </head>
 <body class="bg-gray-100">
 
+<?php
+include 'inc/hero.php';
+?>
+
 <div class="container mx-auto p-6">
-    <div class="flex justify-between items-center pb-6">
+    <!-- <div class="flex justify-between items-center pb-6">
         <div>
             <a class="text-xl text-blue" href="view_cart.php">Cart</a>
             <h2 class="text-4xl font-semibold">Products</h2>
         </div>
-    </div>
+    </div> -->
 
     <!-- Products Grid -->
     <div class="grid md:grid-cols-3 gap-6">
