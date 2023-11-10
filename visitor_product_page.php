@@ -155,9 +155,6 @@ include 'navbar.php';
                         <div class="flex justify-center align-center w-full">
                             <div class="my-4 w-10/12">
                                 <div class="font-bold text-xl mb-2"><?php echo htmlspecialchars($product['Model']); ?></div>
-                                <p class="text-gray-700 text-base">
-                                    <?php echo htmlspecialchars($product['Description']); ?>
-                                </p>
 
                                 <div class="mt-10 flex flex-col border-b-2 border-solid border-[#FF8C42] w-24 items-center">
                                     <div class="my-2">
