@@ -1,23 +1,7 @@
 <?php
 // Database configuration
 require 'db.php'; // Include the database
-
-/**
- * Read all products
- */
-function readProducts()
-{
-    global $conn;
-
-    $sql = "SELECT * FROM Product";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        return $result;
-    } else {
-        return false;
-    }
-}
+require 'crud_operations.php'; // Include CRUD operations
 
 // Attempt to fetch all products
 $products = readProducts();
@@ -29,83 +13,8 @@ function baseUrl()
     return 'https://zuzanagabonayova.eu/';
 }
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Function to get color names for a product
-function getProductColors($productId, $conn)
-{
-    $colors = [];
-    $sql = "SELECT c.ColorName FROM `ProductColor` pc
-            JOIN `Color` c ON pc.ColorID = c.ColorID
-            WHERE pc.ProductID = " . intval($productId);
-    $result = $conn->query($sql);
-    while ($row = $result->fetch_assoc()) {
-        $colors[] = $row["ColorName"];
-    }
-    return $colors;
-}
-
-// Function to get size names for a product
-function getProductSizes($productId, $conn)
-{
-    $sizes = [];
-    $sql = "SELECT s.Size FROM `ProductSize` ps
-            JOIN `Size` s ON ps.SizeID = s.SizeID
-            WHERE ps.ProductID = " . intval($productId);
-    $result = $conn->query($sql);
-    while ($row = $result->fetch_assoc()) {
-        $sizes[] = $row["Size"];
-    }
-    return $sizes;
-}
-
-// Function to get the category name for a product
-function getCategoryName($categoryId, $conn)
-{
-    $sql = "SELECT CategoryName FROM `ProductCategory` WHERE CategoryID = " . intval($categoryId);
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        return $row["CategoryName"];
-    } else {
-        return null;
-    }
-}
-
-// Function to get the brand name for a product
-function getBrandName($brandId, $conn)
-{
-    $sql = "SELECT BrandName FROM `ProductBrand` WHERE BrandID = " . intval($brandId);
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        return $row["BrandName"];
-    } else {
-        return null;
-    }
-}
-
-// Function to get the author name for a product
-function getAuthorName($AdminID, $conn)
-{
-    // This assumes you have a table named `Authors` with fields `AuthorID` and `AuthorName`
-    // Adjust the table and field names according to your schema
-    $sql = "SELECT FirstName, LastName FROM Admin WHERE AdminID = " . intval($AdminID);
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        return $row["FirstName"] . " " . $row["LastName"];
-    } else {
-        return null;
-    }
-}
 ?>
+
 <?php
 include 'navbar.php';
 ?>
@@ -137,7 +46,7 @@ include 'navbar.php';
         <div class="bg-white">
             <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                 <h2 class="text-3xl font-bold tracking-tight text-gray-900">
-                    Our top categories
+                    Our top categoriess
                 </h2>
                 
                 <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
@@ -158,7 +67,7 @@ include 'navbar.php';
                                         </h3>
                                     </div>
                                     <p class="text-sm font-medium text-gray-900"><?php echo htmlspecialchars(number_format($product['Price'], 2)); ?> kr</p>
-                                    <a href="#" class="text-[#FF8C42] font-bold border-b-2 border-solid border-[#FF8C42] hover:border-[#000000]">DETAILS</a>
+                                     <a href="<?php echo baseUrl(); ?>single_product.php?ProductID==<?php echo $product['ProductID']; ?>" class="text-[#FF8C42] font-bold border-b-2 border-solid border-[#FF8C42] hover:border-[#000000] uppercase">Details</a>
                                 </div>
                             </div> <!-- More products... -->
 
