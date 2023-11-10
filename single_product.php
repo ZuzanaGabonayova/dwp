@@ -41,6 +41,14 @@ $conn->close();
                         <div class="grid grid-cols-3 gap-4 sm:grid-cols-6 lg:grid-cols-3">
                             <p class="mt-1"><?= htmlspecialchars(implode(", ", $productSizes)) ?></p>
                         </div>
+                        <div class="mt-1 grid grid-cols-2 gap-2">
+                            <span>Sizes:</span>
+                            <div class="flex flex-wrap gap-2">
+                                <?php foreach ($productSizes as $size): ?>
+                                    <div class="border border-gray-200 rounded px-2 py-1"><?= htmlspecialchars($size['Size']) ?></div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
                     </div>
                     <p class="mt-1">Category: <?= htmlspecialchars($categoryName) ?></p>
                     <p class="mt-1">Brand: <?= htmlspecialchars($brandName) ?></p>
