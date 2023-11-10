@@ -67,7 +67,7 @@ include 'navbar.php';
                                         </h3>
                                     </div>
                                     <p class="text-sm font-medium text-gray-900"><?php echo htmlspecialchars(number_format($product['Price'], 2)); ?> kr</p>
-                                     <a href="<?php echo baseUrl(); ?>single_product.php?ProductID==<?php echo $product['ProductID']; ?>" class="text-[#FF8C42] font-bold border-b-2 border-solid border-[#FF8C42] hover:border-[#000000] uppercase">Details</a>
+                                    <a href="<?php echo baseUrl(); ?>product_dedicated.php?ProductID=<?php echo $product['ProductID']; ?>" class="text-[#FF8C42] font-bold border-b-2 border-solid border-[#FF8C42] hover:border-[#000000] uppercase">Details</a>
                                 </div>
                             </div> <!-- More products... -->
 
