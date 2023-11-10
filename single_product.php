@@ -26,7 +26,7 @@ $conn->close();
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
-    <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:max-w-7xl  lg:gap-x-8 lg:px-8">
+    <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:max-w-7xl lg:gap-x-8 lg:px-8 py-16 sm:py-24">
         <?php if ($product): ?>
             <div class="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
                 <div class="aspect-square rounded-lg ">
@@ -37,10 +37,6 @@ $conn->close();
                     <p><?= nl2br(htmlspecialchars($product['Description'])) ?></p>
                     <p class="font-bold mt-3">Price: $<?= htmlspecialchars($product['Price']) ?></p>
                     <p class="mt-3">Colors: <?= htmlspecialchars(implode(", ", $productColors)) ?></p>
-                    <div class="mt-10">
-                        <div class="grid grid-cols-3 gap-4 sm:grid-cols-6 lg:grid-cols-3">
-                            <p class="mt-1"><?= htmlspecialchars(implode(", ", $productSizes)) ?></p>
-                        </div>
                         <div class="mt-10">
                             <div class="flex items-center justify-between">
                                 <h3 class="text-sm font-medium text-gray-900">Size</h3>
@@ -54,7 +50,6 @@ $conn->close();
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <p class="mt-1">Category: <?= htmlspecialchars($categoryName) ?></p>
                     <p class="mt-1">Brand: <?= htmlspecialchars($brandName) ?></p>
                     <p class="mt-1">Posted by: <?= htmlspecialchars($authorName) ?></p>
