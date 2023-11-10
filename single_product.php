@@ -49,7 +49,7 @@ $conn->close();
                             <div class="mt-4">
                                 <div class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
                                     <?php foreach ($productSizes as $size): ?>
-                                        <div class="border border-[#F39200] rounded px-2 py-1"><?= htmlspecialchars($size) ?></div>
+                                        <div class="border border-[#F39200] group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm undefined "><?= htmlspecialchars($size) ?></div>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
