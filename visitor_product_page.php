@@ -148,7 +148,7 @@ include 'navbar.php';
 
 
                 <!-- <div class="w-full grid grid-cols-3 gap-20"> -->
-                    <div class="border-2 border-solid rounded-3xl shadow-lg h-[500px]">
+                    <div class="border-2 border-solid rounded-3xl shadow-lg">
                         <div class="flex justify-center border-b-2 border-solid shadow-lg">
                             <img class="object-cover h-72 w-[450px]" src="<?php echo htmlspecialchars($product['ProductMainImage']); ?>" alt="<?php echo htmlspecialchars($product['Model']); ?>"/>
                         </div>
@@ -159,7 +159,6 @@ include 'navbar.php';
                                 <div class="mt-10 flex flex-col border-b-2 border-solid border-[#FF8C42] w-24 items-center">
                                     <div class="my-2">
                                         <p class="py-2"><?php echo htmlspecialchars(number_format($product['Price'], 2)); ?></p>
-                                        <span class="text-[#FF8C42] font-bold ">DETAILS</span>
                                     </div>
 
                                     <!-- Add to Cart Button -->
