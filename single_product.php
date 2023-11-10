@@ -26,18 +26,22 @@ $conn->close();
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
-    <div class="container mx-auto px-4 py-4">
+    <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:max-w-7xl  lg:gap-x-8 lg:px-8">
         <?php if ($product): ?>
-            <div class="max-w-xl mx-auto bg-white p-5 rounded shadow">
-                <h2 class="text-2xl font-bold mb-2"><?= htmlspecialchars($product['Model']) ?></h2>
-                <img src="<?= htmlspecialchars($product['ProductMainImage']) ?>" alt="Product Image" class="w-full h-64 object-cover mb-3">
-                <p><?= nl2br(htmlspecialchars($product['Description'])) ?></p>
-                <p class="font-bold mt-3">Price: $<?= htmlspecialchars($product['Price']) ?></p>
-                <p class="mt-3">Colors: <?= htmlspecialchars(implode(", ", $productColors)) ?></p>
-                <p class="mt-1">Sizes: <?= htmlspecialchars(implode(", ", $productSizes)) ?></p>
-                <p class="mt-1">Category: <?= htmlspecialchars($categoryName) ?></p>
-                <p class="mt-1">Brand: <?= htmlspecialchars($brandName) ?></p>
-                <p class="mt-1">Posted by: <?= htmlspecialchars($authorName) ?></p>
+            <div class="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
+                <div class="aspect-square rounded-lg ">
+                    <img src="<?= htmlspecialchars($product['ProductMainImage']) ?>" alt="Product Image" class="h-full w-full object-cover object-center">
+                </div>
+                <div class="px-8 mt-20 lg:mt-0 sm:px:0 sm:mt-16 ">
+                    <h1 class="text-3xl font-bold mb-2 tracking-tight"><?= htmlspecialchars($product['Model']) ?></h1>
+                    <p><?= nl2br(htmlspecialchars($product['Description'])) ?></p>
+                    <p class="font-bold mt-3">Price: $<?= htmlspecialchars($product['Price']) ?></p>
+                    <p class="mt-3">Colors: <?= htmlspecialchars(implode(", ", $productColors)) ?></p>
+                    <p class="mt-1">Sizes: <?= htmlspecialchars(implode(", ", $productSizes)) ?></p>
+                    <p class="mt-1">Category: <?= htmlspecialchars($categoryName) ?></p>
+                    <p class="mt-1">Brand: <?= htmlspecialchars($brandName) ?></p>
+                    <p class="mt-1">Posted by: <?= htmlspecialchars($authorName) ?></p>
+                </div>
             </div>
         <?php else: ?>
             <p class="text-center">Product not found.</p>
