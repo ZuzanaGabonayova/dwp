@@ -150,24 +150,24 @@ include 'navbar.php';
                 <div class="w-full grid grid-cols-3 gap-20">
                     <div class="border-2 border-solid rounded-3xl shadow-lg h-[500px]">
                         <div class="flex justify-center border-b-2 border-solid shadow-lg">
-                            <img class="object-cover h-72 w-[450px]" src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>"/>
+                            <img class="object-cover h-72 w-[450px]" src="<?php echo htmlspecialchars($product['ProductMainImage']); ?>" alt="<?php echo htmlspecialchars($product['Model']); ?>"/>
                         </div>
                         <div class="flex justify-center align-center w-full">
                             <div class="my-4 w-10/12">
-                                <div class="font-bold text-xl mb-2"><?php echo htmlspecialchars($product['name']); ?></div>
+                                <div class="font-bold text-xl mb-2"><?php echo htmlspecialchars($product['Model']); ?></div>
                                 <p class="text-gray-700 text-base">
-                                    <?php echo htmlspecialchars($product['description']); ?>
+                                    <?php echo htmlspecialchars($product['Description']); ?>
                                 </p>
 
                                 <div class="mt-10 flex flex-col border-b-2 border-solid border-[#FF8C42] w-24 items-center">
                                     <div class="my-2">
-                                        <p class="py-2"><?php echo htmlspecialchars(number_format($product['price'], 2)); ?></p>
+                                        <p class="py-2"><?php echo htmlspecialchars(number_format($product['Price'], 2)); ?></p>
                                         <span class="text-[#FF8C42] font-bold ">DETAILS</span>
                                     </div>
 
                                     <!-- Add to Cart Button -->
                                     <form action="add_to_cart.php" method="post" style="display: inline;">
-                                        <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                                        <input type="hidden" name="product_id" value="<?php echo $product['ProductID']; ?>">
                                         <input type="hidden" name="quantity" value="1">
                                         <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded">
                                             Add to Cart
