@@ -41,12 +41,17 @@ $conn->close();
                         <div class="grid grid-cols-3 gap-4 sm:grid-cols-6 lg:grid-cols-3">
                             <p class="mt-1"><?= htmlspecialchars(implode(", ", $productSizes)) ?></p>
                         </div>
-                        <div class="mt-1 grid grid-cols-2 gap-2">
-                            <span>Sizes:</span>
-                            <div class="flex flex-wrap gap-2">
-                                <?php foreach ($productSizes as $size): ?>
-                                   <div class="border border-gray-200 rounded px-2 py-1"><?= htmlspecialchars($size) ?></div>
-                                <?php endforeach; ?>
+                        <div class="mt-10">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-sm font-medium text-gray-900">Size</h3>
+                                <a href="#" class="text-sm font-medium text-[#F39200] hover:text-[#F39200]/80">Size guide</a>
+                            </div>
+                            <div class="mt-4">
+                                <div class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
+                                    <?php foreach ($productSizes as $size): ?>
+                                        <div class="border border-[#F39200] rounded px-2 py-1"><?= htmlspecialchars($size) ?></div>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
