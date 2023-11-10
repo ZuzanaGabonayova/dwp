@@ -30,7 +30,7 @@ include 'navbar.php';
     <div class="grid md:grid-cols-3 gap-6">
         <?php if ($products): ?>
             <?php while ($product = $products->fetch_assoc()): ?>
-                <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+                <!-- <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
                     <img class="w-full" src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
                     <div class="px-6 py-4">
                         <div class="font-bold text-xl mb-2"><?php echo htmlspecialchars($product['name']); ?></div>
@@ -40,7 +40,7 @@ include 'navbar.php';
                     </div>
                     <div class="px-6 pt-4 pb-2">
                         <span class="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">$<?php echo htmlspecialchars(number_format($product['price'], 2)); ?></span>
-                        <!-- Add to Cart Button -->
+                        
                         <form action="add_to_cart.php" method="post" style="display: inline;">
                             <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                             <input type="hidden" name="quantity" value="1">
@@ -49,31 +49,44 @@ include 'navbar.php';
                             </button>
                         </form>
                     </div>
-                </div>
+                </div> -->
 
 
 
                 <div class="w-full grid grid-cols-3 gap-20">
                     <div class="border-2 border-solid rounded-3xl shadow-lg h-[500px]">
                         <div class="flex justify-center border-b-2 border-solid shadow-lg">
-                            <img class="object-cover h-72 w-[450px]" src="assets/images/prod_654698358ed90.png" />
+                            <img class="object-cover h-72 w-[450px]" src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>"/>
                         </div>
                         <div class="flex justify-center align-center w-full">
                             <div class="my-4 w-10/12">
-                                <p class="font-bold">Nike Dunk Low Arizona State</p>
+                                <div class="font-bold text-xl mb-2"><?php echo htmlspecialchars($product['name']); ?></div>
+                                <p class="text-gray-700 text-base">
+                                    <?php echo htmlspecialchars($product['description']); ?>
+                                </p>
 
                                 <div class="mt-10 flex flex-col border-b-2 border-solid border-[#FF8C42] w-24 items-center">
                                     <div class="my-2">
-                                        <p class="py-2">250 €</p>
+                                        <p class="py-2"><?php echo htmlspecialchars(number_format($product['price'], 2)); ?></p>
                                         <span class="text-[#FF8C42] font-bold ">DETAILS</span>
                                     </div>
+
+                                    <!-- Add to Cart Button -->
+                                    <form action="add_to_cart.php" method="post" style="display: inline;">
+                                        <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                                        <input type="hidden" name="quantity" value="1">
+                                        <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded">
+                                            Add to Cart
+                                        </button>
+                                    </form>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                
+
             <?php endwhile; ?>
         <?php else: ?>
             <p>No products found.</p>
