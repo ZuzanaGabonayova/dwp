@@ -153,10 +153,10 @@ include 'navbar.php';
                             <img class="object-cover h-72 w-[450px]" src="<?php echo htmlspecialchars($product['ProductMainImage']); ?>" alt="<?php echo htmlspecialchars($product['Model']); ?>"/>
                         </div>
                         <div class="flex justify-center align-center w-full">
-                            <div class="my-4 w-10/12">
+                            <div class="my-7">
                                 <div class="font-bold text-xl mb-2"><?php echo htmlspecialchars($product['Model']); ?></div>
 
-                                <div class="mt-10 flex flex-col items-center">
+                                <div class="mt-5 flex flex-col">
                                     <div class="my-2">
                                         <p class="py-2"><?php echo htmlspecialchars(number_format($product['Price'], 2)); ?> kr</p>
                                         <a href="#" class="text-[#FF8C42] font-bold border-b-2 border-solid border-[#FF8C42] hover:border-[#000000]">DETAILS</a>
