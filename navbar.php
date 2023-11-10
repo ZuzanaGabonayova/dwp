@@ -75,13 +75,7 @@ $cartItemCount = isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['ca
         </div>-->
     </nav>
 
-    <div class="flex justify-center items-center bg-[url('assets/images/front_image.jpg')] h-[1200px] bg-contain bg-center bg-no-repeat">
-        <div class="flex flex-col justify-end items-end w-3/4">
-            <span class="text-[#FF8C42]">designed for all sneakerheads out there.</span>
-            <span class="text-[#4E598C]">designed for all sneakerheads out there.</span>
-        </div>
 
-    </div>
 
     <!-- Your page content goes here -->
 
@@ -140,6 +134,57 @@ $cartItemCount = isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['ca
 
         </div>
     </div>
+
+
+    <nav class="flex justify-between items-center px-10 py-5 relative">
+        <a class="font-black text-xl" href="">LOGO</a>
+
+        <div class="hidden sm:flex gap-16">
+            <ul class="flex gap-10 items-center">
+                <li>
+                    <a href="">About</a>
+                </li>
+                <li>
+                    <a href="">Services</a>
+                </li>
+                <li>
+                    <a href="">Pricing</a>
+                </li>
+            </ul>
+
+            <button class="bg-blue-700 text-white py-2 px-5">Get Started</button>
+        </div>
+
+        <button id="menu_btn" class="w-10 sm:hidden">
+            <svg id="menu_bars" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+            </svg>
+
+            <svg id="menu_close" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-x hidden" viewBox="0 0 16 16">
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+        </button>
+
+        <!-- mobile menu -->
+        <div id="mobile_menu" class="absolute top-full bg-gray-100 right-10 left-10 hidden">
+            <div class="flex flex-col gap-10 p-5 sm:hidden">
+                <ul class="flex flex-col gap-2 items-center text-center">
+                    <li class="w-full">
+                        <a class="py-5 block" href="">About</a>
+                    </li>
+                    <li class="w-full">
+                        <a class="py-5 block" href="">Services</a>
+                    </li>
+                    <li class="w-full">
+                        <a class="py-5 block" href="">Pricing</a>
+                    </li>
+                </ul>
+
+                <button class="bg-blue-700 text-white py-2 px-5">Get Started</button>
+            </div>
+        </div>
+
+    </nav>
 
 </body>
 
