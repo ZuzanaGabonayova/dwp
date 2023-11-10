@@ -156,7 +156,7 @@ include 'navbar.php';
                             <div class="my-4 w-10/12">
                                 <div class="font-bold text-xl mb-2"><?php echo htmlspecialchars($product['Model']); ?></div>
 
-                                <div class="mt-10 flex flex-col border-b-2 border-solid border-[#FF8C42] w-24 items-center">
+                                <div class="mt-10 flex flex-col w-24 items-center">
                                     <div class="my-2">
                                         <p class="py-2"><?php echo htmlspecialchars(number_format($product['Price'], 2)); ?></p>
                                     </div>
