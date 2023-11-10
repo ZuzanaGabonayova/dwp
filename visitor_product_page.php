@@ -50,6 +50,30 @@ include 'navbar.php';
                         </form>
                     </div>
                 </div>
+
+
+
+                <div class="w-full grid grid-cols-3 gap-20">
+                    <div class="border-2 border-solid rounded-3xl shadow-lg h-[500px]">
+                        <div class="flex justify-center border-b-2 border-solid shadow-lg">
+                            <img class="object-cover h-72 w-[450px]" src="assets/images/prod_654698358ed90.png" />
+                        </div>
+                        <div class="flex justify-center align-center w-full">
+                            <div class="my-4 w-10/12">
+                                <p class="font-bold">Nike Dunk Low Arizona State</p>
+
+                                <div class="mt-10 flex flex-col border-b-2 border-solid border-[#FF8C42] w-24 items-center">
+                                    <div class="my-2">
+                                        <p class="py-2">250 €</p>
+                                        <span class="text-[#FF8C42] font-bold ">DETAILS</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
             <?php endwhile; ?>
         <?php else: ?>
             <p>No products found.</p>
