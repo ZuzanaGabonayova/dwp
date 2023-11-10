@@ -152,7 +152,7 @@ include 'navbar.php';
                         <div class="flex justify-center border-b-2 border-solid shadow-lg">
                             <img class="object-cover h-72 w-[450px]" src="<?php echo htmlspecialchars($product['ProductMainImage']); ?>" alt="<?php echo htmlspecialchars($product['Model']); ?>"/>
                         </div>
-                        <div class="flex justify-center align-center w-full">
+                        <div class="flex mx-10 align-center w-full">
                             <div class="my-7">
                                 <div class="font-bold text-xl mb-2"><?php echo htmlspecialchars($product['Model']); ?></div>
 
