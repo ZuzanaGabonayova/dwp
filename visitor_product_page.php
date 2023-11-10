@@ -60,7 +60,7 @@ include 'navbar.php';
                                 <div class="mt-4 flex justify-between">
                                     <div>
                                         <h3 class="text-sm text-gray-700">
-                                            <a href="<?php echo baseUrl(); ?>product_dedicated.php?ProductID=<?php echo $product['ProductID']; ?>" class="text-[#FF8C42] font-bold border-b-2 border-solid border-[#FF8C42] hover:border-[#000000] uppercase">
+                                            <a href="<?php echo baseUrl(); ?>single_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="text-[#FF8C42] font-bold border-b-2 border-solid border-[#FF8C42] hover:border-[#000000] uppercase">
                                                 <span aria-hidden="true" class="absolute inset-0"></span>
                                                 <?php echo htmlspecialchars($product['Model']); ?>
                                             </a>
