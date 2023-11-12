@@ -89,6 +89,12 @@ $conn->close();
 <body>
     <div class="bg-white">
     <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+        <!-- Error Message Display -->
+            <?php if (isset($error)): ?>
+                <div class="mb-4 p-4 text-red-700 bg-red-100 border border-red-400 rounded">
+                    <strong>Error:</strong> <?= htmlspecialchars($error); ?>
+                </div>
+            <?php endif; ?>
         <form action="add_product.php" method="post" enctype="multipart/form-data" class="">
             <div class="mx-auto max-w-2xl">
                 <h1 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-900">Add New Product</h1>
@@ -110,7 +116,7 @@ $conn->close();
                         <div class="mt-2">
                             <textarea rows="3" name="Description" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required></textarea>
                         </div>
-                        <p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p>
+                        <p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about the product.</p>
                     </div>
                     <div class="sm:col-span-2">
                         <label class="block text-sm font-medium leading-6 text-gray-900" for="Price">Price</label>
