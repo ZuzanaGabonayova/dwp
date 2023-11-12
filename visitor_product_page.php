@@ -70,7 +70,7 @@ include 'navbar.php';
                                     <p class="text-sm font-medium text-gray-900"><?php echo htmlspecialchars(number_format($product['Price'], 2)); ?> kr</p>
                                     
                                 </div>
-                            </div> <!-- More products... -->
+                            </div> 
 
 
                         <?php endwhile; ?>
@@ -81,59 +81,6 @@ include 'navbar.php';
 
                 </div>
             </div>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <?php if ($products) : ?>
-                <?php while ($product = $products->fetch_assoc()) : ?>
-                    <!-- <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
-                    <img class="w-full" src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
-                    <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2"><?php echo htmlspecialchars($product['name']); ?></div>
-                        <p class="text-gray-700 text-base">
-                            <?php echo htmlspecialchars($product['description']); ?>
-                        </p>
-                    </div>
-                    <div class="px-6 pt-4 pb-2">
-                        <span class="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">$<?php echo htmlspecialchars(number_format($product['price'], 2)); ?></span>
-                        
-                        <form action="add_to_cart.php" method="post" style="display: inline;">
-                            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-                            <input type="hidden" name="quantity" value="1">
-                            <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded">
-                                Add to Cart
-                            </button>
-                        </form>
-                    </div>
-                </div> -->
-
-
-
-                    <!-- <div class="w-full grid grid-cols-3 gap-20"> -->
-                    <!-- <div class="border-2 border-solid rounded-3xl shadow-lg">
-                        <div class="flex justify-center border-b-2 border-solid shadow-lg">
-                            <img class="object-cover h-72" src="<?php echo htmlspecialchars($product['ProductMainImage']); ?>" alt="<?php echo htmlspecialchars($product['Model']); ?>" />
-                        </div>
-                        <div class="flex mx-10 align-center w-full">
-                            <div class="my-7">
-                                <div class="font-bold text-xl mb-2"><?php echo htmlspecialchars($product['Model']); ?></div>
-
-                                <div class="mt-5 flex flex-col">
-                                    <div class="my-2">
-                                        <p class="py-2"><?php echo htmlspecialchars(number_format($product['Price'], 2)); ?> kr</p>
-                                        <a href="#" class="text-[#FF8C42] font-bold border-b-2 border-solid border-[#FF8C42] hover:border-[#000000]">DETAILS</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- </div> -->
-
-
-                <?php endwhile; ?>
-            <?php else : ?>
-                <p>No products found.</p>
-            <?php endif; ?>
         </div>
     </div>
 
