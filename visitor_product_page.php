@@ -39,6 +39,8 @@ include 'navbar.php';
                 <h2 class="text-2xl font-bold tracking-tight text-gray-900">Customers also purchased</h2>
 
                 <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                <?php if ($products) : ?>
+                <?php while ($product = $products->fetch_assoc()) : ?>
                 <div class="group relative">
                     <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                     <img 
@@ -58,6 +60,11 @@ include 'navbar.php';
                     <p class="text-sm font-medium text-gray-900"><?php echo htmlspecialchars(number_format($product['Price'], 2)); ?> kr.</p>
                     </div>
                 </div>
+                <?php endwhile; ?>
+
+                <?php else : ?>
+                    <p>No products found.</p>
+                <?php endif; ?>
                 </div>
             </div>
         </div>
