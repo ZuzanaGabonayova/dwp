@@ -1,4 +1,3 @@
-
 <?php
 
 require 'db.php'; // ensures that the file is included only once
