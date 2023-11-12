@@ -8,17 +8,37 @@ $colors = $conn->query("SELECT ColorID, ColorName FROM Color")->fetch_all(MYSQLI
 $sizes = $conn->query("SELECT SizeID, Size FROM Size")->fetch_all(MYSQLI_ASSOC);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $productNumber = $_POST["ProductNumber"];
-    $model = $_POST["Model"];
-    $description = $_POST["Description"];
-    $price = $_POST["Price"];
-    $stockQuantity = $_POST["StockQuantity"];
-    $categoryID = $_POST["CategoryID"];
-    $brandID = $_POST["BrandID"];
-    $selectedColors = $_POST["colors"] ?? [];
-    $selectedSizes = $_POST["sizes"] ?? [];
-    $mainImage = '';
+    // Manually sanitize textual data
+    $productNumber = trim($_POST["ProductNumber"]);
+    $model = trim($_POST["Model"]);
+    $description = trim($_POST["Description"]);
 
+    // Validate and sanitize price as a float
+    $price = filter_input(INPUT_POST, "Price", FILTER_VALIDATE_FLOAT);
+    if ($price === false || $price > 9999.99) {
+        $error = "Invalid price format or exceeds maximum allowed price";
+    } else {
+        if (!preg_match("/^\d{1,4}(\.\d{1,2})?$/", $_POST['Price'])) {
+            $error = "Price must be in decimal(6,2) format";
+        }
+    }
+
+    // Validate and sanitize stock quantity as an integer
+    $stockQuantity = filter_input(INPUT_POST, "StockQuantity", FILTER_VALIDATE_INT);
+    if ($stockQuantity === false) {
+        $error = "Invalid stock quantity format";
+    }
+
+    // Sanitize category and brand IDs
+    $categoryID = filter_input(INPUT_POST, "CategoryID", FILTER_SANITIZE_NUMBER_INT);
+    $brandID = filter_input(INPUT_POST, "BrandID", FILTER_SANITIZE_NUMBER_INT);
+
+    // Sanitize selected colors and sizes
+    $selectedColors = filter_input(INPUT_POST, "colors", FILTER_SANITIZE_NUMBER_INT, FILTER_REQUIRE_ARRAY) ?? [];
+    $selectedSizes = filter_input(INPUT_POST, "sizes", FILTER_SANITIZE_NUMBER_INT, FILTER_REQUIRE_ARRAY) ?? [];
+
+    // Process file upload
+    $mainImage = '';
     if (isset($_FILES["ProductMainImage"]) && $_FILES["ProductMainImage"]["error"] === UPLOAD_ERR_OK) {
         $uploadResult = uploadFile($_FILES["ProductMainImage"]);
         if (isset($uploadResult['success'])) {
@@ -29,17 +49,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (!isset($error)) {
+        // Insert product data into the database
         $stmt = $conn->prepare("INSERT INTO Product (ProductNumber, Model, Description, Price, StockQuantity, CategoryID, BrandID, ProductMainImage) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("sssdiiis", $productNumber, $model, $description, $price, $stockQuantity, $categoryID, $brandID, $mainImage);
         $stmt->execute();
         $productID = $conn->insert_id;
 
+        // Insert color associations
         $colorStmt = $conn->prepare("INSERT INTO ProductColor (ProductID, ColorID) VALUES (?, ?)");
         foreach ($selectedColors as $colorID) {
             $colorStmt->bind_param("ii", $productID, $colorID);
             $colorStmt->execute();
         }
 
+        // Insert size associations
         $sizeStmt = $conn->prepare("INSERT INTO ProductSize (ProductID, SizeID) VALUES (?, ?)");
         foreach ($selectedSizes as $sizeID) {
             $sizeStmt->bind_param("ii", $productID, $sizeID);
@@ -53,6 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
