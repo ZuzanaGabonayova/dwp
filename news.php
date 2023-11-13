@@ -47,7 +47,7 @@ include 'navbar.php';
             <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600"><?php echo htmlspecialchars($newsPost['short_description']); ?></p>
           </div>
           <div class="relative mt-8 flex items-center gap-x-4">
-            <img src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="h-10 w-10 rounded-full bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1580130379624-3a069adbffc5?q=80&w=3426&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="h-10 w-10 rounded-full bg-gray-100">
             <div class="text-sm leading-6">
               <p class="font-semibold text-gray-900">
                 <a href="#">
