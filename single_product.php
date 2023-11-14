@@ -53,7 +53,6 @@ $conn->close();
                         
                     <p class="mt-1">Category: <?= htmlspecialchars($categoryName) ?></p>
                     <p class="mt-1">Brand: <?= htmlspecialchars($brandName) ?></p>
-                    <p class="mt-1">Posted by: <?= htmlspecialchars($authorName) ?></p>
                 </div>
             </div>
         <?php else: ?>
