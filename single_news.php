@@ -12,7 +12,16 @@ if (isset($_GET['id'])) {
 $conn->close();
 ?>
 
-<div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="output.css" rel="stylesheet">
+</head>
+<body>
+    <div>
     <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:max-w-7xl lg:gap-x-8 lg:px-8 py-16 sm:py-24">
         <?php if ($news): ?>
             <div class="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
@@ -33,3 +42,6 @@ $conn->close();
         <?php endif; ?>
     </div>
 </div>
+</body>
+</html>
+
