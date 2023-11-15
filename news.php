@@ -4,6 +4,13 @@ require 'crud_operations.php'; // This should contain a function to read news po
 
 // Get the list of news posts
 $newsPosts = readNewsPosts();
+
+// Function to get the base URL of the script
+function baseUrl()
+{
+    // Normally you would make this dynamic or configured, but for localhost it's simple
+    return 'https://zuzanagabonayova.eu/';
+}
 ?>
 <?php
 include 'navbar.php';
@@ -50,7 +57,7 @@ include 'navbar.php';
             <img src="https://images.unsplash.com/photo-1580130379624-3a069adbffc5?q=80&w=3426&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="h-10 w-10 rounded-full bg-gray-100">
             <div class="text-sm leading-6">
               <p class="font-semibold text-gray-900">
-                <a href="#">
+                <a href="<?php echo baseUrl(); ?>single_news.php?id=<?php echo $news['id']; ?>">
                   <span class="absolute inset-0"></span>
                   Laszlo
                 </a>
