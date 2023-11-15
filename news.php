@@ -5,6 +5,8 @@ require 'crud_operations.php'; // This should contain a function to read news po
 // Get the list of news posts
 $newsPosts = readNewsPosts();
 
+$news = readNewsPost($id, $conn);
+
 // Function to get the base URL of the script
 function baseUrl()
 {
