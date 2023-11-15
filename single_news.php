@@ -25,10 +25,9 @@ $conn->close();
     <div>
     <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:max-w-7xl lg:gap-x-8 lg:px-8 py-16 sm:py-24">
         <?php if ($news): ?>
-            
-                <article class="prose lg:prose-xl">
+                <article class="prose lg:prose-xl mx-auto">
                     <div class="aspect-square rounded-lg ">
-                        <img src="<?= htmlspecialchars($news['image']) ?>" alt="<?= htmlspecialchars($news['image_alt']) ?>" class="h-full w-full object-cover object-center">
+                        <img src="<?= htmlspecialchars($news['image']) ?>" alt="<?= htmlspecialchars($news['image_alt']) ?>" class="aspect-[16/10] w-full object-cover">
                     </div>
                     <p class="mt-1">Posted on <?= htmlspecialchars($news['created_at']) ?></p>
                     <div class="px-8 mt-20 lg:mt-0 sm:px:0 sm:mt-16 ">
