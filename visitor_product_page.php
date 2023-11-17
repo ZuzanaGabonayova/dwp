@@ -15,9 +15,6 @@ function baseUrl()
 
 ?>
 
-<?php
-include 'navbar.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,6 +26,9 @@ include 'navbar.php';
 </head>
 
 <body class="bg-white">
+    <?php
+    include './inc/navigationbar.php';
+    ?>
      <!-- Hero section -->
     <?php
     include 'inc/hero.php';
