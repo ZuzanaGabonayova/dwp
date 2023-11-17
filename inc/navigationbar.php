@@ -25,7 +25,7 @@
     </div>
   </nav>
   <!-- Mobile menu, show/hide based on menu open state. -->
-  <div id="mobile-menu" class="lg:hidden" role="dialog" aria-modal="true">
+  <div id="mobile-menu" class="hidden lg:hidden" role="dialog" aria-modal="true">
     <!-- Background backdrop, show/hide based on slide-over state. -->
     <div class="fixed inset-0 z-10"></div>
     <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
@@ -59,7 +59,7 @@
 </header>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+ document.addEventListener('DOMContentLoaded', function() {
     const menuOpenButton = document.getElementById('menu-open-button');
     const menuCloseButton = document.getElementById('menu-close-button');
     const mobileMenu = document.getElementById('mobile-menu');
