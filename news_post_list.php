@@ -20,7 +20,7 @@ function baseUrl() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News Post List</title>
     <!-- Include Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="output.css">
 </head>
 <body class="bg-gray-100 p-10">
 

@@ -64,7 +64,7 @@ function baseUrl() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News Post Form</title>
     <!-- Include Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="output.css">
 </head>
 <body class="bg-gray-100 p-10">
     <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
