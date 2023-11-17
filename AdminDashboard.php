@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="output.css">
   </head>
   <body>
     <div>
@@ -249,6 +248,38 @@
             </div>
           </div>
         </div>
+        <main class="py-10">
+          <div class="px-4 sm:px-6 lg:px-8">
+            <div
+              id="content-wrapper"
+              class="relative h-[576px] overflow-hidden border border-dashed border-gray-400 opacity-75 content-area"
+            >
+              <svg
+                class="absolute inset-0 h-full w-full stroke-green-200"
+                fill="none"
+              >
+                <defs>
+                  <pattern
+                    id="pattern-1526ac66-f54a-4681-8fb8-0859d412f251"
+                    x="0"
+                    y="0"
+                    width="10"
+                    height="10"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <path d="M-3 13 15-5M-5 5l18-18M-1 21 17 3"></path>
+                  </pattern>
+                </defs>
+                <rect
+                  stroke="none"
+                  fill="url(#pattern-1526ac66-f54a-4681-8fb8-0859d412f251)"
+                  width="100%"
+                  height="100%"
+                ></rect>
+              </svg>
+            </div>
+          </div>
+        </main>
       </div>
     </div>
   </body>
@@ -263,4 +294,28 @@
       menu.classList.toggle("hidden");
     });
   });
+
+  // Function to load content from content.php
+  function loadContent() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "list_product.php", true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        document.getElementById("content-wrapper").innerHTML = xhr.responseText;
+      }
+    };
+    xhr.send();
+  }
+
+  // Select the 'Products' link and add event listener
+  var productsLink = document
+    .querySelectorAll("#menu a")
+    .forEach(function (link) {
+      if (link.textContent.trim() === "Products") {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          loadContent();
+        });
+      }
+    });
 </script>
