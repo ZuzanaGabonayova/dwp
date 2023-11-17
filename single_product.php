@@ -25,11 +25,11 @@ $conn->close();
     <title>Product Details</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
+<body class="">
     <?php
     include './inc/navigationbar.php';
     ?>
-    <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:max-w-7xl lg:gap-x-8 lg:px-8 py-16 sm:py-24">
+    <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:max-w-7xl lg:gap-x-8 lg:px-8 py-16 sm:py-24 bg-white">
         <?php if ($product): ?>
             <div class="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
                 <div class="aspect-square rounded-lg ">
