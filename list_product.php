@@ -63,7 +63,6 @@ function baseUrl() {
                                             </td>
                                             <td class="relative whitespace-nowrap pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                                 <a href="" class="text-amber-500 ">Edit
-                                                    
                                                 </a>
                                             </td>
                                         </tr>
