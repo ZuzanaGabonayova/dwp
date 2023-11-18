@@ -73,7 +73,7 @@ function baseUrl() {
                                         <tr>
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><?= $product["ProductNumber"]; ?></td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= $product["Model"]; ?></td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 truncate"><?= $product["Description"]; ?></td>
+                                        
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= $product["Price"]; ?></td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 <img class="h-10 w-10 rounded-full" src="<?= $product["ProductMainImage"]; ?>" alt="Product image">
