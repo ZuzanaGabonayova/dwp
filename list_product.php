@@ -53,6 +53,23 @@ function baseUrl() {
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-300">
+                                       <?php
+                                        // SQL query to select all records from the Product table
+                                        $sql = "SELECT * FROM `Product`";
+
+                                        // Execute the query
+                                        $result = $conn->query($sql);
+
+                                        // Check if there are results
+                                        if ($result->num_rows > 0):
+                                            // Output data of each row
+                                            while($product = $result->fetch_assoc()):
+                                                $productColors = getProductColors($product["ProductID"], $conn);
+                                                $productSizes = getProductSizes($product["ProductID"], $conn);
+                                                $categoryName = getCategoryName($product["CategoryID"], $conn);
+                                                $brandName = getBrandName($product["BrandID"], $conn);
+                                                $authorName = getAuthorName($product["AdminID"], $conn); // If you have an authors table
+                                            ?>
                                         <tr>
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><?= $product["ProductNumber"]; ?></td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= $product["Model"]; ?></td>
@@ -66,6 +83,17 @@ function baseUrl() {
                                                 </a>
                                             </td>
                                         </tr>
+                                        <?php
+                                        endwhile;
+                                    else:
+                                        ?>
+                                        <tr><td colspan='13' class='py-3 px-6 text-center'>No products found</td></tr>
+                                        <?php
+                                    endif;
+
+                                    // Close connection
+                                    $conn->close();
+                                    ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -75,89 +103,6 @@ function baseUrl() {
             </div>
         </div>
     </div>
-    <div class="container mx-auto px-4 ">
-        <h1 class="text-xl font-semibold text-gray-800 my-6">Product List</h1>
-
-        <a href="<?php echo baseUrl(); ?>add_product.php" class="mb-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Add Product
-        </a>
-
-        <div class="bg-white shadow-md rounded my-6 overflow-x-auto">
-            <table class="min-w-max w-full table-fixed">
-                <thead>
-                    <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                        <th class="py-3 px-6 text-center">Actions</th>
-                        <th class="py-3 px-6 text-left">Product Number</th>
-                        <th class="py-3 px-6 text-left">Product</th>
-                        <th class="py-3 px-6 text-left">Description</th>
-                        <th class="py-3 px-6 text-center">Price</th>
-                        <th class="py-3 px-6 text-center">Colors</th>
-                        <th class="py-3 px-6 text-center">Sizes</th>
-                        <th class="py-3 px-6 text-center">Category</th>
-                        <th class="py-3 px-6 text-center">Brand</th>
-                        <th class="py-3 px-6 text-center">Stock Quantity</th>
-                        <th class="py-3 px-6 text-center">Image</th>
-                        <th class="py-3 px-6 text-center">Created At</th>
-                        <th class="py-3 px-6 text-center">Edited At</th>
-                        <th class="py-3 px-6 text-center">Author</th>
-                    </tr>
-                </thead>
-                <tbody class="text-gray-600 text-sm font-light">
-                    <?php
-                    // SQL query to select all records from the Product table
-                    $sql = "SELECT * FROM `Product`";
-
-                    // Execute the query
-                    $result = $conn->query($sql);
-
-                    // Check if there are results
-                    if ($result->num_rows > 0):
-                        // Output data of each row
-                        while($product = $result->fetch_assoc()):
-                            $productColors = getProductColors($product["ProductID"], $conn);
-                            $productSizes = getProductSizes($product["ProductID"], $conn);
-                            $categoryName = getCategoryName($product["CategoryID"], $conn);
-                            $brandName = getBrandName($product["BrandID"], $conn);
-                            $authorName = getAuthorName($product["AdminID"], $conn); // If you have an authors table
-                            ?>
-                            <tr class='border-b border-gray-200 odd:bg-white even:bg-gray-100'>
-                            <td class="py-4 px-2 text-center flex gap-3 flex-col">
-                                <a href="<?php echo baseUrl(); ?>update_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600">Edit</a>
-                                <a class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600" href="delete_product.php?ProductID=<?php echo $product['ProductID']; ?>"
-                                onclick="return confirm('Are you sure you want to delete this product?');">
-                                Delete
-                                </a>
-                            </td>
-                                <td class='py-3 px-6 text-left whitespace-nowrap'><?= $product["ProductNumber"]; ?></td>
-                                <td class='py-3 px-6 text-left'><?= $product["Model"]; ?></td>
-                                <td class='py-3 px-6 text-left line-clamp-3 overflow-y-auto'><?= $product["Description"]; ?></td>
-                                <td class='py-3 px-6 text-center'><?= $product["Price"]; ?></td>
-                                <td class='py-3 px-6 text-center'><?= implode(", ", $productColors); ?></td>
-                                <td class='py-3 px-6 text-center'><?= implode(", ", $productSizes); ?></td>
-                                <td class='py-3 px-6 text-center'><?= $categoryName; ?></td>
-                                <td class='py-3 px-6 text-center'><?= $brandName; ?></td>
-                                <td class='py-3 px-6 text-center'><?= $product["StockQuantity"]; ?></td>
-                                <td class='py-3 px-6 text-center'>
-                                    <img src="<?= $product["ProductMainImage"]; ?>" alt="Product Image" class="h-10 w-10 rounded-full">
-                                </td>
-                                <td class='py-3 px-6 text-center'><?= $product["CreatedAt"]; ?></td>
-                                <td class='py-3 px-6 text-center'><?= $product["EditedAt"]; ?></td>
-                                <td class='py-3 px-6 text-center'><?= $authorName; ?></td>
-                            </tr>
-                            <?php
-                        endwhile;
-                    else:
-                        ?>
-                        <tr><td colspan='13' class='py-3 px-6 text-center'>No products found</td></tr>
-                        <?php
-                    endif;
-
-                    // Close connection
-                    $conn->close();
-                    ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    
 </body>
 </html>
