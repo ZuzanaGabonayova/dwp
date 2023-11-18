@@ -4119,6 +4119,10 @@ video {
   --tw-ring-offset-color: rgb(255 255 255 / 0.05);
 }
 
+.ring-offset-black\/\[0\.05\] {
+  --tw-ring-offset-color: rgb(0 0 0 / 0.05);
+}
+
 .blur {
   --tw-blur: blur(8px);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);

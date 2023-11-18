@@ -38,13 +38,13 @@ function baseUrl() {
                 <div class="mt-8 flow-root ">
                     <div class="mx-4 -my-2 overflow-x-auto sm:mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                            <div class="overflow-hidden shadow ring-1 ring-offset-white/[0.05] sm:rounded-lg">
+                            <div class="overflow-hidden shadow ring-1 ring-offset-black/[0.05] sm:rounded-lg">
                                 <table class="min-w-full">
                                     <thead class="bg-gray-50">
                                         <tr>
                                             <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Number</th>
                                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Name</th>
-                                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Description</th>
+                                          
                                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Price</th>
                                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Image</th>
                                             <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
