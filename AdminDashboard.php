@@ -283,10 +283,7 @@
         </main>
       </div>
     </div>
-  </body>
-</html>
-
-<script>
+    <script>
   document.addEventListener("DOMContentLoaded", function () {
     const hamburgerMenuButton = document.getElementById("hamburger-menu");
     const menu = document.getElementById("menu");
@@ -301,12 +298,25 @@
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "list_product.php", true);
     xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        document.getElementById("content-wrapper").innerHTML = xhr.responseText;
-      }
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById("content-wrapper").innerHTML = xhr.responseText;
+            reInitEventHandlers(); // Reinitialize event handlers
+        }
     };
     xhr.send();
-  }
+}
+
+function reInitEventHandlers() {
+    // Reattach event listeners to the new content
+    // For example, reinitialize the modal functionality:
+    var addProductBtn = document.getElementById("addProductBtn");
+    if (addProductBtn) {
+        addProductBtn.addEventListener("click", openModal);
+    }
+    // Add any other event listeners needed for the new content
+}
+
+
 
   // Select the 'Products' link and add event listener
   var productsLink = document
@@ -319,4 +329,29 @@
         });
       }
     });
+
+    function openModal() {
+        fetch('add_product.php')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('modalContent').innerHTML = html;
+                document.getElementById('productModal').style.display = 'block';
+            });
+    }
+
+    function closeModal() {
+        document.getElementById('productModal').style.display = 'none';
+    }
+
+    // Event listener for the Add Product button
+    document.getElementById('addProductBtn').addEventListener('click', openModal);
+
+    // Optional: Ensure that the script runs after the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('addProductBtn').addEventListener('click', openModal);
+    });
 </script>
+  </body>
+</html>
+
+
