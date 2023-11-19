@@ -88,7 +88,7 @@ $conn->close();
 </head>
 <body>
     <div class="bg-white">
-    <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+    <div class="px-6 py-6 lg:px-8">
         <!-- Error Message Display -->
             <?php if (isset($error)): ?>
                 <div class="mb-4 p-4 text-red-700 bg-red-100 border border-red-400 rounded">
