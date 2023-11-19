@@ -130,31 +130,29 @@ function baseUrl() {
             </div>
         </div>
     </div>
-    
+    <script>
+    // Function to load content from add_product.php
+    function openModal() {
+        fetch('add_product.php')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('modalContent').innerHTML = html;
+                document.getElementById('productModal').style.display = 'block';
+            });
+    }
+
+    function closeModal() {
+        document.getElementById('productModal').style.display = 'none';
+    }
+
+    // Event listener for the Add Product button
+    document.getElementById('addProductBtn').addEventListener('click', openModal);
+
+    // Optional: Ensure that the script runs after the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('addProductBtn').addEventListener('click', openModal);
+    });
+</script>
 </body>
 </html>
 
-<script>
-    // Function to load content from add_product.php
-    function openModal() {
-    fetch('add_product.php')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('modalContent').innerHTML = html;
-            document.getElementById('productModal').classList.remove('hidden');
-        });
-    }
-
-    function openModal() {
-    fetch('add_product.php')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('modalContent').innerHTML = html;
-            document.getElementById('productModal').style.display = 'block';
-        });
-}
-
-function closeModal() {
-    document.getElementById('productModal').style.display = 'none';
-}
-</script>
