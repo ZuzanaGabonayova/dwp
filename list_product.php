@@ -23,6 +23,15 @@ function baseUrl() {
     <link rel="stylesheet" href="output.css">
 </head>
 <body class="">
+    <!-- Modal structure (hidden initially) -->
+    <div id="productModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div id="modalContent"><!-- Content will be loaded here --></div>
+            <div class="mt-4">
+                <button onclick="closeModal()" class="px-4 py-2 bg-red-500 text-white rounded">Close</button>
+            </div>
+        </div>
+    </div>
     <div class="bg-gray-100 py-10">
         <div class="max-w-7xl mx-auto">
             <div class="px-4 sm:px-6 lg:px-8">
@@ -32,7 +41,7 @@ function baseUrl() {
                         <p class="mt-2 text-sm text-gray-700">A list of all the products in the webshop. Including their attributes.</p>
                     </div>
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                        <button type="button" class="block rounded-md bg-amber-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm">Add product</button>
+                        <button id="addProductBtn" type="button" class="block rounded-md bg-amber-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm">Add product</button>
                     </div>
                 </div>
                 <div class="mt-8 flow-root ">
@@ -106,3 +115,25 @@ function baseUrl() {
     
 </body>
 </html>
+
+<script>
+    // Function to load content from add_product.php
+    function openModal() {
+    fetch('add_product.php')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('modalContent').innerHTML = html;
+            document.getElementById('productModal').classList.remove('hidden');
+        });
+    }
+
+    function closeModal() {
+        document.getElementById('productModal').classList.add('hidden');
+    }                                
+
+    // Add event listener to the button
+    document.addEventListener('DOMContentLoaded', function() {
+    // Your JavaScript code here
+    document.getElementById('addProductBtn').addEventListener('click', openModal);
+});
+</script>
