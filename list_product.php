@@ -145,13 +145,16 @@ function baseUrl() {
         });
     }
 
-    function closeModal() {
-        document.getElementById('productModal').classList.add('hidden');
-    }                                
+    function openModal() {
+    fetch('add_product.php')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('modalContent').innerHTML = html;
+            document.getElementById('productModal').style.display = 'block';
+        });
+}
 
-    // Add event listener to the button
-    document.addEventListener('DOMContentLoaded', function() {
-    // Your JavaScript code here
-    document.getElementById('addProductBtn').addEventListener('click', openModal);
-});
+function closeModal() {
+    document.getElementById('productModal').style.display = 'none';
+}
 </script>
