@@ -340,7 +340,15 @@ function reInitEventHandlers() {
     }
 
     function closeModal() {
-        document.getElementById('productModal').style.display = 'none';
+    document.getElementById('productModal').style.display = 'none';
+}
+
+    // Close Modal if clicked outside of the modal content
+    window.onclick = function(event) {
+        let modal = document.getElementById('productModal');
+        if (event.target == modal) {
+            closeModal();
+        }
     }
 
     // Event listener for the Add Product button
