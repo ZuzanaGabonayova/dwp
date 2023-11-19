@@ -6502,6 +6502,10 @@ video {
     max-width: 32rem;
   }
 
+  .sm\:max-w-2xl {
+    max-width: 42rem;
+  }
+
   .sm\:flex-1 {
     flex: 1 1 0%;
   }

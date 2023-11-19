@@ -23,15 +23,33 @@ function baseUrl() {
     <link rel="stylesheet" href="output.css">
 </head>
 <body class="">
-    <!-- Modal structure (hidden initially) -->
-    <div id="productModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-            <div id="modalContent"><!-- Content will be loaded here --></div>
-            <div class="mt-4">
-                <button onclick="closeModal()" class="px-4 py-2 bg-red-500 text-white rounded">Close</button>
+    <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" id="productModal" style="display: none;">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+    <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl">
+                <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                            <!-- Icon or image can go here -->
+                        </div>
+                        <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                            <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Add Product</h3>
+                            <div class="mt-2" id="modalContent">
+                                <!-- Dynamic Content will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                    <button type="button" onclick="closeModal()" class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Close</button>
+                    <!-- Additional buttons can go here -->
+                </div>
             </div>
         </div>
     </div>
+    </div>
+
     <div class="bg-gray-100 py-10">
         <div class="max-w-7xl mx-auto">
             <div class="px-4 sm:px-6 lg:px-8">
