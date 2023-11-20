@@ -86,17 +86,16 @@ $conn->close();
                     <strong>Error:</strong> <?= htmlspecialchars($error); ?>
                 </div>
             <?php endif; ?>
-        <form action="add_product.php" method="post" enctype="multipart/form-data" class="">
-            <div class="mx-auto max-w-2xl">
-                <h1 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-900">Add New Product</h1>
-                <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                    <div class="sm:col-span-4">
-                        <label class="block text-sm font-medium leading-6 text-gray-900" for="ProductNumber">Product Number</label>
+            <form class="space-y-4" action="add_product.php" method="post" enctype="multipart/form-data" class="">
+                <h2 class="mb-6 text-xl font-semibold text-gray-500 uppercase">New product</h2>
+                <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
+                    <div class="sm:col-span-2">
+                        <label class="block mb-2 text-sm font-medium text-gray-900" for="ProductNumber">Product Number</label>
                         <div class="mt-2">
-                            <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="text" name="ProductNumber" required>
+                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" type="text" name="ProductNumber" placeholder="Product Number" required>
                         </div>
                     </div>
-                    <div class="sm:col-span-4">
+                    <div class="sm:col-span-2">
                         <label class="block text-sm font-medium leading-6 text-gray-900" for="Model">Model</label>
                         <div class="mt-2">
                             <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="text" name="Model" required>
@@ -115,13 +114,13 @@ $conn->close();
                             <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="number" name="Price" step="0.01" required>
                         </div>
                     </div>
-                    <div class="sm:col-span-4">
+                    <div class="sm:col-span-2">
                         <label class="block text-sm font-medium leading-6 text-gray-900" for="StockQuantity">Stock Quantity</label>
                         <div class="mt-2">
                             <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="number" name="StockQuantity" required>
                         </div>
                     </div>
-                    <div class="sm:col-span-4">
+                    <div class="sm:col-span-2">
                         <label class="block text-sm font-medium leading-6 text-gray-900" for="StockQuantity">Category</label>
                         <select name="CategoryID" required>
                             <option value="">Select Category</option>
@@ -130,7 +129,7 @@ $conn->close();
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="sm:col-span-4">
+                    <div class="sm:col-span-2">
                         <label class="block text-sm font-medium leading-6 text-gray-900" for="StockQuantity">Brand</label>
                         <select name="BrandID" required>
                             <option value="">Select Brand</option>
@@ -168,7 +167,6 @@ $conn->close();
                         <input type="submit" value="Add Product" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">                
                     </div>
                 </div>
-            </div>
         </form>
         </div>
     </div>
