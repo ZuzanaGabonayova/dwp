@@ -154,7 +154,7 @@
       </div>
       <div class="lg:pl-72">
         <div
-          class="sticky top-0 z-40 flex h-16 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8"
+          class="lg:hidden top-0 flex h-16 items-center border-b border-gray-200 bg-white px-4 shadow-sm"
         >
           <button id="hamburger-menu" class="lg:hidden">
             <svg
@@ -169,7 +169,7 @@
               <path d="M4 6h16M4 12h16m-7 6h7" />
             </svg>
           </button>
-          <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+          <!-- <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
             <form class="relative flex flex-1" action="">
               <label for="search-field" class="sr-only">Search</label>
               <svg
@@ -247,7 +247,7 @@
                 </button>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <main class="py-10">
           <div class="px-4 sm:px-6 lg:px-8">
