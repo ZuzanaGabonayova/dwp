@@ -57,6 +57,9 @@ if (isset($_GET["action"])) {
     }
     
 }
+
+header('Location: cart.php');
+exit();
 ?>
 
 <!-- Your HTML for Cart page goes here -->
