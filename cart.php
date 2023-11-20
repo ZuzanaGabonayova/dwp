@@ -46,15 +46,16 @@ if (isset($_GET["action"])) {
             }
         }
     } elseif ($_GET["action"] == "decrease") {
-        foreach ($_SESSION["shopping_cart"] as &$cart_item) {
+        foreach ($_SESSION["shopping_cart"] as $key => &$cart_item) {
             if ($cart_item['item_id'] == $_GET["id"]) {
                 $cart_item['item_quantity']--;
-                if ($cart_item['item_quantity'] == 0) {
-                    unset($cart_item);
+                if ($cart_item['item_quantity'] <= 0) {
+                    unset($_SESSION["shopping_cart"][$key]);
                 }
             }
         }
     }
+    
 }
 ?>
 
