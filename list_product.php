@@ -23,28 +23,41 @@ function baseUrl() {
     <link rel="stylesheet" href="output.css">
 </head>
 <body class="">
-    <div class="fixed inset-0 z-100 bg-gray-500 bg-opacity-75 transition-opacity" aria-labelledby="modal-title" role="dialog" aria-modal="true" id="productModal" style="display: none;">
-  
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl">
-                <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                        <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                            <!-- Icon or image can go here -->
-                        </div>
-                        <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                            <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Add Product</h3>
-                            <div class="mt-2" id="modalContent">
-                                <!-- Dynamic Content will be loaded here -->
-                            </div>
-                        </div>
-                </div>
-                <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                    <button type="button" onclick="closeModal()" class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Close</button>
-                    <!-- Additional buttons can go here -->
-                </div>
-            </div>
+    <!-- Modal -->
+    <div
+      id="addProductModal"
+      role="dialog"
+      aria-modal="true"
+      class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4"
+    >
+      <div
+        class="modal-content relative bg-white rounded-lg overflow-hidden shadow-xl max-w-2xl mx-auto"
+      >
+        <button
+          class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
+          onclick="hideModal()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+       <div aria-labelledby="modalTitle" class="p-4" id="modalContent">
+            <h2 id="modalTitle" class="text-lg font-bold">Add New Product</h2>
+            <!-- Dynamic content will be loaded here -->
         </div>
-    
+      </div>
     </div>
 
     <div class="bg-gray-100 py-10">
@@ -130,25 +143,40 @@ function baseUrl() {
     <script>
     // Function to load content from add_product.php
     function openModal() {
-        fetch('add_product.php')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('modalContent').innerHTML = html;
-                document.getElementById('productModal').style.display = 'block';
-            });
-    }
+    fetch('add_product.php')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('modalContent').innerHTML = html;
+            showModal(); // Call the showModal function to display the modal
+        });
+}
+    function showModal() {
+        document.getElementById("addProductModal").style.display = "block";
+        document.getElementById("firstInput").focus();
+        // Add an event listener for clicks on the document
+        document.addEventListener("click", handleClickOutside, true);
+      }
 
-    function closeModal() {
-        document.getElementById('productModal').style.display = 'none';
-    }
+      function hideModal() {
+        document.getElementById("addProductModal").style.display = "none";
+        document.getElementById("showModalBtn").focus();
+        // Remove the event listener when the modal is closed
+        document.removeEventListener("click", handleClickOutside, true);
+      }
 
-    // Event listener for the Add Product button
-    document.getElementById('addProductBtn').addEventListener('click', openModal);
+      function handleClickOutside(event) {
+        let modalContent = document.querySelector(".modal-content");
+        if (!modalContent.contains(event.target)) {
+          hideModal();
+        }
+      }
 
-    // Optional: Ensure that the script runs after the DOM is fully loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('addProductBtn').addEventListener('click', openModal);
-    });
+      // Optional: Ensure that the script runs after the DOM is fully loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("showModalBtn")
+          .addEventListener("click", showModal);
+      });
 </script>
 </body>
 </html>
