@@ -69,7 +69,7 @@ function baseUrl() {
                         <p class="mt-2 text-sm text-gray-700">A list of all the products in the webshop. Including their attributes.</p>
                     </div>
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                        <button id="showModalBtn" onclick="showModal()" type="button" class="block rounded-md bg-amber-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm">Add product</button>
+                        <button id="showModalBtn" type="button" class="block rounded-md bg-amber-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm">Add product</button>
                     </div>
                 </div>
                 <div class="mt-8 flow-root ">
@@ -140,43 +140,45 @@ function baseUrl() {
             </div>
         </div>
     </div>
-    <script>
-    // Function to load content from add_product.php
-    function openModal() {
-    fetch('add_product.php')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('modalContent').innerHTML = html;
-            showModal(); // Call the showModal function to display the modal
-        });
-}
+<script>
+    function loadAndShowModal() {
+        fetch('add_product.php')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('modalContent').innerHTML = html;
+                showModal();
+            })
+            .catch(error => console.error('Error loading modal content:', error));
+    }
+
     function showModal() {
         document.getElementById("addProductModal").style.display = "block";
-        document.getElementById("firstInput").focus();
-        // Add an event listener for clicks on the document
         document.addEventListener("click", handleClickOutside, true);
-      }
+    }
 
-      function hideModal() {
+    function hideModal() {
         document.getElementById("addProductModal").style.display = "none";
-        document.getElementById("showModalBtn").focus();
-        // Remove the event listener when the modal is closed
+        // Optionally, focus back to showModalBtn if exists
+        let showModalBtn = document.getElementById("showModalBtn");
+        if (showModalBtn) {
+            showModalBtn.focus();
+        }
         document.removeEventListener("click", handleClickOutside, true);
-      }
+    }
 
-      function handleClickOutside(event) {
+    function handleClickOutside(event) {
         let modalContent = document.querySelector(".modal-content");
         if (!modalContent.contains(event.target)) {
-          hideModal();
+            hideModal();
         }
-      }
+    }
 
-      // Optional: Ensure that the script runs after the DOM is fully loaded
-      document.addEventListener("DOMContentLoaded", function () {
-        document
-          .getElementById("showModalBtn")
-          .addEventListener("click", showModal);
-      });
+    document.addEventListener("DOMContentLoaded", function () {
+        let showModalBtn = document.getElementById("showModalBtn");
+        if (showModalBtn) {
+            showModalBtn.addEventListener("click", loadAndShowModal);
+        }
+    });
 </script>
 </body>
 </html>
