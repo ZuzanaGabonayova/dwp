@@ -31,7 +31,7 @@ function baseUrl() {
       class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4"
     >
       <div
-        class="modal-content relative bg-white rounded-lg overflow-hidden shadow-xl max-w-2xl mx-auto"
+        class="modal-content relative bg-white rounded-lg overflow-hidden shadow-xl max-w-2xl mx-auto overflow-x-hidden overflow-y-auto h-[calc(100%-1rem)] max-h-full"
       >
         <button
           class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
