@@ -77,19 +77,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Product</title>
-    <link rel="stylesheet" href="output.css">
-</head>
-<body>
     <div class="bg-white">
     <div class="px-6 py-6 lg:px-8">
-        <!-- Error Message Display -->
+        <div class="overflow-y-auto h-[calc(100%-1rem)] max-h-full">
+            <!-- Error Message Display -->
             <?php if (isset($error)): ?>
                 <div class="mb-4 p-4 text-red-700 bg-red-100 border border-red-400 rounded">
                     <strong>Error:</strong> <?= htmlspecialchars($error); ?>
@@ -179,7 +170,7 @@ $conn->close();
                 </div>
             </div>
         </form>
+        </div>
     </div>
 </div>
-</body>
-</html>
+
