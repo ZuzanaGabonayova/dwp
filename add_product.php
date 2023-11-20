@@ -96,15 +96,15 @@ $conn->close();
                         </div>
                     </div>
                     <div class="sm:col-span-2">
-                        <label class="block text-sm font-medium leading-6 text-gray-900" for="Model">Model</label>
+                        <label class="block mb-2 text-sm font-medium text-gray-900" for="Model">Model</label>
                         <div class="mt-2">
-                            <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="text" name="Model" required>
+                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" type="text" name="Model" placeholder="Model" required>
                         </div>
                     </div>
                     <div class="col-span-full">
-                        <label for="Description" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
+                        <label for="Description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
                         <div class="mt-2">
-                            <textarea rows="3" name="Description" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required></textarea>
+                            <textarea rows="4" name="Description" placeholder="Write a product description here..." class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500" required></textarea>
                         </div>
                         <p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about the product.</p>
                     </div>
