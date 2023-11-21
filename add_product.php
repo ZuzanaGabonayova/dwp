@@ -130,7 +130,7 @@ $conn->close();
                         </select>
                     </div>
                     <div class="w-full">
-                        <label class="block text-sm font-medium leading-6 text-gray-900" for="StockQuantity">Brand</label>
+                        <label class="block mb-2 text-sm font-medium text-gray-900" for="StockQuantity">Brand</label>
                         <select name="BrandID" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                             <option value="">Select Brand</option>
                                 <?php foreach ($brands as $brand): ?>
@@ -139,14 +139,12 @@ $conn->close();
                         </select>
                     </div>
                     <div class="col-span-full">
-                        <label for="colors" class="block text-sm font-medium leading-6 text-gray-900">Color</label>
+                        <label for="colors" class="block mb-2 text-sm font-medium text-gray-900">Color</label>
                         <div class="mt-2">
-                            <div class="grid grid-cols-1 gap-y-8 sm:grid-cols-6">
                                 <?php foreach ($colors as $color): ?>
                                     <input type="checkbox" name="colors[]" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" value="<?= $color["ColorID"]; ?>">
                                     <label class="ml-3 text-sm text-gray-600" for="colors"><?= htmlspecialchars($color["ColorName"]); ?></label>
                                 <?php endforeach; ?>
-                            </div>
                         </div>
                     </div>
                     <div class="col-span-full">
