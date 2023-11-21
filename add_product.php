@@ -175,6 +175,7 @@ $conn->close();
                                     <p class="pl-1">or drag and drop</p>
                                 </div>
                                 <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                                <span id="file-name"></span>
                             </div>
                             
                     </div>
@@ -188,3 +189,11 @@ $conn->close();
     </div>
 </div>
 
+<script>
+    function displayFileName() {
+    var input = document.getElementById("file-upload");
+    var fileName = input.files[0].name;
+    document.getElementById("file-name").textContent = "Selected file: " + fileName;
+}
+
+</script>

@@ -179,6 +179,13 @@ function baseUrl() {
             showModalBtn.addEventListener("click", loadAndShowModal);
         }
     });
+
+    function displayFileName() {
+    var input = document.getElementById("file-upload");
+    var fileName = input.files[0].name;
+    document.getElementById("file-name").textContent = "Selected file: " + fileName;
+}
+
 </script>
 </body>
 </html>
