@@ -140,7 +140,7 @@ $conn->close();
                     </div>
                     <div class="sm:col-span-full">
                         <label for="colors" class="block mb-2 text-sm font-medium text-gray-900">Color</label>
-                        <div class="grid sm:grid-cols-3 space-y-4">
+                        <div class="grid grid-cols-2 sm:grid-cols-3 space-y-4">
                                 <?php foreach ($colors as $color): ?>
                                     <div class="items-center flex flex-row">
                                         <input type="checkbox" name="colors[]" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" value="<?= $color["ColorID"]; ?>">
@@ -151,11 +151,11 @@ $conn->close();
                     </div>
                     <div class="sm:col-span-full">
                         <label for="sizes" class="block mb-2 text-sm font-medium text-gray-900">Size</label>
-                        <div class="grid sm:grid-cols-3 space-y-4">
+                        <div class="grid grid-cols-2 sm:grid-cols-3 space-y-4">
                             <div class="grid grid-cols-1 gap-y-8 sm:grid-cols-6">
                                 <?php foreach ($sizes as $size): ?>
-                                    <input type="checkbox" name="sizes[]" value="<?= $size["SizeID"]; ?>">
-                                    <label for="sizes"><?= htmlspecialchars($size["Size"]); ?></label>
+                                    <input type="checkbox" name="sizes[]" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" value="<?= $size["SizeID"]; ?>">
+                                    <label class="ml-3 text-sm text-gray-600" for="sizes"><?= htmlspecialchars($size["Size"]); ?></label>
                                 <?php endforeach; ?>
                             </div>
                         </div>
