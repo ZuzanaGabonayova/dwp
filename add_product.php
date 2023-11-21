@@ -111,13 +111,13 @@ $conn->close();
                     <div class="w-full">
                         <label class="block mb-2 text-sm font-medium text-gray-900" for="Price">Price</label>
                         <div class="mt-2">
-                            <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="number" name="Price" step="0.01" required>
+                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" type="number" name="Price" step="0.01" placeholder="Product Price" required>
                         </div>
                     </div>
                     <div class="w-full">
                         <label class="block mb-2 text-sm font-medium text-gray-900" for="StockQuantity">Stock Quantity</label>
                         <div class="mt-2">
-                            <input class="rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md" type="number" name="StockQuantity" required>
+                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" type="number" name="StockQuantity" required>
                         </div>
                     </div>
                     <div class="sm:col-span-2">
