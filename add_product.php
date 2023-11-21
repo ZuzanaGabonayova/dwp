@@ -111,7 +111,7 @@ $conn->close();
                     <div class="w-full">
                         <label class="block mb-2 text-sm font-medium text-gray-900" for="Price">Price</label>
                         <div class="mt-2">
-                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" type="number" name="Price" step="0.01" placeholder="Product Price" required>
+                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" type="number" name="Price" step="50" placeholder="Product Price" required>
                         </div>
                     </div>
                     <div class="w-full">
@@ -120,18 +120,18 @@ $conn->close();
                             <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" type="number" name="StockQuantity" required>
                         </div>
                     </div>
-                    <div class="sm:col-span-2">
-                        <label class="block text-sm font-medium leading-6 text-gray-900" for="StockQuantity">Category</label>
-                        <select name="CategoryID" required>
+                    <div class="w-full">
+                        <label class="block mb-2 text-sm font-medium text-gray-900" for="StockQuantity">Category</label>
+                        <select name="CategoryID" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                             <option value="">Select Category</option>
                             <?php foreach ($categories as $category): ?>
                             <option value="<?= $category["CategoryID"]; ?>"><?= htmlspecialchars($category["CategoryName"]); ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="sm:col-span-2">
+                    <div class="w-full">
                         <label class="block text-sm font-medium leading-6 text-gray-900" for="StockQuantity">Brand</label>
-                        <select name="BrandID" required>
+                        <select name="BrandID" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                             <option value="">Select Brand</option>
                                 <?php foreach ($brands as $brand): ?>
                                     <option value="<?= $brand["BrandID"]; ?>"><?= htmlspecialchars($brand["BrandName"]); ?></option>
