@@ -140,9 +140,9 @@ $conn->close();
                     </div>
                     <div class="sm:col-span-full">
                         <label for="colors" class="block mb-2 text-sm font-medium text-gray-900">Color</label>
-                        <div class="grid">
+                        <div class="grid sm:grid-cols-3">
                                 <?php foreach ($colors as $color): ?>
-                                    <div class="items-center flex flex-col">
+                                    <div class="items-center flex flex-row">
                                         <input type="checkbox" name="colors[]" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" value="<?= $color["ColorID"]; ?>">
                                         <label class="ml-3 text-sm text-gray-600" for="colors"><?= htmlspecialchars($color["ColorName"]); ?></label>
                                     </div>
