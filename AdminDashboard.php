@@ -7,42 +7,6 @@
     <link rel="stylesheet" href="output.css">
   </head>
   <body>
-    <!-- Modal -->
-    <div
-      id="addProductModal"
-      role="dialog"
-      aria-modal="true"
-      class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4"
-    >
-      <div
-        class="modal-content relative bg-white rounded-lg overflow-hidden shadow-xl max-w-2xl mx-auto overflow-x-hidden overflow-y-auto h-[calc(100%-1rem)] max-h-full"
-      >
-        <button
-          class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
-          onclick="hideModal()"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-6 h-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-
-       <div aria-labelledby="modalTitle" class="p-4" id="modalContent">
-            <h2 id="modalTitle" class="text-lg font-bold">Add New Product</h2>
-            <!-- Dynamic content will be loaded here -->
-        </div>
-      </div>
-    </div>
     <div>
       <div
         id="menu"
@@ -336,8 +300,6 @@
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             document.getElementById("content-wrapper").innerHTML = xhr.responseText;
-            // Load the modal HTML from add_product.php
-            modalContent();
             reInitEventHandlers(); // Reinitialize event handlers
         }
     };
@@ -368,10 +330,11 @@
     }
 
     // Show modal
-    function showModal() {
-        document.getElementById("addProductModal").style.display = "block";
-        document.addEventListener("click", handleClickOutside, true);
-    }
+   
+
+    document.getElementById('showModalBtn').addEventListener('click', function() {
+    document.getElementById('addProductModal').style.display = 'block';
+});
 
 
     // Hide modal
