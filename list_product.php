@@ -141,7 +141,6 @@ function baseUrl() {
         </div>
     </div>
 <script>
-
     // Load modal content from the server
     function loadAndShowModal() {
         fetch('add_product.php')

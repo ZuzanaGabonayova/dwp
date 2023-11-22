@@ -319,68 +319,7 @@
       }
     });
 
-    // Load modal content from the server
-    function loadAndShowModal() {
-        fetch('add_product.php')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('modalContent').innerHTML = html;
-                showModal();
-            })
-            .catch(error => console.error('Error loading modal content:', error));
-    }
-
-    // Show modal
-    function showModal() {
-        document.getElementById("addProductModal").style.display = "block";
-        document.addEventListener("click", handleClickOutside, true);
-    }
-
-
-    // Hide modal
-    function hideModal() {
-        document.getElementById("addProductModal").style.display = "none";
-        // Optionally, focus back to showModalBtn if exists
-        let showModalBtn = document.getElementById("showModalBtn");
-        if (showModalBtn) {
-            showModalBtn.focus();
-        }
-        document.removeEventListener("click", handleClickOutside, true);
-    }
-
-
-    // Hide modal if clicked outside of modal-content
-    function handleClickOutside(event) {
-        let modalContent = document.querySelector(".modal-content");
-        if (!modalContent.contains(event.target)) {
-            hideModal();
-        }
-    }
-
-    // Add event listener to the button
-    document.addEventListener("DOMContentLoaded", function () {
-        let showModalBtn = document.getElementById("showModalBtn");
-        if (showModalBtn) {
-            showModalBtn.addEventListener("click", loadAndShowModal);
-        }
-    });
-
-
-
-    // Display the selected file name in the input field
-   function displayFileName() {
-    var input = document.getElementById("ProductMainImage");
-    if (input.files && input.files[0]) {
-        var fileName = input.files[0].name;
-        document.getElementById("file-name").textContent = "Selected file: " + fileName;
-    }
-}
-
-    // Optional: Ensure that the script runs after the DOM is fully loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('addProductBtn').addEventListener('click', openModal);
-    });
-
+    
 </script>
   </body>
 </html>
