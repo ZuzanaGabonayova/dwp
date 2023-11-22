@@ -2,6 +2,7 @@
 // Database configuration
 require 'db.php'; // Include the database
 require 'crud_operations.php'; // Include CRUD operations
+require 'upload.php'; // Include file upload
 
 // Attempt to fetch all products
 $products = readProducts();
