@@ -318,60 +318,14 @@
       }
     });
 
- // Load modal content from the server
-    function loadAndShowModal() {
-        fetch('add_product.php')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('modalContent').innerHTML = html;
-                showModal();
-            })
-            .catch(error => console.error('Error loading modal content:', error));
+    function reInitEventHandlers() {
+    var showModalBtn = document.getElementById('showModalBtn'); // Replace 'showModalBtn' with the actual ID of your modal trigger button
+    if (showModalBtn) {
+        showModalBtn.removeEventListener('click', loadAndShowModal); // Remove any existing event listener to avoid duplication
+        showModalBtn.addEventListener('click', loadAndShowModal);    // Add the event listener
     }
 
-    // Show modal
-   
-
-    document.getElementById('showModalBtn').addEventListener('click', function() {
-    document.getElementById('addProductModal').style.display = 'block';
-});
-
-
-    // Hide modal
-    function hideModal() {
-        document.getElementById("addProductModal").style.display = "none";
-        // Optionally, focus back to showModalBtn if exists
-        let showModalBtn = document.getElementById("showModalBtn");
-        if (showModalBtn) {
-            showModalBtn.focus();
-        }
-        document.removeEventListener("click", handleClickOutside, true);
-    }
-
-
-    // Hide modal if clicked outside of modal-content
-    function handleClickOutside(event) {
-        let modalContent = document.querySelector(".modal-content");
-        if (!modalContent.contains(event.target)) {
-            hideModal();
-        }
-    }
-
-    // Add event listener to the button
-    document.addEventListener("DOMContentLoaded", function () {
-        let showModalBtn = document.getElementById("showModalBtn");
-        if (showModalBtn) {
-            showModalBtn.addEventListener("click", loadAndShowModal);
-        }
-    });
-
-    // Display the selected file name in the input field
-   function displayFileName() {
-    var input = document.getElementById("ProductMainImage");
-    if (input.files && input.files[0]) {
-        var fileName = input.files[0].name;
-        document.getElementById("file-name").textContent = "Selected file: " + fileName;
-    }
+    // Add other event reinitializations here if needed
 }
 </script>
 </body>
