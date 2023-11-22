@@ -337,7 +337,7 @@
         if (xhr.readyState == 4 && xhr.status == 200) {
             document.getElementById("content-wrapper").innerHTML = xhr.responseText;
             // Load the modal HTML from add_product.php
-            loadModalContent();
+            modalContent();
             reInitEventHandlers(); // Reinitialize event handlers
         }
     };
