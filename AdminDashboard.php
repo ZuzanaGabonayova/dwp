@@ -329,6 +329,12 @@
             .catch(error => console.error('Error loading modal content:', error));
     }
 
+    // Show modal
+    function showModal() {
+        document.getElementById("addProductModal").style.display = "block";
+        document.addEventListener("click", handleClickOutside, true);
+    }
+
     function reInitEventHandlers() {
     var showModalBtn = document.getElementById('showModalBtn'); // Replace 'showModalBtn' with the actual ID of your modal trigger button
     if (showModalBtn) {
