@@ -318,6 +318,17 @@
       }
     });
 
+    // Load modal content from the server
+    function loadAndShowModal() {
+        fetch('add_product.php')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('modalContent').innerHTML = html;
+                showModal();
+            })
+            .catch(error => console.error('Error loading modal content:', error));
+    }
+
     function reInitEventHandlers() {
     var showModalBtn = document.getElementById('showModalBtn'); // Replace 'showModalBtn' with the actual ID of your modal trigger button
     if (showModalBtn) {
