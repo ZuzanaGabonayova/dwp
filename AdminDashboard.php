@@ -320,13 +320,14 @@
       }
     });
 
-  // Function to load the Add Product modal
+ // Function to load the Add Product modal
 function loadModalContent() {
     var xhrModal = new XMLHttpRequest();
     xhrModal.open("GET", "add_product.php", true);
     xhrModal.onreadystatechange = function () {
         if (xhrModal.readyState == 4 && xhrModal.status == 200) {
-            document.getElementById("content-wrapper").innerHTML += xhrModal.responseText;
+            // Append modal HTML to the body
+            document.body.innerHTML += xhrModal.responseText;
             // Attach event listener to the Add Product button
             attachModalButtonListener();
         }
@@ -344,23 +345,17 @@ function attachModalButtonListener() {
         });
     }
 }
-
 // Show modal
-    function showModal() {
-        document.getElementById("addProductModal").style.display = "block";
-        document.addEventListener("click", handleClickOutside, true);
-    }
+function showModal() {
+    document.getElementById("addProductModal").style.display = "block";
+    document.addEventListener("click", handleClickOutside, true);
+}
 
 // Hide modal
-    function hideModal() {
-        document.getElementById("addProductModal").style.display = "none";
-        // Optionally, focus back to showModalBtn if exists
-        let showModalBtn = document.getElementById("showModalBtn");
-        if (showModalBtn) {
-            showModalBtn.focus();
-        }
-        document.removeEventListener("click", handleClickOutside, true);
-    }
+function hideModal() {
+    document.getElementById("addProductModal").style.display = "none";
+    // Rest of the code...
+}
 </script>
 </body>
 </html>
