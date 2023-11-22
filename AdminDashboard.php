@@ -305,18 +305,6 @@
     };
     xhr.send();
 }
- 
-// Function to reinitialize event handlers
-function reInitEventHandlers() {
-    // Reattach event listeners to the new content
-    // For example, reinitialize the modal functionality:
-    var addProductBtn = document.getElementById("addProductBtn");
-    if (addProductBtn) {
-        addProductBtn.addEventListener("click", openModal);
-    }
-    // Add any other event listeners needed for the new content
-}
-
 
 
   // Select the 'Products' link and add event listener
@@ -376,6 +364,8 @@ function reInitEventHandlers() {
             showModalBtn.addEventListener("click", loadAndShowModal);
         }
     });
+
+
 
     // Display the selected file name in the input field
    function displayFileName() {
