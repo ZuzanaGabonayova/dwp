@@ -335,6 +335,26 @@
         document.addEventListener("click", handleClickOutside, true);
     }
 
+    // Hide modal
+    function hideModal() {
+        document.getElementById("addProductModal").style.display = "none";
+        // Optionally, focus back to showModalBtn if exists
+        let showModalBtn = document.getElementById("showModalBtn");
+        if (showModalBtn) {
+            showModalBtn.focus();
+        }
+        document.removeEventListener("click", handleClickOutside, true);
+    }
+
+
+    // Hide modal if clicked outside of modal-content
+    function handleClickOutside(event) {
+        let modalContent = document.querySelector(".modal-content");
+        if (!modalContent.contains(event.target)) {
+            hideModal();
+        }
+    }
+
     function reInitEventHandlers() {
     var showModalBtn = document.getElementById('showModalBtn'); // Replace 'showModalBtn' with the actual ID of your modal trigger button
     if (showModalBtn) {
