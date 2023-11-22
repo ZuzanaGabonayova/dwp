@@ -293,7 +293,7 @@
     });
   });
 
-  // Function to load content from content.php
+  // Function to load content from list_product.php
   function loadContent() {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "list_product.php", true);
@@ -305,7 +305,8 @@
     };
     xhr.send();
 }
-
+ 
+// Function to reinitialize event handlers
 function reInitEventHandlers() {
     // Reattach event listeners to the new content
     // For example, reinitialize the modal functionality:
@@ -330,34 +331,66 @@ function reInitEventHandlers() {
       }
     });
 
-    function openModal() {
+    // Load modal content from the server
+    function loadAndShowModal() {
         fetch('add_product.php')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('modalContent').innerHTML = html;
-                document.getElementById('productModal').style.display = 'block';
-            });
+                showModal();
+            })
+            .catch(error => console.error('Error loading modal content:', error));
     }
 
-    function closeModal() {
-    document.getElementById('productModal').style.display = 'none';
-}
+    // Show modal
+    function showModal() {
+        document.getElementById("addProductModal").style.display = "block";
+        document.addEventListener("click", handleClickOutside, true);
+    }
 
-    // Close Modal if clicked outside of the modal content
-    window.onclick = function(event) {
-        let modal = document.getElementById('productModal');
-        if (event.target == modal) {
-            closeModal();
+
+    // Hide modal
+    function hideModal() {
+        document.getElementById("addProductModal").style.display = "none";
+        // Optionally, focus back to showModalBtn if exists
+        let showModalBtn = document.getElementById("showModalBtn");
+        if (showModalBtn) {
+            showModalBtn.focus();
+        }
+        document.removeEventListener("click", handleClickOutside, true);
+    }
+
+
+    // Hide modal if clicked outside of modal-content
+    function handleClickOutside(event) {
+        let modalContent = document.querySelector(".modal-content");
+        if (!modalContent.contains(event.target)) {
+            hideModal();
         }
     }
 
-    // Event listener for the Add Product button
-    document.getElementById('addProductBtn').addEventListener('click', openModal);
+    // Add event listener to the button
+    document.addEventListener("DOMContentLoaded", function () {
+        let showModalBtn = document.getElementById("showModalBtn");
+        if (showModalBtn) {
+            showModalBtn.addEventListener("click", loadAndShowModal);
+        }
+    });
+
+    // Display the selected file name in the input field
+   function displayFileName() {
+    var input = document.getElementById("ProductMainImage");
+    if (input.files && input.files[0]) {
+        var fileName = input.files[0].name;
+        document.getElementById("file-name").textContent = "Selected file: " + fileName;
+    }
+}
 
     // Optional: Ensure that the script runs after the DOM is fully loaded
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('addProductBtn').addEventListener('click', openModal);
     });
+
 </script>
   </body>
 </html>

@@ -189,6 +189,7 @@ $conn->close();
 </div>
 
 <script>
+// Function to display the file name in the file input field
    function displayFileName() {
     var input = document.getElementById("ProductMainImage");
     if (input.files && input.files[0]) {

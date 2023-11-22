@@ -75,7 +75,7 @@ function baseUrl() {
                 <div class="mt-8 flow-root ">
                     <div class="mx-4 -my-2 overflow-x-auto sm:mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                            <div class="overflow-hidden shadow ring-1 ring-offset-black/[0.05] sm:rounded-lg">
+                            <div class="overflow-hidden border border-gray-300 sm:rounded-lg">
                                 <table class="min-w-full">
                                     <thead class="bg-gray-50">
                                         <tr>
@@ -141,6 +141,8 @@ function baseUrl() {
         </div>
     </div>
 <script>
+
+    // Load modal content from the server
     function loadAndShowModal() {
         fetch('add_product.php')
             .then(response => response.text())
@@ -151,11 +153,14 @@ function baseUrl() {
             .catch(error => console.error('Error loading modal content:', error));
     }
 
+    // Show modal
     function showModal() {
         document.getElementById("addProductModal").style.display = "block";
         document.addEventListener("click", handleClickOutside, true);
     }
 
+
+    // Hide modal
     function hideModal() {
         document.getElementById("addProductModal").style.display = "none";
         // Optionally, focus back to showModalBtn if exists
@@ -166,6 +171,8 @@ function baseUrl() {
         document.removeEventListener("click", handleClickOutside, true);
     }
 
+
+    // Hide modal if clicked outside of modal-content
     function handleClickOutside(event) {
         let modalContent = document.querySelector(".modal-content");
         if (!modalContent.contains(event.target)) {
@@ -173,6 +180,7 @@ function baseUrl() {
         }
     }
 
+    // Add event listener to the button
     document.addEventListener("DOMContentLoaded", function () {
         let showModalBtn = document.getElementById("showModalBtn");
         if (showModalBtn) {
@@ -180,6 +188,7 @@ function baseUrl() {
         }
     });
 
+    // Display the selected file name in the input field
    function displayFileName() {
     var input = document.getElementById("ProductMainImage");
     if (input.files && input.files[0]) {
