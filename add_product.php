@@ -178,12 +178,16 @@ $conn->close();
                             </div>
                         </div>
                     </div>
-                    <div class="mt-6 flex items-center justify-end">
+                    <!-- <div class="mt-6 flex items-center justify-end">
+                        Add Product
                         <input type="submit" value="Add Product" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">                
-                    </div>
+                    </div> -->
                             
                     </div>
 
+                </div>
+                <div class="flex items-center text-center justify-center">
+                    <button type="submit" value="Add Product" class="bg-blue-500 justify-center w-full items-cente text-white inline-flex  hover:text-white border border-blue-500  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-blue-500"> Create box </button>
                 </div>
         </form>
         </div>
