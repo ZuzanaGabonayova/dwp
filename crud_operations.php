@@ -171,3 +171,24 @@ function deleteNewsPost($id) {
     $stmt->close();
     return $result;
 }
+
+/**
+ * Read PresentationOfCompany
+ */
+function readPresentationOfCompany($conn) {
+    $query = "SELECT * FROM PresentationOfCompany";
+    $result = mysqli_query($conn, $query);
+
+    if (!$result) {
+        die("Query failed: " . mysqli_error($conn));
+    }
+
+    $data = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
+    }
+
+    mysqli_free_result($result);
+
+    return $data;
+}
