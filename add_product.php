@@ -6,7 +6,7 @@ $categories = $conn->query("SELECT CategoryID, CategoryName FROM ProductCategory
 $brands = $conn->query("SELECT BrandID, BrandName FROM ProductBrand")->fetch_all(MYSQLI_ASSOC);
 $colors = $conn->query("SELECT ColorID, ColorName FROM Color")->fetch_all(MYSQLI_ASSOC);
 $sizes = $conn->query("SELECT SizeID, Size FROM Size")->fetch_all(MYSQLI_ASSOC);
-
+    
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Manually sanitize textual data
     $productNumber = trim($_POST["ProductNumber"]);
@@ -77,9 +77,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+<body>
+    
+</body>
+</html>
+
     <div class="bg-white">
     <div class="px-6 py-6 lg:px-8">
-        <div class="overflow-y-auto h-[calc(100%-1rem)] max-h-full">
+        <div class="max-w-2xl mx-auto ring-1 ring-gray-900/10 p-4 rounded-md shadow-sm">
             <!-- Error Message Display -->
             <?php if (isset($error)): ?>
                 <div class="mb-4 p-4 text-red-700 bg-red-100 border border-red-400 rounded">
@@ -141,25 +154,15 @@ $conn->close();
                     <div class="sm:col-span-full">
                         <label for="colors" class="block mb-2 text-sm font-medium text-gray-900">Color</label>
                         <div class="grid grid-cols-2 sm:grid-cols-3 space-y-4">
-                                <?php foreach ($colors as $color): ?>
+                                <?php foreach ($sizes as $size): ?>
                                     <div class="items-center flex flex-row">
-                                        <input type="checkbox" name="colors[]" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" value="<?= $color["ColorID"]; ?>">
-                                        <label class="ml-3 text-sm text-gray-600" for="colors"><?= htmlspecialchars($color["ColorName"]); ?></label>
+                                        <input type="checkbox" name="sizes[]" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" value="<?= $color["ColorID"]; ?>">
+                                        <label class="ml-3 text-sm text-gray-600" for="colors"><?= htmlspecialchars($size["Size"]); ?></label>
                                     </div>
                                 <?php endforeach; ?>
                         </div>
                     </div>
-                    <div class="sm:col-span-full">
-                        <label for="sizes" class="block mb-2 text-sm font-medium text-gray-900">Size</label>
-                        <div class="grid grid-cols-2 sm:grid-cols-3 space-y-4">
-                            <div class="grid grid-cols-1 gap-y-8 sm:grid-cols-6">
-                                <?php foreach ($sizes as $size): ?>
-                                    <input type="checkbox" name="sizes[]" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" value="<?= $size["SizeID"]; ?>">
-                                    <label class="ml-3 text-sm text-gray-600" for="sizes"><?= htmlspecialchars($size["Size"]); ?></label>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="col-span-full">
                         <label for="ProductMainImage" class="block mb-2 text-sm font-medium text-gray-900">Product Main Image</label>
                         <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
@@ -178,16 +181,17 @@ $conn->close();
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="mt-6 flex items-center justify-end">
-                        <input type="submit" value="Add Product" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">                
-                    </div> -->
-                            
+                    <div class="col-span-full">
+                        <div class="mt-8 flex justify-end">
+                            <button type="submit" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add Product</button>
+                        </div>
+                    </div>
+                   
+                    
                     </div>
 
                 </div>
-                <div class="flex items-center text-center justify-center">
-                    <button type="submit" class="bg-blue-500 justify-center w-full items-cente text-white inline-flex  hover:text-white border border-blue-500  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-blue-500"> Add product </button>
-                </div>
+                
         </form>
         </div>
     </div>

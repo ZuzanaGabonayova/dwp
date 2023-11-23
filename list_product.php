@@ -2,7 +2,6 @@
 // Database configuration
 require 'db.php'; // Include the database
 require 'crud_operations.php'; // Include CRUD operations
-require 'upload.php'; // Include file upload
 
 // Attempt to fetch all products
 $products = readProducts();
@@ -70,7 +69,7 @@ function baseUrl() {
                         <p class="mt-2 text-sm text-gray-700">A list of all the products in the webshop. Including their attributes.</p>
                     </div>
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                        <button id="showModalBtn" type="button" class="block rounded-md bg-amber-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm">Add product</button>
+                        <button href="add_product.php" type="button" class="block rounded-md bg-amber-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm">Add product</button>
                     </div>
                 </div>
                 <div class="mt-8 flow-root ">
@@ -117,7 +116,10 @@ function baseUrl() {
                                                 <img class="h-10 w-10 rounded-full" src="<?= $product["ProductMainImage"]; ?>" alt="Product image">
                                             </td>
                                             <td class="relative whitespace-nowrap pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                <a href="" class="text-amber-500 ">Edit
+                                                <a href="<?php echo baseUrl(); ?>update_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600">Edit</a>
+                                                <a class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600" href="delete_product.php?ProductID=<?php echo $product['ProductID']; ?>"
+                                                onclick="return confirm('Are you sure you want to delete this product?');">
+                                                Delete
                                                 </a>
                                             </td>
                                         </tr>
