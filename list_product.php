@@ -69,7 +69,7 @@ function baseUrl() {
                         <p class="mt-2 text-sm text-gray-700">A list of all the products in the webshop. Including their attributes.</p>
                     </div>
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                        <button href="add_product.php" type="button" class="block rounded-md bg-amber-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm">Add product</button>
+                        <a href="add_product.php" class="block rounded-md bg-amber-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm">Add product</a>
                     </div>
                 </div>
                 <div class="mt-8 flow-root ">
