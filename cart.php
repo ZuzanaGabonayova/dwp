@@ -1,75 +1,69 @@
 <?php
 session_start();
 
-// Handle adding products to the cart
-if ($_GET["action"] == "add" && isset($_GET["id"])) {
-    $productID = $_GET["id"];
-    $productModel = $_GET["hidden_name"];
-    $productPrice = $_GET["hidden_price"];
+if (isset($_GET["action"])) {
+    $action = $_GET["action"];
 
-    $found = false;
+    if ($action == "add" && isset($_GET["id"])) {
+        $productID = $_GET["id"];
+        $productModel = isset($_GET["hidden_name"]) ? $_GET["hidden_name"] : '';
+        $productPrice = isset($_GET["hidden_price"]) ? $_GET["hidden_price"] : '';
 
-    if (!empty($_SESSION["shopping_cart"])) {
-        foreach ($_SESSION["shopping_cart"] as &$cart_item) {
-            if ($cart_item['item_id'] == $productID) {
-                $cart_item['item_quantity']++;
-                $found = true;
-                break;
-            }
-        }
-    }
+        $found = false;
 
-    if (!$found) {
-        $item_array = array(
-            'item_id' => $productID,
-            'item_name' => $productModel,
-            'item_price' => $productPrice,
-            'item_quantity' => 1
-        );
-        $_SESSION["shopping_cart"][] = $item_array;
-    }
-}
-
-// Handle removing products from the cart
-if ($_GET["action"] == "delete" && isset($_GET["id"])) {
-    $productID = $_GET["id"];
-
-    if (!empty($_SESSION["shopping_cart"])) {
-        foreach ($_SESSION["shopping_cart"] as $key => $cart_item) {
-            if ($cart_item['item_id'] == $productID) {
-                unset($_SESSION["shopping_cart"][$key]);
-                break;
-            }
-        }
-    }
-}
-
-// Handle increasing product quantity in the cart
-if ($_GET["action"] == "increase" && isset($_GET["id"])) {
-    $productID = $_GET["id"];
-
-    if (!empty($_SESSION["shopping_cart"])) {
-        foreach ($_SESSION["shopping_cart"] as &$cart_item) {
-            if ($cart_item['item_id'] == $productID) {
-                $cart_item['item_quantity']++;
-                break;
-            }
-        }
-    }
-}
-
-// Handle decreasing product quantity in the cart
-if ($_GET["action"] == "decrease" && isset($_GET["id"])) {
-    $productID = $_GET["id"];
-
-    if (!empty($_SESSION["shopping_cart"])) {
-        foreach ($_SESSION["shopping_cart"] as $key => &$cart_item) {
-            if ($cart_item['item_id'] == $productID) {
-                $cart_item['item_quantity']--;
-                if ($cart_item['item_quantity'] <= 0) {
-                    unset($_SESSION["shopping_cart"][$key]);
+        if (!empty($_SESSION["shopping_cart"])) {
+            foreach ($_SESSION["shopping_cart"] as &$cart_item) {
+                if ($cart_item['item_id'] == $productID) {
+                    $cart_item['item_quantity']++;
+                    $found = true;
+                    break;
                 }
-                break;
+            }
+        }
+
+        if (!$found) {
+            $item_array = array(
+                'item_id' => $productID,
+                'item_name' => $productModel,
+                'item_price' => $productPrice,
+                'item_quantity' => 1
+            );
+            $_SESSION["shopping_cart"][] = $item_array;
+        }
+    } elseif ($action == "delete" && isset($_GET["id"])) {
+        $productID = $_GET["id"];
+
+        if (!empty($_SESSION["shopping_cart"])) {
+            foreach ($_SESSION["shopping_cart"] as $key => $cart_item) {
+                if ($cart_item['item_id'] == $productID) {
+                    unset($_SESSION["shopping_cart"][$key]);
+                    break;
+                }
+            }
+        }
+    } elseif ($action == "increase" && isset($_GET["id"])) {
+        $productID = $_GET["id"];
+
+        if (!empty($_SESSION["shopping_cart"])) {
+            foreach ($_SESSION["shopping_cart"] as &$cart_item) {
+                if ($cart_item['item_id'] == $productID) {
+                    $cart_item['item_quantity']++;
+                    break;
+                }
+            }
+        }
+    } elseif ($action == "decrease" && isset($_GET["id"])) {
+        $productID = $_GET["id"];
+
+        if (!empty($_SESSION["shopping_cart"])) {
+            foreach ($_SESSION["shopping_cart"] as $key => &$cart_item) {
+                if ($cart_item['item_id'] == $productID) {
+                    $cart_item['item_quantity']--;
+                    if ($cart_item['item_quantity'] <= 0) {
+                        unset($_SESSION["shopping_cart"][$key]);
+                    }
+                    break;
+                }
             }
         }
     }
@@ -79,9 +73,6 @@ if ($_GET["action"] == "decrease" && isset($_GET["id"])) {
 header('Location: cart.php');
 exit();
 ?>
-
-
-<!-- Your HTML for Cart page goes here -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
