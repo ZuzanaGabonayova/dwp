@@ -60,12 +60,15 @@ $conn->close();
 
 
 <div class="mt-6">
-    <form method="get" action="cart.php?action=add&id=<?= $productID ?>">
+    <form method="get" action="cart.php">
+        <input type="hidden" name="action" value="add">
+        <input type="hidden" name="id" value="<?= $productID ?>">
         <input type="hidden" name="hidden_name" value="<?= htmlspecialchars($product['Model']) ?>">
         <input type="hidden" name="hidden_price" value="<?= htmlspecialchars($product['Price']) ?>">
         <input type="submit" name="add_to_cart" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" value="Add to Cart">
     </form>
 </div>
+
 
 
             </div>
