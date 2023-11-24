@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+// Redirection flag
+$shouldRedirect = false;
+
 if (isset($_GET["action"])) {
     $action = $_GET["action"];
 
@@ -67,11 +70,14 @@ if (isset($_GET["action"])) {
             }
         }
     }
+    $shouldRedirect = true; // Set the redirection flag
 }
 
 // Redirect to prevent form resubmission
-header('Location: cart.php');
-exit();
+if ($shouldRedirect) {
+    header('Location: cart.php'); // Redirect only when needed
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
