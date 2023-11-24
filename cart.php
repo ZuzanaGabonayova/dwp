@@ -1,66 +1,85 @@
 <?php
 session_start();
 
-if (isset($_POST["add_to_cart"])) {
-    if (isset($_SESSION["shopping_cart"])) {
-        $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
-        if (!in_array($_GET["id"], $item_array_id)) {
-            $count = count($_SESSION["shopping_cart"]);
-            $item_array = array(
-                'item_id' => $_GET["id"],
-                'item_name' => $_POST["hidden_name"],
-                'item_price' => $_POST["hidden_price"],
-                'item_quantity' => 1
-            );
-            $_SESSION["shopping_cart"][$count] = $item_array;
-        } else {
-            // Increase the quantity if item exists in cart
-            foreach ($_SESSION["shopping_cart"] as &$cart_item) {
-                if ($cart_item['item_id'] == $_GET["id"]) {
-                    $cart_item['item_quantity']++;
-                }
+// Handle adding products to the cart
+if ($_GET["action"] == "add" && isset($_GET["id"])) {
+    $productID = $_GET["id"];
+    $productModel = $_GET["hidden_name"];
+    $productPrice = $_GET["hidden_price"];
+
+    $found = false;
+
+    if (!empty($_SESSION["shopping_cart"])) {
+        foreach ($_SESSION["shopping_cart"] as &$cart_item) {
+            if ($cart_item['item_id'] == $productID) {
+                $cart_item['item_quantity']++;
+                $found = true;
+                break;
             }
         }
-    } else {
+    }
+
+    if (!$found) {
         $item_array = array(
-            'item_id' => $_GET["id"],
-            'item_name' => $_POST["hidden_name"],
-            'item_price' => $_POST["hidden_price"],
+            'item_id' => $productID,
+            'item_name' => $productModel,
+            'item_price' => $productPrice,
             'item_quantity' => 1
         );
-        $_SESSION["shopping_cart"][0] = $item_array;
+        $_SESSION["shopping_cart"][] = $item_array;
     }
 }
 
-if (isset($_GET["action"])) {
-    if ($_GET["action"] == "delete") {
-        foreach ($_SESSION["shopping_cart"] as $keys => $values) {
-            if ($values["item_id"] == $_GET["id"]) {
-                unset($_SESSION["shopping_cart"][$keys]);
+// Handle removing products from the cart
+if ($_GET["action"] == "delete" && isset($_GET["id"])) {
+    $productID = $_GET["id"];
+
+    if (!empty($_SESSION["shopping_cart"])) {
+        foreach ($_SESSION["shopping_cart"] as $key => $cart_item) {
+            if ($cart_item['item_id'] == $productID) {
+                unset($_SESSION["shopping_cart"][$key]);
+                break;
             }
         }
-    } elseif ($_GET["action"] == "increase") {
+    }
+}
+
+// Handle increasing product quantity in the cart
+if ($_GET["action"] == "increase" && isset($_GET["id"])) {
+    $productID = $_GET["id"];
+
+    if (!empty($_SESSION["shopping_cart"])) {
         foreach ($_SESSION["shopping_cart"] as &$cart_item) {
-            if ($cart_item['item_id'] == $_GET["id"]) {
+            if ($cart_item['item_id'] == $productID) {
                 $cart_item['item_quantity']++;
+                break;
             }
         }
-    } elseif ($_GET["action"] == "decrease") {
+    }
+}
+
+// Handle decreasing product quantity in the cart
+if ($_GET["action"] == "decrease" && isset($_GET["id"])) {
+    $productID = $_GET["id"];
+
+    if (!empty($_SESSION["shopping_cart"])) {
         foreach ($_SESSION["shopping_cart"] as $key => &$cart_item) {
-            if ($cart_item['item_id'] == $_GET["id"]) {
+            if ($cart_item['item_id'] == $productID) {
                 $cart_item['item_quantity']--;
                 if ($cart_item['item_quantity'] <= 0) {
                     unset($_SESSION["shopping_cart"][$key]);
                 }
+                break;
             }
         }
     }
-    
 }
 
+// Redirect to prevent form resubmission
 header('Location: cart.php');
 exit();
 ?>
+
 
 <!-- Your HTML for Cart page goes here -->
 <!DOCTYPE html>
