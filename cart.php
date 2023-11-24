@@ -89,33 +89,48 @@ if ($shouldRedirect) {
 </head>
 <body class="">
     <?php include './inc/navigationbar.php'; ?>
+    
+    <!-- Shopping Cart content -->
     <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:max-w-7xl lg:gap-x-8 lg:px-8 py-16 sm:py-24 bg-white">
         <h1 class="text-3xl font-bold mb-2 tracking-tight">Shopping Cart</h1>
         <table class="table-auto w-full">
             <thead>
-                <tr>
-                    <th class="px-4 py-2">Product</th>
-                    <th class="px-4 py-2">Price</th>
-                    <th class="px-4 py-2">Quantity</th>
-                    <th class="px-4 py-2">Total</th>
-                    <th class="px-4 py-2">Actions</th>
-                </tr>
+                <!-- Table headers -->
             </thead>
             <tbody>
                 <?php
+                // Loop through cart items
                 if (!empty($_SESSION["shopping_cart"])) {
                     $total = 0;
                     foreach ($_SESSION["shopping_cart"] as $key => $value) {
                         ?>
                         <tr>
+                            <!-- Product details -->
                             <td class="border px-4 py-2"><?= $value["item_name"]; ?></td>
                             <td class="border px-4 py-2">$<?= $value["item_price"]; ?></td>
-                            <td class="border px-4 py-2"><?= $value["item_quantity"]; ?></td>
-                            <td class="border px-4 py-2">$<?= number_format($value["item_quantity"] * $value["item_price"], 2); ?></td>
                             <td class="border px-4 py-2">
-                                <a href="cart.php?action=increase&id=<?= $value["item_id"]; ?>">+</a>
-                                <a href="cart.php?action=decrease&id=<?= $value["item_id"]; ?>">-</a>
-                                <a href="cart.php?action=delete&id=<?= $value["item_id"]; ?>">Remove</a>
+                                <!-- Quantity and buttons -->
+                                <span><?= $value["item_quantity"]; ?></span>
+                                <form method="GET" action="cart.php">
+                                    <input type="hidden" name="action" value="increase">
+                                    <input type="hidden" name="id" value="<?= $value["item_id"]; ?>">
+                                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" name="increase">+</button>
+                                </form>
+                                <form method="GET" action="cart.php">
+                                    <input type="hidden" name="action" value="decrease">
+                                    <input type="hidden" name="id" value="<?= $value["item_id"]; ?>">
+                                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded" name="decrease">-</button>
+                                </form>
+                            </td>
+                            <!-- Total price for each item -->
+                            <td class="border px-4 py-2">$<?= number_format($value["item_quantity"] * $value["item_price"], 2); ?></td>
+                            <!-- Actions -->
+                            <td class="border px-4 py-2">
+                                <form method="GET" action="cart.php">
+                                    <input type="hidden" name="action" value="delete">
+                                    <input type="hidden" name="id" value="<?= $value["item_id"]; ?>">
+                                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded" name="delete">Remove</button>
+                                </form>
                             </td>
                         </tr>
                         <?php
@@ -123,6 +138,7 @@ if ($shouldRedirect) {
                     }
                     ?>
                     <tr>
+                        <!-- Total row -->
                         <td colspan="3" align="right">Total</td>
                         <td align="right">$<?= number_format($total, 2); ?></td>
                         <td></td>
@@ -133,5 +149,6 @@ if ($shouldRedirect) {
             </tbody>
         </table>
     </div>
+
 </body>
 </html>
