@@ -111,8 +111,8 @@ if ($shouldRedirect) {
                             <td class="border px-4 py-2">
                                 <!-- Quantity with buttons -->
                                 <form method="GET" action="cart.php" class="flex items-center">
-                                    <input type="hidden" name="action" value="setQuantity">
                                     <input type="hidden" name="id" value="<?= $value["item_id"]; ?>">
+                                    <input type="hidden" name="action" value="changeQuantity">
                                     <button type="submit" class="text-gray-600 focus:outline-none focus:text-gray-700" name="decrease">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/>
@@ -124,7 +124,7 @@ if ($shouldRedirect) {
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                                         </svg>
                                     </button>
-                                    <button type="submit" class="ml-2 text-red-500 focus:outline-none focus:text-red-700" name="delete">
+                                    <button type="submit" class="text-red-500 focus:outline-none focus:text-red-700" name="delete">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM6 9a1 1 0 011-1h6a1 1 0 010 2H7a1 1 0 01-1-1zm2-5a1 1 0 011 1v6a1 1 0 11-2 0V5a1 1 0 011-1zm7.707-.293a1 1 0 111.414 1.414L12.414 10l3.707 3.707a1 1 0 11-1.414 1.414L11 11.414l-3.707 3.707a1 1 0 01-1.414-1.414L9.586 10 5.879 6.293a1 1 0 111.414-1.414L11 8.586l3.707-3.707z" clip-rule="evenodd"/>
                                         </svg>
