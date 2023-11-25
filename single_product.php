@@ -62,7 +62,7 @@ $conn->close();
                         <input type="hidden" name="id" value="<?= $productID ?>">
                         <input type="hidden" name="hidden_name" value="<?= htmlspecialchars($product['Model']) ?>">
                         <input type="hidden" name="hidden_price" value="<?= htmlspecialchars($product['Price']) ?>">
-                        <input type="submit" name="add_to_cart" class="bg-primary hover:bg-primary/80 text-white font-bold py-2 px-4 rounded" value="Add to Cart">
+                        <input type="submit" name="add_to_cart" class="bg-primary hover:bg-primary/80 text-white font-bold py-2 px-4 rounded cursor-pointer" value="Add to Cart">
                     </form>
                 </div>
                 </div>
