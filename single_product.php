@@ -56,21 +56,16 @@ $conn->close();
                         
                     <p class="mt-1">Category: <?= htmlspecialchars($categoryName) ?></p>
                     <p class="mt-1">Brand: <?= htmlspecialchars($brandName) ?></p>
+                    <div class="mt-6">
+                    <form method="get" action="cart.php">
+                        <input type="hidden" name="action" value="add">
+                        <input type="hidden" name="id" value="<?= $productID ?>">
+                        <input type="hidden" name="hidden_name" value="<?= htmlspecialchars($product['Model']) ?>">
+                        <input type="hidden" name="hidden_price" value="<?= htmlspecialchars($product['Price']) ?>">
+                        <input type="submit" name="add_to_cart" class="bg-primary hover:bg-primary/80 text-white font-bold py-2 px-4 rounded" value="Add to Cart">
+                    </form>
                 </div>
-
-
-<div class="mt-6">
-    <form method="get" action="cart.php">
-        <input type="hidden" name="action" value="add">
-        <input type="hidden" name="id" value="<?= $productID ?>">
-        <input type="hidden" name="hidden_name" value="<?= htmlspecialchars($product['Model']) ?>">
-        <input type="hidden" name="hidden_price" value="<?= htmlspecialchars($product['Price']) ?>">
-        <input type="submit" name="add_to_cart" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" value="Add to Cart">
-    </form>
-</div>
-
-
-
+                </div>
             </div>
         <?php else: ?>
             <p class="text-center">Product not found.</p>

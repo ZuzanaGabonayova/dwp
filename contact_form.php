@@ -18,9 +18,6 @@
 </head>
 <body>
     <form class="mx-auto max-w-xl" id="contactForm" action="contact.php" method="post">
-        <div class="mb-10">
-            <h2>Contact Us</h2>
-        </div>
         <div class="flex flex-col gap-6">
              <!-- [Form fields] -->
         <div class="mb-10">
