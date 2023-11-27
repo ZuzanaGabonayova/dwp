@@ -112,7 +112,145 @@ if ($shouldRedirect) {
 </head>
 <body class="">
     <?php include './inc/navigationbar.php'; ?>
-    
+     <div class="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
+  <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+    Shopping Cart
+  </h1>
+  <div
+    class="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16"
+  >
+    <!-- Cart heading -->
+    <div aria-labelledby="cart-heading" class="lg:col-span-7">
+      <h2 class="sr-only">Items in your shopping cart</h2>
+      <ul role="list" class="border-b border-t border-gray-300">
+        <li class="flex py-6 sm:py-10">
+          <div class="flex-shrink-0">
+            <img
+              src="https://images.unsplash.com/photo-1644864644406-f7400ed651f1?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt=""
+              class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48"
+            />
+          </div>
+          <div class="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
+            <div
+              class="relative pr-10 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0"
+            >
+              <div>
+                <div class="flex justify-between">
+                  <!-- Priduct Name -->
+                  <h3 class="text-sm">
+                    <a href="font-semibold text-gray-700">Product name</a>
+                  </h3>
+                </div>
+                <div class="mt-1 text-sm">
+                  <!-- Size -->
+                  <p class="text-gray-500">Size</p>
+                </div>
+                <!-- Price -->
+                <p class="mt-1 text-sm font-semibold text-gray-900">899 kr.</p>
+              </div>
+              <div class="mt-4 sm:mt-0 sm:pr-9">
+                <label class="sr-only" for="quantity-0">
+                  Quantity Product Name</label
+                >
+                <select
+                  name="quantity-0"
+                  id="quantity-0"
+                  class="max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-semibold leading-5 text-gray-700 shadow-sm sm:text-sm"
+                >
+                  <option value="1">1</option>
+                  <option value="1">2</option>
+                  <option value="1">3</option>
+                  <option value="1">4</option>
+                  <option value="1">5</option>
+                  <option value="1">6</option>
+                </select>
+              </div>
+              <div class="absolute right-0 top-0">
+                <button type="button" class="r-[-0.5rem] text-gray400 p-2">
+                  <span class="sr-only">Remove</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    class="h-5 w-5"
+                    ><path
+                      d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"
+                    ></path></svg>
+                </button>
+              </div>
+            </div>
+            <p class="mt-4 flex text-sm text-gray-700">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+                class="h-5 w-5 flex-shrink-0 text-green-500"
+                ><path
+                  fill-rule="evenodd"
+                  d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                  clip-rule="evenodd"></path></svg>
+                <span> In stock</span>
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div
+      aria-labelledby="summary-heading"
+      class="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8"
+    >
+      <h2 id="summary-heading" class="text-lg font-semibold text-gray-900">
+        Order summary
+      </h2>
+      <dl class="mt-6 space-y-4">
+        <div class="flex items-center justify-between">
+          <dt class="text-sm text-gray-600">Subtotal</dt>
+          <dd class="text-sm font-medium text-gray-900">99.00 kr.</dd>
+        </div>
+        <div
+          class="flex items-center justify-between border-t border-gray-300 pt-4"
+        >
+          <dt class="flex items-center text-sm text-gray-600">
+            <span>Shipping estimate</span>
+            <a class="ml-2 flex-shrink-0" href="#">
+              <span class="sr-only"
+                >Learn more about how shipping is calculated</span
+              >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+                class="h-6 w-6"
+                ><path
+                  fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z"
+                  clip-rule="evenodd"></path></svg>
+            </a>
+          </dt>
+          <dd class="text-sm font-medium text-gray-900">0 kr.</dd>
+        </div>
+        <div
+          class="flex items-center justify-between border-t border-gray-300 pt-4"
+        >
+          <dt class="text-base font-medium text-gray-900">Order total</dt>
+          <dd class="text-base font-medium text-gray-900">50 kr.</dd>
+        </div>
+      </dl>
+      <div class="mt-6">
+        <button
+          type="submit"
+          class="w-full rounded-md border border-transparent bg-amber-500 px-4 py-3 text-base font-medium shadow-sm"
+        >
+          Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
     <!-- Shopping Cart content -->
     <div class="container mx-auto px-4 py-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
