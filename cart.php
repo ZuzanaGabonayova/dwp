@@ -81,7 +81,7 @@ if (!empty($_SESSION["shopping_cart"])) {
         $productId = $value['item_id'];
 
         // Fetch product details from the database based on the product ID
-        $sql = "SELECT * FROM Products WHERE ProductID = ?";
+        $sql = "SELECT * FROM Product WHERE ProductID = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $productId);
         $stmt->execute();
