@@ -121,7 +121,7 @@ if ($shouldRedirect) {
                 <div class="space-y-4">
                     <?php foreach ($productDetails as $key => $product): ?>
                         <div class="flex items-center border-b pb-4">
-                            <img src="<?= htmlspecialchars($product['ProductMainImage']) ?>" alt="Product Image" class="w-20 h-20 rounded-md object-cover mr-4">
+                            <img src="<?= htmlspecialchars($product['ProductMainImage']) ?>" alt="Product Image" class="w-15 h-15 rounded-md object-cover mr-4">
                             <div class="flex-1">
                                 <h2 class="text-lg font-semibold"><?= htmlspecialchars($product['Model']) ?></h2>
                                 <p class="text-gray-600">Price: $<?= htmlspecialchars($product['Price']) ?></p>
