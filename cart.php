@@ -1,5 +1,6 @@
 <?php
 session_start();
+require 'db.php'; // Include the database configuration
 
 // Redirection flag
 $shouldRedirect = false;
