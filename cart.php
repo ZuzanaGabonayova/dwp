@@ -113,7 +113,7 @@ if ($shouldRedirect) {
 </head>
 
 <body class="">
-    <?php include './inc/navigationbar.php'; ?>
+    <?php include 'src/components/navigationbar.php'; ?>
 
 
     <div class="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">

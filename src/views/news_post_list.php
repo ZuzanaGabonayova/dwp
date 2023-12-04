@@ -1,8 +1,8 @@
 <?php
 
-require 'db.php'; // Include the database connection
-require 'crud_operations.php'; // Include the CRUD operations
-require_once 'src/utils/url_helpers.php'; // Include the URL helper functions
+require_once 'src/config/db.php';
+require_once 'src/news/ReadNewsCrud.php';
+require_once 'src/utils/url_helpers.php';
 
 // Attempt to fetch all news posts
 $newsPosts = readNewsPosts();

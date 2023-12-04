@@ -28,7 +28,7 @@ $conn->close();
 </head>
 <body class="">
     <?php
-    include './inc/navigationbar.php';
+    include 'src/components/navigationbar.php';
     ?>
     <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:max-w-7xl lg:gap-x-8 lg:px-8 py-16 sm:py-24 bg-white">
         <?php if ($product): ?>
