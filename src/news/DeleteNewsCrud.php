@@ -1,5 +1,7 @@
 <?php
 
+require_once 'src/config/db.php';
+
 class DeleteNewsPostCrud {
     private $conn;
 
