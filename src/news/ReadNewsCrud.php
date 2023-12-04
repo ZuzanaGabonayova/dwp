@@ -3,7 +3,7 @@
 require_once 'src/config/db.php';
 
 /**
- * Read all news posts
+ * Read all news posts  
  */
 function readNewsPosts() {
     // Assuming $conn is your database connection variable from db.php
