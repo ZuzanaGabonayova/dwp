@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__ . '/../../product/AddProductCrud.php';
+
+require_once 'src/product/AddProductCrud.php';
 
 $crud = new AddProductCrud($conn);
 

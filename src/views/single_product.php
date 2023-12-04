@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . '/../../config/db.php';
-require_once __DIR__ . '/../../product/ReadProductCrud.php';
+require_once 'src/config/db.php';
+require_once 'src/product/ReadProductCrud.php';
 
 // Include all your provided functions here
 
