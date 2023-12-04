@@ -1,8 +1,8 @@
 <?php
 
-require_once 'db.php'; 
+require_once __DIR__ . '/../../db.php';
 
- // Read all products
+// Read all products
 function readProducts() {
     global $conn;
     
