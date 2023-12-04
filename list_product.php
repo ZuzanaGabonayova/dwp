@@ -2,15 +2,10 @@
 
 require 'db.php'; // Include the database
 require 'src/product/ProductCrud.php'; // Include CRUD 
+require_once 'src/utils/url_helpers.php'; // Include the URL helper functions
 
 // Attempt to fetch all products
 $products = readProducts();
-
-// Function to get the base URL of the script
-function baseUrl() {
-    // Normally you would make this dynamic or configured, but for localhost it's simple
-    return 'https://zuzanagabonayova.eu/';
-}
 
 ?>
 
