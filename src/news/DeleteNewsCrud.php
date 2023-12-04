@@ -10,11 +10,10 @@ class DeleteNewsPostCrud {
     }
 
     public function deleteNewsPost($postId) {
-        // Assuming you have a specific table for news posts
-        $stmt = $this->conn->prepare("DELETE FROM NewsPosts WHERE PostID = ?");
+        // Corrected table name and column name
+        $stmt = $this->conn->prepare("DELETE FROM news_posts WHERE id = ?");
         $stmt->bind_param("i", $postId);
         return $stmt->execute();
     }
 }
-
 ?>
