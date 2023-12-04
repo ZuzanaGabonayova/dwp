@@ -2,7 +2,6 @@
 
 require 'db.php'; 
 
-
  // Read all products
 function readProducts() {
     global $conn;

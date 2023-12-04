@@ -1,7 +1,7 @@
 <?php
 // Database configuration
 require 'db.php'; // Include the database
-require '/src/product/ProductCrud.php'; // Include CRUD
+require 'src/product/ProductCrud.php'; // Include CRUD
 
 // Attempt to fetch all products
 $products = readProducts();
