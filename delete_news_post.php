@@ -3,7 +3,7 @@
 require_once 'src/news/DeleteNewsCrud.php';
 require_once 'src/utils/url_helpers.php'; 
 
-$crud = new DeleteNewsPostCrud($conn);
+$crud = new DeleteNewsCrud($conn);
 
 // Check if the 'id' GET parameter is set and the form has been submitted
 if (isset($_POST['id']) && isset($_POST['confirm']) && $_POST['confirm'] === 'yes') {

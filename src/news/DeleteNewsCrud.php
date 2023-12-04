@@ -2,7 +2,7 @@
 
 require_once 'src/config/db.php';
 
-class DeleteNewsPostCrud {
+class DeleteNewsCrud {
     private $conn;
 
     public function __construct($conn) {
