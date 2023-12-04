@@ -1,6 +1,6 @@
 <?php
 require 'db.php';
-require 'upload.php';
+require 'src/utils/upload.php';
 
 function readProduct($productId, $conn) {
     $stmt = $conn->prepare("SELECT * FROM Product WHERE ProductID = ?");

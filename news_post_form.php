@@ -1,7 +1,7 @@
 <?php
 
 require 'crud_operations.php'; // Make sure this path is correct
-require 'upload.php'; // Make sure this path is correct
+require 'src/utils/upload.php'; // Make sure this path is correct
 require_once 'src/utils/url_helpers.php'; // Include the URL helper functions
 
 $newsPost = ['id' => '', 'title' => '', 'short_description' => '', 'content' => '', 'image' => '', 'image_alt' => ''];

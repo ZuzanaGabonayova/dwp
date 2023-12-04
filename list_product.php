@@ -1,7 +1,7 @@
 <?php
 
 require 'db.php'; // Include the database
-require 'src/product/ProductCrud.php'; // Include CRUD 
+require 'src/product/ReadProductCrud.php'; // Include CRUD 
 require_once 'src/utils/url_helpers.php'; // Include the URL helper functions
 
 // Attempt to fetch all products
