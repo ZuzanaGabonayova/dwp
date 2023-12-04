@@ -1,8 +1,8 @@
 <?php
 
-require 'db.php'; // Include the database
-require 'src/product/ReadProductCrud.php'; // Include CRUD 
-require_once 'src/utils/url_helpers.php'; // Include the URL helper functions
+require_once __DIR__ . '/../../config/db.php';
+require_once __DIR__ . '/../../product/ReadProductCrud.php';
+require_once __DIR__ . '/../../utils/url_helpers.php';
 
 // Attempt to fetch all products
 $products = readProducts();

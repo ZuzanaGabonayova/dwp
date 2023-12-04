@@ -1,6 +1,7 @@
 <?php
-require 'db.php'; // Include the database configuration
-require 'crud_operations.php';
+
+require_once __DIR__ . '/../../config/db.php';
+require_once __DIR__ . '/../../product/ReadProductCrud.php';
 
 // Include all your provided functions here
 

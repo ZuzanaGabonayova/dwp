@@ -1,5 +1,5 @@
 <?php
-require 'src/product/UpdateProductCrud.php';
+require_once __DIR__ . '/../../product/UpdateProductCrud.php';
 
 $crud = new UpdateProductCrud($conn);
 
