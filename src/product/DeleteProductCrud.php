@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../../config/db.php';
+require_once 'src/config/db.php';
 
 class DeleteProductCrud {
     private $conn;
