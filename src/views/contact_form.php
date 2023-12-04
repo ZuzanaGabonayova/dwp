@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-    <form class="mx-auto max-w-xl" id="contactForm" action="contact.php" method="post">
+    <form class="mx-auto max-w-xl" id="contactForm" action="../forms/contact.php" method="post">
         <div class="flex flex-col gap-6">
              <!-- [Form fields] -->
         <div class="mb-10">
