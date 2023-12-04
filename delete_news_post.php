@@ -12,7 +12,7 @@ if (isset($_POST['id']) && isset($_POST['confirm']) && $_POST['confirm'] === 'ye
 
     if ($result) {
         // If the news post was deleted successfully, redirect back to the news post list
-        header('Location: src/views/news_post_list.php');
+        header('Location: news_post_list.php');
         exit;
     } else {
         $error = 'There was an error deleting the news post.';
@@ -29,7 +29,7 @@ if (isset($_GET['id']) && !isset($_POST['confirm'])) {
 }
 
 // Redirect to the news post list if the id parameter is not set
-header('Location: src/views/news_post_list.php');
+header('Location: news_post_list.php');
 exit;
 
 ?>
