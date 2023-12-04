@@ -2,14 +2,10 @@
 
 require 'db.php'; // Include the database connection
 require 'crud_operations.php'; // Include the CRUD operations
+require_once 'src/utils/url_helpers.php'; // Include the URL helper functions
 
 // Attempt to fetch all news posts
 $newsPosts = readNewsPosts();
-
-// Function to get the base URL of the script
-function baseUrl() {
-    return 'https://zuzanagabonayova.eu/'; // Adjust this to your actual base URL
-}
 
 ?>
 

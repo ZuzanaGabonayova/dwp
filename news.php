@@ -1,17 +1,11 @@
 <?php
 require 'db.php'; // Make sure this path is correct
 require 'crud_operations.php'; // This should contain a function to read news posts
+require_once 'src/utils/url_helpers.php'; // Include the URL helper functions
 
 // Get the list of news posts
 $newsPosts = readNewsPosts();
 
-
-// Function to get the base URL of the script
-function baseUrl()
-{
-    // Normally you would make this dynamic or configured, but for localhost it's simple
-    return 'https://zuzanagabonayova.eu/';
-}
 ?>
 <?php
 include 'navbar.php';

@@ -2,6 +2,7 @@
 
 require 'crud_operations.php'; // Make sure this path is correct
 require 'upload.php'; // Make sure this path is correct
+require_once 'src/utils/url_helpers.php'; // Include the URL helper functions
 
 $newsPost = ['id' => '', 'title' => '', 'short_description' => '', 'content' => '', 'image' => '', 'image_alt' => ''];
 
@@ -51,9 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-function baseUrl() {
-    return 'https://zuzanagabonayova.eu/'; // Adjust this to your actual base URL
-}
 
 ?>
 

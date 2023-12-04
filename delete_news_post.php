@@ -2,11 +2,8 @@
 
 require 'db.php'; // Include the database connection
 require 'crud_operations.php'; // Include the CRUD operations
+require_once 'src/utils/url_helpers.php'; // Include the URL helper functions
 
-// Function to get the base URL of the script
-function baseUrl() {
-    return 'https://zuzanagabonayova.eu/'; // Adjust this to your actual base URL
-}
 
 // Check if the 'id' GET parameter is set and the form has been submitted
 if (isset($_POST['id']) && isset($_POST['confirm']) && $_POST['confirm'] === 'yes') {
