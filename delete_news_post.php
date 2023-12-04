@@ -1,6 +1,6 @@
 <?php
 
-require_once 'src/news/DeleteNewsPostCrud.php';
+require_once 'src/news/DeleteNewsCrud.php';
 require_once 'src/utils/url_helpers.php'; 
 
 $crud = new DeleteNewsPostCrud($conn);
