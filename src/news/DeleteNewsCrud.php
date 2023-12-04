@@ -9,11 +9,11 @@ class DeleteNewsCrud {
         $this->conn = $conn;
     }
 
-    public function deleteNewsPost($postId) {
-        // Corrected table name and column name
+    public function deleteNewsPost($id) {
         $stmt = $this->conn->prepare("DELETE FROM news_posts WHERE id = ?");
-        $stmt->bind_param("i", $postId);
+        $stmt->bind_param("i", $id);
         return $stmt->execute();
     }
 }
 ?>
+
