@@ -140,11 +140,11 @@ if ($shouldRedirect) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
-    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="./assets/css/output.css">
 </head>
 
 <body class="">
-    <?php include 'src/components/navigationbar.php'; ?>
+    <?php include './src/components/navigationbar.php'; ?>
 
 
     <div class="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">

@@ -1,6 +1,6 @@
 <?php
 
-require 'src/product/DeleteProductCrud.php';
+require './src/product/DeleteProductCrud.php';
 
 $crud = new DeleteProductCrud($conn);
 

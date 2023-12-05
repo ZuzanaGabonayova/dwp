@@ -1,6 +1,6 @@
 <?php
     // Include your PHP function file here
-    require 'db.php';
+    require './src/config/db.php';
     require 'crud_operations.php';
 
 ?>
@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Company Presentation Table</title>
-   <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="./assets/css/output.css">
 </head>
 <body class="m-8">
     <table class="table-auto w-full border-collapse border border-gray-200">
