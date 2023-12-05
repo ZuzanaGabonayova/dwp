@@ -1,8 +1,8 @@
 <?php
 
-require_once 'src/config/db.php';
-require_once 'src/product/ReadProductCrud.php';
-require_once 'src/utils/url_helpers.php';
+require_once '../config/db.php';
+require_once '../product/ReadProductCrud.php';
+require_once '../utils/url_helpers.php';
 
 // Attempt to fetch all products
 $products = readProducts();
