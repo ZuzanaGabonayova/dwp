@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Contact Form</title>
     <!-- Include Tailwind CSS -->
-    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="../../assets/css/output.css">
     <style>
         @keyframes fadeIn {
             from { opacity: 0; }
