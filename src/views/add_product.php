@@ -1,8 +1,8 @@
 <?php
 
-require_once '../product/AddProductCrud.php';
+require_once '../product/CreateProductCrud.php';
 
-$crud = new AddProductCrud($conn);
+$crud = new CreateProductCrud($conn);
 
 $categories = $crud->getCategories();
 $brands = $crud->getBrands();
