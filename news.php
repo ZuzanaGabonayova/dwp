@@ -1,7 +1,7 @@
 <?php
-require 'db.php'; // Make sure this path is correct
+require './src/config/db.php'; // Make sure this path is correct
 require 'crud_operations.php'; // This should contain a function to read news posts
-require_once 'src/utils/url_helpers.php'; // Include the URL helper functions
+require_once './src/utils/url_helpers.php'; // Include the URL helper functions
 
 // Get the list of news posts
 $newsPosts = readNewsPosts();
