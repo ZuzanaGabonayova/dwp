@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-    <form class="mx-auto max-w-xl" id="contactForm" action="../forms/contact.php" method="post">
+    <form class="mx-auto max-w-xl" id="contactForm" action="../actions/contact.php" method="post">
         <div class="flex flex-col gap-6">
              <!-- [Form fields] -->
         <div class="mb-10">
@@ -52,7 +52,7 @@
                 event.preventDefault();
 
                 var formData = new FormData(form);
-                fetch('../forms/contact.php', {
+                fetch('../actions/contact.php', {
                     method: 'POST',
                     body: formData
                 })
