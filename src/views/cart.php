@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'db.php'; // Include the database configuration
+require '../config/db.php'; // Include the database configuration
 
 // Redirection flag
 $shouldRedirect = false;
@@ -140,11 +140,11 @@ if ($shouldRedirect) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
-    <link rel="stylesheet" href="./assets/css/output.css">
+    <link rel="stylesheet" href="../../assets/css/output.css">
 </head>
 
 <body class="">
-    <?php include './src/components/navigationbar.php'; ?>
+    <?php include '../components/navigationbar.php'; ?>
 
 
     <div class="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
