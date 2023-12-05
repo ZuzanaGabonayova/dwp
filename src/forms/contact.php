@@ -2,8 +2,8 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php'; // If using Composer
-require 'db.php'; // Your database connection file
+require '../../vendor/autoload.php'; // If using Composer
+require '../config/db.php'; // Your database connection file
 
 // Prevent direct access to the script
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
