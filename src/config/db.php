@@ -1,8 +1,8 @@
 <?php
-$servername = "zuzanagabonayova.eu.mysql";
-$username = "zuzanagabonayova_euwebshopdb"; // default XAMPP username
-$password = "dwp2023"; // default XAMPP password
-$dbname = "zuzanagabonayova_euwebshopdb";
+$servername = "142.93.169.155";
+$username = "phqmbyaurd"; // default XAMPP username
+$password = "5hw7pJkTr2"; // default XAMPP password
+$dbname = "phqmbyaurd";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
