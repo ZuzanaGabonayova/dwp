@@ -14,11 +14,17 @@ function calculateTotalPrice($cart) {
     return $totalPrice;
 }
 
-// Define shipping fee
-$shippingFee = 50;
+$subtotal = calculateTotalPrice($_SESSION["shopping_cart"]);
+
+// Define shipping fee conditionally
+if ($subtotal > 1000) {
+    $shippingFee = 0;
+} else {
+    $shippingFee = 50;
+}
 
 // Calculate total price with shipping fee
-$totalPriceWithShipping = calculateTotalPrice($_SESSION["shopping_cart"]) + $shippingFee;
+$totalPriceWithShipping = $totalPriceWithShipping = $subtotal + $shippingFee;
 
 if (isset($_GET["action"])) {
     $action = $_GET["action"];
