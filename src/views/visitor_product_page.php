@@ -46,7 +46,7 @@ $products = readProducts();
                     <div class="mt-4 flex justify-between">
                     <div>
                         <h3 class="text-sm text-[#FF8C42] font-bold">
-                        <a href="<?php echo baseUrl(); ?>single_product.php?ProductID=<?php echo $product['ProductID']; ?>">
+                        <a href="single_product.php?ProductID=<?php echo $product['ProductID']; ?>">
                             <span aria-hidden="true" class="absolute inset-0"></span>
                             <?php echo htmlspecialchars($product['Model']); ?>
                         </a>
