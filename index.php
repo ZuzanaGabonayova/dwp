@@ -8,10 +8,10 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="list_product.php">Product list</a><br>
-    <a href="news_post_list.php">News post list</a><br>
-    <a href="contact_form.php">Contact form</a><br>
-    <a href="visitor_product_page.php">Visitor products</a><br>
+    <a href="src/views/list_product.php">Product list</a><br>
+    <a href="src/views/news_post_form.php">News post list</a><br>
+    <a href="src/forms/contact.php">Contact form</a><br>
+    <a href="src/views/visitor_product_page.php">Visitor products</a><br>
     <a href="news.php">Visitor news</a><br>
     <a href="AdminDashboard.php">Admin dashboard</a><br>
 </body>
