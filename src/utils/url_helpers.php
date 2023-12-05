@@ -1,7 +1,7 @@
 <?php
 
 function baseUrl() {
-    return 'https://zuzanagabonayova.eu/';
+    return 'https://phpstack-1174020-4125684.cloudwaysapps.com/';
 }
 
 ?>

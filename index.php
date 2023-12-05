@@ -15,5 +15,6 @@
     <a href="news.php">Visitor news</a><br>
     <a href="AdminDashboard.php">Admin dashboard</a><br>
     <a href="AdminDashboard.php">Admin dashboard</a><br>
+    <a href="news.php">Visitor news</a><br>
 </body>
 </html>
