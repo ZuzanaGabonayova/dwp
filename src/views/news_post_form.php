@@ -5,7 +5,7 @@
     <title>Create News Post</title>
 </head>
 <body>
-    <form action="../actions/handle_create_news_post.php" method="post">
+    <form action="../actions/handle_create_news_post.php" method="post" enctype="multipart/form-data">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required>
 
@@ -16,7 +16,7 @@
         <textarea id="content" name="content" required></textarea>
 
         <label for="image">Image URL:</label>
-        <input type="text" id="image" name="image">
+        <input type="file" id="image" name="image" accept="image/*">
 
         <label for="image_alt">Image Alt Text:</label>
         <input type="text" id="image_alt" name="image_alt">
