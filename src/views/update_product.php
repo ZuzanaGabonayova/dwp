@@ -126,43 +126,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["ProductID"])) {
             </div>
         </div>
     </div>
-    <div class="container mx-auto px-4">
-        <h1 class="text-xl font-semibold text-gray-800 my-6">Edit Product</h1>
-        <?php if ($product): ?>
-            <form action="update_product.php" method="post" enctype="multipart/form-data" class="mb-4">
-                <input type="hidden" name="ProductID" value="<?= $product["ProductID"] ?>">
-                <input type="text" name="ProductNumber" value="<?= htmlspecialchars($product["ProductNumber"]); ?>" required>
-                <input type="text" name="Model" value="<?= htmlspecialchars($product["Model"]); ?>" required>
-                <textarea name="Description" required><?= htmlspecialchars($product["Description"]); ?></textarea>
-                <input type="number" name="Price" step="0.01" value="<?= htmlspecialchars($product["Price"]); ?>" required>
-                <input type="number" name="StockQuantity" value="<?= htmlspecialchars($product["StockQuantity"]); ?>" required>
-                <select name="CategoryID" required>
-                    <?php foreach ($categories as $category): ?>
-                    <option value="<?= $category["CategoryID"]; ?>" <?= $category["CategoryID"] == $product["CategoryID"] ? 'selected' : ''; ?>><?= htmlspecialchars($category["CategoryName"]); ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <select name="BrandID" required>
-                    <?php foreach ($brands as $brand): ?>
-                    <option value="<?= $brand["BrandID"]; ?>" <?= $brand["BrandID"] == $product["BrandID"] ? 'selected' : ''; ?>><?= htmlspecialchars($brand["BrandName"]); ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <?php foreach ($colors as $color): ?>
-                <label>
-                    <input type="checkbox" name="colors[]" value="<?= $color["ColorID"]; ?>" <?= in_array($color["ColorID"], $currentColors) ? 'checked' : ''; ?>><?= htmlspecialchars($color["ColorName"]); ?>
-                </label>
-                <?php endforeach; ?>
-                <?php foreach ($sizes as $size): ?>
-                <label>
-                    <input type="checkbox" name="sizes[]" value="<?= $size["SizeID"]; ?>" <?= in_array($size["SizeID"], $currentSizes) ? 'checked' : ''; ?>><?= htmlspecialchars($size["Size"]); ?>
-                </label>
-                <?php endforeach; ?>
-                <input type="file" name="ProductMainImage">
-                <img src="<?= htmlspecialchars($product["ProductMainImage"]); ?>" alt="Current Image" class="h-10 w-10 rounded">
-                <input type="submit" value="Update Product" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
-            </form>
-        <?php else: ?>
-            <p>Product not found.</p>
-        <?php endif; ?>
-    </div>
+
 </body>
 </html>
