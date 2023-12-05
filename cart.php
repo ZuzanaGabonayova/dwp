@@ -5,6 +5,15 @@ require 'db.php'; // Include the database configuration
 // Redirection flag
 $shouldRedirect = false;
 
+// Function to calculate total price
+function calculateTotalPrice($cart) {
+    $totalPrice = 0;
+    foreach ($cart as $item) {
+        $totalPrice += $item['item_price'] * $item['item_quantity'];
+    }
+    return $totalPrice;
+}
+
 if (isset($_GET["action"])) {
     $action = $_GET["action"];
 
@@ -45,25 +54,15 @@ if (isset($_GET["action"])) {
                 }
             }
         }
-    } elseif ($action == "increase" && isset($_GET["id"])) {
+    } elseif (($action == "increase" || $action == "decrease") && isset($_GET["id"])) {
         $productID = $_GET["id"];
+        $quantityChange = ($action == "increase") ? 1 : -1;
 
         if (!empty($_SESSION["shopping_cart"])) {
             foreach ($_SESSION["shopping_cart"] as &$cart_item) {
                 if ($cart_item['item_id'] == $productID) {
-                    $cart_item['item_quantity']++;
-                    break;
-                }
-            }
-        }
-    } elseif ($action == "decrease" && isset($_GET["id"])) {
-        $productID = $_GET["id"];
-
-        if (!empty($_SESSION["shopping_cart"])) {
-            foreach ($_SESSION["shopping_cart"] as $key => &$cart_item) {
-                if ($cart_item['item_id'] == $productID) {
-                    $cart_item['item_quantity']--;
-                    if ($cart_item['item_quantity'] <= 0) {
+                    $cart_item['item_quantity'] += $quantityChange;
+                    if ($cart_item['item_quantity'] <= 0 || $cart_item['item_quantity'] > 10) {
                         unset($_SESSION["shopping_cart"][$key]);
                     }
                     break;
@@ -71,6 +70,7 @@ if (isset($_GET["action"])) {
             }
         }
     }
+
     $shouldRedirect = true; // Set the redirection flag
 }
 
@@ -186,7 +186,12 @@ if ($shouldRedirect) {
                 <dl class="mt-6 space-y-4">
                     <div class="flex items-center justify-between">
                         <dt class="text-sm text-gray-600">Subtotal</dt>
-                        <dd class="text-sm font-medium text-gray-900">99.00 kr.</dd>
+                        <dd class="text-sm font-medium text-gray-900">
+                            <?php 
+                                $subtotal = calculateTotalPrice($_SESSION["shopping_cart"]); 
+                                echo number_format($subtotal, 2) . " kr.";
+                            ?>
+                        </dd>
                     </div>
                     <div class="flex items-center justify-between border-t border-gray-300 pt-4">
                         <dt class="flex items-center text-sm text-gray-600">
@@ -202,7 +207,11 @@ if ($shouldRedirect) {
                     </div>
                     <div class="flex items-center justify-between border-t border-gray-300 pt-4">
                         <dt class="text-base font-medium text-gray-900">Order total</dt>
-                        <dd class="text-base font-medium text-gray-900">50 kr.</dd>
+                        <dd class="text-base font-medium text-gray-900">
+                            <?php 
+                                echo number_format($subtotal, 2) . " kr.";
+                            ?>
+                        </dd>
                     </div>
                 </dl>
                 <div class="mt-6">
@@ -211,75 +220,8 @@ if ($shouldRedirect) {
                     </button>
                 </div>
             </div>
-        </div>
-    </div>
 
 
-
-    <!-- Shopping Cart content -->
-    <div class="container mx-auto px-4 py-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div class="bg-white p-4 shadow-md rounded-md">
-                <h1 class="text-2xl font-bold mb-4">Shopping Cart</h1>
-                <div class="space-y-4">
-                    <?php foreach ($productDetails as $key => $product) : ?>
-                        <div class="flex items-center border-b pb-4">
-                            <img src="<?= htmlspecialchars($product['ProductMainImage']) ?>" alt="Product Image" class="w-15 h-15 rounded-md object-cover mr-4">
-                            <div class="flex-1">
-                                <h2 class="text-lg font-semibold"><?= htmlspecialchars($product['Model']) ?></h2>
-                                <p class="text-gray-600">Price: $<?= htmlspecialchars($product['Price']) ?></p>
-                                <p class="text-gray-600">Size: <?= htmlspecialchars($product['Size']) ?></p>
-                                <select class="mt-2 p-2 border border-gray-300 rounded-md" name="quantity">
-                                    <?php for ($i = 1; $i <= 10; $i++) : ?>
-                                        <option value="<?= $i ?>" <?= ($i == $product['quantity']) ? 'selected' : '' ?>><?= $i ?></option>
-                                    <?php endfor; ?>
-                                </select>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-            <div class="bg-white p-4 shadow-md rounded-md">
-                <h1 class="text-2xl font-bold mb-4">Order Summary</h1>
-                <?php
-                // Calculate subtotal
-                $subtotal = 0;
-                foreach ($productDetails as $product) {
-                    $subtotal += $product['Price'] * $product['quantity'];
-                }
-
-                // Calculate tax (assuming 20%)
-                $tax = $subtotal * 0.2;
-
-                // Define shipping fee (you can set your own logic for shipping fee calculation)
-                $shippingFee = 10; // Example: $10 shipping fee
-
-                // Calculate total order price
-                $totalOrderPrice = $subtotal + $tax + $shippingFee;
-                ?>
-
-                <div class="flex justify-between mb-4">
-                    <span>Subtotal:</span>
-                    <span>$<?= number_format($subtotal, 2) ?></span>
-                </div>
-
-                <div class="flex justify-between mb-4">
-                    <span>Shipping Fee:</span>
-                    <span>$<?= number_format($shippingFee, 2) ?></span>
-                </div>
-
-                <div class="flex justify-between mb-4">
-                    <span>Tax (20%):</span>
-                    <span>$<?= number_format($tax, 2) ?></span>
-                </div>
-
-                <div class="flex justify-between border-t pt-4">
-                    <span class="font-bold">Total Order Price:</span>
-                    <span class="font-bold">$<?= number_format($totalOrderPrice, 2) ?></span>
-                </div>
-
-                <button class="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Checkout</button>
-            </div>
         </div>
     </div>
 
