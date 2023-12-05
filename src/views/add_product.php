@@ -1,6 +1,6 @@
 <?php
 
-require_once 'src/product/AddProductCrud.php';
+require_once '../product/AddProductCrud.php';
 
 $crud = new AddProductCrud($conn);
 

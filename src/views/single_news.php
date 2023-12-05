@@ -1,6 +1,6 @@
 <?php
-require 'crud_operations.php'; // This should contain a function to read news posts
-require 'db.php'; // This should contain a database connection variable $conn
+require '../../crud_operations.php'; // This should contain a function to read news posts
+require '../config/db.php'; // This should contain a database connection variable $conn
 
 // Include all your provided functions here
 

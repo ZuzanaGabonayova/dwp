@@ -5,7 +5,7 @@
     <title>Create News Post</title>
 </head>
 <body>
-    <form action="src/actions/handle_create_news_post.php" method="post">
+    <form action="../actions/handle_create_news_post.php" method="post">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required>
 

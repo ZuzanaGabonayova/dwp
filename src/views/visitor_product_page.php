@@ -1,8 +1,8 @@
 <?php
 
-require_once 'src/config/db.php';
-require_once 'src/product/ReadProductCrud.php';
-require_once 'src/utils/url_helpers.php';
+require_once '../config/db.php';
+require_once '../product/ReadProductCrud.php';
+require_once '../utils/url_helpers.php';
 
 
 // Attempt to fetch all products
@@ -22,11 +22,11 @@ $products = readProducts();
 
 <body class="bg-white">
     <?php
-    include 'src/components/navigationbar.php';
+    include '../components/navigationbar.php';
     ?>
      <!-- Hero section -->
     <?php
-    include 'src/components/hero.php';
+    include '../components/hero.php';
     ?>
         <!-- Products Grid -->
         <div class="bg-white">
