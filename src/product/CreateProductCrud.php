@@ -3,7 +3,7 @@
 require_once '../config/db.php';
 require_once '../utils/upload.php';
 
-class AddProductCrud {
+class CreateProductCrud {
     private $conn;
 
     public function __construct($conn) {
