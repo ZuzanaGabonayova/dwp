@@ -8,7 +8,7 @@ $newsPosts = readNewsPosts();
 
 ?>
 <?php
-include 'navbar.php';
+include './src/components/navigationbar.php';
 ?>
 
 <!DOCTYPE html>
