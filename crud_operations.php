@@ -1,6 +1,6 @@
 <?php
 
-require 'db.php'; 
+require './src/config/db.php'; 
 
 /**
  * Read all products
