@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["ProductID"])) {
         <div class="px-6 py-6 lg:px-8">
             <div class="max-w-2xl mx-auto ring-1 ring-gray-900/10 p-4 rounded-md shadow-sm">
                  <?php if ($product): ?>
-                    <form action="update_product.php" method="post" enctype="multipart/form-data" class="space-y-4"></form>
+                    <form action="update_product.php" method="post" enctype="multipart/form-data" class="space-y-4">
                     <h2 class="mb-6 text-xl font-semibold text-gray-500 uppercase">Edit product</h2>
                     <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
                         <input type="hidden" name="ProductID" value="<?= $product["ProductID"] ?>">
@@ -69,12 +69,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["ProductID"])) {
                             <label class="block mb-2 text-sm font-medium text-gray-900" for="Price">Price</label>
                             <div class="mt-2">
                                 <input type="number" name="Price" step="0.01" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" value="<?= htmlspecialchars($product["Price"]); ?>" required>
-                            </div>
-                        </div>
-                        <div class="w-full">
-                            <label class="block mb-2 text-sm font-medium text-gray-900" for="Price">Stock Quantity</label>
-                            <div class="mt-2">
-                                <input type="number" name="StockQuantity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" value="<?= htmlspecialchars($product["StockQuantity"]); ?>" required>
                             </div>
                         </div>
                         <div class="w-full">
@@ -123,6 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["ProductID"])) {
                     <?php else: ?>
                         <p>Product not found.</p>
                     <?php endif; ?>
+                </form>
             </div>
         </div>
     </div>
