@@ -96,6 +96,25 @@ if (!empty($_SESSION["shopping_cart"])) {
     }
 }
 
+// Handling the POST request to update quantity
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_quantity' && isset($_POST['id']) && isset($_POST['quantity'])) {
+    $productID = $_POST['id'];
+    $newQuantity = $_POST['quantity'];
+
+    if (!empty($_SESSION["shopping_cart"])) {
+        foreach ($_SESSION["shopping_cart"] as &$cart_item) {
+            if ($cart_item['item_id'] == $productID) {
+                $cart_item['item_quantity'] = $newQuantity;
+                break;
+            }
+        }
+    }
+
+    // Redirect to prevent form resubmission
+    header('Location: cart.php');
+    exit();
+}
+
 // Redirect to prevent form resubmission
 if ($shouldRedirect) {
     header('Location: cart.php'); // Redirect only when needed
@@ -148,24 +167,35 @@ if ($shouldRedirect) {
                                         <!-- Price -->
                                         <p class="mt-1 text-sm font-semibold text-gray-900"><?= htmlspecialchars($product['Price']) ?></p>
                                     </div>
+
                                     <div class="mt-4 sm:mt-0 sm:pr-9">
-                                        <label class="sr-only" for="quantity-0">
-                                            Quantity Product Name</label>
-                                        <select name="quantity-0" id="quantity-0" class="max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-semibold leading-5 text-gray-700 shadow-sm sm:text-sm">
-                                            <?php for ($i = 1; $i <= 10; $i++) : ?>
-                                                <option value="<?= $i ?>" <?= ($i == $product['quantity']) ? 'selected' : '' ?>><?= $i ?></option>
-                                            <?php endfor; ?>
-                                        </select>
+                                        <form method="post" action="cart.php">
+                                            <input type="hidden" name="action" value="update_quantity">
+                                            <input type="hidden" name="id" value="<?= $product['ProductID'] ?>">
+                                            <label class="sr-only" for="quantity-<?= $key ?>">
+                                                Quantity Product Name</label>
+                                            <select name="quantity" id="quantity-<?= $key ?>" class="max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-semibold leading-5 text-gray-700 shadow-sm sm:text-sm" onchange="this.form.submit()">
+                                                <?php for ($i = 1; $i <= 10; $i++) : ?>
+                                                    <option value="<?= $i ?>" <?= ($i == $product['quantity']) ? 'selected' : '' ?>><?= $i ?></option>
+                                                <?php endfor; ?>
+                                            </select>
+                                        </form>
                                     </div>
+
                                     <div class="absolute right-0 top-0">
-                                        <button type="button" class="r-[-0.5rem] text-gray400 p-2" name="delete">
-                                            <span class="sr-only">Remove</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-5 w-5">
-                                                <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"></path>
-                                            </svg>
-                                        </button>
+                                        <form method="post" action="cart.php">
+                                            <input type="hidden" name="action" value="delete">
+                                            <input type="hidden" name="id" value="<?= $product['ProductID'] ?>">
+                                            <button type="submit" class="r-[-0.5rem] text-gray400 p-2" name="remove_item">
+                                                <span class="sr-only">Remove</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-5 w-5">
+                                                    <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"></path>
+                                                </svg>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
+
                                 <p class="mt-4 flex text-sm text-gray-700">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-5 w-5 flex-shrink-0 text-green-500">
                                         <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"></path>
