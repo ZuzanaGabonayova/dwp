@@ -52,7 +52,7 @@
                 event.preventDefault();
 
                 var formData = new FormData(form);
-                fetch('contact.php', {
+                fetch('../forms/contact.php', {
                     method: 'POST',
                     body: formData
                 })
