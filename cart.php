@@ -14,6 +14,12 @@ function calculateTotalPrice($cart) {
     return $totalPrice;
 }
 
+// Define shipping fee
+$shippingFee = 50;
+
+// Calculate total price with shipping fee
+$totalPriceWithShipping = calculateTotalPrice($_SESSION["shopping_cart"]) + $shippingFee;
+
 if (isset($_GET["action"])) {
     $action = $_GET["action"];
 
@@ -202,6 +208,11 @@ if ($shouldRedirect) {
                                     </svg>
                                     <span> In stock</span>
                                 </p>
+
+                                <div class="mt-1 text-sm">
+                                    <p class="text-gray-500">Total: <?= number_format($product['Price'] * $product['quantity'], 2) ?> kr.</p>
+                                </div>
+
                             </div>
                         </li>
                     </ul>
@@ -233,13 +244,13 @@ if ($shouldRedirect) {
                                 </svg>
                             </a>
                         </dt>
-                        <dd class="text-sm font-medium text-gray-900">0 kr.</dd>
+                        <dd class="text-sm font-medium text-gray-900"><?= number_format($shippingFee, 2) ?> kr.</dd>
                     </div>
                     <div class="flex items-center justify-between border-t border-gray-300 pt-4">
                         <dt class="text-base font-medium text-gray-900">Order total</dt>
                         <dd class="text-base font-medium text-gray-900">
                             <?php 
-                                echo number_format($subtotal, 2) . " kr.";
+                                echo number_format($totalPriceWithShipping, 2) . " kr.";
                             ?>
                         </dd>
                     </div>
