@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $crud->processProductForm($_POST, $_FILES);
     if ($result) {
         echo "News post created successfully.";
-        header("Location: ../views/list_product.php.php");
+        header("Location: ../views/list_product.php");
         exit();
     } else {
         echo "Error creating news post.";
