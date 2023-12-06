@@ -8,6 +8,9 @@ require_once '../utils/url_helpers.php';
 // Attempt to fetch all products
 $products = readProducts();
 
+error_reporting(E_ALL); 
+ini_set('display_errors', 1);
+
 ?>
 
 <!DOCTYPE html>
