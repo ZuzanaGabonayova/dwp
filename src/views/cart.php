@@ -86,24 +86,30 @@ if (isset($_GET["action"])) {
     $shouldRedirect = true; // Set the redirection flag
 }
 
-$productDetails = array(); // Initialize an array to hold product details
+// Fetch product details from the database based on the product IDs in the shopping cart
+$productIds = array_column($_SESSION["shopping_cart"], 'item_id');
+$productDetails = [];
 
-if (!empty($_SESSION["shopping_cart"])) {
-    foreach ($_SESSION["shopping_cart"] as $key => $value) {
-        $productId = $value['item_id'];
-
-        // Fetch product details from the database based on the product ID
-        $sql = "SELECT * FROM Product WHERE ProductID = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $productId);
+if (!empty($productIds)) {
+    $placeholders = implode(',', array_fill(0, count($productIds), '?'));
+    $sql = "SELECT * FROM Product WHERE ProductID IN ($placeholders)";
+    $stmt = $conn->prepare($sql);
+    
+    if ($stmt) {
+        $stmt->bind_param(str_repeat('i', count($productIds)), ...$productIds);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            // Store fetched product details in the array
-            $productDetails[$key] = $row;
-            $productDetails[$key]['quantity'] = $value['item_quantity']; // Add quantity to product details
+            while ($row = $result->fetch_assoc()) {
+                foreach ($_SESSION["shopping_cart"] as $cartItem) {
+                    if ($cartItem['item_id'] == $row['ProductID']) {
+                        $row['quantity'] = $cartItem['item_quantity'];
+                        $productDetails[] = $row;
+                        break;
+                    }
+                }
+            }
         }
     }
 }
