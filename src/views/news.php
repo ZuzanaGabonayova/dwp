@@ -1,14 +1,14 @@
 <?php
-require './src/config/db.php'; // Make sure this path is correct
+require '../config/db.php'; // Make sure this path is correct
 require 'crud_operations.php'; // This should contain a function to read news posts
-require_once './src/utils/url_helpers.php'; // Include the URL helper functions
+require_once '../utils/url_helpers.php'; // Include the URL helper functions
 
 // Get the list of news posts
 $newsPosts = readNewsPosts();
 
 ?>
 <?php
-include './src/components/navigationbar.php';
+include '../components/navigationbar.php';
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@ include './src/components/navigationbar.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News</title>
-    <link rel="stylesheet" href="./assets/css/output.css">
+    <link rel="stylesheet" href="../../assets/css/output.css">
 </head>
 <body class="">
 <div class="bg-white py-24 sm:py-32">
