@@ -30,7 +30,7 @@ $newsPosts = $readNewsCrud->readAllNewsPosts();
                     <td><?php echo htmlspecialchars($post['title']); ?></td>
                     <td>
                         <a href="edit_news_post.php?id=<?php echo $post['id']; ?>">Edit</a>
-                        <a href="delete_news_post.php?id=<?php echo $post['id']; ?>">Delete</a>
+                        <a href="../news/DeleteNewsCrud.php?id=<?php echo $post['id']; ?>">Delete</a>
                     </td>
                 </tr>
             <?php endwhile; ?>

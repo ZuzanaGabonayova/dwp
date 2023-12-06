@@ -11,6 +11,7 @@
     <a href="./src/views/list_product.php">Product list</a><br>
     <a href="./src/views/news_post_form.php">News post list</a><br>
     <a href="./src/views/company.php">Company presentation</a><br>
+    <a href="./src/views/all_news_posts.php">All news posts</a><br>
     <a href="./src/components/contact_form.php">Contact form</a><br>
     <a href="./src/views/visitor_product_page.php">Visitor products</a><br>
     <a href="news.php">Visitor news</a><br>
