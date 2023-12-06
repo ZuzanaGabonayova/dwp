@@ -8,7 +8,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $deleteCrud = new DeleteNewsCrud($conn);
     if ($deleteCrud->deleteNewsPost($newsId)) {
         // Redirect to a confirmation page or the list of news posts
-        header('Location: all_news_posts.php?message=News post deleted successfully');
+        header('Location: all_news_posts.php?success=News post deleted successfully');
         exit();
     } else {
         // Handle deletion error
