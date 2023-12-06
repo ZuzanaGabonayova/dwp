@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'];
     $shortDescription = $_POST['shortDescription'];
     $content = $_POST['content'];
-    $imageAlt = $_POST['imageAlt'];
+    $imageAlt = $_POST['image_alt'];
 
     // Fetch current image path in case no new image is uploaded
     $readNewsCrud = new ReadNewsCrud($conn);
