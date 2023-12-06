@@ -3,11 +3,12 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require '../config/db.php'; // Make sure this path is correct
-require 'crud_operations.php'; // This should contain a function to read news posts
+require '../news/ReadNewsCrud.php'; // This should contain a function to read news posts
 require_once '../utils/url_helpers.php'; // Include the URL helper functions
 
 // Get the list of news posts
-$newsPosts = readNewsPosts();
+$readNewsCrud = new ReadNewsCrud($conn);
+$newsPosts = $readNewsCrud->readAllNewsPosts();
 
 ?>
 <?php
