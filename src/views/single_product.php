@@ -9,7 +9,8 @@ require_once '../product/ReadProductCrud.php';
 
 if (isset($_GET['ProductID'])) {
     $productID = $_GET['ProductID'];
-    $product = readProduct($productID, $conn);
+    $readProductCrud = new ReadProductCrud($conn); // Create an instance of ReadProductCrud
+    $product = $readProductCrud->readProduct($productID); // Call the method using the instance
     $productColors = getProductColors($productID, $conn);
     $productSizes = getProductSizes($productID, $conn);
     $categoryName = getCategoryName($product['CategoryID'], $conn);
