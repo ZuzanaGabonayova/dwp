@@ -8,16 +8,16 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $deleteCrud = new DeleteNewsCrud($conn);
     if ($deleteCrud->deleteNewsPost($newsId)) {
         // Redirect to a confirmation page or the list of news posts
-        header('Location: all_news_posts.php');
+        header('Location: ../views/all_news_posts.php?message=News post deleted successfully');
         exit();
     } else {
         // Handle deletion error
-        header('Location: all_news_posts.php?error=Error deleting news post');
+        header('Location: ../views/all_news_posts.php?error=Error deleting news post');
         exit();
     }
 } else {
     // Handle invalid deletion request
-    header('Location: all_news_posts.php?error=Invalid request');
+    header('Location: ../views/all_news_posts.php?error=Invalid request');
     exit();
 }
 ?>
