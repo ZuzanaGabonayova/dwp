@@ -2,9 +2,12 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require '../../crud_operations.php'; // This should contain a function to read news posts
-require '../config/db.php'; // This should contain a database connection variable $conn
+require '../config/db.php'; // Make sure this path is correct
+require '../news/ReadNewsCrud.php'; // This should contain a function to read news posts
 
+// Get the list of news posts
+$readNewsCrud = new ReadNewsCrud($conn);
+$newsPosts = $readNewsCrud->readNewsPost($_GET['id']);
 // Include all your provided functions here
 
 if (isset($_GET['id'])) {
