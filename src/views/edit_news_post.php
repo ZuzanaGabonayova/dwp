@@ -46,6 +46,9 @@ require_once '../news/ReadNewsCrud.php';
         <label for="image">Upload New Image:</label>
         <input type="file" id="image" name="image" accept="image/*">
 
+        <label for="image_alt">Image Alt Text:</label>
+        <input type="text" id="image_alt" name="image_alt" value="<?php echo htmlspecialchars($newsPost['image_alt']); ?>">
+
         <button type="submit">Update News Post</button>
     </form>
 
