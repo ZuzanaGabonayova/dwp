@@ -6,13 +6,12 @@ require '../config/db.php'; // Make sure this path is correct
 require '../news/ReadNewsCrud.php'; // This should contain a function to read news posts
 
 // Get the list of news posts
-$readNewsCrud = new ReadNewsCrud($conn);
-$newsPosts = $readNewsCrud->readNewsPost($_GET['id']);
-// Include all your provided functions here
+
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $news = readNewsPost($id, $conn);
+    $readNewsCrud = new ReadNewsCrud($conn); // Create an instance of ReadNewsCrud
+    $news = $readNewsCrud->readNewsPost($id); // Call the method using the instance
 }
 
 $conn->close();
