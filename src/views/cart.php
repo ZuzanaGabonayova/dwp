@@ -60,16 +60,17 @@ if (isset($_GET["action"])) {
         }
     } elseif ($action == "delete" && isset($_GET["id"])) {
         $productID = $_GET["id"];
-
+    
         if (!empty($_SESSION["shopping_cart"])) {
             foreach ($_SESSION["shopping_cart"] as $key => $cart_item) {
                 if ($cart_item['item_id'] == $productID) {
                     unset($_SESSION["shopping_cart"][$key]);
-                    $shouldRedirect = true; // Set the flag to redirect after removing the item
                     break;
                 }
             }
         }
+        $shouldRedirect = true; // Set the flag to redirect after removing the item
+        
     } elseif (($action == "increase" || $action == "decrease") && isset($_GET["id"])) {
         $productID = $_GET["id"];
         $quantityChange = ($action == "increase") ? 1 : -1;
