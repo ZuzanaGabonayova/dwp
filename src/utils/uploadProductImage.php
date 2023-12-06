@@ -3,7 +3,7 @@
 /**
  * Upload a file and return the new file path if successful, or an error message if not.
  */
-function uploadFile($file, $uploadDir = '../../assets/images/') {
+function uploadFile($file, $uploadDir = '../../assets/images/product_images') {
     // Define the allowed file types
     $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
     $maxFileSize = 5 * 1024 * 1024; // 5 MB
