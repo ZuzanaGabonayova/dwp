@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $image = $currentImagePath; // Default to current image
     if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $uploadResult = uploadFile($_FILES['image']);
+        $uploadResult = uploadNewsImage($_FILES['image']);
         if (isset($uploadResult['success'])) {
             $image = $uploadResult['success'];
         } else {
