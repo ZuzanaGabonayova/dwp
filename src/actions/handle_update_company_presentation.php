@@ -18,8 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Update the company presentation
     if ($updateCrud->updateCompanyPresentation($description, $openingHours, $email, $phone, $street, $houseNumber, $postalCodeID)) {
-        echo "Company presentation updated successfully.";
-        // Redirect or further processing
+     // Redirect to company.php after successful update
+        header('Location: company.php');
+        exit();
     } else {
         echo "Error updating company presentation.";
         // Error handling
