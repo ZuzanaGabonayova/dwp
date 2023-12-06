@@ -9,7 +9,6 @@ $brands = $crud->getBrands();
 $colors = $crud->getColors();
 $sizes = $crud->getSizes();
 
-$error = isset($_GET["error"]) ? $_GET["error"] : "";
 ?>
 
 <!DOCTYPE html>
@@ -24,11 +23,6 @@ $error = isset($_GET["error"]) ? $_GET["error"] : "";
     <div class="bg-white">
         <div class="px-6 py-6 lg:px-8">
             <div class="max-w-2xl mx-auto ring-1 ring-gray-900/10 p-4 rounded-md shadow-sm">
-                <?php if (isset($error)): ?>
-                    <div class="mb-4 p-4 text-red-700 bg-red-100 border border-red-400 rounded">
-                        <strong>Error:</strong> <?= htmlspecialchars($error); ?>
-                    </div>
-                <?php endif; ?>
                 <form class="space-y-4" action="../actions/handle_create_product.php" method="post" enctype="multipart/form-data">
                     <h2 class="mb-6 text-xl font-semibold text-gray-500 uppercase">New product</h2>
                     <!-- Product Number -->

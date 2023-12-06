@@ -6,13 +6,12 @@ $crud = new CreateProductCrud($conn);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $crud->processProductForm($_POST, $_FILES);
-    if (isset($result['error'])) {
-        // Redirect back to the form with error message
-        header("Location: ../views/add_product.php?error=" . urlencode($result['error']));
+    if ($result) {
+        echo "News post created successfully.";
+        header("Location: ../views/list_product.php.php");
         exit();
     } else {
-        $crud->closeConnection();
-        header("Location: ../views/list_product.php?add=success");
-        exit();
+        echo "Error creating news post.";
+        // Additional error handling can be added here
     }
 }
