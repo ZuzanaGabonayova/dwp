@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 
 require_once '../config/db.php';
 require_once '../news/UpdateNewsCrud.php';
+require_once '../news/ReadNewsCrud.php';
 require_once '../utils/uploadNewsImage.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
