@@ -95,21 +95,23 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const cartCount = document.getElementById('cartCount');
+        const cartCount = document.getElementById('cartCount');
 
-    // Function to update cart count
-    function updateCartCount() {
-        // Get the number of items in the shopping cart session variable
-        const shoppingCart = <?php echo !empty($_SESSION["shopping_cart"]) ? json_encode($_SESSION["shopping_cart"]) : '[]'; ?>;
-        const itemCount = shoppingCart.length;
+        // Function to update cart count
+        function updateCartCount() {
+            // Get the shopping cart items from the session
+            const shoppingCart = <?php echo !empty($_SESSION["shopping_cart"]) ? json_encode($_SESSION["shopping_cart"]) : '[]'; ?>;
+            
+            // Calculate the total quantity of items in the cart
+            const totalQuantity = shoppingCart.reduce((total, item) => total + parseInt(item.item_quantity), 0);
 
-        // Update the cart count displayed in the navbar
-        cartCount.textContent = itemCount;
-    }
+            // Update the cart count displayed in the navbar
+            cartCount.textContent = totalQuantity;
+        }
 
-    // Call the function initially to set the initial cart count
-    updateCartCount();
-});
+        // Call the function initially to set the initial cart count
+        updateCartCount();
+    });
 
 
  document.addEventListener('DOMContentLoaded', function() {
