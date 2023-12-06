@@ -9,7 +9,9 @@ require_once '../utils/url_helpers.php';
 
 
 // Attempt to fetch all products
-$products = readProducts();
+/* $products = readProducts(); */
+$readProductCrud = new ReadProductCrud($conn);
+$products = $readProductCrud->readProducts();
 
 ?>
 
