@@ -163,72 +163,76 @@ if ($shouldRedirect) {
 
             <div aria-labelledby="cart-heading" class="lg:col-span-7">
                 <h2 class="sr-only">Items in your shopping cart</h2>
-                <?php foreach ($productDetails as $key => $product) : ?>
-                    <ul role="list" class="border-b border-t border-gray-300">
-                        <li class="flex py-6 sm:py-10">
-                            <div class="flex-shrink-0">
-                                <img src="<?= htmlspecialchars($product['ProductMainImage']) ?>" alt="" class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48" />
-                            </div>
-                            <div class="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
-                                <div class="relative pr-10 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
-                                    <div>
-                                        <div class="flex justify-between">
-                                            <!-- Priduct Name -->
-                                            <h3 class="text-sm">
-                                                <a href="font-semibold text-gray-700"><?= htmlspecialchars($product['Model']) ?></a>
-                                            </h3>
-                                        </div>
-                                        <div class="mt-1 text-sm">
-                                            <!-- Size -->
-                                            <p class="text-gray-500">Size</p>
-                                        </div>
-                                        <!-- Price -->
-                                        <p class="mt-1 text-sm font-semibold text-gray-900"><?= htmlspecialchars($product['Price']) ?></p>
-                                    </div>
-
-                                    <div class="mt-4 sm:mt-0 sm:pr-9">
-                                        <form method="post" action="cart.php">
-                                            <input type="hidden" name="action" value="update_quantity">
-                                            <input type="hidden" name="id" value="<?= $product['ProductID'] ?>">
-                                            <label class="sr-only" for="quantity-<?= $key ?>">
-                                                Quantity Product Name</label>
-                                            <select name="quantity" id="quantity-<?= $key ?>" class="max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-semibold leading-5 text-gray-700 shadow-sm sm:text-sm" onchange="this.form.submit()">
-                                                <?php for ($i = 1; $i <= 10; $i++) : ?>
-                                                    <option value="<?= $i ?>" <?= ($i == $product['quantity']) ? 'selected' : '' ?>><?= $i ?></option>
-                                                <?php endfor; ?>
-                                            </select>
-                                        </form>
-                                    </div>
-
-                                    <div class="absolute right-0 top-0">
-                                        <form method="post" action="cart.php">
-                                            <input type="hidden" name="action" value="delete">
-                                            <input type="hidden" name="id" value="<?= $product['ProductID'] ?>">
-                                            <button type="submit" class="r-[-0.5rem] text-gray400 p-2" name="delete">
-                                                <span class="sr-only">Remove</span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-5 w-5">
-                                                    <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"></path>
-                                                </svg>
-                                            </button>
-                                        </form>
-                                    </div>
+                <?php if (empty($productDetails)) : ?>
+                    <p class="text-gray-700">Cart is empty</p>
+                <?php else : ?>
+                    <?php foreach ($productDetails as $key => $product) : ?>
+                        <ul role="list" class="border-b border-t border-gray-300">
+                            <li class="flex py-6 sm:py-10">
+                                <div class="flex-shrink-0">
+                                    <img src="<?= htmlspecialchars($product['ProductMainImage']) ?>" alt="" class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48" />
                                 </div>
+                                <div class="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
+                                    <div class="relative pr-10 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
+                                        <div>
+                                            <div class="flex justify-between">
+                                                <!-- Priduct Name -->
+                                                <h3 class="text-sm">
+                                                    <a href="font-semibold text-gray-700"><?= htmlspecialchars($product['Model']) ?></a>
+                                                </h3>
+                                            </div>
+                                            <div class="mt-1 text-sm">
+                                                <!-- Size -->
+                                                <p class="text-gray-500">Size</p>
+                                            </div>
+                                            <!-- Price -->
+                                            <p class="mt-1 text-sm font-semibold text-gray-900"><?= htmlspecialchars($product['Price']) ?></p>
+                                        </div>
 
-                                <p class="mt-4 flex text-sm text-gray-700">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-5 w-5 flex-shrink-0 text-green-500">
-                                        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    <span> In stock</span>
-                                </p>
+                                        <div class="mt-4 sm:mt-0 sm:pr-9">
+                                            <form method="post" action="cart.php">
+                                                <input type="hidden" name="action" value="update_quantity">
+                                                <input type="hidden" name="id" value="<?= $product['ProductID'] ?>">
+                                                <label class="sr-only" for="quantity-<?= $key ?>">
+                                                    Quantity Product Name</label>
+                                                <select name="quantity" id="quantity-<?= $key ?>" class="max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-semibold leading-5 text-gray-700 shadow-sm sm:text-sm" onchange="this.form.submit()">
+                                                    <?php for ($i = 1; $i <= 10; $i++) : ?>
+                                                        <option value="<?= $i ?>" <?= ($i == $product['quantity']) ? 'selected' : '' ?>><?= $i ?></option>
+                                                    <?php endfor; ?>
+                                                </select>
+                                            </form>
+                                        </div>
 
-                                <div class="mt-1 text-sm">
-                                    <p class="text-gray-500">Total: <?= number_format($product['Price'] * $product['quantity'], 2) ?> kr.</p>
+                                        <div class="absolute right-0 top-0">
+                                            <form method="post" action="cart.php">
+                                                <input type="hidden" name="action" value="delete">
+                                                <input type="hidden" name="id" value="<?= $product['ProductID'] ?>">
+                                                <button type="submit" class="r-[-0.5rem] text-gray400 p-2" name="delete">
+                                                    <span class="sr-only">Remove</span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-5 w-5">
+                                                        <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"></path>
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <p class="mt-4 flex text-sm text-gray-700">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-5 w-5 flex-shrink-0 text-green-500">
+                                            <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span> In stock</span>
+                                    </p>
+
+                                    <div class="mt-1 text-sm">
+                                        <p class="text-gray-500">Total: <?= number_format($product['Price'] * $product['quantity'], 2) ?> kr.</p>
+                                    </div>
+
                                 </div>
-
-                            </div>
-                        </li>
-                    </ul>
-                <?php endforeach; ?>
+                            </li>
+                        </ul>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
 
 
