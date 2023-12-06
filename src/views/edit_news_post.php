@@ -1,9 +1,8 @@
 <?php
-
-require_once '../news/ReadNewsCrud.php';
 require_once '../config/db.php';
-
-$newsId = $_GET['id'] ?? null;
+require_once '../news/ReadNewsCrud.php';
+    
+    $newsId = $_GET['id'] ?? null;
 
     if ($newsId) {
         $readNewsCrud = new ReadNewsCrud($conn);
@@ -25,7 +24,7 @@ $newsId = $_GET['id'] ?? null;
 </head>
 <body>
 
-    <form action="../actions/handle_update_news_post.php" method="post">
+    <form action="../actions/handle_update_news_post.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($newsId); ?>">
 
         <label for="title">Title:</label>
@@ -37,11 +36,15 @@ $newsId = $_GET['id'] ?? null;
         <label for="content">Content:</label>
         <textarea id="content" name="content" required><?php echo htmlspecialchars($newsPost['content']); ?></textarea>
 
-        <label for="image">Image URL:</label>
-        <input type="text" id="image" name="image" value="<?php echo htmlspecialchars($newsPost['image']); ?>">
+        <label for="image">Current Image:</label>
+        <?php if ($newsPost['image']): ?>
+            <img src="<?php echo htmlspecialchars($newsPost['image']); ?>" alt="<?php echo htmlspecialchars($newsPost['image_alt']); ?>" style="max-width: 200px;">
+        <?php else: ?>
+            <p>No image available.</p>
+        <?php endif; ?>
 
-        <label for="imageAlt">Image Alt Text:</label>
-        <input type="text" id="imageAlt" name="imageAlt" value="<?php echo htmlspecialchars($newsPost['image_alt']); ?>">
+        <label for="image">Upload New Image:</label>
+        <input type="file" id="image" name="image" accept="image/*">
 
         <button type="submit">Update News Post</button>
     </form>
