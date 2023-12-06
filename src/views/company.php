@@ -30,6 +30,9 @@ $companyData = $readCrud->readCompanyPresentation();
         <?php else: ?>
             <p class="text-gray-700">No company presentation data available.</p>
         <?php endif; ?>
+        <a href="../views/edit_company_presentation.php" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Edit
+        </a>
     </div>
 
 </body>
