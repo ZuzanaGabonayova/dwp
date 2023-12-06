@@ -11,11 +11,11 @@ if (isset($_GET['ProductID'])) {
     $productID = $_GET['ProductID'];
     $readProductCrud = new ReadProductCrud($conn); // Create an instance of ReadProductCrud
     $product = $readProductCrud->readProduct($productID); // Call the method using the instance
-    $productColors = getProductColors($productID, $conn);
-    $productSizes = getProductSizes($productID, $conn);
-    $categoryName = getCategoryName($product['CategoryID'], $conn);
-    $brandName = getBrandName($product['BrandID'], $conn);
-    $authorName = getAuthorName($product['AdminID'], $conn); // Adjust as per your table structure
+    $productColors = $readProductCrud->getProductColors($productID); // Use the class method
+    $productSizes = $readProductCrud->getProductSizes($productId);
+    $categoryName = $readProductCrud->getCategoryName($product['CategoryID']);
+    $brandName = $readProductCrud->getBrandName($product['BrandID']);
+    $authorName = $readProductCrud->getAuthorName($product['AdminID']); // Adjust as per your table structure
 }
 
 $conn->close();
