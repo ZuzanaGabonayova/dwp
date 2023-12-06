@@ -1,7 +1,7 @@
 <?php
 
 require_once '../config/db.php';
-require_once '../utils/uploadProductImage';
+require_once '../utils/uploadProductImage.php';
 
 class CreateProductCrud {
     private $conn;
