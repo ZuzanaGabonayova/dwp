@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require '../../crud_operations.php'; // This should contain a function to read news posts
 require '../config/db.php'; // This should contain a database connection variable $conn
 
