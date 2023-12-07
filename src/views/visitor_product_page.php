@@ -33,6 +33,7 @@ $products = $readProductCrud->readProducts();
     <?php
     include '../components/hero.php';
     include '../components/HomeCategories.php';
+    include '../components/DailySpecialOffer.php';
     ?>
         <!-- Products Grid -->
         <div class="bg-white">
