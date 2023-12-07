@@ -16,5 +16,6 @@
     <a href="./src/views/visitor_product_page.php">Visitor products</a><br>
     <a href="./src/views/news.php">Visitor news</a><br>
     <a href="./src/views/AdminDashboard.php">Admin dashboard</a><br>
+    <a href="./src/views/daily-special-offer.php">Daily special offer</a><br>
 </body>
 </html>
