@@ -13,7 +13,7 @@ require_once '../product/ReadProductCrud.php';
         $products = $readProductCrud->readProducts();
         if ($products) {
             while ($product = $products->fetch_assoc()) {
-                echo "<option value=\"{$product['ProductID']}\">{$product['ProductName']}</option>";
+                echo "<option value=\"{$product['ProductID']}\">{$product['Model']}</option>";
             }
         }
         ?>
