@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class="h-80 w-full sm:h-64 lg:absolute lg:right-0 lg:top-0 lg:h-full lg:w-1/2">
+        <div class="h-64 w-full sm:h-64 lg:absolute lg:right-0 lg:top-0 lg:h-full lg:w-1/2">
             <img src="../../assets/images/dwp_hero_sneaker.jpg" alt="" class="h-full w-full object-cover object-center">
         </div>
     </div>
