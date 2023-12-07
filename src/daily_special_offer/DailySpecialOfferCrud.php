@@ -18,8 +18,9 @@ class DailySpecialOfferCrud {
 
         if ($checkResult->num_rows > 0) {
             // Update the existing special offer
-            $stmt = $this->conn->prepare("UPDATE DailySpecialOffer SET ProductID = ?");
-            $stmt->bind_param("i", $productId);
+            $stmt = $this->conn->prepare("UPDATE DailySpecialOffer SET ProductID = ? WHERE DailySpecialOfferID = ?");
+            $offerId = $checkResult->fetch_assoc()['DailySpecialOfferID'];
+            $stmt->bind_param("ii", $productId, $offerId);
         } else {
             // Create a new special offer
             $stmt = $this->conn->prepare("INSERT INTO DailySpecialOffer (ProductID) VALUES (?)");
