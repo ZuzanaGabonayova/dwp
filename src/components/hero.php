@@ -1,15 +1,28 @@
-<div class="relative w-full h-auto">
-    <div>
-        <img src="assets/images/front_image.jpg" alt="Description of the image" class="" />
-        <div class="absolute top-[44%] sm:top-[48%] right-12 sm:right-36 sm:text-xl">
-            <div class="flex flex-col">
-                <span class="text-[#FF8C42]">
-                    designed for all sneakerheads out there.
-                </span>
-                <span class="text-[#4E598C]">
-                    designed for all sneakerheads out there.
-                </span>
-            </div>
+<div class="flex flex-col border-b border-gray-200 lg:border-0">
+    <nav aria-label="Offers" class="order-last lg:order-first">
+        <div class="mx-auto max-w-7xl lg:px-8">
+            <ul role="list" class="grid grid-cols-1 lg:grid-cols-3">
+                <li class="flex flex-col">
+                    <a href="#" class="relative flex flex-1 flex-col justify-center bg-white px-4 py-6 text-center">
+                        <p class="text-sm text-gray-500">Download the app</p>
+                        <p class="font-semibold text-gray-900"></p>
+                    </a>
+                </li>
+                <li class="flex flex-col">
+                    <a href="#" class="relative flex flex-1 flex-col justify-center bg-white px-4 py-6 text-center">
+                        <p class="text-sm text-gray-500">Download the app</p>
+                        <p class="font-semibold text-gray-900"></p>
+                    </a>
+                </li>
+                <li class="flex flex-col">
+                    <a href="#" class="relative flex flex-1 flex-col justify-center bg-white px-4 py-6 text-center">
+                        <p class="text-sm text-gray-500">Download the app</p>
+                        <p class="font-semibold text-gray-900"></p>
+                    </a>
+                </li>
+            </ul>
         </div>
-    </div>
+    </nav>
+    <div></div>
 </div>
+<section></section>
