@@ -32,6 +32,7 @@ $products = $readProductCrud->readProducts();
      <!-- Hero section -->
     <?php
     include '../components/hero.php';
+    include '../components/HomeCategories.php';
     ?>
         <!-- Products Grid -->
         <div class="bg-white">
