@@ -3,7 +3,7 @@
         class="hidden lg:flex lg:flex-col lg:w-72 lg:z-50 lg:inset-y-0 lg:fixed"
       >
         <div
-          class="flex flex-col flex-grow gap-y-5 overflow-y-auto bg-gray-600 px-6 pb-4"
+          class="flex flex-col flex-grow gap-y-5 overflow-y-auto bg-white px-6 pb-4"
         >
           <div class="flex h-16 flex-shrink-0 items-center">
             <img
@@ -19,7 +19,7 @@
                   <li>
                     <a
                       href="../views/dashboard_admin.php"
-                      class="flex gap-x-3 rounded-md bg-gray-600 p-2 text-sm font-semibold leading-6 text-white"
+                      class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@
                   <li>
                     <a
                       href="../views/products_admin.php"
-                      class="flex gap-x-3 rounded-md bg-gray-600 p-2 text-sm font-semibold leading-6 text-white"
+                      class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +65,7 @@
                   <li>
                     <a
                       href="#"
-                      class="flex gap-x-3 rounded-md bg-gray-600 p-2 text-sm font-semibold leading-6 text-white"
+                      class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +88,7 @@
                   <li>
                     <a
                       href="../views/daily_special_offer_admin.php"
-                      class="flex gap-x-3 rounded-md bg-gray-600 p-2 text-sm font-semibold leading-6 text-white"
+                      class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +116,7 @@
                   <li>
                     <a
                       href="../views/company_admin.php"
-                      class="flex gap-x-3 rounded-md bg-gray-600 p-2 text-sm font-semibold leading-6 text-white"
+                      class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
