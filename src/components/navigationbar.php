@@ -5,7 +5,7 @@ session_start(); // Initialize the session for counting the cart items
 <header class="bg-white">  
   <nav class="mx-auto flex max-w-7xl items-center justify-between p-4 border-b border-gray-200" aria-label="Global">
     <div class="flex lg:flex-1">
-      <a href="#" class="-m-1.5 p-1.5">
+      <a href="../../index.php" class="-m-1.5 p-1.5">
         <span class="sr-only">Your Company</span>
         <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=amber&shade=500" alt="">
       </a>
