@@ -29,7 +29,7 @@ require '../../vendor/autoload.php'; // If using Composer
         <div class="mb-10">
         <h2>Contact Us</h2>
         <?php
-        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '../../.');
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '../../');
         $dotenv->load();
         echo 'Test Variable: ' . getenv('TEST_VARIABLE');
         ?>
