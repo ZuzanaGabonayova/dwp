@@ -53,7 +53,6 @@ if (isset($_GET["action"])) {
             $item_array = array(
                 'item_id' => $productID,
                 'item_name' => $productModel,
-                'image' => $ProductMainImage,
                 'item_price' => $productPrice,
                 'item_quantity' => 1
             );
@@ -70,7 +69,7 @@ if (isset($_GET["action"])) {
                 }
             }
         }
-        // $shouldRedirect = true; // Set the flag to redirect after removing the item
+        $shouldRedirect = true; // Set the flag to redirect after removing the item
         
     } elseif (($action == "increase" || $action == "decrease") && isset($_GET["id"])) {
         $productID = $_GET["id"];
@@ -93,7 +92,7 @@ if (isset($_GET["action"])) {
 }
 
 // Fetch product details from the database based on the product IDs in the shopping cart
-/* $productIds = array_column($_SESSION["shopping_cart"], 'item_id');
+$productIds = array_column($_SESSION["shopping_cart"], 'item_id');
 $productDetails = [];
 
 if (!empty($productIds)) {
@@ -118,7 +117,7 @@ if (!empty($productIds)) {
             }
         }
     }
-} */
+}
 
 // Handling the POST request to update quantity
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_quantity' && isset($_POST['id']) && isset($_POST['quantity'])) {
