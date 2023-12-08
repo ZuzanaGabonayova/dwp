@@ -13,11 +13,13 @@ error_reporting(E_ALL);
     <link rel="stylesheet" href="../../assets/css/output.css">
 </head>
 <body>
-    <?php
+    <div>
+        <?php
 
-    $content = '../views/list_product.php';
-    include_once '../layouts/backend.php';
+        $content = '../views/list_product.php';
+        include_once '../layouts/backend.php';
 
-    ?>
+        ?>
+    </div>
 </body>
 </html>

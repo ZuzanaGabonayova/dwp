@@ -1,4 +1,4 @@
-<div class="lg:pl-72">
+
         <div
           class="lg:hidden top-0 flex h-16 items-center border-b border-gray-200 bg-white px-4 shadow-sm"
         >
@@ -17,4 +17,3 @@
           </button>
         </div>
       </div>
-    </div>
