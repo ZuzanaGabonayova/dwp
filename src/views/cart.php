@@ -65,9 +65,12 @@ if (isset($_GET["action"])) {
             foreach ($_SESSION["shopping_cart"] as $key => $cart_item) {
                 if ($cart_item['item_id'] == $productID) {
                     unset($_SESSION["shopping_cart"][$key]);
+                    echo "Deleted product with ID: " . $productID; // Debugging output
                     break;
                 }
             }
+        } else {
+            echo "Shopping cart is empty"; // Debugging output
         }
         $shouldRedirect = true; // Set the flag to redirect after removing the item
         
