@@ -6,6 +6,8 @@ ini_set('display_startup_errors', 1);
 require_once '../product/ReadProductCrud.php';
 ?>
 
+
+
 <form action="../actions/handle_special_offer.php" method="post">
     <select name="productId">
         <?php

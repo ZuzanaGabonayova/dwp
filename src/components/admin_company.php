@@ -1,5 +1,7 @@
 <?php
-session_start(); // Initialize the session for counting the cart items
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+ini_set('error_reporting', E_ALL);
 
 require_once '../config/db.php';
 require_once '../company/ReadCompanyCrud.php';
@@ -8,17 +10,8 @@ $readCrud = new ReadCompanyCrud($conn);
 $companyData = $readCrud->readCompanyPresentation();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company Presentation</title>
-    <link rel="stylesheet" href="../../assets/css/output.css">
-</head>
-<body class="bg-gray-100 p-8">
 
-    <div class="container mx-auto bg-white p-6 rounded shadow">
+<div class="container mx-auto bg-white p-6 rounded shadow">
         <h2 class="text-2xl font-bold mb-4">Company Presentation</h2>
 
         <?php
@@ -35,6 +28,3 @@ $companyData = $readCrud->readCompanyPresentation();
         Edit
         </a>
     </div>
-
-</body>
-</html>

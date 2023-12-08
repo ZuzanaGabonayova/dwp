@@ -87,7 +87,7 @@
                   </li>
                   <li>
                     <a
-                      href="#"
+                      href="../views/daily_special_offer_admin.php"
                       class="flex gap-x-3 rounded-md bg-gray-600 p-2 text-sm font-semibold leading-6 text-white"
                     >
                       <svg
@@ -115,7 +115,7 @@
                   </li>
                   <li>
                     <a
-                      href="#"
+                      href="../views/company_admin.php"
                       class="flex gap-x-3 rounded-md bg-gray-600 p-2 text-sm font-semibold leading-6 text-white"
                     >
                       <svg
