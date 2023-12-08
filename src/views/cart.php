@@ -192,7 +192,7 @@ if ($shouldRedirect) {
                         <div class="text-center">
                             <h2 class="text-2xl font-bold mb-4 text-gray-700">Your cart is empty</h2>
                             <p class="text-gray-500">Looks like you haven't added any items yet.</p>
-                            <a href="../../index.php" class="mt-4 inline-block px-4 py-2 rounded-md bg-blue-500 text-white font-semibold hover:bg-blue-600 transition duration-300">Continue Shopping</a>
+                            <a href="../../index.php" class="mt-4 inline-block px-4 py-2 rounded-md bg-amber-500 px-4 py-3 text-base font-semibold hover:bg-amber-600 transition duration-300">Continue Shopping</a>
                         </div>
                     </div>
                 <?php else : ?>
@@ -302,7 +302,7 @@ if ($shouldRedirect) {
                     </div>
                 </dl>
                 <div class="mt-6">
-                    <button type="submit" class="w-full rounded-md border border-transparent bg-amber-500 px-4 py-3 text-base font-medium shadow-sm">
+                    <button type="submit" class="w-full rounded-md border border-transparent bg-amber-500 px-4 py-3 text-base font-medium shadow-sm hover:bg-amber-600 transition duration-300">
                         Checkout
                     </button>
                 </div>
