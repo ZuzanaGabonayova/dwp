@@ -2,7 +2,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-$dotenv = Dotenv\Dotenv::createImmutable('.');
+$dotenv = Dotenv\Dotenv::createImmutable('../../.');
 $dotenv->load();
 
 
