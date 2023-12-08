@@ -19,13 +19,16 @@ ini_set('display_startup_errors', 1);
             animation: fadeIn 1s;
         }
     </style>
-    <script src='https://www.hCaptcha.com/1/api.js' async defer></script>
+    <script src='https://js.hcaptcha.com/1/api.js' async defer></script>
 </head>
 <body>
     <form id="contact-form" class="mx-auto max-w-xl" id="contactForm" action="../actions/contact.php" method="post">
         <div class="flex flex-col gap-6">
         <div class="mb-10">
         <h2>Contact Us</h2>
+        <?php
+        echo 'Test Variable: ' . getenv('TEST_VARIABLE');
+        ?>
         </div>
         <div class="flex flex-col gap-6">
         <div>
