@@ -26,6 +26,11 @@
                     <p class="mt-4 text-gray-500">The walnut wood card tray is precision milled to perfectly fit a stack of Focus cards. The powder coated steel divider separates active cards from new ones, or can be used to archive important task lists.</p>
                     <p class="mt-4 text-gray-500"> <?= htmlspecialchars($productDetails['Description']) ?></p>
                     <p class="mt-3"><strong>Price:</strong> <?= htmlspecialchars($productDetails['Price']) ?></p>
+                    <div class="mt-6">
+                            <a href="single_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="inline-block rounded-md border border-transparent bg-orange-500 px-8 py-3 font-medium text-white">
+                                Read More
+                            </a>
+                        </div>
                 </div>
                 <div>
                     <?php if (!empty($productDetails['ProductMainImage'])): ?>
