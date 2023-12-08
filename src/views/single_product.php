@@ -63,7 +63,7 @@ $conn->close();
                     <p class="mt-1">Category: <?= htmlspecialchars($categoryName) ?></p>
                     <p class="mt-1">Brand: <?= htmlspecialchars($brandName) ?></p>
                     <div class="mt-6">
-                    <form method="get" action="cart.php">
+                    <form method="get" action="cart.php" onsubmit="return showPopup()">
                         <input type="hidden" name="action" value="add">
                         <input type="hidden" name="id" value="<?= $productID ?>">
                         <input type="hidden" name="hidden_name" value="<?= htmlspecialchars($product['Model']) ?>">
@@ -77,5 +77,20 @@ $conn->close();
             <p class="text-center">Product not found.</p>
         <?php endif; ?>
     </div>
+
+
+    <script>
+        function showPopup() {
+            if (confirm("Product added to cart. What would you like to do next?")) {
+                // If the user chooses 'OK' in the popup, go to the cart
+                window.location.href = "cart.php";
+            } else {
+                // If the user chooses 'Cancel' in the popup, continue shopping
+                window.location.href = "../../index.php";
+            }
+            return false; // Prevents the form from submitting directly
+        }
+    </script>
+
 </body>
 </html>
