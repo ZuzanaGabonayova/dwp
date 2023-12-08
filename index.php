@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 
 require_once './vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable('__DIR__');
+$dotenv = Dotenv\Dotenv::createImmutable('.');
 $dotenv->load();
 ?>
 
