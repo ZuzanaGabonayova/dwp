@@ -18,7 +18,7 @@
                 <ul role="list" class="-my-2 space-y-1">
                   <li>
                     <a
-                      href="#"
+                      href="../views/dashboard_admin.php"
                       class="flex gap-x-3 rounded-md bg-gray-600 p-2 text-sm font-semibold leading-6 text-white"
                     >
                       <svg
@@ -41,7 +41,7 @@
                   </li>
                   <li>
                     <a
-                      href="#"
+                      href="../views/products_admin.php"
                       class="flex gap-x-3 rounded-md bg-gray-600 p-2 text-sm font-semibold leading-6 text-white"
                     >
                       <svg

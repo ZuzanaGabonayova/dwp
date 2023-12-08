@@ -16,7 +16,7 @@ error_reporting(E_ALL);
     <div>
         <?php
 
-        $content = '../components/admin_dashboard.php';
+        $content = '../views/list_product.php';
         include_once '../layouts/backend.php';
 
         ?>
