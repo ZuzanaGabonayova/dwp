@@ -58,7 +58,7 @@ if (isset($_GET["action"])) {
             );
             $_SESSION["shopping_cart"][] = $item_array;
         }
-    } elseif ($action == "delete" && isset($_GET["id"])) {
+    } /* elseif ($action == "delete" && isset($_GET["id"])) {
         $productID = $_GET["id"];
     
         if (!empty($_SESSION["shopping_cart"])) {
@@ -74,7 +74,7 @@ if (isset($_GET["action"])) {
         }
         $shouldRedirect = true; // Set the flag to redirect after removing the item
         
-    } elseif (($action == "increase" || $action == "decrease") && isset($_GET["id"])) {
+    } */ elseif (($action == "increase" || $action == "decrease") && isset($_GET["id"])) {
         $productID = $_GET["id"];
         $quantityChange = ($action == "increase") ? 1 : -1;
 
@@ -188,7 +188,13 @@ if ($shouldRedirect) {
             <div aria-labelledby="cart-heading" class="lg:col-span-7">
                 <h2 class="sr-only">Items in your shopping cart</h2>
                 <?php if (empty($productDetails)) : ?>
-                    <p class="text-gray-700">Cart is empty</p>
+                    <div class="flex items-center justify-center h-64">
+                        <div class="text-center">
+                            <h2 class="text-2xl font-bold mb-4 text-gray-700">Your cart is empty</h2>
+                            <p class="text-gray-500">Looks like you haven't added any items yet.</p>
+                            <a href="../../index.php" class="mt-4 inline-block px-4 py-2 rounded-md bg-blue-500 text-white font-semibold hover:bg-blue-600 transition duration-300">Continue Shopping</a>
+                        </div>
+                    </div>
                 <?php else : ?>
                     <?php foreach ($productDetails as $key => $product) : ?>
                         <ul role="list" class="border-b border-t border-gray-300">
