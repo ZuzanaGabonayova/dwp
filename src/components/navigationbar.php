@@ -1,3 +1,7 @@
+<?php
+session_start(); // Initialize the session for counting the cart items
+?>
+
 <header class="bg-white">  
   <nav class="mx-auto flex max-w-7xl items-center justify-between p-4 border-b border-gray-200" aria-label="Global">
     <div class="flex lg:flex-1">
