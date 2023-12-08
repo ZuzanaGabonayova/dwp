@@ -3,12 +3,12 @@
         class="hidden lg:flex lg:flex-col lg:w-72 lg:z-50 lg:inset-y-0 lg:fixed"
       >
         <div
-          class="flex flex-col flex-grow gap-y-5 overflow-y-auto bg-white px-6 pb-4"
+          class="flex flex-col flex-grow gap-y-5 overflow-y-auto bg-white px-6 pb-4 border-r border-gray-200"
         >
           <div class="flex h-16 flex-shrink-0 items-center">
             <img
               class="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=white"
+              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
               alt="Your Company"
             />
           </div>
@@ -28,7 +28,7 @@
                         stroke-width="1.5"
                         stroke="currentColor"
                         aria-hidden="true"
-                        class="h-6 w-6 flex-shrink-0 text-white"
+                        class="h-6 w-6 flex-shrink-0 text-gray-400"
                       >
                         <path
                           stroke-linecap="round"
@@ -50,7 +50,7 @@
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="h-6 w-6 flex-shrink-0 text-white"
+                        class="h-6 w-6 flex-shrink-0 text-gray-400"
                       >
                         <path
                           stroke-linecap="round"
@@ -73,7 +73,7 @@
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="h-6 w-6 flex-shrink-0 text-white"
+                        class="h-6 w-6 flex-shrink-0 text-gray-400"
                       >
                         <path
                           stroke-linecap="round"
@@ -96,7 +96,7 @@
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="h-6 w-6 flex-shrink-0 text-white"
+                        class="h-6 w-6 flex-shrink-0 text-gray-400"
                       >
                         <path
                           stroke-linecap="round"
@@ -124,7 +124,7 @@
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="h-6 w-6 flex-shrink-0 text-white"
+                        class="h-6 w-6 flex-shrink-0 text-gray-400"
                       >
                         <path
                           stroke-linecap="round"
