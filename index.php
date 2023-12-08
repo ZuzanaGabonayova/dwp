@@ -1,3 +1,10 @@
+<?
+require_once 'vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable('.');
+$dotenv->load();
+?>
+
 <h1>hello</h1>
 
 <!DOCTYPE html>

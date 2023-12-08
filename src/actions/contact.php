@@ -2,6 +2,10 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+$dotenv = Dotenv\Dotenv::createImmutable('.');
+$dotenv->load();
+
+
 require '../../vendor/autoload.php'; // If using Composer
 require '../config/db.php'; // Your database connection file
 
@@ -22,7 +26,7 @@ function test_input($data) {
 $response = ['status' => false, 'message' => ''];
 
 // hCaptcha verification
-$secretKey = "ES_901c5c3c7262407d901507f356dee21d"; // Replace with your actual secret key
+$secretKey = $_ENV['HCAPTCHA_SECRET'];
 $token = $_POST['h-captcha-response'];
 $verify = curl_init();
 curl_setopt($verify, CURLOPT_URL, "https://hcaptcha.com/siteverify");
@@ -46,6 +50,31 @@ try {
     $email = test_input($_POST["email"]);
     $message = test_input($_POST["message"]);
 
+    // Validate email format
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $response['message'] = 'Invalid email format.';
+        echo json_encode($response);
+        exit;
+    }
+
+    // Validate name (letters and white space only)
+    if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
+        $response['message'] = 'Only letters and white space allowed in name.';
+        echo json_encode($response);
+        exit;
+    }
+
+    // Validate message length
+    if (empty($message)) {
+        $response['message'] = 'Message cannot be empty.';
+        echo json_encode($response);
+        exit;
+    } elseif (strlen($message) > 1000) {
+        $response['message'] = 'Message is too long.';
+        echo json_encode($response);
+        exit;
+    }
+
     // Save to database
     $stmt = $conn->prepare("INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $name, $email, $message);
@@ -57,12 +86,12 @@ try {
 
     // Server settings
     $mail->isSMTP();
-    $mail->Host       = 'send.one.com';
+    $mail->Host       = $_ENV['MAIL_HOST'];       // Or getenv('MAIL_HOST')
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'info@zuzanagabonayova.eu';
-    $mail->Password   = 'dwp2023';
-    $mail->SMTPSecure = 'ssl';
-    $mail->Port       = 465;
+    $mail->Username   = $_ENV['MAIL_USERNAME'];   // Or getenv('MAIL_USERNAME')
+    $mail->Password   = $_ENV['MAIL_PASSWORD'];   // Or getenv('MAIL_PASSWORD')
+    $mail->SMTPSecure = $_ENV['MAIL_SMTPSECURE']; // Or getenv('MAIL_SMTPSECURE')
+    $mail->Port       = $_ENV['MAIL_PORT'];       // Or getenv('MAIL_PORT')
 
     // Recipients
     $mail->setFrom('info@zuzanagabonayova.eu', 'Website Contact Form');
