@@ -26,6 +26,9 @@ ini_set('display_startup_errors', 1);
         <div class="flex flex-col gap-6">
         <div class="mb-10">
         <h2>Contact Us</h2>
+        <?php
+        echo 'Test Variable: ' . getenv('TEST_VARIABLE');
+        ?>
         </div>
         <div class="flex flex-col gap-6">
         <div>
