@@ -2,6 +2,8 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
+session_start(); // Initialize the session for counting the cart items
+
 require_once '../product/UpdateProductCrud.php';
 
 $crud = new UpdateProductCrud($conn);

@@ -1,4 +1,5 @@
 <?php
+session_start(); // Initialize the session for counting the cart items
 
 require_once '../config/db.php';
 require_once '../news/ReadNewsCrud.php';

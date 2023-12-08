@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// session_start();
+session_start();
 require '../config/db.php'; // Include the database configuration
 
 // Redirection flag

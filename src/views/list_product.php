@@ -3,6 +3,8 @@ require_once '../config/db.php';
 require_once '../product/ReadProductCrud.php';
 require_once '../utils/url_helpers.php';
 
+session_start(); // Initialize the session for counting the cart items
+
 $readProductCrud = new ReadProductCrud($conn);
 $products = $readProductCrud->readProducts();
 ?>
