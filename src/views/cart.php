@@ -20,7 +20,7 @@ function calculateTotalPrice($cart) {
 $subtotal = calculateTotalPrice($_SESSION["shopping_cart"]);
 
 // Define shipping fee conditionally
-if ($subtotal > 1000 && $subtotal == 0) {
+if ($subtotal > 1000 || $subtotal == 0) {
     $shippingFee = 0;
 } else {
     $shippingFee = 50;
