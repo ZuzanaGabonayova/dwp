@@ -94,6 +94,22 @@ if (isset($_GET["action"])) {
     $shouldRedirect = true; // Set the redirection flag
 }
 
+if (isset($_POST["action"]) && $_POST["action"] === "delete" && isset($_POST["id"])) {
+    $productID = $_POST["id"];
+
+    if (!empty($_SESSION["shopping_cart"])) {
+        foreach ($_SESSION["shopping_cart"] as $key => $cart_item) {
+            if ($cart_item['item_id'] == $productID) {
+                unset($_SESSION["shopping_cart"][$key]);
+                break;
+            }
+        }
+    }
+    // Redirect to prevent form resubmission
+    header('Location: cart.php');
+    exit();
+}
+
 // Fetch product details from the database based on the product IDs in the shopping cart
 $productIds = array_column($_SESSION["shopping_cart"], 'item_id');
 $productDetails = [];
