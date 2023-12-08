@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 
 require '../../vendor/autoload.php'; // If using Composer
 
-$dotenv = Dotenv\Dotenv::createImmutable('../../.'); // Adjust the path to the root directory
+$dotenv = Dotenv\Dotenv::createImmutable('../../'); // Adjust the path to the root directory
 $dotenv->load();
 ?>
 
