@@ -1,9 +1,14 @@
+<?php
+
+require_once '../actions/hCaptchaVerify.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Contact Form</title>
-    <!-- Include Tailwind CSS -->
     <link rel="stylesheet" href="../../assets/css/output.css">
     <style>
         @keyframes fadeIn {
@@ -15,11 +20,12 @@
             animation: fadeIn 1s;
         }
     </style>
+    <script src='https://www.hCaptcha.com/1/api.js' async defer></script>
 </head>
 <body>
-    <form class="mx-auto max-w-xl" id="contactForm" action="../actions/contact.php" method="post">
+    <form id="contact-form" class="mx-auto max-w-xl" id="contactForm" action="../actions/contact.php" method="post">
+        <div class="h-captcha" data-sitekey="64369d24-19ca-4b0e-8aee-9926ffc4c301"></div>
         <div class="flex flex-col gap-6">
-             <!-- [Form fields] -->
         <div class="mb-10">
         <h2>Contact Us</h2>
         </div>
@@ -81,6 +87,7 @@
                 });
             });
         });
+
     </script>
 </body>
 </html>
