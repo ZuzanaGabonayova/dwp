@@ -63,7 +63,7 @@ $conn->close();
                     <p class="mt-1">Category: <?= htmlspecialchars($categoryName) ?></p>
                     <p class="mt-1">Brand: <?= htmlspecialchars($brandName) ?></p>
                     <div class="mt-6">
-                    <form method="get" action="cart.php" onsubmit="return showPopup()">
+                    <form method="get" onsubmit="return addToCart()">
                         <input type="hidden" name="action" value="add">
                         <input type="hidden" name="id" value="<?= $productID ?>">
                         <input type="hidden" name="hidden_name" value="<?= htmlspecialchars($product['Model']) ?>">
@@ -80,14 +80,17 @@ $conn->close();
 
 
     <script>
-        function showPopup() {
-            if (confirm("Product added to cart. What would you like to do next?")) {
-                // If the user chooses 'OK' in the popup, go to the cart
-                window.location.href = "cart.php";
-            } else {
-                // If the user chooses 'Cancel' in the popup, continue shopping
-                window.location.href = "../../index.php";
-            }
+        function addToCart() {
+            // For demonstration purposes, assuming a successful cart addition after 1 second
+            setTimeout(function() {
+                if (confirm("Product added to cart. What would you like to do next?")) {
+                    // If the user chooses 'OK' in the popup, go to the cart
+                    window.location.href = "cart.php";
+                } else {
+                    // If the user chooses 'Cancel' in the popup, continue shopping
+                    window.location.href = "../../index.php";
+                }
+            }, 1000); // Simulating a delay of 1 second for cart addition
             return false; // Prevents the form from submitting directly
         }
     </script>
