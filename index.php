@@ -3,7 +3,6 @@
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-require '.src/actions/load_env.php';
 ?>
 
 <!DOCTYPE html>
@@ -14,9 +13,6 @@ require '.src/actions/load_env.php';
     <title>Document</title>
 </head>
 <body>
-    <?php
-    $value = getenv('MAIL_HOST'); 
-    ?>
     <a href="./src/views/list_product.php">Product list</a><br>
     <a href="./src/views/news_post_form.php">Add news post</a><br>
     <a href="./src/views/company.php">Company presentation</a><br>

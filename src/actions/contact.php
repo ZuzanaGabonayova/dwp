@@ -24,7 +24,7 @@ function test_input($data) {
 $response = ['status' => false, 'message' => ''];
 
 // hCaptcha verification
-$secretKey = getenv('HC_SECRET'); // Using .env variable
+$secretKey = ['ES_901c5c3c7262407d901507f356dee21d'];
 $token = $_POST['h-captcha-response'];
 $verify = curl_init();
 curl_setopt($verify, CURLOPT_URL, "https://hcaptcha.com/siteverify");
@@ -53,17 +53,17 @@ try {
     $stmt->execute();
     $stmt->close();
 
-    // Send email using PHPMailer
+    // Send email using PHPMailer   
     $mail = new PHPMailer(true);
 
     // Server settings
     $mail->isSMTP();
-    $mail->Host       = $_ENV('MAIL_HOST');
+    $mail->Host       = 'send.one.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = $_ENV('MAIL_USERNAME');
-    $mail->Password   = $_ENV('MAIL_PASSWORD');
-    $mail->SMTPSecure = $_ENV('MAIL_ENCRYPTION');
-    $mail->Port       = $_ENV('MAIL_PORT');
+    $mail->Username   = 'info@zuzanagabonayova.eu';
+    $mail->Password   = 'dwp2023';
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port       = 465;
 
     // Recipients
     $mail->setFrom('info@zuzanagabonayova.eu', 'Website Contact Form');
