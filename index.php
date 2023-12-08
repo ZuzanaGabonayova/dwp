@@ -3,7 +3,7 @@
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-require __DIR__ . '/vendor/autoload.php';
+require 'src/actions/load_env.php';
 ?>
 
 <!DOCTYPE html>
@@ -15,9 +15,7 @@ require __DIR__ . '/vendor/autoload.php';
 </head>
 <body>
     <?php
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-    $dotenv->load();
-    echo getenv('MAIL_HOST');
+    $value = getenv('MAIL_HOST'); 
     ?>
     <a href="./src/views/list_product.php">Product list</a><br>
     <a href="./src/views/news_post_form.php">Add news post</a><br>
