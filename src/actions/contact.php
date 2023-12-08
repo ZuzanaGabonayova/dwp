@@ -12,14 +12,33 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 }
 
 function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 
 // Initialize response array
 $response = ['status' => false, 'message' => ''];
+
+// hCaptcha verification
+$secretKey = "ES_901c5c3c7262407d901507f356dee21d"; // Replace with your actual secret key
+$token = $_POST['h-captcha-response'];
+$verify = curl_init();
+curl_setopt($verify, CURLOPT_URL, "https://hcaptcha.com/siteverify");
+curl_setopt($verify, CURLOPT_POST, true);
+curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query(['secret' => $secretKey, 'response' => $token]));
+curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
+$responseData = json_decode(curl_exec($verify));
+curl_close($verify);
+
+// Check if hCaptcha was successful
+if (!$responseData->success) {
+    // hCaptcha failed, return an error
+    $response['message'] = 'Captcha verification failed, please try again.';
+    echo json_encode($response);
+    exit;
+}
 
 try {
     // Sanitize input
@@ -37,14 +56,11 @@ try {
     $mail = new PHPMailer(true);
 
     // Server settings
-    // Use environment variables or a configuration file instead of hardcoding values
     $mail->isSMTP();
     $mail->Host       = 'send.one.com';
     $mail->SMTPAuth   = true;
     $mail->Username   = 'info@zuzanagabonayova.eu';
     $mail->Password   = 'dwp2023';
-    // $mail->Username   = getenv('MAIL_USERNAME'); // Load from environment variable
-    // $mail->Password   = getenv('MAIL_PASSWORD'); // Load from environment variable
     $mail->SMTPSecure = 'ssl';
     $mail->Port       = 465;
 
