@@ -111,6 +111,21 @@ try {
     $response['message'] = 'Message could not be sent. Please try again later.';
 }
 
-// Return response
+
+
+try {
+    // Your PHP code logic here
+
+    // Send success response
+    $response['status'] = true;
+    $response['message'] = 'Message sent successfully.';
+} catch (Exception $e) {
+    // Handle exceptions
+    $response['status'] = false;
+    $response['message'] = 'Message could not be sent. Error: ' . $e->getMessage();
+}
+
+// Set header as JSON
+header('Content-Type: application/json');
 echo json_encode($response);
 ?>
