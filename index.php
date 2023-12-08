@@ -1,13 +1,3 @@
-<?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-
-require_once './vendor/autoload.php';
-
-$dotenv = Dotenv\Dotenv::createImmutable('.');
-$dotenv->load();
-?>
-
 <h1>hello</h1>
 
 <!DOCTYPE html>
