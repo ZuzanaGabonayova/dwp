@@ -24,7 +24,7 @@ function test_input($data) {
 $response = ['status' => false, 'message' => ''];
 
 // hCaptcha verification
-$secretKey = ['ES_901c5c3c7262407d901507f356dee21d'];
+$secretKey = 'ES_901c5c3c7262407d901507f356dee21d';
 $token = $_POST['h-captcha-response'];
 $verify = curl_init();
 curl_setopt($verify, CURLOPT_URL, "https://hcaptcha.com/siteverify");
