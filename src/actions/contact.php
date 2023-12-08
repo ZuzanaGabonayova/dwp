@@ -56,9 +56,6 @@ try {
     // Send email using PHPMailer
     $mail = new PHPMailer(true);
 
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
-    $dotenv->load();
-
     // Server settings
     $mail->isSMTP();
     $mail->Host       = $_ENV('MAIL_HOST');

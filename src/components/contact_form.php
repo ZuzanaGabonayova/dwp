@@ -1,8 +1,6 @@
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-
-require '../../vendor/autoload.php'; // If using Composer
 ?>
 
 <!DOCTYPE html>
@@ -28,11 +26,6 @@ require '../../vendor/autoload.php'; // If using Composer
         <div class="flex flex-col gap-6">
         <div class="mb-10">
         <h2>Contact Us</h2>
-        <?php
-        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
-        $dotenv->load();
-        echo 'Test Variable: ' . $_ENV('TEST_VARIABLE');
-        ?>
         </div>
         <div class="flex flex-col gap-6">
         <div>

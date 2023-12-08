@@ -1,5 +1,9 @@
 <h1>hello</h1>
 
+<?php
+require __DIR__ . '/vendor/autoload.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +12,11 @@
     <title>Document</title>
 </head>
 <body>
+    <?php
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+    echo getenv('MAIL_HOST');
+    ?>
     <a href="./src/views/list_product.php">Product list</a><br>
     <a href="./src/views/news_post_form.php">Add news post</a><br>
     <a href="./src/views/company.php">Company presentation</a><br>
