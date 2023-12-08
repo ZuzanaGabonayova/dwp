@@ -31,7 +31,7 @@ require '../../vendor/autoload.php'; // If using Composer
         <?php
         $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
         $dotenv->load();
-        echo 'Test Variable: ' . getenv('TEST_VARIABLE');
+        echo 'Test Variable: ' . $_ENV('TEST_VARIABLE');
         ?>
         </div>
         <div class="flex flex-col gap-6">
