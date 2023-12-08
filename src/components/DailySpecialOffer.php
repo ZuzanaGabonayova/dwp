@@ -1,6 +1,6 @@
  <?php
-    require_once '../daily_special_offer/DailySpecialOfferCrud.php'; // Adjust the path
-    require_once '../product/ReadProductCrud.php'; // Adjust the path
+    require_once '../daily_special_offer/DailySpecialOfferCrud.php';
+    require_once '../product/ReadProductCrud.php';
 
     $specialOfferCrud = new DailySpecialOfferCrud($conn);
     $currentOffer = $specialOfferCrud->getCurrentSpecialOffer();
@@ -27,7 +27,7 @@
                     <p class="mt-4 text-gray-500"> <?= htmlspecialchars($productDetails['Description']) ?></p>
                     <p class="mt-3"><strong>Price:</strong> <?= htmlspecialchars($productDetails['Price']) ?></p>
                     <div class="mt-6">
-                            <a href="single_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="inline-block rounded-md border border-transparent bg-orange-500 px-8 py-3 font-medium text-white">
+                            <a href="single_product.php?ProductID=<?= $productDetails['ProductID'] ?>"  class="inline-block rounded-md border border-transparent bg-orange-500 px-8 py-3 font-medium text-white">
                                 Read More
                             </a>
                         </div>
