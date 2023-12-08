@@ -20,7 +20,7 @@ function calculateTotalPrice($cart) {
 $subtotal = calculateTotalPrice($_SESSION["shopping_cart"]);
 
 // Define shipping fee conditionally
-if ($subtotal > 1000) {
+if ($subtotal > 1000 && $subtotal == 0) {
     $shippingFee = 0;
 } else {
     $shippingFee = 50;
@@ -53,6 +53,7 @@ if (isset($_GET["action"])) {
             $item_array = array(
                 'item_id' => $productID,
                 'item_name' => $productModel,
+                'image' => $ProductMainImage,
                 'item_price' => $productPrice,
                 'item_quantity' => 1
             );
@@ -69,7 +70,7 @@ if (isset($_GET["action"])) {
                 }
             }
         }
-        $shouldRedirect = true; // Set the flag to redirect after removing the item
+        // $shouldRedirect = true; // Set the flag to redirect after removing the item
         
     } elseif (($action == "increase" || $action == "decrease") && isset($_GET["id"])) {
         $productID = $_GET["id"];
@@ -92,7 +93,7 @@ if (isset($_GET["action"])) {
 }
 
 // Fetch product details from the database based on the product IDs in the shopping cart
-$productIds = array_column($_SESSION["shopping_cart"], 'item_id');
+/* $productIds = array_column($_SESSION["shopping_cart"], 'item_id');
 $productDetails = [];
 
 if (!empty($productIds)) {
@@ -117,7 +118,7 @@ if (!empty($productIds)) {
             }
         }
     }
-}
+} */
 
 // Handling the POST request to update quantity
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_quantity' && isset($_POST['id']) && isset($_POST['quantity'])) {
@@ -168,14 +169,18 @@ if ($shouldRedirect) {
 
             <div aria-labelledby="cart-heading" class="lg:col-span-7">
                 <h2 class="sr-only">Items in your shopping cart</h2>
-                <?php if (empty($productDetails)) : ?>
-                    <p class="text-gray-700">Cart is empty</p>
-                <?php else : ?>
-                    <?php foreach ($productDetails as $key => $product) : ?>
+
+                    <?php
+                    // Loop through cart items
+                    if (!empty($_SESSION["shopping_cart"])) {
+                        $total = 0;
+                        foreach ($_SESSION["shopping_cart"] as $key => $value) {
+                        ?>
+
                         <ul role="list" class="border-b border-t border-gray-300">
                             <li class="flex py-6 sm:py-10">
                                 <div class="flex-shrink-0">
-                                    <img src="<?= htmlspecialchars($product['ProductMainImage']) ?>" alt="" class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48" />
+                                    <img src="<?= $value["image"]; ?>" alt="" class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48" />
                                 </div>
                                 <div class="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
                                     <div class="relative pr-10 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
@@ -183,7 +188,7 @@ if ($shouldRedirect) {
                                             <div class="flex justify-between">
                                                 <!-- Priduct Name -->
                                                 <h3 class="text-sm">
-                                                    <a href="font-semibold text-gray-700"><?= htmlspecialchars($product['Model']) ?></a>
+                                                    <a href="font-semibold text-gray-700"><?= $value["item_name"]; ?></a>
                                                 </h3>
                                             </div>
                                             <div class="mt-1 text-sm">
@@ -191,13 +196,13 @@ if ($shouldRedirect) {
                                                 <p class="text-gray-500">Size</p>
                                             </div>
                                             <!-- Price -->
-                                            <p class="mt-1 text-sm font-semibold text-gray-900"><?= htmlspecialchars($product['Price']) ?></p>
+                                            <p class="mt-1 text-sm font-semibold text-gray-900"><?= $value["item_price"]; ?> kr.</p>
                                         </div>
 
                                         <div class="mt-4 sm:mt-0 sm:pr-9">
                                             <form method="post" action="cart.php">
                                                 <input type="hidden" name="action" value="update_quantity">
-                                                <input type="hidden" name="id" value="<?= $product['ProductID'] ?>">
+                                                <input type="hidden" name="id" value="<?= $value["item_id"]; ?>">
                                                 <label class="sr-only" for="quantity-<?= $key ?>">
                                                     Quantity Product Name</label>
                                                 <select name="quantity" id="quantity-<?= $key ?>" class="max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-semibold leading-5 text-gray-700 shadow-sm sm:text-sm" onchange="this.form.submit()">
@@ -211,7 +216,7 @@ if ($shouldRedirect) {
                                         <div class="absolute right-0 top-0">
                                             <form method="post" action="cart.php">
                                                 <input type="hidden" name="action" value="delete">
-                                                <input type="hidden" name="id" value="<?= $product['ProductID'] ?>">
+                                                <input type="hidden" name="id" value="<?= $value["item_id"]; ?>">
                                                 <button type="submit" class="r-[-0.5rem] text-gray400 p-2" name="delete">
                                                     <span class="sr-only">Remove</span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-5 w-5">
@@ -230,14 +235,14 @@ if ($shouldRedirect) {
                                     </p>
 
                                     <div class="mt-1 text-sm">
-                                        <p class="text-gray-500">Total: <?= number_format($product['Price'] * $product['quantity'], 2) ?> kr.</p>
+                                        <p class="text-gray-500">Total: <?= number_format($value["item_quantity"] * $value["item_price"], 2) ?> kr.</p>
                                     </div>
 
                                 </div>
                             </li>
                         </ul>
-                    <?php endforeach; ?>
-                <?php endif; ?>
+                    <?php }
+                    } ?>
             </div>
 
 
