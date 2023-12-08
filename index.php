@@ -13,6 +13,7 @@ ini_set('display_startup_errors', 1);
     <title>Document</title>
 </head>
 <body>
+    <a href="./src/views/admin.php">Admin</a><br>
     <a href="./src/views/list_product.php">Product list</a><br>
     <a href="./src/views/news_post_form.php">Add news post</a><br>
     <a href="./src/views/company.php">Company presentation</a><br>
