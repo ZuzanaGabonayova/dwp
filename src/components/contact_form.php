@@ -41,6 +41,7 @@ ini_set('display_startup_errors', 1);
             <label class="block text-sm font-semibold leading-6 text-gray-900" for="message">Message:</label>
             <textarea class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="message" name="message" required></textarea>
         </div>
+        <div class="h-captcha" data-sitekey="64369d24-19ca-4b0e-8aee-9926ffc4c301"></div>
         <button class="block w-full rounded-md bg-[#FF8C42] px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#FF8C42]/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" type="submit" value="Submit"> Send message </button>
         </div>
         </div>
@@ -52,40 +53,37 @@ ini_set('display_startup_errors', 1);
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var form = document.getElementById('contactForm');
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
+    var form = document.getElementById('contact-form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-                var formData = new FormData(form);
-                fetch('../actions/contact.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    var successDiv = document.getElementById('successMessage');
-                    var errorDiv = document.getElementById('errorMessage');
-
-                    if (data.status) {
-                        successDiv.innerText = data.message;
-                        successDiv.classList.remove('hidden');
-                        errorDiv.classList.add('hidden');
-                        form.reset();
-                        setTimeout(() => successDiv.classList.add('hidden'), 5000);
-                    } else {
-                        errorDiv.innerText = data.message;
-                        errorDiv.classList.remove('hidden');
-                        successDiv.classList.add('hidden');
-                        setTimeout(() => errorDiv.classList.add('hidden'), 5000);
-                    }
-                })
-                .catch(error => {
-                    errorDiv.innerText = 'An error occurred: ' + error;
-                    errorDiv.classList.remove('hidden');
-                    successDiv.classList.add('hidden');
-                });
-            });
+        var formData = new FormData(form);
+        fetch('../actions/contact.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                // Success message
+                document.getElementById('successMessage').innerText = data.message;
+                document.getElementById('successMessage').classList.remove('hidden');
+                document.getElementById('errorMessage').classList.add('hidden');
+                form.reset(); // Reset the form
+            } else {
+                // Error message
+                document.getElementById('errorMessage').innerText = data.message;
+                document.getElementById('errorMessage').classList.remove('hidden');
+                document.getElementById('successMessage').classList.add('hidden');
+            }
+        })
+        .catch(error => {
+            document.getElementById('errorMessage').innerText = 'An error occurred: ' + error;
+            document.getElementById('errorMessage').classList.remove('hidden');
+            document.getElementById('successMessage').classList.add('hidden');
         });
+    });
+});
 
     </script>
 </body>
