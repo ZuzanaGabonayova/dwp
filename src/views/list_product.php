@@ -7,6 +7,8 @@ session_start(); // Initialize the session for counting the cart items
 
 $readProductCrud = new ReadProductCrud($conn);
 $products = $readProductCrud->readProducts();
+
+
 ?>
 
 <!DOCTYPE html>
