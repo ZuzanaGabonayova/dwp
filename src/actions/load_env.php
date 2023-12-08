@@ -24,6 +24,6 @@ function loadEnvironmentFile($path) {
 }
 
 // Load .env file
-loadEnvironmentFile(__DIR__ . '../../.env');
+loadEnvironmentFile('../../.env');
 
 ?>
