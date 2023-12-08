@@ -23,7 +23,6 @@ ini_set('display_startup_errors', 1);
 </head>
 <body>
     <form id="contact-form" class="mx-auto max-w-xl" id="contactForm" action="../actions/contact.php" method="post">
-        <div class="h-captcha" data-sitekey="64369d24-19ca-4b0e-8aee-9926ffc4c301"></div>
         <div class="flex flex-col gap-6">
         <div class="mb-10">
         <h2>Contact Us</h2>
