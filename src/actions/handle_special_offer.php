@@ -11,6 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["productId"])) {
     $productId = $_POST["productId"];
     $specialOfferCrud->createOrUpdateSpecialOffer($productId);
     // Redirect or show a success message
-    header("Location: ../views/daily-special-offer.php");
+    header("Location: ../views/daily_special_offer.php");
 }
 ?>
