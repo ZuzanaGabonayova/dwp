@@ -113,6 +113,12 @@ $conn->close();
             addToCartButton.disabled = size === ''; // Disable button if no size is selected
         }
         
+        // Disable the submit button by default
+        window.addEventListener('DOMContentLoaded', function() {
+            const addToCartButton = document.querySelector('input[name="add_to_cart"]');
+            addToCartButton.disabled = true;
+        });
+
         // Add event listener to size options to handle the click event
         const sizeOptions = document.querySelectorAll('.size-option');
         sizeOptions.forEach(option => {
