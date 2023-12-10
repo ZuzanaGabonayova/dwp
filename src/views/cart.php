@@ -40,7 +40,7 @@ if (isset($_GET["action"])) {
         $productID = $_GET["id"];
         $productModel = isset($_GET["hidden_name"]) ? $_GET["hidden_name"] : '';
         $productPrice = isset($_GET["hidden_price"]) ? $_GET["hidden_price"] : '';
-        $selectedSize = isset($_SESSION['selected_sizes'][$productID]) ? $_SESSION['selected_sizes'][$productID] : ''; // Retrieve selected size from session
+        $selectedSize = isset($_GET["selected_size"]) ? $_GET["selected_size"] : ''; // Fetch selected size from the URL parameter
 
         $found = false;
 
@@ -63,8 +63,13 @@ if (isset($_GET["action"])) {
                 'selected_size' => $selectedSize
             );
             $_SESSION["shopping_cart"][] = $item_array;
+
+            // Add the selected size to the selected_sizes session array
+            $_SESSION['selected_sizes'][$productID] = $selectedSize;
+
         }
-    } /* elseif ($action == "delete" && isset($_GET["id"])) {
+    } 
+    /* elseif ($action == "delete" && isset($_GET["id"])) {
         $productID = $_GET["id"];
     
         if (!empty($_SESSION["shopping_cart"])) {
@@ -222,7 +227,7 @@ if ($shouldRedirect) {
                                             </div>
                                             <div class="mt-1 text-sm">
                                                 <!-- Size -->
-                                                <p class="text-gray-500">Selected Size: <?= htmlspecialchars($product['selected_size']) ?></p>
+                                                <p class="text-gray-500">Selected Size: <?= htmlspecialchars($_SESSION['selected_sizes'][$product['ProductID']]) ?></p>
                                             </div>
                                             <!-- Price -->
                                             <p class="mt-1 text-sm font-semibold text-gray-900"><?= htmlspecialchars($product['Price']) ?></p>
