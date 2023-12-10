@@ -93,6 +93,11 @@ $conn->close();
     <script>
         function setSize(size) {
             document.getElementById('selectedSize').value = size;
+            const sizeOptions = document.querySelectorAll('.size-option');
+            sizeOptions.forEach(option => {
+                option.style.backgroundColor = 'white'; // Reset all sizes to default background color
+            });
+            event.currentTarget.style.backgroundColor = '#F39200'; // Change background color of selected size
         }
     </script>
 
