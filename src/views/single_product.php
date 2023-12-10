@@ -91,6 +91,14 @@ $conn->close();
         <?php endif; ?>
     </div>
 
+    <style>
+        /* Style for disabled button */
+        input[type="submit"][disabled] {
+            background-color: lightgray; /* Change the background color for disabled state */
+            cursor: not-allowed; /* Change cursor for disabled state */
+        }
+    </style>
+
     <script>
         function setSize(size) {
             document.getElementById('selectedSize').value = size;
@@ -99,6 +107,10 @@ $conn->close();
                 option.style.backgroundColor = 'white'; // Reset all sizes to default background color
             });
             event.currentTarget.style.backgroundColor = '#F39200'; // Change background color of selected size
+            
+            // Enable or disable the submit button based on whether a size is selected
+            const addToCartButton = document.querySelector('input[name="add_to_cart"]');
+            addToCartButton.disabled = size === ''; // Disable button if no size is selected
         }
     </script>
 
