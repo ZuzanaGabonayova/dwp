@@ -80,7 +80,7 @@ $conn->close();
                         <input type="hidden" name="id" value="<?= $productID ?>">
                         <input type="hidden" name="hidden_name" value="<?= htmlspecialchars($product['Model']) ?>">
                         <input type="hidden" name="hidden_price" value="<?= htmlspecialchars($product['Price']) ?>">
-                        <input type="hidden" id="selectedSizeInput" name="selected_size" value="<?= isset($_GET['selected_size']) ? htmlspecialchars($_GET['selected_size']) : '' ?>">
+                        <input type="hidden" id="selectedSize" name="selected_size" value="<?= isset($_GET['selected_size']) ? htmlspecialchars($_GET['selected_size']) : '' ?>">
                         <input type="submit" name="add_to_cart" class="bg-primary hover:bg-primary/80 text-white font-bold py-2 px-4 rounded cursor-pointer" value="Add to Cart">
                     </form>
                 </div>
@@ -94,7 +94,6 @@ $conn->close();
     <script>
         function setSize(size) {
             document.getElementById('selectedSize').value = size;
-            document.getElementById('selectedSizeInput').value = size; // Update the hidden input field
             const sizeOptions = document.querySelectorAll('.size-option');
             sizeOptions.forEach(option => {
                 option.style.backgroundColor = 'white'; // Reset all sizes to default background color
