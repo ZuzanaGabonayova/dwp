@@ -100,7 +100,7 @@ $conn->close();
     </style>
 
     <script>
-        function setSize(size) {
+        function setSize(size, event) {
             document.getElementById('selectedSize').value = size;
             const sizeOptions = document.querySelectorAll('.size-option');
             sizeOptions.forEach(option => {
@@ -116,8 +116,8 @@ $conn->close();
         // Add event listener to size options to handle the click event
         const sizeOptions = document.querySelectorAll('.size-option');
         sizeOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                setSize(option.textContent); // Pass the selected size to setSize function
+            option.addEventListener('click', function(event) {
+                setSize(option.textContent, event); // Pass the selected size and event to setSize function
             });
         });
     </script>
