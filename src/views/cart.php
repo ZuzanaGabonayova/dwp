@@ -40,13 +40,13 @@ if (isset($_GET["action"])) {
         $productID = $_GET["id"];
         $productModel = isset($_GET["hidden_name"]) ? $_GET["hidden_name"] : '';
         $productPrice = isset($_GET["hidden_price"]) ? $_GET["hidden_price"] : '';
-        $selectedSize = isset($_POST["selected_size"]) ? $_POST["selected_size"] : ''; // Retrieve the selected size
+        $selectedSize = isset($_SESSION['selected_sizes'][$productID]) ? $_SESSION['selected_sizes'][$productID] : ''; // Retrieve selected size from session
 
         $found = false;
 
         if (!empty($_SESSION["shopping_cart"])) {
             foreach ($_SESSION["shopping_cart"] as &$cart_item) {
-                if ($cart_item['item_id'] == $productID) {
+                if ($cart_item['item_id'] == $productID && $cart_item['selected_size'] == $selectedSize) {
                     $cart_item['item_quantity']++;
                     $found = true;
                     break;
@@ -59,7 +59,8 @@ if (isset($_GET["action"])) {
                 'item_id' => $productID,
                 'item_name' => $productModel,
                 'item_price' => $productPrice,
-                'item_quantity' => 1
+                'item_quantity' => 1,
+                'selected_size' => $selectedSize
             );
             $_SESSION["shopping_cart"][] = $item_array;
         }
