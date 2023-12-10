@@ -9,7 +9,6 @@ require '../config/db.php'; // Include the database configuration
 if (!isset($_SESSION["shopping_cart"]) || !is_array($_SESSION["shopping_cart"])) {
     $_SESSION["shopping_cart"] = array();
 }
-
 // Redirection flag
 $shouldRedirect = false;
 
@@ -41,6 +40,7 @@ if (isset($_GET["action"])) {
         $productID = $_GET["id"];
         $productModel = isset($_GET["hidden_name"]) ? $_GET["hidden_name"] : '';
         $productPrice = isset($_GET["hidden_price"]) ? $_GET["hidden_price"] : '';
+        $selectedSize = isset($_POST["selected_size"]) ? $_POST["selected_size"] : ''; // Retrieve the selected size
 
         $found = false;
 
@@ -121,9 +121,9 @@ $productDetails = [];
 
 if (!empty($productIds)) {
     $placeholders = implode(',', array_fill(0, count($productIds), '?'));
-    $sql = "SELECT p.*, s.Size FROM Product p INNER JOIN Size s ON p.SizeID = s.SizeID WHERE p.ProductID IN ($placeholders)";
+    $sql = "SELECT * FROM Product WHERE ProductID IN ($placeholders)";
     $stmt = $conn->prepare($sql);
-
+    
     if ($stmt) {
         $stmt->bind_param(str_repeat('i', count($productIds)), ...$productIds);
         $stmt->execute();
@@ -134,6 +134,7 @@ if (!empty($productIds)) {
                 foreach ($_SESSION["shopping_cart"] as $cartItem) {
                     if ($cartItem['item_id'] == $row['ProductID']) {
                         $row['quantity'] = $cartItem['item_quantity'];
+                        $row['selected_size'] = $cartItem['selected_size']; // Include selected size
                         $productDetails[] = $row;
                         break;
                     }
@@ -216,12 +217,11 @@ if ($shouldRedirect) {
                                                 <!-- Product Name -->
                                                 <h3 class="text-sm">
                                                     <a href="single_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="font-semibold text-gray-700"><?= htmlspecialchars($product['Model']) ?></a>
-                                                    <a href="single_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="font-semibold text-gray-700"><?= htmlspecialchars($product['Model']) ?></a> - Size: <?= htmlspecialchars($product['Size']) ?>
                                                 </h3>
                                             </div>
                                             <div class="mt-1 text-sm">
                                                 <!-- Size -->
-                                                <p class="text-gray-500">Size</p>
+                                                <p class="text-gray-500">Selected Size: <?= htmlspecialchars($product['selected_size']) ?></p>
                                             </div>
                                             <!-- Price -->
                                             <p class="mt-1 text-sm font-semibold text-gray-900"><?= htmlspecialchars($product['Price']) ?></p>
