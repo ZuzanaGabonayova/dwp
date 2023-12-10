@@ -20,6 +20,19 @@ if (isset($_GET['ProductID'])) {
     $authorName = $readProductCrud->getAuthorName($product['AdminID']); // Adjust as per your table structure
 }
 
+if ($_SERVER["REQUEST_METHOD"] === "GET") {
+    if (isset($_GET['add_to_cart'])) {
+        $sizeSelected = isset($_GET['selected_size']);
+        
+        if (!$sizeSelected) {
+            echo '<p>Please select a size before adding to cart.</p>';
+        } else {
+            header('Location: cart.php?action=add&id=' . $productID . '&hidden_name=' . urlencode($product['Model']) . '&hidden_price=' . urlencode($product['Price']) . '&selected_size=' . urlencode($_GET['selected_size']));
+            exit();
+        }
+    }
+}
+
 $conn->close();
 ?>
 
@@ -57,17 +70,6 @@ $conn->close();
                             </div>
                         </div>
                     </div>
-                    <?php
-                    if ($_SERVER["REQUEST_METHOD"] === "GET") {
-                        if (isset($_GET['add_to_cart'])) {
-                            $sizeSelected = isset($_GET['selected_size']);
-                            
-                            if (!$sizeSelected) {
-                                echo '<p>Please select a size before adding to cart.</p>';
-                            }
-                        }
-                    }
-                    ?>
                     <p class="font-bold mt-3">Price: $<?= htmlspecialchars($product['Price']) ?></p>
                     <p class="mt-3">Colors: <?= htmlspecialchars(implode(", ", $productColors)) ?></p>
                         

@@ -121,7 +121,7 @@ $productDetails = [];
 
 if (!empty($productIds)) {
     $placeholders = implode(',', array_fill(0, count($productIds), '?'));
-    $sql = "SELECT * FROM Product WHERE ProductID IN ($placeholders)";
+    $sql = "SELECT p.*, s.Size FROM Product p INNER JOIN Product_Size s ON p.ProductID = s.ProductID WHERE p.ProductID IN ($placeholders)";
     $stmt = $conn->prepare($sql);
     
     if ($stmt) {
@@ -213,9 +213,10 @@ if ($shouldRedirect) {
                                     <div class="relative pr-10 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
                                         <div>
                                             <div class="flex justify-between">
-                                                <!-- Priduct Name -->
+                                                <!-- Product Name -->
                                                 <h3 class="text-sm">
                                                     <a href="single_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="font-semibold text-gray-700"><?= htmlspecialchars($product['Model']) ?></a>
+                                                    <a href="single_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="font-semibold text-gray-700"><?= htmlspecialchars($product['Model']) ?></a> - Size: <?= htmlspecialchars($product['Size']) ?>
                                                 </h3>
                                             </div>
                                             <div class="mt-1 text-sm">
