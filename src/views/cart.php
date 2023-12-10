@@ -5,6 +5,11 @@ ini_set('display_errors', 1);
 session_start();
 require '../config/db.php'; // Include the database configuration
 
+// Initialize shopping cart if not set
+if (!isset($_SESSION["shopping_cart"]) || !is_array($_SESSION["shopping_cart"])) {
+    $_SESSION["shopping_cart"] = array();
+}
+
 // Redirection flag
 $shouldRedirect = false;
 
