@@ -112,6 +112,14 @@ $conn->close();
             const addToCartButton = document.querySelector('input[name="add_to_cart"]');
             addToCartButton.disabled = size === ''; // Disable button if no size is selected
         }
+        
+        // Add event listener to size options to handle the click event
+        const sizeOptions = document.querySelectorAll('.size-option');
+        sizeOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                setSize(option.textContent); // Pass the selected size to setSize function
+            });
+        });
     </script>
 
 </body>
