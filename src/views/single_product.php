@@ -52,11 +52,22 @@ $conn->close();
                         <div class="mt-4">
                             <div class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
                                 <?php foreach ($productSizes as $size): ?>
-                                    <div class=" border-[#F39200] group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase sm:flex-1 sm:py-4 cursor-pointer bg-white text-gray-900 shadow-sm undefined "><?= htmlspecialchars($size) ?></div>
-                                    <?php endforeach; ?>
+                                    <div class="size-option border-[#F39200] group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase sm:flex-1 sm:py-4 cursor-pointer bg-white text-gray-900 shadow-sm undefined" onclick="setSize('<?= htmlspecialchars($size) ?>')" style="<?= isset($_GET['selected_size']) && $_GET['selected_size'] === $size ? 'background-color: #F39200;' : '' ?>"><?= htmlspecialchars($size) ?></div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
+                    <?php
+                    if ($_SERVER["REQUEST_METHOD"] === "GET") {
+                        if (isset($_GET['add_to_cart'])) {
+                            $sizeSelected = isset($_GET['selected_size']);
+                            
+                            if (!$sizeSelected) {
+                                echo '<p>Please select a size before adding to cart.</p>';
+                            }
+                        }
+                    }
+                    ?>
                     <p class="font-bold mt-3">Price: $<?= htmlspecialchars($product['Price']) ?></p>
                     <p class="mt-3">Colors: <?= htmlspecialchars(implode(", ", $productColors)) ?></p>
                         
@@ -68,6 +79,7 @@ $conn->close();
                         <input type="hidden" name="id" value="<?= $productID ?>">
                         <input type="hidden" name="hidden_name" value="<?= htmlspecialchars($product['Model']) ?>">
                         <input type="hidden" name="hidden_price" value="<?= htmlspecialchars($product['Price']) ?>">
+                        <input type="hidden" id="selectedSize" name="selected_size" value="">
                         <input type="submit" name="add_to_cart" class="bg-primary hover:bg-primary/80 text-white font-bold py-2 px-4 rounded cursor-pointer" value="Add to Cart">
                     </form>
                 </div>
@@ -77,5 +89,12 @@ $conn->close();
             <p class="text-center">Product not found.</p>
         <?php endif; ?>
     </div>
+
+    <script>
+        function setSize(size) {
+            document.getElementById('selectedSize').value = size;
+        }
+    </script>
+
 </body>
 </html>
