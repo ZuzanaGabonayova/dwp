@@ -22,11 +22,10 @@ if (isset($_GET['ProductID'])) {
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (isset($_GET['add_to_cart'])) {
-        $sizeSelected = isset($_GET['selected_size']);
-        
-        if (!$sizeSelected) {
+        $selectedSize = $_GET['selected_size'] ?? null;
+        if ($selectedSize === null || empty($selectedSize)) {
             echo '<p>Please select a size before adding to cart.</p>';
-        } else {
+        } else{
             header('Location: cart.php?action=add&id=' . $productID . '&hidden_name=' . urlencode($product['Model']) . '&hidden_price=' . urlencode($product['Price']) . '&selected_size=' . urlencode($_GET['selected_size']));
             exit();
         }
@@ -81,7 +80,7 @@ $conn->close();
                         <input type="hidden" name="id" value="<?= $productID ?>">
                         <input type="hidden" name="hidden_name" value="<?= htmlspecialchars($product['Model']) ?>">
                         <input type="hidden" name="hidden_price" value="<?= htmlspecialchars($product['Price']) ?>">
-                        <input type="hidden" id="selectedSizeInput" name="selected_size" value="">
+                        <input type="hidden" id="selectedSizeInput" name="selected_size" value="<?= isset($_GET['selected_size']) ? htmlspecialchars($_GET['selected_size']) : '' ?>">
                         <input type="submit" name="add_to_cart" class="bg-primary hover:bg-primary/80 text-white font-bold py-2 px-4 rounded cursor-pointer" value="Add to Cart">
                     </form>
                 </div>
