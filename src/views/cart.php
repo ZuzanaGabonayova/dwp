@@ -121,9 +121,9 @@ $productDetails = [];
 
 if (!empty($productIds)) {
     $placeholders = implode(',', array_fill(0, count($productIds), '?'));
-    $sql = "SELECT p.*, s.Size FROM Product p INNER JOIN Product_Size s ON p.ProductID = s.ProductID WHERE p.ProductID IN ($placeholders)";
+    $sql = "SELECT p.*, s.Size FROM Product p INNER JOIN Size s ON p.SizeID = s.SizeID WHERE p.ProductID IN ($placeholders)";
     $stmt = $conn->prepare($sql);
-    
+
     if ($stmt) {
         $stmt->bind_param(str_repeat('i', count($productIds)), ...$productIds);
         $stmt->execute();
