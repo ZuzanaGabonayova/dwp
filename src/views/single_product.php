@@ -64,7 +64,7 @@ $conn->close();
                         <div class="mt-4">
                             <div class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
                                 <?php foreach ($productSizes as $size): ?>
-                                    <div class="size-option border-[#F39200] group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase sm:flex-1 sm:py-4 cursor-pointer bg-white text-gray-900 shadow-sm undefined" onclick="setSize('<?= htmlspecialchars($size) ?>')" style="<?= isset($_GET['selected_size']) && $_GET['selected_size'] === $size ? 'background-color: #F39200;' : '' ?>"><?= htmlspecialchars($size) ?></div>
+                                    <div class="size-option border-[#F39200] group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase sm:flex-1 sm:py-4 cursor-pointer bg-white text-gray-900 shadow-sm undefined" onclick="setSize('<?= htmlspecialchars($size) ?>', event)" style="<?= isset($_GET['selected_size']) && $_GET['selected_size'] === $size ? 'background-color: #F39200;' : '' ?>"><?= htmlspecialchars($size) ?></div>
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -92,7 +92,7 @@ $conn->close();
     </div>
 
     <script>
-        function setSize(size) {
+        function setSize(size, event) {
             document.getElementById('selectedSize').value = size;
             const sizeOptions = document.querySelectorAll('.size-option');
             sizeOptions.forEach(option => {
