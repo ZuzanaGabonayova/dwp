@@ -17,7 +17,7 @@ error_reporting(E_ALL);
         <?php
 
         $content = '../../components/admin/news_list.php';
-        include_once '../../layouts/backend.php';
+        include_once '../layouts/backend.php';
 
         ?>
     </div>
