@@ -20,7 +20,7 @@
                 <ul role="list" class="-my-2 space-y-1">
                   <li>
                     <a
-                      href="../views/dashboard_admin.php"
+                      href="src/views//dashboard_admin.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
@@ -43,7 +43,7 @@
                   </li>
                   <li>
                     <a
-                      href="/products_admin.php"
+                      href="src/views//products_admin.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
@@ -66,7 +66,7 @@
                   </li>
                   <li>
                     <a
-                      href="/admin/news.php"
+                      href="src/views//admin/news.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
@@ -89,7 +89,7 @@
                   </li>
                   <li>
                     <a
-                      href="/daily_special_offer_admin.php"
+                      href="src/views//daily_special_offer_admin.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
@@ -117,7 +117,7 @@
                   </li>
                   <li>
                     <a
-                      href="/company_admin.php"
+                      href="src/views//company_admin.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" 
@@ -137,7 +137,7 @@
                   </li>
                   <li>
                     <a
-                      href="/views/company_admin.php"
+                      href="src/views/company_admin.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
