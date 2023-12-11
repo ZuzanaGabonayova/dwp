@@ -1,7 +1,7 @@
 <?php
-require_once '../../config/db.php';
-require_once '../../product/ReadProductCrud.php';
-require_once '../../utils/url_helpers.php';
+require_once __DIR__ . '/../../config/db.php';
+require_once __DIR__ . '/../../product/ReadProductCrud.php';
+require_once __DIR__ . '/../../utils/url_helpers.php';
 
 
 
