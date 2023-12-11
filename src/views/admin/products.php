@@ -9,8 +9,8 @@ error_reporting(E_ALL);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="../../assets/css/output.css">
+    <title>Products - Admin</title>
+    <link rel="stylesheet" href="../../../assets/css/output.css">
 </head>
 <body>
     <div>
