@@ -66,16 +66,16 @@ try {
 
     // Server settings
     $mail->isSMTP();
-    $mail->Host       = getenv('MAIL_HOST');
+    $mail->Host       = $_ENV['MAIL_HOST'] ?? null;
     $mail->SMTPAuth   = true;
-    $mail->Username   = getenv('MAIL_USERNAME');
-    $mail->Password   = getenv('MAIL_PASSWORD');
-    $mail->SMTPSecure = getenv('MAIL_SECURE');
-    $mail->Port       = getenv('MAIL_PORT');
+    $mail->Username   = $_ENV['MAIL_USERNAME'] ?? null;
+    $mail->Password   = $_ENV['MAIL_PASSWORD'] ?? null;
+    $mail->SMTPSecure = $_ENV['MAIL_SECURE'] ?? null;
+    $mail->Port       = $_ENV['MAIL_PORT'] ?? null;
 
     // Recipients
-    $mail->setFrom(getenv('MAIL_FROM_ADDRESS'), 'DWP Contact Form');
-    $mail->addAddress(getenv('MAIL_TO_ADDRESS')); 
+    $mail->setFrom($_ENV['MAIL_FROM_ADDRESS'] ?? null, 'DWP Contact Form');
+    $mail->addAddress($_ENV['MAIL_TO_ADDRESS'] ?? null);  
 
     // Content
     $mail->isHTML(true);
