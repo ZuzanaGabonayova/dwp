@@ -27,4 +27,5 @@ $charge = \Stripe\Charge::create(array(
     "customer" => $customer->id
 ));
 
-print_r($charge);
+//redirect to success
+header('Location: ../../actions/success.php?tid=' . $charge->id . '&product=' - $charge->description);
