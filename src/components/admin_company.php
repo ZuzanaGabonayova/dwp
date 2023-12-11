@@ -27,7 +27,7 @@ $companyData = $readCrud->readCompanyPresentation();
         if ($companyData): ?>
             <div class="overflow-hidden rounded-xl border border-gray-300 mt-6">
                 <div class="flex items-center gap-x-4 border-b bg-gray-100 p-6">
-                    <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple" class="h-12 w-12 flex-none rounded-lg bg-white ring-2 ring-gray-300 ring-offset-2">
+                    <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple" class="h-12 w-12 flex-none rounded-lg bg-white ring-1 ring-gray-300 ring-offset-2">
                     <div class="text-sm font-medium leading-6 text-gray-900">
                         Sneaker Shop
                     </div>
