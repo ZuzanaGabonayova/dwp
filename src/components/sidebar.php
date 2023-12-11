@@ -136,7 +136,7 @@ include_once __DIR__ . '/../utils/url_helpers.php';
                     </a>
                   </li>
                   <li>
-                    <a href="<?php echo baseUrl(); ?>src/views/company_admin.php" class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50">
+                    <a href="<?php echo baseUrl(); ?>src/views/admin/company.php" class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
