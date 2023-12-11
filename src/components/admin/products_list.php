@@ -54,7 +54,7 @@ $products = $readProductCrud->readProducts();
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= $product["Model"]; ?></td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= $product["Price"]; ?></td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <img class="h-10 w-10 rounded-full" src="<?= $product["ProductMainImage"]; ?>" alt="Product image">
+                                        <img class="h-10 w-10 rounded-full" src="../<?= $product["ProductMainImage"]; ?>" alt="Product image">
                                     </td>
                                     <td class="relative whitespace-nowrap pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                         <a href="update_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600">Edit</a>
