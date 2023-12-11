@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
 require_once '../product/ReadProductCrud.php';
-require_once '../crud/DailySpecialOfferCrud.php';
+require_once '../daily_special_offer/DailySpecialOfferCrud.php';
 
 $dailySpecialOfferCrud = new DailySpecialOfferCrud($conn);
 $currentSpecialOffer = $dailySpecialOfferCrud->getCurrentSpecialOffer();
