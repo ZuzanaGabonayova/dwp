@@ -4,8 +4,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
 require_once '../product/ReadProductCrud.php';
-?>
+require_once '../crud/DailySpecialOfferCrud.php';
 
+$dailySpecialOfferCrud = new DailySpecialOfferCrud($conn);
+$currentSpecialOffer = $dailySpecialOfferCrud->getCurrentSpecialOffer();
+?>
 
 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
     <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
@@ -20,7 +23,8 @@ require_once '../product/ReadProductCrud.php';
             $products = $readProductCrud->readProducts();
             if ($products) {
                 while ($product = $products->fetch_assoc()) {
-                    echo "<option value=\"{$product['ProductID']}\">{$product['Model']}</option>";
+                    $selected = ($product['ProductID'] == $currentSpecialOffer['ProductID']) ? 'selected' : '';
+                    echo "<option value=\"{$product['ProductID']}\" {$selected}>{$product['Model']}</option>";
                 }
             }
             ?>
