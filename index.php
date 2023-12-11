@@ -16,12 +16,9 @@ ini_set('display_startup_errors', 1);
     <a href="./src/views/admin.php">Admin</a><br>
     <a href="./src/views/list_product.php">Product list</a><br>
     <a href="./src/views/news_post_form.php">Add news post</a><br>
-    <a href="./src/views/company.php">Company presentation</a><br>
-    <a href="./src/views/all_news_posts.php">All news posts</a><br>
     <a href="./src/components/contact_form.php">Contact form</a><br>
     <a href="./src/views/visitor_product_page.php">Visitor products</a><br>
     <a href="./src/views/news.php">Visitor news</a><br>
-    <a href="./src/views/AdminDashboard.php">Admin dashboard</a><br>
     <a href="./src/views/daily-special-offer.php">Daily special offer</a><br>
     <a href="./src/views/checkout.php">Checkout</a><br>
     <a href="./src/views/admin/admin_registration_form.php">Admin registration</a><br>
