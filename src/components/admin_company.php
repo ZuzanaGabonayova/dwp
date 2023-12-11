@@ -15,8 +15,8 @@ $companyData = $readCrud->readCompanyPresentation();
     <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
         <div class="flex items-center justify-between">
             <h2 class="text-base font-semibold text-gray-900">Company Presentation</h2>
-            <a href="../views/edit_company_presentation.php" class="flex items-center gap-x-1 rounded-md bg-blue-500 hover:bg-blue-700s text-white px-3 py-2 text-sm font-semibold shadow-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 -ml-1.5">
+            <a href="../views/edit_company_presentation.php" class="flex items-center gap-x-1 rounded-md bg-blue-500 hover:bg-blue-700 text-white px-3 py-2 text-sm font-semibold shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 -ml-1.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
                 </svg>
                 Update information
@@ -27,7 +27,7 @@ $companyData = $readCrud->readCompanyPresentation();
         if ($companyData): ?>
             <div class="overflow-hidden rounded-xl border border-gray-300 mt-6">
                 <div class="flex items-center gap-x-4 border-b bg-gray-100 p-6">
-                    <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple" class="h-12 w-12 flex-none rounded-lg bg-white ring-2 ring-gray-900 ring-offset-2">
+                    <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple" class="h-12 w-12 flex-none rounded-lg bg-white ring-2 ring-gray-300 ring-offset-2">
                     <div class="text-sm font-medium leading-6 text-gray-900">
                         Sneaker Shop
                     </div>
