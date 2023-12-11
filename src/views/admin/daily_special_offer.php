@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require_once '../admin_authentication/loggedin.php';
+require_once '../../admin_authentication/loggedin.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,14 +12,14 @@ require_once '../admin_authentication/loggedin.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Special Offer - Admin</title>
-    <link rel="stylesheet" href="../../assets/css/output.css">
+    <link rel="stylesheet" href="../../../assets/css/output.css">
 </head>
 <body>
     <div>
         <?php
 
-        $content = '../components/admin_daily_special_offer.php';
-        include_once '../layouts/backend.php';
+        $content = __DIR__ . '/../../components/admin/daily_special_offer.php';
+        include_once __DIR__ . '/../../layouts/backend.php';
 
         ?>
     </div>

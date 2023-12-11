@@ -18,7 +18,7 @@ require_once '../../admin_authentication/loggedin.php';
     <div>
         <?php
 
-         $content = __DIR__ . '/../../components/admin/company.php';
+        $content = __DIR__ . '/../../components/admin/company.php';
         include_once __DIR__ . '/../../layouts/backend.php';
 
         ?>
