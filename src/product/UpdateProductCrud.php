@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../config/db.php';
-require_once '../utils/uploadProductImage.php';
+require_once __DIR__ . '/../utils/uploadProductImage.php';
 
 class UpdateProductCrud {
     private $conn;
