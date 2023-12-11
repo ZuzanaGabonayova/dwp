@@ -46,8 +46,7 @@ include_once __DIR__ . '/../utils/url_helpers.php';
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="../views/list_product.php"
+                    <a href="<?php echo baseUrl(); ?>src/views/list_product.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
@@ -69,8 +68,7 @@ include_once __DIR__ . '/../utils/url_helpers.php';
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="../views/admin/news.php"
+                    <a href="<?php echo baseUrl(); ?>src/views/admin/News.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
@@ -92,8 +90,7 @@ include_once __DIR__ . '/../utils/url_helpers.php';
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="../views/daily_special_offer_admin.php"
+                    <a href="<?php echo baseUrl(); ?>src/views/daily_special_offer_admin.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
@@ -120,8 +117,7 @@ include_once __DIR__ . '/../utils/url_helpers.php';
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="../views/company_admin.php"
+                    <a href="<?php echo baseUrl(); ?>src/views/company_admin.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" 
@@ -141,6 +137,14 @@ include_once __DIR__ . '/../utils/url_helpers.php';
                   </li>
                   <li>
                     <a href="<?php echo baseUrl(); ?>src/views/company_admin.php" class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="h-6 w-6 flex-shrink-0 text-gray-400"
+                      >
                         <path
                           stroke-linecap="round"
                           stroke-linejoin="round"
