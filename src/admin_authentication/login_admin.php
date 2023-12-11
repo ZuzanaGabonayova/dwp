@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $hashed_password)) {
             $_SESSION['admin_username'] = $username;
             // Redirect to admin dashboard
-            header("Location: ../views/AdminDashboard.php");
+            header("Location: ../views/admin.php");
             exit();
         } else {
             echo "Invalid username or password!";
