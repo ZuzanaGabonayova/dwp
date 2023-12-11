@@ -24,7 +24,7 @@ include_once __DIR__ . '/../utils/url_helpers.php';
                 <ul role="list" class="-my-2 space-y-1">
                   <li>
                     <a
-                      href="src/views//dashboard_admin.php"
+                      <a href="<?php echo baseUrl(); ?>src/views/dashboard_admin.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
@@ -46,7 +46,7 @@ include_once __DIR__ . '/../utils/url_helpers.php';
                     </a>
                   </li>
                   <li>
-                    <a href="<?php echo baseUrl(); ?>src/views/list_product.php"
+                    <a href="<?php echo baseUrl(); ?>src/views/products_admin.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
