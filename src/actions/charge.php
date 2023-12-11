@@ -28,4 +28,4 @@ $charge = \Stripe\Charge::create(array(
 ));
 
 //redirect to success
-header('Location: ../../actions/success.php?tid=' . $charge->id . '&product=' - $charge->description);
+header('Location: ../../src/actions/success.php?tid=' . $charge->id . '&product=' . $charge->description);
