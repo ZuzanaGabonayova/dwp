@@ -1,6 +1,15 @@
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
+
+use Dotenv\Dotenv;
+
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+$dotenv = Dotenv::createImmutable('/home/master/applications/phqmbyaurd/public_html'); // Adjusted path to load .env from two directories back
+$dotenv->load();
+
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -58,16 +67,16 @@ try {
 
     // Server settings
     $mail->isSMTP();
-    $mail->Host       = 'send.one.com';
+    $mail->Host       = getenv('MAIL_HOST');
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'info@zuzanagabonayova.eu';
-    $mail->Password   = 'dwp2023';
-    $mail->SMTPSecure = 'ssl';
-    $mail->Port       = 465;
+    $mail->Username   = getenv('MAIL_USERNAME');
+    $mail->Password   = getenv('MAIL_PASSWORD');
+    $mail->SMTPSecure = getenv('MAIL_SECURE');
+    $mail->Port       = getenv('MAIL_PORT');
 
     // Recipients
-    $mail->setFrom('info@zuzanagabonayova.eu', 'Website Contact Form');
-    $mail->addAddress('vitkai.laca1@gmail.com'); 
+    $mail->setFrom(getenv('MAIL_FROM_ADDRESS'), 'DWP Contact Form');
+    $mail->addAddress(getenv('MAIL_TO_ADDRESS')); 
 
     // Content
     $mail->isHTML(true);

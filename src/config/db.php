@@ -11,8 +11,6 @@ $username = $_ENV['DB_USER'] ?? null;
 $password = $_ENV['DB_PASS'] ?? null;
 $dbname = $_ENV['DB_NAME'] ?? null;
 
-var_dump($servername, $username, $password, $dbname);
-
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
