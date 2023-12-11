@@ -23,5 +23,6 @@ ini_set('display_startup_errors', 1);
     <a href="./src/views/news.php">Visitor news</a><br>
     <a href="./src/views/AdminDashboard.php">Admin dashboard</a><br>
     <a href="./src/views/daily-special-offer.php">Daily special offer</a><br>
+    <a href="./src/views/checkout.php">Checkout</a><br>
 </body>
 </html>
