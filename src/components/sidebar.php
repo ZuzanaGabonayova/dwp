@@ -90,7 +90,7 @@ include_once __DIR__ . '/../utils/url_helpers.php';
                     </a>
                   </li>
                   <li>
-                    <a href="<?php echo baseUrl(); ?>src/views/daily_special_offer_admin.php"
+                    <a href="<?php echo baseUrl(); ?>src/views/admin/daily_special_offer.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
