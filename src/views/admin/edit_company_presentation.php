@@ -4,8 +4,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 ini_set('error_reporting', E_ALL);
 
-require_once '../config/db.php';
-require_once '../company/ReadCompanyCrud.php';
+require_once __DIR__ . '/../../config/db.php';
+require_once __DIR__ . '/../../company/ReadCompanyCrud.php';
 
 $readCrud = new ReadCompanyCrud($conn);
 $companyData = $readCrud->readCompanyPresentation();
