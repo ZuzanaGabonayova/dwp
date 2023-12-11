@@ -38,8 +38,8 @@ $newsPosts = $readNewsCrud->readAllNewsPosts();
                                         <?php echo htmlspecialchars($post['title']); ?>
                                     </td>
                                     <td class="relative whitespace-nowrap pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                        <a href="../views/edit_news_post.php?id=<?php echo $post['id']; ?>" class="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600">Edit</a>
-                                        <a href="../actions/handle_delete_news_post.php?id=<?php echo $post['id']; ?>" class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600" onclick="return confirm('Are you sure you want to delete this post?');">Delete</a>
+                                        <a href="../../views/admin/edit_news_post.php?id=<?php echo $post['id']; ?>" class="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600">Edit</a>
+                                        <a href="../../actions/handle_delete_news_post.php?id=<?php echo $post['id']; ?>" class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600" onclick="return confirm('Are you sure you want to delete this post?');">Delete</a>
                                     </td>
                             </tr>
                             <?php endwhile; ?>
