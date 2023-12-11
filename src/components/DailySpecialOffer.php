@@ -15,7 +15,7 @@
 
 
 
-    <h2>Daily Special Offer</h2>
+
 
     <?php if ($productDetails): ?>
         <section aria-labelledby="daily-special-offer-heading" class="bg-white">
