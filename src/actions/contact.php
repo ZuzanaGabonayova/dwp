@@ -13,8 +13,7 @@ $dotenv->load();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '../../vendor/autoload.php'; // If using Composer
-require '../config/db.php'; // Your database connection file
+require __DIR__ . '/../../src/config/db.php'; // Adjusted path to load db.php from two directories back
 
 // Prevent direct access to the script
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
