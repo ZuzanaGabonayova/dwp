@@ -66,7 +66,7 @@
                   </li>
                   <li>
                     <a
-                      href="#"
+                      href="../views/admin/news.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
