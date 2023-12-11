@@ -19,7 +19,7 @@ $companyData = $readCrud->readCompanyPresentation();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Company Presentation</title>
-    <link rel="stylesheet" href="../../assets/css/output.css">
+    <link rel="stylesheet" href="../../../assets/css/output.css">
 </head>
 <body class="bg-gray-100 p-8">
 
