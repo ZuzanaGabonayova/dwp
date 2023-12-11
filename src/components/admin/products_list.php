@@ -58,7 +58,7 @@ $products = $readProductCrud->readProducts();
                                     </td>
                                     <td class="relative whitespace-nowrap pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                         <a href="update_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600">Edit</a>
-                                       <a class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600" href="../actions/handle_delete_product.php?ProductID=<?php echo $product['ProductID']; ?>" onclick="return confirm('Are you sure you want to delete this product?');">
+                                       <a class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600" href="../../actions/handle_delete_product.php?ProductID=<?php echo $product['ProductID']; ?>" onclick="return confirm('Are you sure you want to delete this product?');">
                                             Delete
                                        </a>
 
