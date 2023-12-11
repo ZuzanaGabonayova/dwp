@@ -1,3 +1,7 @@
+<?php 
+include_once __DIR__ . '/../utils/url_helpers.php';
+?>
+
 <div
         id="menu"
         class="hidden lg:flex lg:flex-col lg:w-72 lg:z-50 lg:inset-y-0 lg:fixed"
@@ -43,7 +47,7 @@
                   </li>
                   <li>
                     <a
-                      href="src/views//products_admin.php"
+                      href="../views/list_product.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
@@ -66,7 +70,7 @@
                   </li>
                   <li>
                     <a
-                      href="src/views//admin/news.php"
+                      href="../views/admin/news.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
@@ -89,7 +93,7 @@
                   </li>
                   <li>
                     <a
-                      href="src/views//daily_special_offer_admin.php"
+                      href="../views/daily_special_offer_admin.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg
@@ -117,7 +121,7 @@
                   </li>
                   <li>
                     <a
-                      href="src/views//company_admin.php"
+                      href="../views/company_admin.php"
                       class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" 
@@ -136,18 +140,7 @@
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="src/views/company_admin.php"
-                      class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="h-6 w-6 flex-shrink-0 text-gray-400"
-                      >
+                    <a href="<?php echo baseUrl(); ?>src/views/company_admin.php" class="flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50">
                         <path
                           stroke-linecap="round"
                           stroke-linejoin="round"
