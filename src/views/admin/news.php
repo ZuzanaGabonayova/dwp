@@ -10,14 +10,14 @@ error_reporting(E_ALL);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News Posts - Admin</title>
-    <link rel="stylesheet" href="../../assets/css/output.css">
+    <link rel="stylesheet" href="<?php echo __DIR__; ?>/../../assets/css/output.css">
 </head>
 <body>
     <div>
         <?php
 
-        $content = '../../components/news_list.php';
-        include_once '../../layouts/backend.php';
+        $content = __DIR__ . '/../../components/news_list.php';
+        include_once __DIR__ . '/../../layouts/backend.php';
 
         ?>
     </div>
