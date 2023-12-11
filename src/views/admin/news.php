@@ -16,8 +16,8 @@ error_reporting(E_ALL);
     <div>
         <?php
 
-        $content = '../../components/admin/news_list.php';
-        include_once '../layouts/backend.php';
+        $content = '../../components/news_list.php';
+        include_once '../../layouts/backend.php';
 
         ?>
     </div>
