@@ -16,7 +16,7 @@ $currentSpecialOffer = $dailySpecialOfferCrud->getCurrentSpecialOffer();
             <h2 class="text-base font-semibold text-gray-900">Daily special offer</h2>
         </div>
     </div>
-    <form action="../actions/handle_special_offer.php" method="post" class="max-w-none sm:max-w-sm mt-6">
+    <form action="../../actions/handle_special_offer.php" method="post" class="max-w-none sm:max-w-sm mt-6">
         <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" name="productId">
             <?php
             $readProductCrud = new ReadProductCrud($conn);
