@@ -16,7 +16,7 @@ error_reporting(E_ALL);
     <div>
         <?php
 
-        $content = __DIR__ . '/../../components/news_list.php';
+        $content = __DIR__ . '/../../components/admin/news_list.php';
         include_once __DIR__ . '/../../layouts/backend.php';
 
         ?>
