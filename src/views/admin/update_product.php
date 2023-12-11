@@ -39,7 +39,7 @@ $error = isset($_GET["error"]) ? $_GET["error"] : "";
         <div class="px-6 py-6 lg:px-8">
             <div class="max-w-2xl mx-auto ring-1 ring-gray-900/10 p-4 rounded-md shadow-sm">
                 <?php if ($product): ?>
-                    <form action="../actions/handle_update_product.php" method="post" enctype="multipart/form-data" class="space-y-4">
+                    <form action="../../actions/handle_update_product.php" method="post" enctype="multipart/form-data" class="space-y-4">
                         <h2 class="mb-6 text-xl font-semibold text-gray-500 uppercase">Edit product</h2>
                         <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
                             <input type="hidden" name="ProductID" value="<?= $product["ProductID"] ?>">
