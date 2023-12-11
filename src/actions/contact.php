@@ -1,11 +1,19 @@
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
+
+use Dotenv\Dotenv;
+
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+$dotenv = Dotenv::createImmutable('/home/master/applications/phqmbyaurd/public_html'); // Adjusted path to load .env from two directories back
+$dotenv->load();
+
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '../../vendor/autoload.php'; // If using Composer
-require '../config/db.php'; // Your database connection file
+require __DIR__ . '/../../src/config/db.php'; // Adjusted path to load db.php from two directories back
 
 // Prevent direct access to the script
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -24,7 +32,7 @@ function test_input($data) {
 $response = ['status' => false, 'message' => ''];
 
 // hCaptcha verification
-$secretKey = 'ES_901c5c3c7262407d901507f356dee21d';
+$secretKey = $_ENV['HCAPTCHA_SECRET'] ?? null;
 $token = $_POST['h-captcha-response'];
 $verify = curl_init();
 curl_setopt($verify, CURLOPT_URL, "https://hcaptcha.com/siteverify");
@@ -58,16 +66,16 @@ try {
 
     // Server settings
     $mail->isSMTP();
-    $mail->Host       = 'send.one.com';
+    $mail->Host       = $_ENV['MAIL_HOST'] ?? null;
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'info@zuzanagabonayova.eu';
-    $mail->Password   = 'dwp2023';
-    $mail->SMTPSecure = 'ssl';
-    $mail->Port       = 465;
+    $mail->Username   = $_ENV['MAIL_USERNAME'] ?? null;
+    $mail->Password   = $_ENV['MAIL_PASSWORD'] ?? null;
+    $mail->SMTPSecure = $_ENV['MAIL_SECURE'] ?? null;
+    $mail->Port       = $_ENV['MAIL_PORT'] ?? null;
 
     // Recipients
-    $mail->setFrom('info@zuzanagabonayova.eu', 'Website Contact Form');
-    $mail->addAddress('vitkai.laca1@gmail.com'); 
+    $mail->setFrom($_ENV['MAIL_FROM_ADDRESS'] ?? null, 'DWP Contact Form');
+    $mail->addAddress($_ENV['MAIL_TO_ADDRESS'] ?? null);  
 
     // Content
     $mail->isHTML(true);
