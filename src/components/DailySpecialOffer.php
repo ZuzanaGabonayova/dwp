@@ -32,9 +32,9 @@
                             </a>
                         </div>
                 </div>
-                <div>
+                <div class="aspect-w-1 aspect-h-1">
                     <?php if (!empty($productDetails['ProductMainImage'])): ?>
-                        <img class="h-full w-full aspect-w-1 aspect-h-1 object-cover object-center" src="<?= htmlspecialchars($productDetails['ProductMainImage']) ?>" alt="<?= isset($productDetails['Model']) ? htmlspecialchars($productDetails['Model']) : 'Product image' ?>">
+                        <img class="h-full w-full object-cover object-center" src="<?= htmlspecialchars($productDetails['ProductMainImage']) ?>" alt="<?= isset($productDetails['Model']) ? htmlspecialchars($productDetails['Model']) : 'Product image' ?>">
                     <?php endif; ?>
                 </div>
             </div>
