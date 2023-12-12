@@ -2,27 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Contact Form</title>
-    <link rel="stylesheet" href="../../assets/css/output.css">
-    <style>
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .fade-in {
-            animation: fadeIn 1s;
-        }
-    </style>
-    <script src='https://js.hcaptcha.com/1/api.js' async defer></script>
-</head>
-<body>
-    <form id="contact-form" class="mx-auto max-w-xl" id="contactForm" action="../actions/contact.php" method="post">
+    <form id="contact-form" class="mx-auto max-w-xl" id="contactForm" action="../../actions/contact.php" method="post">
         <div class="flex flex-col gap-6">
         <div class="mb-10">
         <h2>Contact Us</h2>
@@ -50,42 +30,6 @@ ini_set('display_startup_errors', 1);
     <div id="successMessage" class="hidden mb-4 p-4 text-green-700 bg-green-100 border border-green-400 rounded fade-in" aria-live="polite"></div>
     <div id="errorMessage" class="hidden mb-4 p-4 text-red-700 bg-red-100 border border-red-400 rounded fade-in" aria-live="assertive"></div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    var form = document.getElementById('contact-form');
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        var formData = new FormData(form);
-        fetch('../actions/contact.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status) {
-                // Success message
-                document.getElementById('successMessage').innerText = data.message;
-                document.getElementById('successMessage').classList.remove('hidden');
-                document.getElementById('errorMessage').classList.add('hidden');
-                form.reset(); // Reset the form
-            } else {
-                // Error message
-                document.getElementById('errorMessage').innerText = data.message;
-                document.getElementById('errorMessage').classList.remove('hidden');
-                document.getElementById('successMessage').classList.add('hidden');
-            }
-        })
-        .catch(error => {
-            document.getElementById('errorMessage').innerText = 'An error occurred: ' + error;
-            document.getElementById('errorMessage').classList.remove('hidden');
-            document.getElementById('successMessage').classList.add('hidden');
-        });
-    });
-});
-
-    </script>
-</body>
-</html>
+    <script src="../../../assets/js/contact_form.js"></script>
 
     
