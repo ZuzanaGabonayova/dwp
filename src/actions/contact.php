@@ -4,16 +4,17 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+use Dotenv\Dotenv;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-// Loading .env variables
-$dotenv = Dotenv\Dotenv::createImmutable('/home/master/applications/phqmbyaurd/public_html');
+$dotenv = Dotenv::createImmutable('/home/master/applications/phqmbyaurd/public_html');
 $dotenv->load();
 
-require __DIR__ . '/../../src/config/db.php'; // Database connection file
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require __DIR__ . '/../../src/config/db.php';
 
 // Prevent direct access to the script
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -30,6 +31,21 @@ function test_input($data) {
 
 // Initialize response array
 $response = ['status' => false, 'message' => ''];
+
+// reCAPTCHA verification
+$recaptchaSecret = $_ENV['RECAPTCHA_SECRET'] ?? null;
+$recaptchaResponse = $_POST['recaptcha_response'];
+
+$response = file_get_contents(
+    "https://www.google.com/recaptcha/api/siteverify?secret=" . urlencode($recaptchaSecret) . "&response=" . urlencode($recaptchaResponse)
+);
+$responseKeys = json_decode($response, true);
+
+if (!$responseKeys["success"]) {
+    // reCAPTCHA failed
+    echo json_encode(['status' => false, 'message' => 'reCAPTCHA verification failed, please try again.']);
+    exit;
+}
 
 try {
     // Sanitize input
@@ -56,8 +72,8 @@ try {
     $mail->Port       = $_ENV['MAIL_PORT'] ?? null;
 
     // Recipients
-    $mail->setFrom($_ENV['MAIL_FROM_ADDRESS'] ?? null, 'DWP Contact Form');
-    $mail->addAddress($_ENV['MAIL_TO_ADDRESS'] ?? null);  
+    $mail->setFrom($_ENV['MAIL_FROM_ADDRESS'] ?? null, 'Website Contact Form');
+    $mail->addAddress($_ENV['MAIL_TO_ADDRESS'] ?? null); 
 
     // Content
     $mail->isHTML(true);
