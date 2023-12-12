@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-session_start(); // Initialize the session for counting the cart items
+//session_start(); // Initialize the session for counting the cart items
 
 require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../../news/ReadNewsCrud.php';
