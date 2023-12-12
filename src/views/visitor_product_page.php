@@ -28,7 +28,7 @@ $products = $readProductCrud->readProducts();
 
 <body class="bg-white">
     <?php
-    include '../components/navigationbar.php';
+    include '../components/frontend/navigationbar.php';
     ?>
      <!-- Hero section -->
     <?php
