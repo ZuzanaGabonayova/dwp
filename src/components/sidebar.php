@@ -195,7 +195,7 @@ function displayAdminAvatar() {
               <div class="mr-3"><?php echo displayAdminAvatar(); ?></div>
               <div>
                   <p class="text-sm font-semibold"><?php echo $admin_username; ?></p>
-                  <a href="<?php echo baseUrl(); ?>/admin_authentication/logout.php" class="text-xs text-gray-500 hover:text-gray-700">Logout</a>
+                  <a href="<?php echo baseUrl(); ?>../admin_authentication/logout.php" class="text-xs text-gray-500 hover:text-gray-700">Logout</a>
               </div>
           </div>
 
