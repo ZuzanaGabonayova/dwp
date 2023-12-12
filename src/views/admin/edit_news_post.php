@@ -6,6 +6,9 @@ error_reporting(E_ALL);
 
 require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../../news/ReadNewsCrud.php';
+require_once '../../admin_authentication/loggedin.php';
+// Call the function to update last activity time
+updateLastActivityTime();
     
     $newsId = $_GET['id'] ?? null;
 

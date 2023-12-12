@@ -6,6 +6,9 @@ error_reporting(E_ALL);
 session_start(); // Initialize the session for counting the cart items
 
 require_once __DIR__ . '/../../product/UpdateProductCrud.php';
+require_once '../../admin_authentication/loggedin.php';
+// Call the function to update last activity time
+updateLastActivityTime();
 
 $crud = new UpdateProductCrud($conn);
 

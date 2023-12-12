@@ -1,5 +1,7 @@
 <?php 
 require_once '../../admin_authentication/loggedin.php';
+// Call the function to update last activity time
+updateLastActivityTime();
 ?>
 
 <!DOCTYPE html>
