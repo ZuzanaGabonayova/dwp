@@ -15,7 +15,6 @@ if (isset($_GET['id'])) {
     $news = $readNewsCrud->readNewsPost($id); // Call the method using the instance
 }
 
-$conn->close();
 ?>
 <div>
     <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:max-w-7xl lg:gap-x-8 lg:px-8 py-16 sm:py-24">
