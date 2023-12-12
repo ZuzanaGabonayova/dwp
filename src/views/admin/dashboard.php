@@ -21,8 +21,8 @@ updateLastActivityTime();
     <div>
         <?php
 
-        $content = '../components/admin_dashboard.php';
-        include_once '../layouts/backend.php';
+        $content = '../../components/dashboard.php';
+        include_once '../../layouts/backend.php';
 
         ?>
     </div>
