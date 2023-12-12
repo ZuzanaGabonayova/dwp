@@ -21,7 +21,7 @@ error_reporting(E_ALL);
             animation: fadeIn 1s;
         }
     </style>
-    <script src='https://js.hcaptcha.com/1/api.js' async defer></script>
+   
 </head>
 <body>
     <div>

@@ -20,12 +20,11 @@ error_reporting(E_ALL);
                 </div>
             </div>
             <div class="mt-8 flex flex-col gap-12">
-                <div class="h-captcha" data-sitekey="64369d24-19ca-4b0e-8aee-9926ffc4c301"></div>
                 <button class="block w-full rounded-md bg-[#FF8C42] px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#FF8C42]/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" type="submit" value="Submit"> Send message </button>
             </div>
         </div>
     </form>
 
-    <script src='https://js.hcaptcha.com/1/api.js' async defer></script>
+    
 
     
