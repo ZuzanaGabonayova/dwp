@@ -1,22 +1,17 @@
- <?php
-    require_once '../daily_special_offer/DailySpecialOfferCrud.php';
-    require_once '../product/ReadProductCrud.php';
+<?php
+require_once '../../daily_special_offer/DailySpecialOfferCrud.php';
+require_once '../../product/ReadProductCrud.php';
 
-    $specialOfferCrud = new DailySpecialOfferCrud($conn);
-    $currentOffer = $specialOfferCrud->getCurrentSpecialOffer();
-    $productDetails = null;
+$specialOfferCrud = new DailySpecialOfferCrud($conn);
+$currentOffer = $specialOfferCrud->getCurrentSpecialOffer();
+$productDetails = null;
 
-    if ($currentOffer) {
-        $productId = $currentOffer['ProductID'];
-        $readProductCrud = new ReadProductCrud($conn);
-        $productDetails = $readProductCrud->readProduct($productId);
-    }
+if ($currentOffer) {
+    $productId = $currentOffer['ProductID'];
+    $readProductCrud = new ReadProductCrud($conn);
+    $productDetails = $readProductCrud->readProduct($productId);
+}
 ?>
-
-
-
-
-
     <?php if ($productDetails): ?>
         <section aria-labelledby="daily-special-offer-heading" class="bg-white">
             <div class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
@@ -38,10 +33,11 @@
                     <?php endif; ?>
                 </div>
             </div>
-            <?php else: ?>
-                 <p>No special offer available at the moment.</p>
-            <?php endif; ?>
         </section>
+    <?php else: ?>
+        <p>No special offer available at the moment.</p>
+    <?php endif; ?>
+        
        
     
 
