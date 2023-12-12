@@ -1,3 +1,9 @@
+<?php 
+require_once '../../admin_authentication/loggedin.php';
+// Call the function to update last activity time
+updateLastActivityTime();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +11,7 @@
     <title>Create News Post</title>
 </head>
 <body>
-    <form action="../actions/handle_create_news_post.php" method="post" enctype="multipart/form-data">
+    <form action="../../actions/handle_create_news_post.php" method="post" enctype="multipart/form-data">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required>
 
