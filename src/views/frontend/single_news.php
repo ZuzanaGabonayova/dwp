@@ -19,8 +19,8 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $newsPost['title']; ?></title>
-    <meta name="description" content="<?php echo $newsPost['short_description']; ?>">
+    <title><?php echo $news['title']; ?></title>
+    <meta name="description" content="<?php echo $news['short_description']; ?>">
     <link rel="stylesheet" href="../../../assets/css/output.css">
 </head>
 <body>

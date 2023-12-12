@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
         <?php if ($news): ?>
                 <article class="prose lg:prose-xl mx-auto">
                     <div class="">
-                        <img src="<?= htmlspecialchars($news['image']) ?>" alt="<?= htmlspecialchars($news['image_alt']) ?>" class="aspect-[16/10] w-full object-cover rounded-4xl">
+                        <img src="../<?= htmlspecialchars($news['image']) ?>" alt="<?= htmlspecialchars($news['image_alt']) ?>" class="aspect-[16/10] w-full object-cover rounded-4xl">
                     </div>
                     <p class="mt-1">Posted on <?= htmlspecialchars($news['created_at']) ?></p>
                     <div class="px-8 mt-20 lg:mt-0 sm:px:0 sm:mt-16 ">
