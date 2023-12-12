@@ -2,6 +2,7 @@
 <html class="h-full bg-white">
 <head>
     <title>Admin Login</title>
+    <link rel="stylesheet" href="../../../assets/css/output.css">
 </head>
 <body class="h-full">
     <h2>Admin Login</h2>
