@@ -26,6 +26,6 @@ error_reporting(E_ALL);
         </div>
     </form>
 
-   
+    <script src='https://js.hcaptcha.com/1/api.js' async defer></script>
 
     
