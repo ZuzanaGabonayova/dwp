@@ -2,7 +2,7 @@
 <html class="h-full bg-white">
 <head>
     <title>Admin Login</title>
-    <link rel="stylesheet" href="../../../assets/css/output.css">
+    <link rel="stylesheet" href="<?php echo baseUrl(); ?>assets/css/output.css">
 </head>
 <body class="h-full">
     <!-- <form method="post" action="../../admin_authentication/login_admin.php">
@@ -12,14 +12,14 @@
     </form> -->
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <a href="../../../index.php">
+        <a href="<?php echo baseUrl(); ?>index.php">
         <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
         </a>
         <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-6" action="../../admin_authentication/login_admin.php" method="POST">
+        <form class="space-y-6" action="<?php echo baseUrl(); ?>src/admin_authentication/login_admin.php" method="POST">
         <div>
             <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
             <div class="mt-2">
@@ -40,7 +40,7 @@
             <button type="submit" value="Login" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
         </div>
 
-            <p>Not admin yet? You can register <a href="./admin_registration_form.php" style="text-decoration:underline; color:blue">here</a>.</p>
+            <p>Not admin yet? You can register <a href="<?php echo baseUrl(); ?>src/views/admin/admin_registration_form.php" style="text-decoration:underline; color:blue">here</a>.</p>
 
         </form>
     </div>

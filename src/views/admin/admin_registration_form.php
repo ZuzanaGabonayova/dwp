@@ -11,7 +11,7 @@ updateLastActivityTime();
 </head>
 <body>
     <h2>Admin Registration</h2>
-    <form method="post" action="../../admin_authentication/register_admin.php">
+    <form method="post" action="<?php echo baseUrl(); ?>src/admin_authentication/register_admin.php">
         <input type="text" name="firstname" placeholder="First Name" required><br><br>
         <input type="text" name="lastname" placeholder="Last Name" required><br><br>
         <input type="email" name="email" placeholder="Email" required><br><br>

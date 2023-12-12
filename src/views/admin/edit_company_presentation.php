@@ -22,7 +22,7 @@ $companyData = $readCrud->readCompanyPresentation();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Company Presentation</title>
-    <link rel="stylesheet" href="../../../assets/css/output.css">
+    <link rel="stylesheet" href="<?php echo baseUrl(); ?>assets/css/output.css">
 </head>
 <body class="bg-gray-100 p-8">
 
@@ -30,7 +30,7 @@ $companyData = $readCrud->readCompanyPresentation();
     <div class="container mx-auto bg-white p-6 rounded shadow">
         <h2 class="text-2xl font-bold mb-4">Edit Company Presentation</h2>
 
-        <form action="../../actions/handle_update_company_presentation.php" method="post" class="space-y-4">
+        <form action="<?php echo baseUrl(); ?>src/actions/handle_update_company_presentation.php" method="post" class="space-y-4">
             <div>
                 <label for="description" class="block mb-2 text-sm font-medium text-gray-700">Description:</label>
                 <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" required><?php echo htmlspecialchars($companyData['DescriptionOfCompany']); ?></textarea>
