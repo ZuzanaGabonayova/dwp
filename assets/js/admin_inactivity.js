@@ -12,22 +12,28 @@ document.addEventListener("DOMContentLoaded", function() {
         // AJAX call to update the server's last activity time using a separate PHP script
         let xhr = new XMLHttpRequest();
         xhr.open("GET", "../../admin_authentication/update_activity.php", true); // Update_activity.php should handle only updating the last activity time
-                
-        xhr.send();
-
         xhr.onreadystatechange = function() {
-            if (this.readyState === 4 && this.status === 200) {
-                console.log("Activity updated successfully.");
-                let response = JSON.parse(this.responseText);
-                if (response.status === "logged_out") {
-                    console.log("User logged out due to inactivity");
-                    // Redirect to the login page or perform other logout actions
-                    window.location.href = "../views/admin/admin_login.php";
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    try {
+                        const response = JSON.parse(xhr.responseText);
+                        if (response.status === "logged_out") {
+                            // Redirect or perform any other action upon logout
+                            console.log("User logged out due to inactivity.");
+                            // Redirect user to the logout page
+                            window.location.href = "../../admin_authentication/logout.php";
+                        } else {
+                            console.log("Unexpected response:", response);
+                        }
+                    } catch (error) {
+                        console.error("Error parsing JSON:", error);
+                    }
+                } else {
+                    console.error("Error updating activity:", xhr.status, xhr.statusText);
                 }
-            } else if (this.readyState === 4 && this.status !== 200) {
-                console.log("Error updating activity:", this.status, this.statusText);
             }
         };
+        xhr.send();
     }
 
     // Event listeners to detect user activity
