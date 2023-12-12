@@ -39,8 +39,7 @@ $userData = $readCrud->readUsersCrud();
                             if ($userData): ?>
                                 <tr>
                                     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                                        <dt class="text-gray-500">Username</dt>
-                                        <dd class="text-gray-900"><?php echo $userData['Username']; ?></dd>
+                                        <?php echo $userData['Username']; ?>
                                     </td>
                                 </tr>
                             <?php else: ?>
