@@ -1,23 +1,27 @@
+<?php
+require_once __DIR__ . '/../../utils/url_helpers.php';
+?>
+
 <footer class="bg-white">
   <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
     <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
       <div class="pb-6">
-        <a href="#" class="text-sm leading-6 text-gray-600 hover:text-gray-900">About</a>
+        <a href="<?php echo baseUrl(); ?>" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Home</a>
       </div>
       <div class="pb-6">
-        <a href="#" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Blog</a>
+        <a href="<?php echo baseUrl(); ?>src/views/frontend/products_category_women.php" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Women</a>
       </div>
       <div class="pb-6">
-        <a href="#" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Jobs</a>
+        <a href="<?php echo baseUrl(); ?>src/views/frontend/products_category_men.php" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Category</a>
       </div>
       <div class="pb-6">
-        <a href="#" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Press</a>
+        <a href="<?php echo baseUrl(); ?>src/views/frontend/products_category_kids.php" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Kids</a>
       </div>
       <div class="pb-6">
-        <a href="#" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Accessibility</a>
+        <a href="<?php echo baseUrl(); ?>src/views/frontend/news.php" class="text-sm leading-6 text-gray-600 hover:text-gray-900">News</a>
       </div>
       <div class="pb-6">
-        <a href="#" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Partners</a>
+        <a href="<?php echo baseUrl(); ?>src/views/frontend/company.php" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Company</a>
       </div>
     </nav>
     <div class="mt-10 flex justify-center space-x-10">
@@ -52,6 +56,6 @@
         </svg>
       </a>
     </div>
-    <p class="mt-10 text-center text-xs leading-5 text-gray-500">&copy; 2020 Your Company, Inc. All rights reserved.</p>
+    <p class="mt-10 text-center text-xs leading-5 text-gray-500">&copy; 2023 Your Company, Inc. All rights reserved.</p>
   </div>
 </footer>
