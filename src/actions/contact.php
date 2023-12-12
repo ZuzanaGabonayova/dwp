@@ -5,14 +5,13 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 use Dotenv\Dotenv;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 $dotenv = Dotenv::createImmutable('/home/master/applications/phqmbyaurd/public_html');
 $dotenv->load();
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
 require __DIR__ . '/../../src/config/db.php';
 
@@ -36,12 +35,12 @@ $response = ['status' => false, 'message' => ''];
 $recaptchaSecret = $_ENV['RECAPTCHA_SECRET'] ?? null;
 $recaptchaResponse = $_POST['recaptcha_response'];
 
-$response = file_get_contents(
+$recaptchaCheck = file_get_contents(
     "https://www.google.com/recaptcha/api/siteverify?secret=" . urlencode($recaptchaSecret) . "&response=" . urlencode($recaptchaResponse)
 );
-$responseKeys = json_decode($response, true);
+$recaptchaCheck = json_decode($recaptchaCheck, true);
 
-if (!$responseKeys["success"]) {
+if (!isset($recaptchaCheck["success"]) || !$recaptchaCheck["success"]) {
     // reCAPTCHA failed
     echo json_encode(['status' => false, 'message' => 'reCAPTCHA verification failed, please try again.']);
     exit;
