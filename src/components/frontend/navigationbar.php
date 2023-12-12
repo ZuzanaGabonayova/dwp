@@ -32,11 +32,11 @@
       </button>
     </div>
     <div class="hidden lg:flex lg:gap-x-12">
-      <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Women</a>
-      <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Men</a>
-      <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Kids</a>
-      <a href="#" class="text-sm font-semibold leading-6 text-gray-900">News</a>
-      <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Company</a>
+      <a href="../../views/frontend/products_category_women.php" class="text-sm font-semibold leading-6 text-gray-900">Women</a>
+      <a href="../../views/frontend/products_category_men.php" class="text-sm font-semibold leading-6 text-gray-900">Men</a>
+      <a href="../../views/frontend/products_category_kids.php" class="text-sm font-semibold leading-6 text-gray-900">Kids</a>
+      <a href="../../views/frontend/news.php" class="text-sm font-semibold leading-6 text-gray-900">News</a>
+      <a href="../../views/frontend/company" class="text-sm font-semibold leading-6 text-gray-900">Company</a>
     </div>
     <div class="hidden lg:flex lg:flex-1 lg:justify-end items-center">
         <div class="flex lg:ml-6">
@@ -87,11 +87,11 @@
       <div class="mt-6 flow-root">
         <div class="-my-6 divide-y divide-gray-500/10">
           <div class="space-y-2 py-6">
-            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Women</a>
-            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Men</a>
-            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Kids</a>
-            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">News</a>
-            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Company</a>
+            <a href="../../views/frontend/products_category_women.php" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Women</a>
+            <a href="../../views/frontend/products_category_men.php" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Men</a>
+            <a href="../../views/frontend/products_category_kids.php" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Kids</a>
+            <a href="../../views/frontend/news.php" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">News</a>
+            <a href="../../views/frontend/company.php" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Company</a>
           </div>
           <div class="py-6">
             <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
