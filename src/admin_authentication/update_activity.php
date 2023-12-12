@@ -19,12 +19,11 @@ function checkSessionTimeout() {
     } else {
         // Update last activity time as the user is active
         updateLastActivityTime();
+        echo json_encode(["status" => "active"]); // Signal that the user is active
+        exit();
     }
 }
 
-// Call the function to update last activity time
-updateLastActivityTime();
-
-// Call the function to check for session timeout
+// Call the function to update last activity time and check for session timeout
 checkSessionTimeout();
 ?>
