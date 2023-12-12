@@ -60,5 +60,6 @@ updateLastActivityTime();
         <button type="submit">Update News Post</button>
     </form>
 
+    <script src="../../../assets/js/admin_inactivity.js"></script>
 </body>
 </html>

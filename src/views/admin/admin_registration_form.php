@@ -19,5 +19,7 @@ updateLastActivityTime();
         <input type="password" name="password" placeholder="Password" required><br><br>
         <input type="submit" value="Register">
     </form>
+
+    <script src="../../../assets/js/admin_inactivity.js"></script>
 </body>
 </html>

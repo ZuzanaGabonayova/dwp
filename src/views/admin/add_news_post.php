@@ -52,5 +52,7 @@ updateLastActivityTime();
             </div>
         </div>
     </div>
+
+    <script src="../../../assets/js/admin_inactivity.js"></script>
 </body>
 </html>

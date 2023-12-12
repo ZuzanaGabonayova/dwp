@@ -293,6 +293,8 @@ updateLastActivityTime();
     // Add other event reinitializations here if needed
 }
 </script>
+
+<script src="../../../assets/js/admin_inactivity.js"></script>
 </body>
 </html>
 
