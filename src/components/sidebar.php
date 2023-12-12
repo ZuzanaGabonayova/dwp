@@ -23,7 +23,7 @@ function displayAdminAvatar() {
           class="flex flex-col flex-grow gap-y-5 overflow-y-auto bg-white px-6 pb-4 border-r border-gray-200"
         >
           <div class="flex h-16 flex-shrink-0 items-center">
-            <a href="../../index.php" class="-m-1.5 p-1.5">
+            <a href="<?php echo baseUrl(); ?>index.php" class="-m-1.5 p-1.5">
               <img
                 class="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
