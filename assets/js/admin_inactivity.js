@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // AJAX call to update the server's last activity time using a separate PHP script
         let xhr = new XMLHttpRequest();
         xhr.open("GET", "../../admin_authentication/update_activity.php", true); // Update_activity.php should handle only updating the last activity time
+        console.log(xhr);
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
