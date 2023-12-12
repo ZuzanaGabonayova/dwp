@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 ini_set('error_reporting', E_ALL);
 
 require_once __DIR__ . '/../../config/db.php';
-require_once __DIR__ . '/../../users/ReadUsersCrud.php';
+require_once __DIR__ . '/../../admin_authentication/ReadUsersCrud.php';
 
 $readCrud = new ReadUsersCrud($conn);
 $userData = $readCrud->readUsersCrud();
