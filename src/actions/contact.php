@@ -35,13 +35,24 @@ $response = ['status' => false, 'message' => ''];
 // hCaptcha verification
 $secretKey = $_ENV['HCAPTCHA_SECRET'] ?? null;
 $token = $_POST['h-captcha-response'];
+
+// Log hCaptcha response token
+error_log("hCaptcha response token: " . $token);
+
 $verify = curl_init();
 curl_setopt($verify, CURLOPT_URL, "https://hcaptcha.com/siteverify");
 curl_setopt($verify, CURLOPT_POST, true);
 curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query(['secret' => $secretKey, 'response' => $token]));
 curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
+
+// Log curl execution response
+error_log("hCaptcha verification response: " . $verificationResponse);
+
 $responseData = json_decode(curl_exec($verify));
 curl_close($verify);
+
+// Log decoded response data
+error_log("Decoded response data: " . json_encode($responseData));
 
 // Check if hCaptcha was successful
 if (!$responseData->success) {
