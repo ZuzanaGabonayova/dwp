@@ -32,7 +32,7 @@ updateLastActivityTime();
 </head>
 <body>
 
-    <form action="<?php echo baseUrl(); ?>src/actions/handle_update_news_post.php" method="post" enctype="multipart/form-data">
+    <form action="../actions/handle_update_news_post.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($newsId); ?>">
 
         <label for="title">Title:</label>

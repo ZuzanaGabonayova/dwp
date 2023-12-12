@@ -19,7 +19,7 @@
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-6" action="<?php echo baseUrl(); ?>src/admin_authentication/login_admin.php" method="POST">
+        <form class="space-y-6" action="../../admin_authentication/login_admin.php" method="POST">
         <div>
             <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
             <div class="mt-2">
@@ -40,7 +40,7 @@
             <button type="submit" value="Login" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
         </div>
 
-            <p>Not admin yet? You can register <a href="<?php echo baseUrl(); ?>src/views/admin/admin_registration_form.php" style="text-decoration:underline; color:blue">here</a>.</p>
+            <p>Not admin yet? You can register <a href="./admin_registration_form.php" style="text-decoration:underline; color:blue">here</a>.</p>
 
         </form>
     </div>

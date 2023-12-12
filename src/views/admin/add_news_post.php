@@ -11,7 +11,7 @@ updateLastActivityTime();
     <title>Create News Post</title>
 </head>
 <body>
-    <form action="<?php echo baseUrl(); ?>src/actions/handle_create_news_post.php" method="post" enctype="multipart/form-data">
+    <form action="../../actions/handle_create_news_post.php" method="post" enctype="multipart/form-data">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required>
 

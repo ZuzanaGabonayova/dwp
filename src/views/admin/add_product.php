@@ -28,7 +28,7 @@ $sizes = $crud->getSizes();
     <div class="bg-white">
         <div class="px-6 py-6 lg:px-8">
             <div class="max-w-2xl mx-auto ring-1 ring-gray-900/10 p-4 rounded-md shadow-sm">
-                <form class="space-y-4" action="<?php echo baseUrl(); ?>src/actions/handle_create_product.php" method="post" enctype="multipart/form-data">
+                <form class="space-y-4" action="../../actions/handle_create_product.php" method="post" enctype="multipart/form-data">
                     <h2 class="mb-6 text-xl font-semibold text-gray-500 uppercase">New product</h2>
                     <!-- Product Number -->
                     <div class="sm:col-span-2">
