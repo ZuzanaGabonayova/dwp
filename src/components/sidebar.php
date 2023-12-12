@@ -1,5 +1,6 @@
 <?php 
 include_once __DIR__ . '/../utils/url_helpers.php';
+require_once '../../admin_authentication/loggedin.php';
 ?>
 
 <div
