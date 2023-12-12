@@ -1,6 +1,6 @@
 <?php
-require_once '../../daily_special_offer/DailySpecialOfferCrud.php';
-require_once '../../product/ReadProductCrud.php';
+require_once __DIR__ . '/../../daily_special_offer/DailySpecialOfferCrud.php';
+require_once __DIR__ . '/../../product/ReadProductCrud.php';
 
 $specialOfferCrud = new DailySpecialOfferCrud($conn);
 $currentOffer = $specialOfferCrud->getCurrentSpecialOffer();
