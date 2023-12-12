@@ -40,32 +40,6 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var mobileFilters = document.getElementById('mobileFilters');
-        var closeMobileFiltersBtn = document.getElementById('closeMobileFilters');
-        var filterSections = document.querySelectorAll('.filter-section');
-
-        // Function to toggle mobile filters
-        function toggleMobileFilters() {
-            mobileFilters.classList.toggle('hidden');
-        }
-
-        // Close mobile filters
-        closeMobileFiltersBtn.addEventListener('click', toggleMobileFilters);
-
-        // Toggle filter sections
-        filterSections.forEach(function(section) {
-            var button = section.querySelector('button');
-            var panel = section.querySelector('.filter-panel');
-
-            button.addEventListener('click', function() {
-                panel.classList.toggle('hidden');
-            });
-        });
-
-        // Dropdown and other functionalities
-        // Add event listeners and logic similar to above
-    });
 </script>
 </body>
 </html>
