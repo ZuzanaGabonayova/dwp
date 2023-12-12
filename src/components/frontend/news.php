@@ -34,7 +34,7 @@ $newsPosts = $readNewsCrud->readAllNewsPosts();
         </div>
         <div class="max-w-xl">
           <div class="mt-8 flex items-center gap-x-4 text-xs">
-            <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
+            <time datetime="2020-03-16" class="text-gray-500"><?php echo date('d M', strtotime($news['created_at'])); ?></time>
           </div>
           <div class="group relative">
             <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
