@@ -1,6 +1,6 @@
 <?php 
-include_once __DIR__ . '/../utils/url_helpers.php';
-require_once __DIR__ . '../../admin_authentication/loggedin.php';
+include_once __DIR__ . '../../../utils/url_helpers.php';
+require_once __DIR__ . '../../../admin_authentication/loggedin.php';
 
 // Get the logged-in admin's username from the session
 $admin_username = $_SESSION['admin_username'] ?? '';
