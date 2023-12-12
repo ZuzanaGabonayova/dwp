@@ -33,7 +33,7 @@ $menProducts = $readProductCrud->readProductsByCategory('men');
                         <div class="mt-4 flex justify-between">
                             <div>
                                 <h3 class="text-sm text-gray-700">
-                                    <a href="single_product.php?ProductID=<?php echo $product['ProductID']; ?>">
+                                    <a href="../single_product.php?ProductID=<?php echo $product['ProductID']; ?>">
                                         <span aria-hidden="true" class="absolute inset-0"></span>
                                         <?= htmlspecialchars($product['Model']) ?>
                                     </a>
