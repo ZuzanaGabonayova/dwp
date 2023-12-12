@@ -11,7 +11,8 @@ class ReadUsersCrud {
 
     public function readUsersCrud() {
         $sql = "SELECT Username FROM Admin";
-        return $this->conn->query($sql)->fetch_assoc();
+        $result = $this->conn->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }
 ?>

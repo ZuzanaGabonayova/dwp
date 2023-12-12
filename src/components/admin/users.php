@@ -22,8 +22,6 @@ $userData = $readCrud->readUsersCrud();
             </a>
         </div>
     </div>
-   
-   
     <div class="mt-8 flow-root">
             <div class="mx-4 -my-2 overflow-x-auto sm:mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -36,13 +34,15 @@ $userData = $readCrud->readUsersCrud();
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-300">
                             <?php
-                            if ($userData): ?>
-                                <tr>
-                                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                                        <?php echo $userData['Username']; ?>
-                                    </td>
-                                </tr>
-                            <?php else: ?>
+                            if ($userData):
+                                foreach ($userData as $user): ?>
+                                    <tr>
+                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                            <?php echo $user['Username']; ?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach;
+                            else: ?>
                                 <tr>
                                     <td>No users found.</td>
                                 </tr>
