@@ -22,27 +22,37 @@ $userData = $readCrud->readUsersCrud();
             </a>
         </div>
     </div>
-    <?php
-    if ($userData): ?>
-        <div class="overflow-hidden rounded-xl border border-gray-300 mt-6">
-            <div class="flex items-center gap-x-4 border-b bg-gray-100 p-6">
-                <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple" class="h-12 w-12 flex-none rounded-lg bg-white ring-1 ring-gray-300 ring-offset-2">
-                <div class="text-sm font-medium leading-6 text-gray-900">
-                    <?php echo $userData['Username']; ?>
-                </div>
-                <div class="relative ml-auto">
-                    <a href=""></a>
+   
+   
+    <div class="mt-8 flow-root">
+            <div class="mx-4 -my-2 overflow-x-auto sm:mx-6 lg:-mx-8">
+                <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                    <div class="overflow-hidden border border-gray-300 sm:rounded-lg">
+                        <table class="min-w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Username</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-300">
+                            <?php
+                            if ($userData): ?>
+                                <tr>
+                                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                        <dt class="text-gray-500">Username</dt>
+                                        <dd class="text-gray-900"><?php echo $userData['Username']; ?></dd>
+                                    </td>
+                                </tr>
+                            <?php else: ?>
+                                <tr>
+                                    <td>No users found.</td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <dl class="-my-3 px-6 py-4 text-sm leading-6 divide-y-reverse">
-                <div class="flex justify-between gap-x-4 py-3">
-                    <dt class="text-gray-500">Username</dt>
-                    <dd class="text-gray-900"><?php echo $userData['Username']; ?></dd>
-                </div>
-            </dl>
-            </div>
-        <?php else: ?>
-            <p>No users found.</p>
-        <?php endif; ?>
+        </div>
     </div>
 </div>
