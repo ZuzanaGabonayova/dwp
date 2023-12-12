@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
 
     var formData = new FormData(form);
-    fetch("../../../src/actions/contact.php", {
+    fetch("../../src/actions/contact.php", {
       method: "POST",
       body: formData,
     })
