@@ -50,7 +50,7 @@
       </div>
     </div>
     <?php
-    include_once './contact_form'
+    include_once '../../components/frontend/contact_form.php'
     ?>
   </div>
 </div>
