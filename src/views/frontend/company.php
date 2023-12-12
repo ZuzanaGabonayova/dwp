@@ -28,8 +28,8 @@ error_reporting(E_ALL);
         <?php
 
         $content = __DIR__ . '/../../components/frontend/company.php';
-        include_once __DIR__ . '../../../layouts/frontend.php';
-
+        include_once __DIR__ . '/../../../layouts/frontend.php';
+        
         ?>
     </div>
 </body>
