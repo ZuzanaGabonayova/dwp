@@ -4,18 +4,16 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-use Dotenv\Dotenv;
-
-require_once __DIR__ . '/../../vendor/autoload.php';
-
-$dotenv = Dotenv::createImmutable('/home/master/applications/phqmbyaurd/public_html'); // Adjusted path to load .env from two directories back
-$dotenv->load();
-
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require __DIR__ . '/../../src/config/db.php'; // Adjusted path to load db.php from two directories back
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+// Loading .env variables
+$dotenv = Dotenv\Dotenv::createImmutable('/home/master/applications/phqmbyaurd/public_html');
+$dotenv->load();
+
+require __DIR__ . '/../../src/config/db.php'; // Database connection file
 
 // Prevent direct access to the script
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -33,24 +31,6 @@ function test_input($data) {
 // Initialize response array
 $response = ['status' => false, 'message' => ''];
 
-// hCaptcha verification
-$secretKey = $_ENV['HCAPTCHA_SECRET'] ?? null;
-$token = $_POST['h-captcha-response'];
-$verify = curl_init();
-curl_setopt($verify, CURLOPT_URL, "https://hcaptcha.com/siteverify");
-curl_setopt($verify, CURLOPT_POST, true);
-curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query(['secret' => $secretKey, 'response' => $token]));
-curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
-$responseData = json_decode(curl_exec($verify));
-curl_close($verify);
-
-// Check if hCaptcha was successful
-if (!$responseData->success) {
-    // hCaptcha failed, return an error
-    echo json_encode(['status' => false, 'message' => 'Captcha verification failed, please try again.']);
-    exit;
-}
-
 try {
     // Sanitize input
     $name = test_input($_POST["name"]);
@@ -63,7 +43,7 @@ try {
     $stmt->execute();
     $stmt->close();
 
-    // Send email using PHPMailer   
+    // Send email using PHPMailer
     $mail = new PHPMailer(true);
 
     // Server settings
