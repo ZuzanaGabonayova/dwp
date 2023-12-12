@@ -12,7 +12,6 @@ if (isset($_GET['id'])) {
     $news = $readNewsCrud->readNewsPost($id); 
 }
 
-$conn->close();
 ?>
 
 <!DOCTYPE html>
