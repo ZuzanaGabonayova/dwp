@@ -65,7 +65,8 @@ $companyDetails = $crud->readCompanyPresentation();
                 <?php echo $companyDetails['Email']; ?>
                 </a>
             </dd>
-            <div class="flex gap-x-4">
+          </div>
+          <div class="flex gap-x-4">
             <dt class="flex-none">
                 <span class="sr-only">Opening hours</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-7 w-6 text-gray-400">
@@ -77,7 +78,6 @@ $companyDetails = $crud->readCompanyPresentation();
                     <?php echo $companyDetails['OpeningHours']; ?>
                 </p>
             </dd>
-          </div>
         </dl>
       </div>
     </div>
