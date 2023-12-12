@@ -18,6 +18,12 @@ document.addEventListener("DOMContentLoaded", function() {
         xhr.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
                 console.log("Activity updated successfully.");
+                let response = JSON.parse(this.responseText);
+                if (response.status === "logged_out") {
+                    console.log("User logged out due to inactivity");
+                    // Redirect to the login page or perform other logout actions
+                    window.location.href = "../views/admin/admin_login.php";
+                }
             } else if (this.readyState === 4 && this.status !== 200) {
                 console.log("Error updating activity:", this.status, this.statusText);
             }
