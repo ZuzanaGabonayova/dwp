@@ -8,7 +8,7 @@ function updateLastActivityTime() {
 
 // Function to check for session timeout and log out if needed
 function checkSessionTimeout() {
-    $timeout = 30; // 30 seconds
+    $timeout = 600; // 600 seconds - 10 minutes
 
     if (isset($_SESSION['last_activity_time']) && (time() - $_SESSION['last_activity_time']) > $timeout) {
         // If the difference between current time and last activity time exceeds the timeout, logout

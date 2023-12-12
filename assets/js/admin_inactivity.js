@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    let inactivityTime = 30000; // 30 seconds in milliseconds
+    let inactivityTime = 600000; // 600 seconds in milliseconds (10 minutes)
     let timeout;
 
     function setActivity() {
