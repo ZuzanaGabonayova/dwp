@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../utils/url_helpers.php';
 <header class="bg-white">  
   <nav class="mx-auto flex max-w-7xl items-center justify-between p-4 border-b border-gray-200" aria-label="Global">
     <div class="flex lg:flex-1">
-      <a href="../../index.php" class="-m-1.5 p-1.5">
+      <a href="<?php echo baseUrl(); ?>index.php" class="-m-1.5 p-1.5">
         <span class="sr-only">Your Company</span>
         <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=amber&shade=500" alt="">
       </a>
@@ -20,11 +20,20 @@ require_once __DIR__ . '/../../utils/url_helpers.php';
                 </a>
               </div>
         <div class="mx-4 flow-root lg:ml-6">
-                <a href="#" class="group -m-2 flex items-center p-2">
+                <a href="<?php echo baseUrl(); ?>src/views/cart.php" class="group -m-2 flex items-center p-2">
                   <svg class="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
                  </svg>
-                  <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                    <?php
+                      // Calculate the cart count in PHP
+                      $cartCount = 0;
+                      if (!empty($_SESSION["shopping_cart"])) {
+                          foreach ($_SESSION["shopping_cart"] as $item) {
+                              $cartCount += $item['item_quantity'];
+                          }
+                      }
+                    ?>
+                  <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"><?= $cartCount ?></span>
                   <span class="sr-only">items in cart, view bag</span>
                 </a>
         </div>
@@ -52,7 +61,7 @@ require_once __DIR__ . '/../../utils/url_helpers.php';
                 </a>
               </div>
               <div class="ml-4 flow-root lg:ml-6">
-                <a href="../../views/cart.php" class="group -m-2 flex items-center p-2">
+                <a href="<?php echo baseUrl(); ?>src/views/cart.php" class="group -m-2 flex items-center p-2">
                     <svg class="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
                     </svg>
@@ -77,9 +86,9 @@ require_once __DIR__ . '/../../utils/url_helpers.php';
     <div class="fixed inset-0 z-10"></div>
     <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
       <div class="flex items-center justify-between">
-        <a href="#" class="-m-1.5 p-1.5">
+        <a href="<?php echo baseUrl(); ?>index.php" class="-m-1.5 p-1.5">
           <span class="sr-only">Your Company</span>
-          <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
+          <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=amber&shade=500" alt="">
         </a>
         <button id="menu-close-button" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
           <span class="sr-only">Close menu</span>
@@ -98,7 +107,7 @@ require_once __DIR__ . '/../../utils/url_helpers.php';
             <a href="<?php echo baseUrl(); ?>src/views/frontend/company.php" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Company</a>
           </div>
           <div class="py-6">
-            <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
+            <a href="<?php echo baseUrl(); ?>src/views/admin/admin_login.php" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
           </div>
         </div>
       </div>

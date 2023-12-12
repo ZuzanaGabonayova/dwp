@@ -24,7 +24,7 @@ if (!empty($_GET['tid']) && !empty($_GET['product'])) {
         <hr>
         <p>Your transaction ID is <?php echo $tid; ?></p>
         <p>Check your email for more info</p>
-        <p><a href="../../src/views/checkout.php" class="btn btn-light mt-2">Go Back</a></p>
+        <p><a href="<?php echo baseUrl(); ?>src/views/checkout.php" class="btn btn-light mt-2">Go Back</a></p>
     </div>
 </body>
 
