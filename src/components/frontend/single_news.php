@@ -23,7 +23,7 @@ if (isset($_GET['id'])) {
                     <div class="">
                         <img src="../<?= htmlspecialchars($news['image']) ?>" alt="<?= htmlspecialchars($news['image_alt']) ?>" class="aspect-[16/10] w-full object-cover rounded-4xl">
                     </div>
-                    <p class="mt-1">Posted on <?php echo date('d M', strtotime($news['created_at'])); ?></p>
+                    <p class="mt-1">Posted on <?php echo date('d M, Y', strtotime($news['created_at'])); ?></p>
                     <div class="px-8 mt-20 lg:mt-0 sm:px:0 sm:mt-16 ">
                         <h1 class="text-3xl font-bold mb-2 tracking-tight"><?= htmlspecialchars($news['title']) ?></h1>
                         <p><?= nl2br(htmlspecialchars($news['content'])) ?></p>
