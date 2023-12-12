@@ -2,7 +2,7 @@
 <html class="h-full bg-white">
 <head>
     <title>Admin Login</title>
-    <link rel="stylesheet" href="<?php echo baseUrl(); ?>assets/css/output.css">
+    <link rel="stylesheet" href="../../../assets/css/output.css">
 </head>
 <body class="h-full">
     <!-- <form method="post" action="../../admin_authentication/login_admin.php">
