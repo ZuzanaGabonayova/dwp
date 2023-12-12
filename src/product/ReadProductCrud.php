@@ -96,6 +96,22 @@ class ReadProductCrud {
             return null;
         }
     }
+
+     // Read products by category
+    public function readProductsByCategory($categoryName) {
+        $stmt = $this->conn->prepare("SELECT p.* FROM Product p
+                                      JOIN ProductCategory pc ON p.CategoryID = pc.CategoryID
+                                      WHERE pc.CategoryName = ?");
+        $stmt->bind_param("s", $categoryName);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
 }
 
 ?>
