@@ -1,3 +1,7 @@
+<?php 
+require_once '../../admin_authentication/loggedin.php';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
