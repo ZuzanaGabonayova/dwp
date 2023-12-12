@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("Logging out user due to inactivity...");
         // AJAX call to update the server's last activity time using a separate PHP script
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", "./admin_authentication/update_activity.php", true); // Update_activity.php should handle only updating the last activity time
+        xhr.open("GET", "../../admin_authentication/update_activity.php", true); // Update_activity.php should handle only updating the last activity time
                 
         xhr.send();
 
