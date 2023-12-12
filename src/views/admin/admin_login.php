@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="../../../assets/css/output.css">
 </head>
 <body class="h-full">
-    <h2>Admin Login</h2>
     <!-- <form method="post" action="../../admin_authentication/login_admin.php">
         <input type="text" name="username" placeholder="Username" required><br><br>
         <input type="password" name="password" placeholder="Password" required><br><br>
