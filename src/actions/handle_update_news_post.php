@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $updateNewsCrud = new UpdateNewsCrud($conn);
     if ($updateNewsCrud->updateNewsPost($id, $title, $shortDescription, $content, $image, $imageAlt)) {
-        header('Location: ../views/all_news_posts.php');
+        header('Location: ../views/admin/news.php');
         exit();
     } else {
         echo "Error updating news post.";
