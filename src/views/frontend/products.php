@@ -28,7 +28,6 @@
                       <!-- SVG for close icon -->
                     </button>
                 </div>
-
                 <!-- Filters (Add your filter structure here) -->
             </div>
         </div>
