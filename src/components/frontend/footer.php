@@ -12,7 +12,7 @@ require_once __DIR__ . '/../../utils/url_helpers.php';
         <a href="<?php echo baseUrl(); ?>src/views/frontend/products_category_women.php" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Women</a>
       </div>
       <div class="pb-6">
-        <a href="<?php echo baseUrl(); ?>src/views/frontend/products_category_men.php" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Category</a>
+        <a href="<?php echo baseUrl(); ?>src/views/frontend/products_category_men.php" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Men</a>
       </div>
       <div class="pb-6">
         <a href="<?php echo baseUrl(); ?>src/views/frontend/products_category_kids.php" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Kids</a>
