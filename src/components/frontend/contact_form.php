@@ -1,6 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 ?>
     <form id="contact-form" class="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-48" id="contactForm" action="../../actions/contact.php" method="post">
         <div class="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
