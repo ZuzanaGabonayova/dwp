@@ -17,7 +17,7 @@ error_reporting(E_ALL);
 
         <?php
 
-        $content = __DIR__ . 'src/components/frontend/home_content_wrapper.php';
+        $content = __DIR__ . '/src/components/frontend/home_content_wrapper.php';
         include_once __DIR__ . '/src/layouts/frontend.php';
 
         ?>
