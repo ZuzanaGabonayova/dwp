@@ -40,8 +40,9 @@ $recaptchaCheck = file_get_contents(
 );
 $recaptchaCheck = json_decode($recaptchaCheck, true);
 
-if (!isset($recaptchaCheck["success"]) || !$recaptchaCheck["success"]) {
-    // reCAPTCHA failed
+// Verify reCAPTCHA response
+if (!isset($recaptchaCheck["success"]) || !$recaptchaCheck["success"] || $recaptchaCheck["score"] < 0.5) {
+    // reCAPTCHA failed or score too low
     echo json_encode(['status' => false, 'message' => 'reCAPTCHA verification failed, please try again.']);
     exit;
 }

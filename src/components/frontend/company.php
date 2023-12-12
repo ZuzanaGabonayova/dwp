@@ -22,8 +22,8 @@ error_reporting(E_ALL);
             <rect width="100%" height="100%" stroke-width="0" fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)" />
           </svg>
         </div>
-        <h2 class="text-3xl font-bold tracking-tight text-gray-900">Get in touch</h2>
-        <p class="mt-6 text-lg leading-8 text-gray-600">Proin volutpat consequat porttitor cras nullam gravida at. Orci molestie a eu arcu. Sed ut tincidunt integer elementum id sem. Arcu sed malesuada et magna.</p>
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900">About us</h2>
+        <p class="mt-6 text-lg leading-8 text-gray-600">Description</p>
         <dl class="mt-10 space-y-4 text-base leading-7 text-gray-600">
           <div class="flex gap-x-4">
             <dt class="flex-none">
