@@ -6,9 +6,9 @@ error_reporting(E_ALL);
 
 //session_start(); // Initialize the session for counting the cart items
 
-require_once '../../config/db.php'; 
-require_once '../../news/ReadNewsCrud.php'; 
-require_once '../../utils/url_helpers.php'; 
+require_once __DIR__ . '../../config/db.php'; 
+require_once __DIR__ . '../../news/ReadNewsCrud.php'; 
+require_once __DIR__ . '../../utils/url_helpers.php'; 
 
 // Get the list of news posts
 $readNewsCrud = new ReadNewsCrud($conn);
