@@ -220,7 +220,7 @@ if ($shouldRedirect) {
                                             <div class="flex justify-between">
                                                 <!-- Product Name -->
                                                 <h3 class="text-sm">
-                                                    <a href="single_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="font-semibold text-gray-700"><?= htmlspecialchars($product['Model']) ?></a>
+                                                    <a href="./frontend/single_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="font-semibold text-gray-700"><?= htmlspecialchars($product['Model']) ?></a>
                                                 </h3>
                                             </div>
                                             <div class="mt-1 text-sm">
