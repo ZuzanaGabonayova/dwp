@@ -70,7 +70,7 @@ $companyDetails = $crud->readCompanyPresentation();
       </div>
     </div>
     <?php
-    include_once '../../components/frontend/contact_form.php'
+    include_once __DIR__ . '../../../components/frontend/contact_form.php'
     ?>
   </div>
 </div>
