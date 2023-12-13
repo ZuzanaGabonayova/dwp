@@ -71,25 +71,47 @@ class UpdateProductCrud {
             }
         }
 
-        // Fetch the corresponding Stripe Price ID from your records
-        $stmt = $this->conn->prepare("SELECT StripePriceID FROM Product WHERE ProductID = ?");
-        $stmt->bind_param("i", $productId);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $currentStripeData = $result->fetch_assoc();
+        
+    // Fetch the current Stripe Price ID and Product ID associated with the product
+    $stmt = $this->conn->prepare("SELECT StripePriceID FROM Product WHERE ProductID = ?");
+    $stmt->bind_param("i", $productId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $currentStripeData = $result->fetch_assoc();
 
-        if ($currentStripeData && $currentStripeData['StripePriceID']) {
-            // Update the product name in Stripe using the Model value
-            $stripePriceId = $currentStripeData['StripePriceID'];
-            $stripePrice = \Stripe\Price::retrieve($stripePriceId);
-            $stripeProduct = \Stripe\Product::retrieve($stripePrice->product);
+    if ($currentStripeData && $currentStripeData['StripePriceID']) {
+        // Retrieve the Stripe Price object
+        $stripePriceId = $currentStripeData['StripePriceID'];
+        $stripePrice = \Stripe\Price::retrieve($stripePriceId);
 
-            // Update the product name using the Model value
-            $stripeProduct->name = $formData["Model"]; // Set the new product name using the Model value
-            $stripeProduct->save(); // Save the changes
+        // Update the Stripe Price (create a new price as Stripe prices are immutable)
+        $newStripePrice = \Stripe\Price::create([
+            'unit_amount' => $price * 100, // Convert to cents
+            'currency' => 'dkk',
+            'product' => $stripePrice->product,
+        ]);
 
-            // Note: There's no need to pass the 'name' field as an array, and we use the 'save' method to update the product.
-        }
+        // Optionally deactivate the old price
+        \Stripe\Price::update($stripePriceId, ['active' => false]);
+
+        // Update the new Stripe Price ID in your database
+        $newStripePriceId = $newStripePrice->id;
+        $updatePriceStmt = $this->conn->prepare("UPDATE Product SET StripePriceID = ? WHERE ProductID = ?");
+        $updatePriceStmt->bind_param("si", $newStripePriceId, $productId);
+        $updatePriceStmt->execute();
+
+        // Update the product name in Stripe using the Model value
+        $stripeProduct = \Stripe\Product::retrieve($stripePrice->product);
+        $stripeProduct->update([
+            'name' => [
+                'name' => 'Name',
+                'active' => true,
+                'attributes' => [
+                    'Model' => $formData["Model"] // Set the new product name using the Model value
+                ]
+            ]
+        ]);
+    }
 
         $stmt = $this->conn->prepare("UPDATE Product SET ProductNumber = ?, Model = ?, Description = ?, Price = ?, StockQuantity = ?, CategoryID = ?, BrandID = ? WHERE ProductID = ?");
         $stmt->bind_param("sssdiiii", $productNumber, $model, $description, $price, $stockQuantity, $categoryID, $brandID, $productId);
