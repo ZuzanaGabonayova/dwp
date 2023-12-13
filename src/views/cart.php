@@ -47,18 +47,12 @@ if (isset($_GET["action"])) {
         $found = false;
     
         if (!empty($_SESSION["shopping_cart"])) {
-            $found = false;
             foreach ($_SESSION["shopping_cart"] as &$cart_item) {
-                if ($cart_item['item_id'] == $productID) {
-                    if ($cart_item['selected_size'] == $selectedSize) {
-                        // Increment quantity if same product and size are already in the cart
-                        $cart_item['item_quantity']++;
-                        $found = true;
-                        break;
-                    } else {
-                        // Add as a new item if the same product but different size is in the cart
-                        $found = false;
-                    }
+                if ($cart_item['item_id'] == $productID && $cart_item['selected_size'] == $selectedSize) {
+                    // Increment quantity if same product and size are already in the cart
+                    $cart_item['item_quantity']++;
+                    $found = true;
+                    break;
                 }
             }
         }
@@ -72,7 +66,6 @@ if (isset($_GET["action"])) {
                 'selected_size' => $selectedSize
             );
             $_SESSION["shopping_cart"][] = $item_array;
-            $_SESSION['selected_sizes'][$productID] = $selectedSize;
         }
     }
     /* elseif ($action == "delete" && isset($_GET["id"])) {
