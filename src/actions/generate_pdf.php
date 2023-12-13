@@ -30,6 +30,7 @@ while ($row = $result->fetch_assoc()) {
         $pdf->Cell(0, 10, "Customer Email: " . $row['customer_email'], 0, 1);
         $pdf->Cell(0, 10, "Customer Phone: " . $row['customer_phone'], 0, 1);
         $pdf->Cell(0, 10, "Customer Shipping Address: " . $row['shipping_address'], 0, 1);
+        $pdf->Cell(0, 10, "City: " . $row['city'], 0, 1);
         $pdf->Cell(0, 10, "Amount Total: " . $row['amount_total'], 0, 1);
         $pdf->Cell(0, 10, "Currency: " . $row['currency'], 0, 1);
         $pdf->Cell(0, 10, "Created At: " . $row['created_at'], 0, 1);
