@@ -83,8 +83,16 @@ class UpdateProductCrud {
             $stripePriceId = $currentStripeData['StripePriceID'];
             $stripePrice = \Stripe\Price::retrieve($stripePriceId);
             $stripeProduct = \Stripe\Product::retrieve($stripePrice->product);
+
+            // Use the new Model value to update the product name
             $stripeProduct->update([
-                'name' => $formData["Model"] // Set the new product name using the Model value
+                'name' => [
+                    'name' => 'Name',
+                    'active' => true,
+                    'attributes' => [
+                        'Model' => $formData["Model"] // Set the new product name using the Model value
+                    ]
+                ]
             ]);
         }
 
