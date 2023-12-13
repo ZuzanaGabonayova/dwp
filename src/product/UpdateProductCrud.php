@@ -7,8 +7,6 @@ require_once __DIR__ . '../../../vendor/autoload.php';
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../utils/uploadProductImage.php';
 
-var_dump($formData["Model"]);
-
 \Stripe\Stripe::setApiKey('sk_test_51OMqZxD7CQBEfsgzCUQ19XaHyqwJHTK9ejG5IjlGs4CaQUpBPSP8M4no8rgXkzfSm5DU0LIxUneFODPiblzB8lMQ0000soVBL9');
 
 class UpdateProductCrud {
