@@ -15,28 +15,28 @@ class UpdateCompanyCrud {
 
     public function updateCompanyPresentation($description, $openingHours, $email, $phone, $street, $houseNumber, $postalCodeID, $title, $image, $icon1Image, $icon1Description, $icon2Image, $icon2Description, $icon3Image, $icon3Description) {
     // Handle file uploads
-    $imageUploadResult = uploadFile($image);
+    $imageUploadResult = uploadCompanyImage($image);
     if (isset($imageUploadResult['error'])) {
         // Handle error
         return false;
     }
     $imagePath = $imageUploadResult['success'];
 
-    $icon1ImageUploadResult = uploadFile($icon1Image);
+    $icon1ImageUploadResult = uploadCompanyImage($icon1Image);
     if (isset($icon1ImageUploadResult['error'])) {
         // Handle error
         return false;
     }
     $icon1ImagePath = $icon1ImageUploadResult['success'];
 
-    $icon2ImageUploadResult = uploadFile($icon2Image);
+    $icon2ImageUploadResult = uploadCompanyImage($icon2Image);
     if (isset($icon2ImageUploadResult['error'])) {
         // Handle error
         return false;
     }
     $icon2ImagePath = $icon2ImageUploadResult['success'];
 
-    $icon3ImageUploadResult = uploadFile($icon3Image);
+    $icon3ImageUploadResult = uploadCompanyImage($icon3Image);
     if (isset($icon3ImageUploadResult['error'])) {
         // Handle error
         return false;
