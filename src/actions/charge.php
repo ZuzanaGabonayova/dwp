@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once '../../vendor/autoload.php';
 
 $stripeApiKey = 'sk_test_51OM4z2J10R2MRSEdRY8R4JkH25vSIbM6uvC9zc1aF2gZlFXYeNofe5d1ziQuZVGm7TrxToiM903bOUZg4pmULUJX00lv0N4y7d';
