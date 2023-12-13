@@ -20,7 +20,6 @@ $line_items = array_map(function ($item) {
     return [
         'price' => $item['stripe_price_id'], 
         'quantity' => $item['item_quantity'],
-        'selected_size' => $item['selected_size'],
     ];
 }, $cartItems);
 
@@ -28,6 +27,7 @@ $line_items = array_map(function ($item) {
 $checkout_session = \Stripe\Checkout\Session::create([
     'line_items' => $line_items,
     'mode' => 'payment',
+    'shipping_address_collection' => ['allowed_countries' => ['US']],
     'success_url' => $YOUR_DOMAIN . 'src/views/frontend/success.html',
     'cancel_url' => $YOUR_DOMAIN . 'src/views/frontend/cancel.html',
 ]);
