@@ -47,16 +47,22 @@ if (isset($_GET["action"])) {
         $found = false;
     
         if (!empty($_SESSION["shopping_cart"])) {
+            $found = false;
             foreach ($_SESSION["shopping_cart"] as &$cart_item) {
-                if ($cart_item['item_id'] == $productID && $cart_item['selected_size'] == $selectedSize) {
-                    // Increment quantity if the same product and size are already in the cart
-                    $cart_item['item_quantity']++;
-                    $found = true;
-                    break;
+                if ($cart_item['item_id'] == $productID) {
+                    if ($cart_item['selected_size'] == $selectedSize) {
+                        // Increment quantity if same product and size are already in the cart
+                        $cart_item['item_quantity']++;
+                        $found = true;
+                        break;
+                    } else {
+                        // Add as a new item if the same product but different size is in the cart
+                        $found = false;
+                    }
                 }
             }
         }
-        
+    
         if (!$found) {
             $item_array = array(
                 'item_id' => $productID,
@@ -66,6 +72,7 @@ if (isset($_GET["action"])) {
                 'selected_size' => $selectedSize
             );
             $_SESSION["shopping_cart"][] = $item_array;
+            $_SESSION['selected_sizes'][$productID] = $selectedSize;
         }
     }
     /* elseif ($action == "delete" && isset($_GET["id"])) {
@@ -210,7 +217,7 @@ if ($shouldRedirect) {
                         <ul role="list" class="border-b border-t border-gray-300">
                             <li class="flex py-6 sm:py-10">
                                 <div class="flex-shrink-0">
-                                    <a href="./frontend/single_product.php?ProductID=<?php echo $product['ProductID']; ?>" >
+                                    <a href="../frontend/single_product.php?ProductID=<?php echo $product['ProductID']; ?>" >
                                         <img src="<?= htmlspecialchars($product['ProductMainImage']) ?>" alt="" class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48" />
                                     </a>
                                 </div>
@@ -220,12 +227,12 @@ if ($shouldRedirect) {
                                             <div class="flex justify-between">
                                                 <!-- Product Name -->
                                                 <h3 class="text-sm">
-                                                    <a href="./frontend/single_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="font-semibold text-gray-700"><?= htmlspecialchars($product['Model']) ?></a>
+                                                    <a href="../frontend/single_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="font-semibold text-gray-700"><?= htmlspecialchars($product['Model']) ?></a>
                                                 </h3>
                                             </div>
                                             <div class="mt-1 text-sm">
                                                 <!-- Size -->
-                                                <p class="text-gray-500">Selected Size: <?= isset($_SESSION['selected_sizes'][$product['ProductID']]) ? htmlspecialchars($_SESSION['selected_sizes'][$product['ProductID']]) : 'Not Selected'; ?></p>
+                                                <p class="text-gray-500">Selected Size: <?= htmlspecialchars($_SESSION['selected_sizes'][$product['ProductID']]) ?></p>
                                             </div>
                                             <!-- Price -->
                                             <p class="mt-1 text-sm font-semibold text-gray-900"><?= htmlspecialchars($product['Price']) ?></p>
@@ -235,12 +242,8 @@ if ($shouldRedirect) {
                                             <form method="post" action="cart.php">
                                                 <input type="hidden" name="action" value="update_quantity">
                                                 <input type="hidden" name="id" value="<?= $product['ProductID'] ?>">
-                                                <input type="hidden" name="size" value="<?= $product['selected_size'] ?>"> <!-- Add a hidden input for the selected size -->
-
-                                                <!-- Display the quantity for each size -->
                                                 <label class="sr-only" for="quantity-<?= $key ?>">
-                                                    Quantity Product Name
-                                                </label>
+                                                    Quantity Product Name</label>
                                                 <select name="quantity" id="quantity-<?= $key ?>" class="max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-semibold leading-5 text-gray-700 shadow-sm sm:text-sm" onchange="this.form.submit()">
                                                     <?php for ($i = 1; $i <= 10; $i++) : ?>
                                                         <option value="<?= $i ?>" <?= ($i == $product['quantity']) ? 'selected' : '' ?>><?= $i ?></option>
