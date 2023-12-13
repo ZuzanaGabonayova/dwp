@@ -47,25 +47,31 @@ $ordersResult = $readOrders->readOrders();
                                 <?php
                                 $currentOrderId = null;
                                 while ($row = $ordersResult->fetch_assoc()) {
-                                    if ($row['id'] != $currentOrderId) {
-                                        if ($currentOrderId != null) {
-                                            // Close the products cell and the previous row
-                                            echo "</td></tr>";
-                                        }
-                                        // Start a new row
+                                if ($row['id'] != $currentOrderId) {
+                                    if ($currentOrderId != null) {
+                                        // Close the products cell and the previous row
+                                        echo "</td>";
                                         ?>
-                                        <tr>
-                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><?= $row['id']; ?></td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= htmlspecialchars($row['customer_name']); ?></td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= htmlspecialchars($row['customer_email']); ?></td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <td class="relative whitespace-nowrap pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                            <a target="_blank" href="<?php echo baseUrl(); ?>src/actions/generate_pdf.php?order_id=<?php echo $currentOrderId; ?>" class="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600">Invoice</a>
+                                        </td>
+                                        </tr>
                                         <?php
-                                        $currentOrderId = $row['id'];
                                     }
-                                    // Display products in the same cell
-                                    echo htmlspecialchars($row['product_name']) . " - Quantity: " . htmlspecialchars($row['quantity']) . "<br>";
+                                    // Start a new row
+                                    ?>
+                                    <tr>
+                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><?= $row['id']; ?></td>
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= htmlspecialchars($row['customer_name']); ?></td>
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= htmlspecialchars($row['customer_email']); ?></td>
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    <?php
+                                    $currentOrderId = $row['id'];
                                 }
-                                if ($currentOrderId != null) {
+                                // Display products in the same cell
+                                echo htmlspecialchars($row['product_name']) . " - Quantity: " . htmlspecialchars($row['quantity']) . "<br>";
+                            }
+                            if ($currentOrderId != null) {
                                 // Close the last row
                                 echo "</td>";
                                 ?>
@@ -75,7 +81,9 @@ $ordersResult = $readOrders->readOrders();
                                 </tr>
                                 <?php
                             }
-                                ?>
+
+                            // ... [Other code]
+                            ?>
                             </tbody>
                         </table>
                     </div>
