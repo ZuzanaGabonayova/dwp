@@ -53,6 +53,7 @@ $ordersResult = $readOrders->readOrders();
                                         // Start a new row
                                         ?>
                                         <tr>
+                                            <a href="../../actions/generate_pdf.php?order_id=<?= $row['id']; ?>" target="_blank">Generate PDF</a>
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><?= $row['id']; ?></td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= htmlspecialchars($row['customer_name']); ?></td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= htmlspecialchars($row['customer_email']); ?></td>
@@ -68,7 +69,7 @@ $ordersResult = $readOrders->readOrders();
                                     echo "</td></tr>";
                                 }
                                 ?>
-                                <a href="../../actions/generate_pdf.php?order_id=<?= $row['id']; ?>" target="_blank">Generate PDF</a>
+                                
                             </tbody>
                         </table>
                     </div>
