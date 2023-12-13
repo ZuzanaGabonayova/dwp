@@ -66,17 +66,16 @@ $ordersResult = $readOrders->readOrders();
                                     echo htmlspecialchars($row['product_name']) . " - Quantity: " . htmlspecialchars($row['quantity']) . "<br>";
                                 }
                                 if ($currentOrderId != null) {
-                                    // Close the last row
-                                    echo "</td>";
-                                    ?>
-                                    <td class="relative whitespace-nowrap pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                        <a target="_blank" href="<?php echo baseUrl(); ?>src/actions/generate_pdf.php?order_id=<?php echo $currentOrderId; ?>" class="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600">Invoice</a>
-                                    </td>
-                                    </tr>
-                                    <?php
-                                }
+                                // Close the last row
+                                echo "</td>";
                                 ?>
-                                
+                                <td class="relative whitespace-nowrap pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                    <a target="_blank" href="<?php echo baseUrl(); ?>src/actions/generate_pdf.php?order_id=<?php echo $currentOrderId; ?>" class="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600">Invoice</a>
+                                </td>
+                                </tr>
+                                <?php
+                            }
+                                ?>
                             </tbody>
                         </table>
                     </div>
