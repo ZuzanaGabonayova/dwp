@@ -30,7 +30,7 @@ $companyData = $readCrud->readCompanyPresentation();
     <div class="container mx-auto bg-white p-6 rounded shadow">
         <h2 class="text-2xl font-bold mb-4">Edit Company Presentation</h2>
 
-        <form action="../../actions/handle_update_company_presentation.php" method="post" class="space-y-4">
+        <form action="../../actions/handle_update_company_presentation.php" method="post" enctype="multipart/form-data class="space-y-4">
             <div>
                 <label for="title" class="block mb-2 text-sm font-medium text-gray-700">Title:</label>
                 <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($companyData['Title']); ?>" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" required>
