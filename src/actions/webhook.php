@@ -39,7 +39,8 @@ switch ($event->type) {
     $shippingAddress = json_encode($session->shipping_details);
 
     // Prepare an insert statement
-    $stmt = $conn->prepare("INSERT INTO orders (session_id, payment_intent_id, amount_total, currency, customer_id, customer_email, payment_status, payment_method_types, shipping_address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO orders (session_id, payment_intent_id, amount_total, currency, customer_id, customer_email, payment_status, customer_name, customer_phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
 
     // Extracting data from the session
     $sessionId = $session->id;
@@ -48,9 +49,12 @@ switch ($event->type) {
     $currency = $session->currency;
     $customerId = $session->customer; // Can be null
     $paymentStatus = $session->payment_status;
+    $customerName = $session->customer_details->name;
+    $customerPhone = $session->customer_details->phone;
+
 
     // Bind variables to the prepared statement as parameters
-    $stmt->bind_param("ssissssss", $sessionId, $paymentIntentId, $amountTotal, $currency, $customerId, $customerEmail, $paymentStatus, $paymentMethodTypes, $shippingAddress);
+    $stmt->bind_param("ssissssss", $sessionId, $paymentIntentId, $amountTotal, $currency, $customerId, $customerEmail, $paymentStatus, $customerName, $customerPhone);
 
     // Execute the query
     if ($stmt->execute()) {
