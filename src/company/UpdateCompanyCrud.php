@@ -28,7 +28,7 @@ class UpdateCompanyCrud {
         }
 
         // Prepare the SQL statement
-        $stmt = $this->conn->prepare("UPDATE PresentationOfCompany SET description = ?, openingHours = ?, email = ?, phone = ?, street = ?, houseNumber = ?, postalCodeID = ?, title = ?, image = ? WHERE id = 1");
+        $stmt = $this->conn->prepare("UPDATE PresentationOfCompany SET description = ?, openingHours = ?, email = ?, phone = ?, street = ?, houseNumber = ?, postalCodeID = ?, title = ?, image = ? ");
 
         // Bind the parameters
         $stmt->bind_param("ssssssisi", $description, $openingHours, $email, $phone, $street, $houseNumber, $postalCodeID, $title, $imagePath);
