@@ -38,6 +38,14 @@ class UpdateProductCrud {
     $stmt->execute();
     $result = $stmt->get_result();
     return $result->num_rows > 0 ? $result->fetch_assoc() : false;
+    }
+
+    public function getCurrentAttributes($productId, $attributeTable) {
+    $stmt = $this->conn->prepare("SELECT $attributeTable FROM $attributeTable WHERE ProductID = ?");
+    $stmt->bind_param("i", $productId);
+    $stmt->execute();
+    $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return array_column($result, $attributeTable);
 }
 
     public function updateProduct($formData, $fileData, $productId) {
