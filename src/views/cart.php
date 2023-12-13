@@ -121,34 +121,33 @@ if (isset($_POST["action"]) && $_POST["action"] === "delete" && isset($_POST["id
     exit();
 }
 
-// Fetch product details from the database based on the product IDs in the shopping cart
-$productIds = array_column($_SESSION["shopping_cart"], 'item_id');
-$productDetails = [];
+    // Fetch product details from the database based on the product IDs in the shopping cart
+    $productIds = array_column($_SESSION["shopping_cart"], 'item_id');
+    $productDetails = [];
 
-if (!empty($productIds)) {
-    $placeholders = implode(',', array_fill(0, count($productIds), '?'));
-    $sql = "SELECT *, StripePriceID FROM Product WHERE ProductID IN ($placeholders)";
-    $stmt = $conn->prepare($sql);
-    
-    if ($stmt) {
-        $stmt->bind_param(str_repeat('i', count($productIds)), ...$productIds);
-        $stmt->execute();
-        $result = $stmt->get_result();
+    if (!empty($productIds)) {
+        $placeholders = implode(',', array_fill(0, count($productIds), '?'));
+        $sql = "SELECT *, StripePriceID FROM Product WHERE ProductID IN ($placeholders)";
+        $stmt = $conn->prepare($sql);
 
-        if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            foreach ($_SESSION["shopping_cart"] as &$cartItem) {
-                if ($cartItem['item_id'] == $row['ProductID']) {
-                    $cartItem['quantity'] = $cartItem['item_quantity'];
-                    $cartItem['selected_size'] = $cartItem['selected_size'];
-                    $cartItem['stripe_price_id'] = $row['StripePriceID']; // Add Stripe Price ID to session
-                    break;
-                        }
+        if ($stmt) {
+            $stmt->bind_param(str_repeat('i', count($productIds)), ...$productIds);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            while ($row = $result->fetch_assoc()) {
+                foreach ($_SESSION["shopping_cart"] as &$cartItem) {
+                    if ($cartItem['item_id'] == $row['ProductID']) {
+                        $cartItem['quantity'] = $cartItem['item_quantity'];
+                        $cartItem['selected_size'] = $cartItem['selected_size'];
+                        $cartItem['stripe_price_id'] = $row['StripePriceID']; // Store Stripe Price ID in session
+                        $productDetails[] = array_merge($row, $cartItem);
+                        break;
+                    }
                 }
             }
         }
     }
-}
 
 // Handling the POST request to update quantity
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_quantity' && isset($_POST['id']) && isset($_POST['quantity'])) {
