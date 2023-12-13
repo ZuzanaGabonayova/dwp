@@ -32,21 +32,21 @@ class UpdateProductCrud {
         return $this->conn->query("SELECT SizeID, Size FROM Size")->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function readProduct($productId) {
-    $stmt = $this->conn->prepare("SELECT * FROM Product WHERE ProductID = ?");
-    $stmt->bind_param("i", $productId);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    return $result->num_rows > 0 ? $result->fetch_assoc() : false;
+     public function readProduct($productId) {
+        $stmt = $this->conn->prepare("SELECT * FROM Product WHERE ProductID = ?");
+        $stmt->bind_param("i", $productId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows > 0 ? $result->fetch_assoc() : false;
     }
 
-    public function getCurrentAttributes($productId, $attributeTable) {
-    $stmt = $this->conn->prepare("SELECT $attributeTable FROM $attributeTable WHERE ProductID = ?");
-    $stmt->bind_param("i", $productId);
-    $stmt->execute();
-    $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-    return array_column($result, $attributeTable);
-}
+    public function getCurrentAttributes($productId, $attributeTable, $idField) {
+        $stmt = $this->conn->prepare("SELECT $idField FROM $attributeTable WHERE ProductID = ?");
+        $stmt->bind_param("i", $productId);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        return array_column($result, $idField);
+    }
 
     public function updateProduct($formData, $fileData, $productId) {
         $productNumber = $formData["ProductNumber"];
