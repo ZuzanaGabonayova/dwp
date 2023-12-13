@@ -138,15 +138,25 @@ if (!empty($productIds)) {
     // Fetch all products from the database matching the IDs in the cart
     // Loop through the fetched products and build an updated cart
     foreach ($_SESSION["shopping_cart"] as $cartItem) {
-        // Create a unique identifier using product ID and selected size
-        $identifier = $cartItem['item_id'] . '_' . $cartItem['selected_size'];
+        // Check if the necessary keys exist and are not null
+        if (
+            isset($cartItem['item_id'], $cartItem['selected_size'], $cartItem['item_quantity']) &&
+            !is_null($cartItem['item_id']) &&
+            !is_null($cartItem['selected_size']) &&
+            !is_null($cartItem['item_quantity'])
+        ) {
+            // Create a unique identifier using product ID and selected size
+            $identifier = $cartItem['item_id'] . '_' . $cartItem['selected_size'];
 
-        if (!isset($tempCart[$identifier])) {
-            // If the identifier doesn't exist in the tempCart array, add it
-            $tempCart[$identifier] = $cartItem;
+            if (!isset($tempCart[$identifier])) {
+                // If the identifier doesn't exist in the tempCart array, add it
+                $tempCart[$identifier] = $cartItem;
+            } else {
+                // If the identifier already exists, increment the quantity
+                $tempCart[$identifier]['item_quantity'] += $cartItem['item_quantity'];
+            }
         } else {
-            // If the identifier already exists, increment the quantity
-            $tempCart[$identifier]['item_quantity'] += $cartItem['item_quantity'];
+
         }
     }
 
@@ -285,7 +295,7 @@ if ($shouldRedirect) {
                                                     Quantity Product Name</label>
                                                 <select name="quantity" id="quantity-<?= $key ?>" class="max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-semibold leading-5 text-gray-700 shadow-sm sm:text-sm" onchange="this.form.submit()">
                                                     <?php for ($i = 1; $i <= 10; $i++) : ?>
-                                                        <option value="<?= $i ?>" <?= ($i == $product['quantity']) ? 'selected' : '' ?>><?= $i ?></option>
+                                                        <option value="<?= $i ?>" <?= (isset($product['quantity']) && $i == $product['quantity']) ? 'selected' : '' ?>><?= $i ?></option>
                                                     <?php endfor; ?>
                                                 </select>
                                             </form>
