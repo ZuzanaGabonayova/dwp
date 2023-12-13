@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-session_start();
+//session_start();
 require __DIR__ . '/../../src/config/db.php'; // Include the database configuration
 
 // Initialize shopping cart if not set
