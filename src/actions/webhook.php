@@ -3,8 +3,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require '../../vendor/autoload.php';
-require_once '../config/db.php';
+require_once __DIR__ . '../../vendor/autoload.php';
+require_once __DIR__ . '../config/db.php';
 
 // Stripe configuration
 $stripe = new \Stripe\StripeClient('sk_test_51OMqZxD7CQBEfsgzCUQ19XaHyqwJHTK9ejG5IjlGs4CaQUpBPSP8M4no8rgXkzfSm5DU0LIxUneFODPiblzB8lMQ0000soVBL9'); // Your secret key
@@ -32,7 +32,7 @@ switch ($event->type) {
     $session = $event->data->object;
 
     // Prepare an insert statement
-    $stmt = $mysqli->prepare("INSERT INTO orders (session_id, payment_intent_id, amount_total, currency, customer_id, customer_email, payment_status) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO orders (session_id, payment_intent_id, amount_total, currency, customer_id, customer_email, payment_status) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
     // Extracting data from the session
     $sessionId = $session->id;
@@ -62,7 +62,7 @@ switch ($event->type) {
 }
 
 // Close connection
-$mysqli->close();
+$conn->close();
 
 http_response_code(200);
 ?>
