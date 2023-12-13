@@ -217,7 +217,7 @@ if ($shouldRedirect) {
                         <ul role="list" class="border-b border-t border-gray-300">
                             <li class="flex py-6 sm:py-10">
                                 <div class="flex-shrink-0">
-                                    <a href="../frontend/single_product.php?ProductID=<?php echo $product['ProductID']; ?>" >
+                                    <a href="./frontend/single_product.php?ProductID=<?php echo $product['ProductID']; ?>" >
                                         <img src="<?= htmlspecialchars($product['ProductMainImage']) ?>" alt="" class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48" />
                                     </a>
                                 </div>
@@ -227,7 +227,7 @@ if ($shouldRedirect) {
                                             <div class="flex justify-between">
                                                 <!-- Product Name -->
                                                 <h3 class="text-sm">
-                                                    <a href="../frontend/single_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="font-semibold text-gray-700"><?= htmlspecialchars($product['Model']) ?></a>
+                                                    <a href="./frontend/single_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="font-semibold text-gray-700"><?= htmlspecialchars($product['Model']) ?></a>
                                                 </h3>
                                             </div>
                                             <div class="mt-1 text-sm">
