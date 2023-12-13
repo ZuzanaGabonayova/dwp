@@ -39,7 +39,7 @@ switch ($event->type) {
     $shippingAddress = json_encode($session->shipping_details);
 
     // Prepare an insert statement
-    $stmt = $conn->prepare("INSERT INTO orders (session_id, payment_intent_id, amount_total, currency, customer_id, customer_email, payment_status customer_name, customer_phone, shipping_address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO orders (session_id, payment_intent_id, amount_total, currency, customer_id, customer_email, payment_status, customer_name, customer_phone, shipping_address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 
     // Extracting data from the session
