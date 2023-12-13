@@ -84,16 +84,11 @@ class UpdateProductCrud {
             $stripePrice = \Stripe\Price::retrieve($stripePriceId);
             $stripeProduct = \Stripe\Product::retrieve($stripePrice->product);
 
-            // Use the new Model value to update the product name
-            $stripeProduct->update([
-                'name' => [
-                    'name' => 'Name',
-                    'active' => true,
-                    'attributes' => [
-                        'Model' => $formData["Model"] // Set the new product name using the Model value
-                    ]
-                ]
-            ]);
+            // Update the product name using the Model value
+            $stripeProduct->name = $formData["Model"]; // Set the new product name using the Model value
+            $stripeProduct->save(); // Save the changes
+
+            // Note: There's no need to pass the 'name' field as an array, and we use the 'save' method to update the product.
         }
 
         $stmt = $this->conn->prepare("UPDATE Product SET ProductNumber = ?, Model = ?, Description = ?, Price = ?, StockQuantity = ?, CategoryID = ?, BrandID = ? WHERE ProductID = ?");
