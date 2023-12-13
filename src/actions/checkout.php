@@ -20,6 +20,7 @@ $line_items = array_map(function ($item) {
     return [
         'price' => $item['stripe_price_id'], 
         'quantity' => $item['item_quantity'],
+        'selected_size' => $item['selected_size'],
     ];
 }, $cartItems);
 
