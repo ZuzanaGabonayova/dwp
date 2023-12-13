@@ -72,27 +72,6 @@ $companyData = $readCrud->readCompanyPresentation();
                         <dt class="text-gray-500">Image</dt>
                         <dd class="text-gray-900"><img src="<?php echo htmlspecialchars($companyData['Image']); ?>" alt="Company Image"></dd>
                     </div>
-                    <<div class="flex justify-between gap-x-4 py-3">
-                        <dt class="text-gray-500">Icon 1</dt>
-                        <dd class="text-gray-900">
-                            <img src="<?php echo htmlspecialchars($companyData['Icon1Image']); ?>" alt="Icon 1">
-                            <p><?php echo htmlspecialchars($companyData['Icon1Description']); ?></p>
-                        </dd>
-                    </div>
-                    <div class="flex justify-between gap-x-4 py-3">
-                        <dt class="text-gray-500">Icon 2</dt>
-                        <dd class="text-gray-900">
-                            <img src="<?php echo htmlspecialchars($companyData['Icon2Image']); ?>" alt="Icon 2">
-                            <p><?php echo htmlspecialchars($companyData['Icon2Description']); ?></p>
-                        </dd>
-                    </div>
-                    <div class="flex justify-between gap-x-4 py-3">
-                        <dt class="text-gray-500">Icon 3</dt>
-                        <dd class="text-gray-900">
-                            <img src="<?php echo htmlspecialchars($companyData['Icon3Image']); ?>" alt="Icon 3">
-                            <p><?php echo htmlspecialchars($companyData['Icon3Description']); ?></p>
-                        </dd>
-                    </div>
                 </dl>
             </div>
         <?php else: ?>
