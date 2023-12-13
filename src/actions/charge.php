@@ -1,7 +1,7 @@
 <?php
 require_once '../../vendor/autoload.php';
 
-$stripeApiKey = 'sk_test_51OLzujFbfnG6W3PmYVxQjpVTvRsZIdU57Oh2y0aRxUh41w25U1rXfmQJloKZAtP87V8QNFvA42qRfcOqemnZlc8V00QoO83yh4';
+$stripeApiKey = 'sk_test_51OM4z2J10R2MRSEdRY8R4JkH25vSIbM6uvC9zc1aF2gZlFXYeNofe5d1ziQuZVGm7TrxToiM903bOUZg4pmULUJX00lv0N4y7d';
 \Stripe\Stripe::setApiKey($stripeApiKey);
 
 //sanitize post array (filter the bad info)
