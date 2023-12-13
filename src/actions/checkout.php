@@ -26,7 +26,7 @@ $line_items = array_map(function ($item) {
 // Create the Checkout Session
 $checkout_session = \Stripe\Checkout\Session::create([
     'line_items' => $line_items,
-    
+    'phone_number_collection' => ['enabled' => true],
     'mode' => 'payment',
     'shipping_address_collection' => ['allowed_countries' => ['DK']],
     'success_url' => $YOUR_DOMAIN . 'src/views/frontend/success.html',
