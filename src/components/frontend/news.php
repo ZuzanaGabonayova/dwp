@@ -17,8 +17,7 @@ $newsPosts = $readNewsCrud->readAllNewsPosts();
 ?>
 
 
-<main>
-    <div class="bg-white py-24 sm:py-32">
+<section id="news-section" class="bg-white py-24 sm:py-32">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">From the blog</h2>
@@ -53,5 +52,4 @@ $newsPosts = $readNewsCrud->readAllNewsPosts();
         <?php endif; ?>
     </div>
   </div>
-</div>
-</main>
+</section>
