@@ -1,15 +1,18 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once __DIR__ . '/../../config/db.php';
-require_once __DIR__ . '/../../product/ReadProductCrud.php';
+require_once __DIR__ . '/../../orders/ReadOrders.php';
 require_once __DIR__ . '/../../utils/url_helpers.php';
 
 
 
-$readProductCrud = new ReadProductCrud($conn);
-$products = $readProductCrud->readProducts();
-
-
+$readOrders = new ReadOrders($conn);
+$ordersResult = $readOrders->readOrders();
 ?>
+
 
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
         <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
