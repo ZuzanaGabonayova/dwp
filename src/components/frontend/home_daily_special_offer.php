@@ -22,7 +22,7 @@ if ($currentOffer) {
                     <p class="mt-4 text-gray-500"> <?= htmlspecialchars($productDetails['Description']) ?></p>
                     <p class="mt-3"><strong>Price:</strong> <?= htmlspecialchars($productDetails['Price']) ?></p>
                     <div class="mt-6">
-                            <a href="<?php echo baseUrl(); ?>src/views/single_product.php?ProductID=<?= $productDetails['ProductID'] ?>"  class="inline-block rounded-md border border-transparent bg-orange-500 px-8 py-3 font-medium text-white">
+                            <a href="<?php echo baseUrl(); ?>src/views/frontend/single_product.php?ProductID=<?= $productDetails['ProductID'] ?>"  class="inline-block rounded-md border border-transparent bg-orange-500 px-8 py-3 font-medium text-white">
                                 View Product
                             </a>
                         </div>
