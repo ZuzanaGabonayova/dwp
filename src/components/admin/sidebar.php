@@ -201,3 +201,5 @@ function displayAdminAvatar() {
 
         </div>
       </div>
+
+<script src="../../../assets/js/sidebar.js"></script>
