@@ -18,9 +18,8 @@ $cartItems = $_SESSION["shopping_cart"] ?? [];
 // Prepare line items for Stripe Checkout
 $line_items = array_map(function ($item) {
     return [
-        'price' => $item['stripe_price_id'], // Use the Stripe Price ID from cart
+        'price' => $item['stripe_price_id'], 
         'quantity' => $item['item_quantity'],
-        'currency' => 'dkk',
     ];
 }, $cartItems);
 
