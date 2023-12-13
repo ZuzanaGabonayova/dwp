@@ -11,15 +11,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $updateCrud = new UpdateCompanyCrud($conn);
 
     // Get the form data
-    $description = $_POST['description'];
-    $openingHours = $_POST['openingHours'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $street = $_POST['street'];
-    $houseNumber = $_POST['houseNumber'];
-    $postalCodeID = $_POST['postalCodeID'];
-    $title = $_POST['title'];
-    $image = $_FILES['image'];
+    $description = $_POST['DescriptionOfCompany'];
+    $openingHours = $_POST['OpeningHours'];
+    $email = $_POST['Email'];
+    $phone = $_POST['Phone'];
+    $street = $_POST['Street'];
+    $houseNumber = $_POST['HouseNumber'];
+    $postalCodeID = $_POST['PostalCodeID'];
+    $title = $_POST['Title'];
+    $image = $_FILES['Image'];
     // Retrieve other fields similarly
 
     // Update the company presentation
