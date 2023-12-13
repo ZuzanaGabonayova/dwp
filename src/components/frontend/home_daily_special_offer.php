@@ -23,7 +23,7 @@ if ($currentOffer) {
                     <p class="mt-3"><strong>Price:</strong> <?= htmlspecialchars($productDetails['Price']) ?></p>
                     <div class="mt-6">
                             <a href="<?php echo baseUrl(); ?>src/views/single_product.php?ProductID=<?= $productDetails['ProductID'] ?>"  class="inline-block rounded-md border border-transparent bg-orange-500 px-8 py-3 font-medium text-white">
-                                Read More
+                                View Product
                             </a>
                         </div>
                 </div>
