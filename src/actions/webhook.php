@@ -8,7 +8,7 @@ require_once '../config/db.php';
 
 // Stripe configuration
 $stripe = new \Stripe\StripeClient('sk_test_51OMqZxD7CQBEfsgzCUQ19XaHyqwJHTK9ejG5IjlGs4CaQUpBPSP8M4no8rgXkzfSm5DU0LIxUneFODPiblzB8lMQ0000soVBL9'); // Your secret key
-$endpoint_secret = 'whsec_d2764021b1d8ac9649dc817afef5f5c2b0b6ae20b82d6540942028480400ffc8'; // Your endpoint secret
+$endpoint_secret = 'whsec_Tfe8ILTXdbZ80jc9UwTIAeV9LJWJFozK'; // Your endpoint secret
 
 $payload = @file_get_contents('php://input');
 $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
