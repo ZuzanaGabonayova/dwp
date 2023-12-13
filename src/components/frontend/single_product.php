@@ -49,7 +49,7 @@ if (isset($_GET['ProductID'])) {
                 <p class="mt-1">Category: <?= htmlspecialchars($categoryName) ?></p>
                 <p class="mt-1">Brand: <?= htmlspecialchars($brandName) ?></p>
                 <div class="mt-6">
-                    <form method="get" action="cart.php">
+                    <form method="get" action="../../views/cart.php">
                         <input type="hidden" name="action" value="add">
                         <input type="hidden" name="id" value="<?= $productID ?>">
                         <input type="hidden" name="hidden_name" value="<?= htmlspecialchars($product['Model']) ?>">

@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             echo '<p>Please select a size before adding to cart.</p>';
         } else{
             $_SESSION['selected_sizes'][$productID] = $selectedSize;
-            header('Location: cart.php?action=add&id=' . $productID . '&hidden_name=' . urlencode($product['Model']) . '&hidden_price=' . urlencode($product['Price']) . '&selected_size=' . $selectedSize);
+            header('Location: ../cart.php?action=add&id=' . $productID . '&hidden_name=' . urlencode($product['Model']) . '&hidden_price=' . urlencode($product['Price']) . '&selected_size=' . $selectedSize);
             exit();
         }
     }
