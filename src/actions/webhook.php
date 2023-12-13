@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once __DIR__ . '../../../vendor/autoload.php';
-require_once __DIR__ . '../config/db.php';
+require_once __DIR__ . '../../config/db.php';
 
 // Stripe configuration
 $stripe = new \Stripe\StripeClient('sk_test_51OMqZxD7CQBEfsgzCUQ19XaHyqwJHTK9ejG5IjlGs4CaQUpBPSP8M4no8rgXkzfSm5DU0LIxUneFODPiblzB8lMQ0000soVBL9'); // Your secret key
