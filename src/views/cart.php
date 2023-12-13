@@ -139,10 +139,9 @@ if (!empty($productIds)) {
         while ($row = $result->fetch_assoc()) {
             foreach ($_SESSION["shopping_cart"] as &$cartItem) {
                 if ($cartItem['item_id'] == $row['ProductID']) {
-                    $row['quantity'] = $cartItem['item_quantity'];
-                    $row['selected_size'] = $cartItem['selected_size']; // Include selected size
-                    $row['stripe_price_id'] = $row['StripePriceID']; // Store Stripe Price ID
-                    $productDetails[] = $row;
+                    $cartItem['quantity'] = $cartItem['item_quantity'];
+                    $cartItem['selected_size'] = $cartItem['selected_size'];
+                    $cartItem['stripe_price_id'] = $row['StripePriceID']; // Add Stripe Price ID to session
                     break;
                         }
                 }
