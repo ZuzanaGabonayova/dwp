@@ -31,20 +31,26 @@ switch ($event->type) {
   case 'checkout.session.completed':
     $session = $event->data->object;
 
+    // Check if customer details and email are set
+    $customerEmail = isset($session->customer_details->email) ? $session->customer_details->email : null;
+
+    // Serialize payment method types and shipping address
+    $paymentMethodTypes = json_encode($session->payment_method_types);
+    $shippingAddress = json_encode($session->shipping_details);
+
     // Prepare an insert statement
-    $stmt = $conn->prepare("INSERT INTO orders (session_id, payment_intent_id, amount_total, currency, customer_id, customer_email, payment_status) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO orders (session_id, payment_intent_id, amount_total, currency, customer_id, customer_email, payment_status, payment_method_types, shipping_address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
     // Extracting data from the session
     $sessionId = $session->id;
     $paymentIntentId = $session->payment_intent;
     $amountTotal = $session->amount_total;
     $currency = $session->currency;
-    $customerId = $session->customer;
-    $customerEmail = $session->customer_details->email; // Make sure this exists
+    $customerId = $session->customer; // Can be null
     $paymentStatus = $session->payment_status;
 
     // Bind variables to the prepared statement as parameters
-    $stmt->bind_param("ssissss", $sessionId, $paymentIntentId, $amountTotal, $currency, $customerId, $customerEmail, $paymentStatus);
+    $stmt->bind_param("ssissssss", $sessionId, $paymentIntentId, $amountTotal, $currency, $customerId, $customerEmail, $paymentStatus, $paymentMethodTypes, $shippingAddress);
 
     // Execute the query
     if ($stmt->execute()) {
@@ -56,10 +62,9 @@ switch ($event->type) {
     // Close statement
     $stmt->close();
     break;
-  // ... handle other event types
-  default:
-    echo 'Received unknown event type ' . $event->type;
+  // ... [Other cases]
 }
+
 
 // Close connection
 $conn->close();
