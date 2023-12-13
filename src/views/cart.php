@@ -225,7 +225,7 @@ if ($shouldRedirect) {
                                             </div>
                                             <div class="mt-1 text-sm">
                                                 <!-- Size -->
-                                                <p class="text-gray-500">Selected Size: <?= htmlspecialchars($_SESSION['selected_sizes'][$product['ProductID']]) ?></p>
+                                                <p class="text-gray-500">Selected Size: <?= isset($_SESSION['selected_sizes'][$product['ProductID']]) ? htmlspecialchars($_SESSION['selected_sizes'][$product['ProductID']]) : 'Not Selected'; ?></p>
                                             </div>
                                             <!-- Price -->
                                             <p class="mt-1 text-sm font-semibold text-gray-900"><?= htmlspecialchars($product['Price']) ?></p>
