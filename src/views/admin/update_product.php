@@ -7,6 +7,7 @@ error_reporting(E_ALL);
 
 require_once __DIR__ . '/../../product/UpdateProductCrud.php';
 require_once '../../admin_authentication/loggedin.php';
+
 // Call the function to update last activity time
 updateLastActivityTime();
 
