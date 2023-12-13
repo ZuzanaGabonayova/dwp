@@ -37,6 +37,10 @@ $companyData = $readCrud->readCompanyPresentation();
                 </div>
                 <dl class="-my-3 px-6 py-4 text-sm leading-6 divide-y-reverse">
                     <div class="flex justify-between gap-x-4 py-3">
+                        <dt class="text-gray-500">Title</dt>
+                        <dd class="text-gray-900"><?php echo htmlspecialchars($companyData['Title']); ?></dd>
+                    </div>
+                    <div class="flex justify-between gap-x-4 py-3">
                         <dt class="text-gray-500">Description</dt>
                         <dd class="text-gray-900"><?php echo htmlspecialchars($companyData['DescriptionOfCompany']); ?></dd>
                     </div>
@@ -63,6 +67,28 @@ $companyData = $readCrud->readCompanyPresentation();
                      <div class="flex justify-between gap-x-4 py-3">
                         <dt class="text-gray-500">Postal Code</dt>
                         <dd class="text-gray-900"><?php echo htmlspecialchars($companyData['PostalCodeID']); ?></dd>
+                    </div>
+                    <div class="flex justify-between gap-x-4 py-3">
+                        <dt class="text-gray-500">Image</dt>
+                        <dd class="text-gray-900"><img src="<?php echo htmlspecialchars($companyData['Image']); ?>" alt="Company Image"></dd>
+                    </div>
+                    <div class="flex justify-between gap-x-4 py-3">
+                        <dt class="text-gray-500">Icon 1</dt>
+                        <dd class="text-gray-900">
+                            <img src="<?php echo htmlspecialchars($companyData['Icon1Image']); ?>" alt="<?php echo htmlspecialchars($companyData['Icon1Description']); ?>">
+                        </dd>
+                    </div>
+                    <div class="flex justify-between gap-x-4 py-3">
+                        <dt class="text-gray-500">Icon 2</dt>
+                        <dd class="text-gray-900">
+                            <img src="<?php echo htmlspecialchars($companyData['Icon2Image']); ?>" alt="<?php echo htmlspecialchars($companyData['Icon2Description']); ?>">
+                        </dd>
+                    </div>
+                    <div class="flex justify-between gap-x-4 py-3">
+                        <dt class="text-gray-500">Icon 3</dt>
+                        <dd class="text-gray-900">
+                            <img src="<?php echo htmlspecialchars($companyData['Icon3Image']); ?>" alt="<?php echo htmlspecialchars($companyData['Icon3Description']); ?>">
+                        </dd>
                     </div>
                 </dl>
             </div>
