@@ -14,7 +14,7 @@ function checkSessionTimeout() {
         // If the difference between current time and last activity time exceeds the timeout, logout
         session_unset(); // Unset all session variables
         session_destroy(); // Destroy the session
-        header("Location: ../views/admin/admin_login.php"); // Redirect to the login page
+        header("Location: ../../views/admin/admin_login.php"); // Redirect to the login page
         exit();
     } else {
         // Update last activity time as the user is active
@@ -30,7 +30,7 @@ checkSessionTimeout();
 
 // Check if the admin is not logged in
 if (!isset($_SESSION['admin_username'])) {
-    header("Location: ../views/admin/admin_login.php"); // Redirect to the admin login page
+    header("Location: ../../views/admin/admin_login.php"); // Redirect to the admin login page
     exit();
 }
 
