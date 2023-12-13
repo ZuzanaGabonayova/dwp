@@ -54,7 +54,7 @@ switch ($event->type) {
 
 
     // Bind variables to the prepared statement as parameters
-    $stmt->bind_param("ssissssss", $sessionId, $paymentIntentId, $amountTotal, $currency, $customerId, $customerEmail, $paymentStatus, $shippingAddress, $customerName, $customerPhone);
+    $stmt->bind_param("ssisssssss", $sessionId, $paymentIntentId, $amountTotal, $currency, $customerId, $customerEmail, $paymentStatus, $customerName, $customerPhone, $shippingAddress);
 
     // Execute the query
     if ($stmt->execute()) {
