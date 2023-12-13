@@ -68,6 +68,7 @@ $ordersResult = $readOrders->readOrders();
                                     echo "</td></tr>";
                                 }
                                 ?>
+                                <a href="../../actions/generate_pdf.php?order_id=<?= $row['id']; ?>" target="_blank">Generate PDF</a>
                             </tbody>
                         </table>
                     </div>
