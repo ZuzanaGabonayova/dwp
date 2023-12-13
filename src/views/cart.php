@@ -153,7 +153,11 @@ if (!empty($productIds)) {
     // Fetch product details for the items in the updated cart
     $identifiers = array_keys($tempCart);
     $placeholders = implode(',', array_fill(0, count($identifiers), '?'));
-    $sql = "SELECT *, StripePriceID FROM Product WHERE CONCAT(ProductID, '_', Size) IN ($placeholders)";
+    $sql = "SELECT p.*, ps.SizeID, ps.ProductID AS PSProductID, StripePriceID 
+            FROM Product p 
+            JOIN ProductSize ps ON p.ProductID = ps.ProductID
+            WHERE ps.ProductID IN ($placeholders)";
+    
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
@@ -163,13 +167,14 @@ if (!empty($productIds)) {
 
         while ($row = $result->fetch_assoc()) {
             // Set the product details for each item in the tempCart array
-            $identifier = $row['ProductID'] . '_' . $row['Size'];
+            $identifier = $row['PSProductID'] . '_' . $row['SizeID'];
             $tempCart[$identifier]['quantity'] = $tempCart[$identifier]['item_quantity'];
             $tempCart[$identifier]['stripe_price_id'] = $row['StripePriceID'];
             $productDetails[] = array_merge($row, $tempCart[$identifier]);
         }
     }
 }
+
 
 // Handling the POST request to update quantity
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_quantity' && isset($_POST['id']) && isset($_POST['quantity'])) {
