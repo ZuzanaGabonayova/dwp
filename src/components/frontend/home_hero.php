@@ -32,7 +32,7 @@
                         <h1 class="font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">Focus on what matters</h1>
                         <p class="mt-4 text-xl text-gray-600">All the charts, datepickers, and notifications in the world can't beat checking off some items on a paper card.</p>
                         <div class="mt-6">
-                            <a href="#" class="inline-block rounded-md border border-transparent bg-orange-500 px-8 py-3 font-medium text-white">
+                            <a href="#" class="inline-block rounded-md border border-transparent bg-orange-600 px-8 py-3 font-medium text-white">
                                 Shop Sneakers
                             </a>
                         </div>

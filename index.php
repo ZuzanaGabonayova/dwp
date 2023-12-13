@@ -12,6 +12,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shoes Webshop - Home</title>
     <link rel="stylesheet" href="/assets/css/output.css">
+    <meta name="description" content="Discover the latest trends in footwear at our Shoes Webshop. Explore our wide range of high-quality shoes for men, women, and kids. Shop now for the best deals.">
 </head>
 <body>
     <div>
