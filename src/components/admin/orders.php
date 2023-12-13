@@ -34,11 +34,13 @@ $ordersResult = $readOrders->readOrders();
                             <!-- Table Headers -->
                             <thead class="bg-gray-50">
                                 <tr>
+                                    <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                        <span class="sr-only">Actions</span>
+                                    </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Order ID</th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Customer Name</th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Customer Email</th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Products</th>
-                                    <!-- Add more headers if necessary -->
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-300">
@@ -53,7 +55,9 @@ $ordersResult = $readOrders->readOrders();
                                         // Start a new row
                                         ?>
                                         <tr>
+                                            <td class="relative whitespace-nowrap pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                             <a href="../../actions/generate_pdf.php?order_id=<?= $row['id']; ?>" target="_blank">Generate PDF</a>
+                                            </td>
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><?= $row['id']; ?></td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= htmlspecialchars($row['customer_name']); ?></td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= htmlspecialchars($row['customer_email']); ?></td>
