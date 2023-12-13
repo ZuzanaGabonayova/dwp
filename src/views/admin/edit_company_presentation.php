@@ -32,6 +32,10 @@ $companyData = $readCrud->readCompanyPresentation();
 
         <form action="../../actions/handle_update_company_presentation.php" method="post" class="space-y-4">
             <div>
+                <label for="title" class="block mb-2 text-sm font-medium text-gray-700">Title:</label>
+                <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($companyData['Title']); ?>" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" required>
+            </div>
+            <div>
                 <label for="description" class="block mb-2 text-sm font-medium text-gray-700">Description:</label>
                 <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" required><?php echo htmlspecialchars($companyData['DescriptionOfCompany']); ?></textarea>
             </div>
@@ -64,6 +68,38 @@ $companyData = $readCrud->readCompanyPresentation();
             <div>
                 <label for="postalCodeID" class="block mb-2 text-sm font-medium text-gray-700">Postal Code:</label>
                 <input type="number" id="postalCodeID" name="postalCodeID" value="<?php echo htmlspecialchars($companyData['PostalCodeID']); ?>" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" required>
+            </div>
+            <div>
+                <label for="image" class="block mb-2 text-sm font-medium text-gray-700">Image:</label>
+                <input type="file" id="image" name="image" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" required>
+                <img src="<?php echo htmlspecialchars($companyData['Image']); ?>" alt="Current Image" class="mt-2">
+            </div>
+            <div>
+                <label for="icon1Image" class="block mb-2 text-sm font-medium text-gray-700">Icon 1 Image:</label>
+                <input type="file" id="icon1Image" name="icon1Image" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" required>
+                <img src="<?php echo htmlspecialchars($companyData['Icon1Image']); ?>" alt="Current Icon 1 Image" class="mt-2">
+            </div>
+            <div>
+                <label for="icon1Description" class="block mb-2 text-sm font-medium text-gray-700">Icon 1 Description:</label>
+                <textarea id="icon1Description" name="icon1Description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" required><?php echo htmlspecialchars($companyData['Icon1Description']); ?></textarea>
+            </div>
+            <div>
+                <label for="icon2Image" class="block mb-2 text-sm font-medium text-gray-700">Icon 2 Image:</label>
+                <input type="file" id="icon2Image" name="icon2Image" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" required>
+                <img src="<?php echo htmlspecialchars($companyData['Icon2Image']); ?>" alt="Current Icon 2 Image" class="mt-2">
+            </div>
+            <div>
+                <label for="icon2Description" class="block mb-2 text-sm font-medium text-gray-700">Icon 1 Description:</label>
+                <textarea id="icon2Description" name="icon2Description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" required><?php echo htmlspecialchars($companyData['Icon2Description']); ?></textarea>
+            </div>
+            <div>
+                <label for="icon3Image" class="block mb-2 text-sm font-medium text-gray-700">Icon 3 Image:</label>
+                <input type="file" id="icon3Image" name="icon3Image" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" required>
+                <img src="<?php echo htmlspecialchars($companyData['Icon3Image']); ?>" alt="Current Icon 3 Image" class="mt-2">
+            </div>
+            <div>
+                <label for="icon3Description" class="block mb-2 text-sm font-medium text-gray-700">Icon 1 Description:</label>
+                <textarea id="icon3Description" name="icon3Description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" required><?php echo htmlspecialchars($companyData['Icon3Description']); ?></textarea>
             </div>
 
             <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Update Company Presentation</button>
