@@ -28,49 +28,42 @@ $products = $readProductCrud->readProducts();
                 <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                     <div class="overflow-hidden border border-gray-300 sm:rounded-lg">
                         <table class="min-w-full">
+                            <!-- Table Headers -->
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Number</th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Name</th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Price</th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Image</th>
-                                    <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                        <span class="sr-only">Actions</span>
-                                    </th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Order ID</th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Customer Name</th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Customer Email</th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Products</th>
+                                    <!-- Add more headers if necessary -->
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-300">
                                 <?php
-                                if ($products && $products->num_rows > 0):
-                                    while($product = $products->fetch_assoc()):
-                                        $productColors = $readProductCrud->getProductColors($product["ProductID"]);
-                                        $productSizes = $readProductCrud->getProductSizes($product["ProductID"]);
-                                        $categoryName = $readProductCrud->getCategoryName($product["CategoryID"]);
-                                        $brandName = $readProductCrud->getBrandName($product["BrandID"]);
-                                        $authorName = $readProductCrud->getAuthorName($product["AdminID"]);
-                                ?>
-                                <tr>
-                                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><?= $product["ProductNumber"]; ?></td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= $product["Model"]; ?></td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= $product["Price"]; ?></td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <img class="h-10 w-10 rounded-full" src="../<?= $product["ProductMainImage"]; ?>" alt="Product image">
-                                    </td>
-                                    <td class="relative whitespace-nowrap pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                        <a href="<?php echo baseUrl(); ?>src/views/admin/update_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600">Edit</a>
-                                       <a class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600" href="../../actions/handle_delete_product.php?ProductID=<?php echo $product['ProductID']; ?>" onclick="return confirm('Are you sure you want to delete this product?');">
-                                            Delete
-                                       </a>
-
-                                    </td>
-                                </tr>
-                                <?php
-                                    endwhile;
-                                else:
-                                ?>
-                                <tr><td colspan='5' class='py-3 px-6 text-center'>No products found</td></tr>
-                                <?php
-                                endif;
+                                $currentOrderId = null;
+                                while ($row = $ordersResult->fetch_assoc()) {
+                                    if ($row['id'] != $currentOrderId) {
+                                        if ($currentOrderId != null) {
+                                            // Close the products cell and the previous row
+                                            echo "</td></tr>";
+                                        }
+                                        // Start a new row
+                                        ?>
+                                        <tr>
+                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><?= $row['id']; ?></td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= htmlspecialchars($row['customer_name']); ?></td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= htmlspecialchars($row['customer_email']); ?></td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <?php
+                                        $currentOrderId = $row['id'];
+                                    }
+                                    // Display products in the same cell
+                                    echo htmlspecialchars($row['product_name']) . " - Quantity: " . htmlspecialchars($row['quantity']) . "<br>";
+                                }
+                                if ($currentOrderId != null) {
+                                    // Close the last row
+                                    echo "</td></tr>";
+                                }
                                 ?>
                             </tbody>
                         </table>
