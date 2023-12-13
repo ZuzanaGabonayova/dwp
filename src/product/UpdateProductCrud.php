@@ -32,7 +32,7 @@ class UpdateProductCrud {
         return $this->conn->query("SELECT SizeID, Size FROM Size")->fetch_all(MYSQLI_ASSOC);
     }
 
-     public function readProduct($productId) {
+    public function readProduct($productId) {
         $stmt = $this->conn->prepare("SELECT * FROM Product WHERE ProductID = ?");
         $stmt->bind_param("i", $productId);
         $stmt->execute();
@@ -89,14 +89,14 @@ class UpdateProductCrud {
             $sizeStmt->execute();
         }
 
-          // Fetch the current Stripe Price ID for the product
+        // Fetch the current Stripe Price ID for the product
         $stmt = $this->conn->prepare("SELECT StripePriceID FROM Product WHERE ProductID = ?");
         $stmt->bind_param("i", $productId);
         $stmt->execute();
         $result = $stmt->get_result();
         $currentStripeData = $result->fetch_assoc();
 
-         if ($currentStripeData && $currentStripeData['StripePriceID']) {
+        if ($currentStripeData && $currentStripeData['StripePriceID']) {
             // Retrieve the Stripe Price object
             $stripePriceId = $currentStripeData['StripePriceID'];
             $stripePrice = \Stripe\Price::retrieve($stripePriceId);
@@ -104,7 +104,7 @@ class UpdateProductCrud {
             // Extract the Product ID from the Stripe Price object
             $stripeProductId = $stripePrice->product;
 
-            // Update Stripe price (create new price as Stripe prices are immutable)
+            // Update Stripe price (create a new price as Stripe prices are immutable)
             $newStripePrice = \Stripe\Price::create([
                 'unit_amount' => $price * 100, // Convert to cents
                 'currency' => 'dkk',
@@ -128,3 +128,4 @@ class UpdateProductCrud {
         $this->conn->close();
     }
 }
+?>
