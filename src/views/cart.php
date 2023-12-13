@@ -49,14 +49,14 @@ if (isset($_GET["action"])) {
         if (!empty($_SESSION["shopping_cart"])) {
             foreach ($_SESSION["shopping_cart"] as &$cart_item) {
                 if ($cart_item['item_id'] == $productID && $cart_item['selected_size'] == $selectedSize) {
-                    // Increment quantity if same product and size are already in the cart
+                    // Increment quantity if the same product and size are already in the cart
                     $cart_item['item_quantity']++;
                     $found = true;
                     break;
                 }
             }
         }
-    
+        
         if (!$found) {
             $item_array = array(
                 'item_id' => $productID,
@@ -235,8 +235,12 @@ if ($shouldRedirect) {
                                             <form method="post" action="cart.php">
                                                 <input type="hidden" name="action" value="update_quantity">
                                                 <input type="hidden" name="id" value="<?= $product['ProductID'] ?>">
+                                                <input type="hidden" name="size" value="<?= $product['selected_size'] ?>"> <!-- Add a hidden input for the selected size -->
+
+                                                <!-- Display the quantity for each size -->
                                                 <label class="sr-only" for="quantity-<?= $key ?>">
-                                                    Quantity Product Name</label>
+                                                    Quantity Product Name
+                                                </label>
                                                 <select name="quantity" id="quantity-<?= $key ?>" class="max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-semibold leading-5 text-gray-700 shadow-sm sm:text-sm" onchange="this.form.submit()">
                                                     <?php for ($i = 1; $i <= 10; $i++) : ?>
                                                         <option value="<?= $i ?>" <?= ($i == $product['quantity']) ? 'selected' : '' ?>><?= $i ?></option>
