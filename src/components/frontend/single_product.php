@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-session_start(); // Initialize the session for counting the cart items
+//session_start(); // Initialize the session for counting the cart items
 
 require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../../product/ReadProductCrud.php';
@@ -25,7 +25,7 @@ if (isset($_GET['ProductID'])) {
     <?php if ($product) : ?>
         <div class="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
             <div class="aspect-w-1 aspect-h-1 rounded-lg ">
-                <img src="<?= htmlspecialchars($product['ProductMainImage']) ?>" alt="Product Image" class="h-full w-full object-cover object-center">
+                <img src="../<?= htmlspecialchars($product['ProductMainImage']) ?>" alt="Product Image" class="h-full w-full object-cover object-center">
             </div>
             <div class="px-8 mt-20 lg:mt-0 sm:px:0 sm:mt-16 ">
                 <h1 class="text-3xl font-bold mb-2 tracking-tight"><?= htmlspecialchars($product['Model']) ?></h1>
