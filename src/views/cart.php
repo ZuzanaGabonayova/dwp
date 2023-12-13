@@ -127,7 +127,7 @@ $productDetails = [];
 
 if (!empty($productIds)) {
     $placeholders = implode(',', array_fill(0, count($productIds), '?'));
-    $sql = "SELECT * FROM Product WHERE ProductID IN ($placeholders)";
+    $sql = "SELECT *, StripePriceID FROM Product WHERE ProductID IN ($placeholders)";
     $stmt = $conn->prepare($sql);
     
     if ($stmt) {
@@ -136,14 +136,15 @@ if (!empty($productIds)) {
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                foreach ($_SESSION["shopping_cart"] as $cartItem) {
-                    if ($cartItem['item_id'] == $row['ProductID']) {
-                        $row['quantity'] = $cartItem['item_quantity'];
-                        $row['selected_size'] = $cartItem['selected_size']; // Include selected size
-                        $productDetails[] = $row;
-                        break;
-                    }
+        while ($row = $result->fetch_assoc()) {
+            foreach ($_SESSION["shopping_cart"] as &$cartItem) {
+                if ($cartItem['item_id'] == $row['ProductID']) {
+                    $row['quantity'] = $cartItem['item_quantity'];
+                    $row['selected_size'] = $cartItem['selected_size']; // Include selected size
+                    $row['stripe_price_id'] = $row['StripePriceID']; // Store Stripe Price ID
+                    $productDetails[] = $row;
+                    break;
+                        }
                 }
             }
         }
@@ -315,11 +316,13 @@ if ($shouldRedirect) {
                         </dd>
                     </div>
                 </dl>
-                <div class="mt-6">
-                    <button type="submit" class="w-full rounded-md border border-transparent bg-amber-500 px-4 py-3 text-base font-medium shadow-sm hover:bg-amber-600 transition duration-300">
-                        Checkout
-                    </button>
-                </div>
+                <form action="../actions/checkout.php" method="post">
+                    <div class="mt-6">
+                        <button type="submit" class="w-full rounded-md border border-transparent bg-amber-500 px-4 py-3 text-base font-medium shadow-sm hover:bg-amber-600 transition duration-300">
+                            Checkout
+                        </button>
+                    </div>
+                </form>
             </div>
 
 
