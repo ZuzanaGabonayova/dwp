@@ -71,21 +71,20 @@ class UpdateProductCrud {
             }
         }
 
-        // Fetch the current Stripe Product ID for the product
-        $stmt = $this->conn->prepare("SELECT StripeProductID FROM Product WHERE ProductID = ?");
+        // Fetch the corresponding Stripe Price ID from your records
+        $stmt = $this->conn->prepare("SELECT StripePriceID FROM Product WHERE ProductID = ?");
         $stmt->bind_param("i", $productId);
         $stmt->execute();
         $result = $stmt->get_result();
         $currentStripeData = $result->fetch_assoc();
 
-        if ($currentStripeData && $currentStripeData['StripeProductID']) {
-            // Retrieve the Stripe Product object
-            $stripeProductId = $currentStripeData['StripeProductID'];
-            $stripeProduct = \Stripe\Product::retrieve($stripeProductId);
-
-            // Update the product name in Stripe
+        if ($currentStripeData && $currentStripeData['StripePriceID']) {
+            // Update the product name in Stripe using the Model value
+            $stripePriceId = $currentStripeData['StripePriceID'];
+            $stripePrice = \Stripe\Price::retrieve($stripePriceId);
+            $stripeProduct = \Stripe\Product::retrieve($stripePrice->product);
             $stripeProduct->update([
-                'name' => $model // Set the new product name here
+                'name' => $formData["Model"] // Set the new product name using the Model value
             ]);
         }
 
