@@ -127,33 +127,49 @@ if (isset($_POST["action"]) && $_POST["action"] === "delete" && isset($_POST["id
     exit();
 }
 
-    // Fetch product details from the database based on the product IDs in the shopping cart
-    $productIds = array_column($_SESSION["shopping_cart"], 'item_id');
-    $productDetails = [];
+// Fetch product details from the database based on the product IDs in the shopping cart
+$productIds = array_column($_SESSION["shopping_cart"], 'item_id');
+$productDetails = [];
 
-    if (!empty($productIds)) {
-        $placeholders = implode(',', array_fill(0, count($productIds), '?'));
-        $sql = "SELECT *, StripePriceID FROM Product WHERE ProductID IN ($placeholders)";
-        $stmt = $conn->prepare($sql);
+// Initialize a temporary array to hold products with sizes
+$tempCart = [];
 
-        if ($stmt) {
-            $stmt->bind_param(str_repeat('i', count($productIds)), ...$productIds);
-            $stmt->execute();
-            $result = $stmt->get_result();
+if (!empty($productIds)) {
+    // Fetch all products from the database matching the IDs in the cart
+    // Loop through the fetched products and build an updated cart
+    foreach ($_SESSION["shopping_cart"] as $cartItem) {
+        // Create a unique identifier using product ID and selected size
+        $identifier = $cartItem['item_id'] . '_' . $cartItem['selected_size'];
 
-            while ($row = $result->fetch_assoc()) {
-                foreach ($_SESSION["shopping_cart"] as &$cartItem) {
-                    if ($cartItem['item_id'] == $row['ProductID']) {
-                        $cartItem['quantity'] = $cartItem['item_quantity'];
-                        $cartItem['selected_size'] = $cartItem['selected_size'];
-                        $cartItem['stripe_price_id'] = $row['StripePriceID']; // Store Stripe Price ID in session
-                        $productDetails[] = array_merge($row, $cartItem);
-                        break;
-                    }
-                }
-            }
+        if (!isset($tempCart[$identifier])) {
+            // If the identifier doesn't exist in the tempCart array, add it
+            $tempCart[$identifier] = $cartItem;
+        } else {
+            // If the identifier already exists, increment the quantity
+            $tempCart[$identifier]['item_quantity'] += $cartItem['item_quantity'];
         }
     }
+
+    // Fetch product details for the items in the updated cart
+    $identifiers = array_keys($tempCart);
+    $placeholders = implode(',', array_fill(0, count($identifiers), '?'));
+    $sql = "SELECT *, StripePriceID FROM Product WHERE CONCAT(ProductID, '_', Size) IN ($placeholders)";
+    $stmt = $conn->prepare($sql);
+
+    if ($stmt) {
+        $stmt->bind_param(str_repeat('s', count($identifiers)), ...$identifiers);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+            // Set the product details for each item in the tempCart array
+            $identifier = $row['ProductID'] . '_' . $row['Size'];
+            $tempCart[$identifier]['quantity'] = $tempCart[$identifier]['item_quantity'];
+            $tempCart[$identifier]['stripe_price_id'] = $row['StripePriceID'];
+            $productDetails[] = array_merge($row, $tempCart[$identifier]);
+        }
+    }
+}
 
 // Handling the POST request to update quantity
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_quantity' && isset($_POST['id']) && isset($_POST['quantity'])) {
