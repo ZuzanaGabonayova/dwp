@@ -74,7 +74,7 @@ class CreateProductCrud {
         // Create a Stripe price for the product
         $stripePrice = \Stripe\Price::create([
             'unit_amount' => $price * 100, // Convert price to cents
-            'currency' => 'usd',
+            'currency' => 'dkk',
             'product' => $stripeProduct->id,
         ]);
 
