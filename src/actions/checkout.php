@@ -20,6 +20,7 @@ $line_items = array_map(function ($item) {
     return [
         'price' => $item['stripe_price_id'], // Use the Stripe Price ID from cart
         'quantity' => $item['item_quantity'],
+        'currency' => 'dkk',
     ];
 }, $cartItems);
 
