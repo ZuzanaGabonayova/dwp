@@ -1,7 +1,10 @@
 <?php
 
+require_once __DIR__ . '../../../vendor/autoload.php'; 
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../utils/uploadProductImage.php';
+
+\Stripe\Stripe::setApiKey('sk_test_51OMqZxD7CQBEfsgzCUQ19XaHyqwJHTK9ejG5IjlGs4CaQUpBPSP8M4no8rgXkzfSm5DU0LIxUneFODPiblzB8lMQ0000soVBL9');
 
 class CreateProductCrud {
     private $conn;
@@ -27,7 +30,7 @@ class CreateProductCrud {
     }
 
     public function processProductForm($formData, $fileData) {
-        // Extract and sanitize form data from $formData
+        // Extract and sanitize form data
         $productNumber = trim($formData["ProductNumber"]);
         $model = trim($formData["Model"]);
         $description = trim($formData["Description"]);
@@ -38,11 +41,10 @@ class CreateProductCrud {
         $selectedColors = $formData["colors"] ?? [];
         $selectedSizes = $formData["sizes"] ?? [];
 
-        // Perform your validation
+        // Validate the data
         if ($price === false || $price > 9999.99) {
             return ['error' => "Invalid price format or exceeds maximum allowed price"];
         }
-
         if ($stockQuantity === false) {
             return ['error' => "Invalid stock quantity format"];
         }
@@ -65,6 +67,22 @@ class CreateProductCrud {
             return ['error' => $this->conn->error];
         }
         $productID = $this->conn->insert_id;
+
+        // Create a Stripe product
+        $stripeProduct = \Stripe\Product::create(['name' => $model]);
+
+        // Create a Stripe price for the product
+        $stripePrice = \Stripe\Price::create([
+            'unit_amount' => $price * 100, // Convert price to cents
+            'currency' => 'usd',
+            'product' => $stripeProduct->id,
+        ]);
+
+        // Save the Stripe Price ID in your database
+        $stripePriceId = $stripePrice->id;
+        $updateStmt = $this->conn->prepare("UPDATE Product SET StripePriceID = ? WHERE ProductID = ?");
+        $updateStmt->bind_param("si", $stripePriceId, $productID);
+        $updateStmt->execute();
 
         // Insert color associations
         if (!empty($selectedColors)) {
