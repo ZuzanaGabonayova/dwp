@@ -3,11 +3,10 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-use Dotenv\Dotenv;
-
 require_once __DIR__ . '../../../vendor/autoload.php';
 require_once __DIR__ . '../../config/secrets.php';
 
+use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable('/home/master/applications/phqmbyaurd/public_html'); // Adjusted path to load .env from two directories back
 $dotenv->load();
@@ -20,6 +19,9 @@ $YOUR_DOMAIN = 'https://zuzanagabonayova.eu/';
 
 // Retrieve cart items from session
 $cartItems = $_SESSION["shopping_cart"] ?? [];
+
+// Re-index the $cartItems array to ensure sequential numeric keys
+$cartItems = array_values($cartItems);
 
 // Prepare line items for Stripe Checkout
 $line_items = array_map(function ($item) {
