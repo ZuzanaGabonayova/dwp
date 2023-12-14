@@ -20,7 +20,9 @@
   <div class="px-4 sm:px-6 lg:px-8">
     <div id="content-wrapper" class="relative overflow-hidden content-area py-12">
       <?php
+
       include $content;
+      
       ?>
     </div>
     </div>
