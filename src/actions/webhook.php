@@ -5,11 +5,11 @@ error_reporting(E_ALL);
 
 use Dotenv\Dotenv;
 
-$dotenv = Dotenv::createImmutable('/home/master/applications/phqmbyaurd/public_html'); // Adjusted path to load .env from two directories back
-$dotenv->load();
-
 require_once __DIR__ . '../../../vendor/autoload.php';
 require_once __DIR__ . '../../config/db.php';
+
+$dotenv = Dotenv::createImmutable('/home/master/applications/phqmbyaurd/public_html'); // Adjusted path to load .env from two directories back
+$dotenv->load();
 
 // Stripe configuration
 \Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY'] ?? null);
