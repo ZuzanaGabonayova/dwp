@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once __DIR__ . '../../utils/url_helpers.php';
+
 // Function to update last activity time
 function updateLastActivityTime() {
     $_SESSION['last_activity_time'] = time(); // Update the last activity time to the current time
