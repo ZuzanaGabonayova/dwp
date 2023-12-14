@@ -37,7 +37,7 @@ $newsPosts = $readNewsCrud->readAllNewsPosts();
           </div>
           <div class="group relative">
             <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-              <a href="single_news.php?id=<?php echo $newsPost['id']; ?>">
+              <a href="<?php echo baseUrl() ?>/src/views/frontend/single_news.php?id=<?php echo $newsPost['id']; ?>">
                 <span class="absolute inset-0"></span>
                 <?php echo htmlspecialchars($newsPost['title']); ?>
               </a>
