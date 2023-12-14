@@ -36,6 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result) {
         echo "News post created successfully.";
         // Redirect or further processing
+        header('Location: ../../views/admin/news.php');
+    exit;
     } else {
         echo "Error creating news post.";
         // Error handling
