@@ -14,6 +14,7 @@ $dotenv->load();
 // Stripe configuration
 \Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY'] ?? null);
 $stripe = new \Stripe\StripeClient($_ENV['STRIPE_SECRET_KEY'] ?? null);
+$endpoint_secret = $_ENV['STRIPE_ENDPOINT_SECRET'] ?? null;
 
 $payload = @file_get_contents('php://input');
 $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
