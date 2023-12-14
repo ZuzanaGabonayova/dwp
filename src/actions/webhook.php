@@ -7,8 +7,8 @@ require_once __DIR__ . '../../../vendor/autoload.php';
 require_once __DIR__ . '../../config/db.php';
 
 // Stripe configuration
-$stripe = new \Stripe\StripeClient('sk_test_51OMqZxD7CQBEfsgzCUQ19XaHyqwJHTK9ejG5IjlGs4CaQUpBPSP8M4no8rgXkzfSm5DU0LIxUneFODPiblzB8lMQ0000soVBL9');
-$endpoint_secret = 'whsec_Tfe8ILTXdbZ80jc9UwTIAeV9LJWJFozK';
+\Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY'] ?? null);
+$endpoint_secret = $_ENV['STRIPE_ENDPOINT_SECRET'] ?? null;
 
 $payload = @file_get_contents('php://input');
 $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
