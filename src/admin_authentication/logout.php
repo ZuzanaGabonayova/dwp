@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+require_once __DIR__ . '../../utils/url_helpers.php';
+
+
+
 // Unset all of the session variables
 $_SESSION = array();
 
@@ -22,6 +26,6 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Redirect the user to the login page after logout
-header("Location: ../views/admin/admin_login.php");
+header("Location: " . baseUrl() . "src/views/admin/admin_login.php");
 exit();
 ?>
