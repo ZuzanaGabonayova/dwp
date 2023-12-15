@@ -29,8 +29,8 @@
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:grid lg:grid-cols-2 lg:px-8">
                 <div class="mx-auto max-w-2xl py-24 lg:max-w-none lg:py-64">
                     <div class="lg:pr-16">
-                        <h1 class="font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">Focus on what matters</h1>
-                        <p class="mt-4 text-xl text-gray-600">All the charts, datepickers, and notifications in the world can't beat checking off some items on a paper card.</p>
+                        <h1 class="font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">Step into style</h1>
+                        <p class="mt-4 text-xl text-gray-600">Discover the latest trends in sneakers. From classic favorites to modern designs, find your perfect fit and walk with confidence.</p>
                         <div class="mt-6">
                             <a href="#categories-section" class="inline-block rounded-md border border-transparent bg-orange-600 px-8 py-3 font-medium text-white">
                                 Shop Sneakers

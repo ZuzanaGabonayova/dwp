@@ -8,7 +8,7 @@ use Dotenv\Dotenv;
 require_once __DIR__ . '../../../vendor/autoload.php';
 require_once __DIR__ . '../../config/db.php';
 
-$dotenv = Dotenv::createImmutable('/home/master/applications/phqmbyaurd/public_html'); // Adjusted path to load .env from two directories back
+$dotenv = Dotenv::createImmutable('/home/master/applications/phqmbyaurd/public_html');
 $dotenv->load();
 
 // Stripe configuration
