@@ -1,7 +1,8 @@
 # dwp
 
-webshop - PHP
+Development of a mini content management system (CMS) for a Sneaker Webshop.
+Webshop created by using PHP and MySQL.
 
-hello
-
-testtt
+Authors:
+    - Laszlo Vitkai
+    - Zuzana Gabonayova
