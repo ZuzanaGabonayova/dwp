@@ -66,7 +66,7 @@ $companyDetails = $crud->readCompanyPresentation();
             </dd>
         </dl>
       </div>
-    <div class="aspect-w-2 aspect-h-1">
+    <div class="aspect-w-2 aspect-h-1 rounded-lg">
         <img class="h-full w-full object-cover object-center" src="<?php echo baseUrl(); ?>assets/images/dwp_about_us.jpg" alt="About us">
     </div>
   </div>
