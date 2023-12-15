@@ -12,9 +12,7 @@ $companyDetails = $crud->readCompanyPresentation();
 
 <div class="bg-white py-24 sm:py-32">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <<div class="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
-        <div class="absolute inset-y-0 left-0 -z-10 w-full overflow-hidden bg-gray-100 ring-1 ring-gray-900/10 lg:w-1/2">
-        </div>
+    <div class="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
         <h2 class="text-3xl font-bold tracking-tight text-gray-900">About us</h2>
         <p class="mt-6 text-lg leading-8 text-gray-600"><?php echo $companyDetails['DescriptionOfCompany']; ?></p>
         <dl class="mt-10 space-y-4 text-base leading-7 text-gray-600">
