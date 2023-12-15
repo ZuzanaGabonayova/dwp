@@ -3,6 +3,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
+
+require_once __DIR__ . '../../../utils/url_helpers.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +14,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Company</title>
     <link rel="stylesheet" href="../../../assets/css/output.css">
-    <script src="https://www.google.com/recaptcha/api.js?render=6LepMS8pAAAAAJPGIRlkaEZr7EdRB1yVdYaXCWnp"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LepMS8pAAAAAJPGIRlkaEZr7EdRB1yVdYaXCWnp" async defer></script>
 </head>
 <body>
     <div>
@@ -23,14 +25,6 @@ session_start();
 
         ?>
     </div>
-    <script>
-      grecaptcha.ready(function() {
-          grecaptcha.execute('6LepMS8pAAAAAJPGIRlkaEZr7EdRB1yVdYaXCWnp', {action: 'submit'}).then(function(token) {
-              // Add your logic to submit to your backend server here.
-              var recaptchaResponse = document.getElementById('recaptchaResponse');
-              recaptchaResponse.value = token;
-          });
-      });
-    </script>
+    <script src="<?php echo baseUrl() ?>assets/js/recaptcha.js"></script>
 </body>
 </html>

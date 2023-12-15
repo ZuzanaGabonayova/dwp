@@ -13,7 +13,6 @@ session_start();
     <title>Shoes Webshop - Home</title>
     <link rel="stylesheet" href="/assets/css/output.css">
     <meta name="description" content="Discover the latest trends in footwear at our Shoes Webshop. Explore our wide range of high-quality shoes for men, women, and kids. Shop now for the best deals.">
-    <script src="https://www.google.com/recaptcha/api.js?render=6LepMS8pAAAAAJPGIRlkaEZr7EdRB1yVdYaXCWnp" async defer></script>
 </head>
 <body>
     <div>
@@ -26,6 +25,5 @@ session_start();
         ?>
 
     </div>
-   <script src="/assets/js/recaptcha.js"></script>
 </body>
 </html>
