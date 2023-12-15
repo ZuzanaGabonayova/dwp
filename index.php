@@ -26,15 +26,6 @@ session_start();
         ?>
 
     </div>
-    <script defer>
-    window.onload = function() {
-        grecaptcha.ready(function() {
-            grecaptcha.execute('6LepMS8pAAAAAJPGIRlkaEZr7EdRB1yVdYaXCWnp', {action: 'submit'}).then(function(token) {
-                var recaptchaResponse = document.getElementById('recaptchaResponse');
-                recaptchaResponse.value = token;
-            });
-        });
-    };
-</script>
+   <script src="/assets/js/recaptcha.js"></script>
 </body>
 </html>
