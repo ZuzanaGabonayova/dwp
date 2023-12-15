@@ -13,7 +13,7 @@ session_start();
     <title>Shoes Webshop - Home</title>
     <link rel="stylesheet" href="/assets/css/output.css">
     <meta name="description" content="Discover the latest trends in footwear at our Shoes Webshop. Explore our wide range of high-quality shoes for men, women, and kids. Shop now for the best deals.">
-     <script src="https://www.google.com/recaptcha/api.js?render=6LepMS8pAAAAAJPGIRlkaEZr7EdRB1yVdYaXCWnp"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LepMS8pAAAAAJPGIRlkaEZr7EdRB1yVdYaXCWnp" async defer></script>
 </head>
 <body>
     <div>
@@ -26,14 +26,15 @@ session_start();
         ?>
 
     </div>
-    <script>
-      grecaptcha.ready(function() {
-          grecaptcha.execute('6LepMS8pAAAAAJPGIRlkaEZr7EdRB1yVdYaXCWnp', {action: 'submit'}).then(function(token) {
-              // Add your logic to submit to your backend server here.
-              var recaptchaResponse = document.getElementById('recaptchaResponse');
-              recaptchaResponse.value = token;
-          });
-      });
-    </script>
+    <script defer>
+    window.onload = function() {
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6LepMS8pAAAAAJPGIRlkaEZr7EdRB1yVdYaXCWnp', {action: 'submit'}).then(function(token) {
+                var recaptchaResponse = document.getElementById('recaptchaResponse');
+                recaptchaResponse.value = token;
+            });
+        });
+    };
+</script>
 </body>
 </html>
