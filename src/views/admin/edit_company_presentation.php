@@ -69,11 +69,6 @@ $companyData = $readCrud->readCompanyPresentation();
                 <label for="postalCodeID" class="block mb-2 text-sm font-medium text-gray-700">Postal Code:</label>
                 <input type="number" id="postalCodeID" name="postalCodeID" value="<?php echo htmlspecialchars($companyData['PostalCodeID']); ?>" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" required>
             </div>
-            <div>
-                <label for="image" class="block mb-2 text-sm font-medium text-gray-700">Image:</label>
-                <input type="file" id="image" name="image" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" required>
-                <img src="<?php echo htmlspecialchars($companyData['Image']); ?>" alt="Current Image" class="mt-2">
-            </div>
             <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Update Company Presentation</button>
         </form>
     </div>

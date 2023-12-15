@@ -68,10 +68,6 @@ $companyData = $readCrud->readCompanyPresentation();
                         <dt class="text-gray-500">Postal Code</dt>
                         <dd class="text-gray-900"><?php echo htmlspecialchars($companyData['PostalCodeID']); ?></dd>
                     </div>
-                    <div class="flex justify-between gap-x-4 py-3">
-                        <dt class="text-gray-500">Image</dt>
-                        <dd class="text-gray-900"><img src="<?php echo htmlspecialchars($companyData['Image']); ?>" alt="Company Image"></dd>
-                    </div>
                 </dl>
             </div>
         <?php else: ?>

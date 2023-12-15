@@ -19,11 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $houseNumber = $_POST['houseNumber'];
     $postalCodeID = $_POST['postalCodeID'];
     $title = $_POST['title'];
-    $image = $_FILES['image'];
     // Retrieve other fields similarly
 
     // Update the company presentation
-    if ($updateCrud->updateCompanyPresentation($description, $openingHours, $email, $phone, $street, $houseNumber, $postalCodeID, $title, $image)) {
+    if ($updateCrud->updateCompanyPresentation($description, $openingHours, $email, $phone, $street, $houseNumber, $postalCodeID, $title)) {
      // Redirect to company.php after successful update
         header('Location: ../views/admin/company.php');
         exit();
