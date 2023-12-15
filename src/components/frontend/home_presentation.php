@@ -5,13 +5,14 @@ error_reporting(E_ALL);
 
 require_once __DIR__ . '../../../config/db.php';
 require_once __DIR__ . '../../../company/ReadCompanyCrud.php';
+require_once __DIR__ . '../../../utils/url_helpers.php';
 
 $crud = new ReadCompanyCrud($conn);
 $companyDetails = $crud->readCompanyPresentation();
 ?>
 
 <div class="bg-white py-24 sm:py-32">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-16">
     <div class="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
         <h2 class="text-3xl font-bold tracking-tight text-gray-900">About us</h2>
         <p class="mt-6 text-lg leading-8 text-gray-600"><?php echo $companyDetails['DescriptionOfCompany']; ?></p>
@@ -65,5 +66,8 @@ $companyDetails = $crud->readCompanyPresentation();
             </dd>
         </dl>
       </div>
+    <div class="aspect-w-2 aspect-h-1">
+        <img class="h-full w-full object-cover object-center" src="<?php echo baseUrl(); ?>assets/images/about_us.jpg" alt="About us">
+    </div>
   </div>
 </div>
