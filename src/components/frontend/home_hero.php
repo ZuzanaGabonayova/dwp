@@ -33,7 +33,7 @@
                         <p class="mt-4 text-xl text-gray-600">Discover the latest trends in sneakers. From classic favorites to modern designs, find your perfect fit and walk with confidence.</p>
                         <div class="mt-6">
                             <a href="#categories-section" class="inline-block rounded-md border border-transparent bg-orange-600 px-8 py-3 font-medium text-white">
-                                Shop Sneakers
+                                Shop Sneakers Now
                             </a>
                         </div>
                     </div>
