@@ -3,7 +3,7 @@ use Dotenv\Dotenv;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-$dotenv = Dotenv::createImmutable('/home/master/applications/phqmbyaurd/public_html'); // Adjusted path to load .env from two directories back
+$dotenv = Dotenv::createImmutable('/home/master/applications/squkanhyqf/public_html'); // Adjusted path to load .env from two directories back
 $dotenv->load();
 
 $servername = $_ENV['DB_HOST'] ?? null;

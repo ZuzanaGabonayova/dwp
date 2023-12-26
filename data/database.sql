@@ -16,9 +16,9 @@
 *   -   October-December 2023                                   *
 *                                                               */
 
-DROP DATABASE IF EXISTS phqmbyaurd;
-CREATE DATABASE phqmbyaurd;
-USE phqmbyaurd;
+DROP DATABASE IF EXISTS squkanhyqf;
+CREATE DATABASE squkanhyqf;
+USE squkanhyqf;
 
 
 DROP TABLE IF EXISTS contacts;

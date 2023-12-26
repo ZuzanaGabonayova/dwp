@@ -10,7 +10,7 @@ require_once __DIR__ . '/../config/secrets.php';
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../utils/uploadProductImage.php';
 
-$dotenv = Dotenv::createImmutable('/home/master/applications/phqmbyaurd/public_html');
+$dotenv = Dotenv::createImmutable('/home/master/applications/squkanhyqf/public_html');
 $dotenv->load();
 
 
