@@ -30,7 +30,7 @@
                 <div class="mx-auto max-w-2xl py-24 lg:max-w-none lg:py-64">
                     <div class="lg:pr-16">
                         <h1 class="font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">Step into style</h1>
-                        <p class="mt-4 text-xl text-gray-600">Discover the latest trends in sneakers. From classic favorites to modern designs, find your perfect fit and walk with confidence.</p>
+                        <p class="mt-4 text-xl text-gray-600">Discover the latest trends in sneakers. From classic favorites to modern designs, find your perfect fit and walk with confidence. Autodeployment</p>
                         <div class="mt-6">
                             <a href="#categories-section" class="inline-block rounded-md border border-transparent bg-orange-600 px-8 py-3 font-medium text-white">
                                 Shop Sneakers
