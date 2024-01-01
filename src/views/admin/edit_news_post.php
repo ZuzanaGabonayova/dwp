@@ -47,11 +47,11 @@ updateLastActivityTime();
                                          <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($newsPost['title']); ?>" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                                     </div>
                                 </div>
+                                <div class="col-span-full">
+                                    <label for="shortDescription">Short Description:</label>
+                                    <textarea id="shortDescription" rows="3" name="shortDescription" value="<?php echo htmlspecialchars($newsPost['short_description']); ?>" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500">
+                                </div>
                             </div>
-
-                            <label for="shortDescription">Short Description:</label>
-                            <input type="text" id="shortDescription" name="shortDescription" value="<?php echo htmlspecialchars($newsPost['short_description']); ?>">
-
                             <label for="content">Content:</label>
                             <textarea id="content" name="content" required><?php echo htmlspecialchars($newsPost['content']); ?></textarea>
 
