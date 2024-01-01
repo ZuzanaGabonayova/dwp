@@ -49,11 +49,15 @@ updateLastActivityTime();
                                 </div>
                                 <div class="col-span-full">
                                     <label for="shortDescription">Short Description:</label>
-                                    <textarea id="shortDescription" rows="3" name="shortDescription" value="<?php echo htmlspecialchars($newsPost['short_description']); ?>" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500">
+                                    <textarea id="shortDescription" rows="3" name="shortDescription" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500"><?php echo htmlspecialchars($newsPost['short_description']); ?></textarea>
+                                    
+                                </div>
+                                <div class="col-span-full">
+                                    <label for="content">Content:</label>
+                                    <textarea id="content" rows="8" name="content" required class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500"><?php echo htmlspecialchars($newsPost['content']); ?></textarea>
                                 </div>
                             </div>
-                            <label for="content">Content:</label>
-                            <textarea id="content" name="content" required><?php echo htmlspecialchars($newsPost['content']); ?></textarea>
+                            
 
                             <label for="image">Current Image:</label>
                             <?php if ($newsPost['image']): ?>
