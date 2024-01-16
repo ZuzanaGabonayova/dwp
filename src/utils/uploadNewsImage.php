@@ -7,6 +7,9 @@ function uploadNewsImage($file, $uploadDir = '../../assets/images/news_images/')
     // Define the allowed file types
     $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
     $maxFileSize = 5 * 1024 * 1024; // 5 MB
+    $maxWidth = 1080; // Maximum image width
+    $maxHeight = 1080; // Maximum image height
+
 
     // Check if there was an error
     if ($file['error'] !== UPLOAD_ERR_OK) {
