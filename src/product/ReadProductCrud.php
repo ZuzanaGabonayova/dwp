@@ -112,6 +112,22 @@ class ReadProductCrud {
             return false;
         }
     }
+
+    // Read a limited number of random products by category
+    public function readRandomProductsByCategory($categoryName, $limit = 4) {
+        $stmt = $this->conn->prepare("SELECT p.* FROM Product p
+                                    JOIN ProductCategory pc ON p.CategoryID = pc.CategoryID
+                                    WHERE pc.CategoryName = ? ORDER BY RAND() LIMIT ?");
+        $stmt->bind_param("si", $categoryName, $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
 }
 
 ?>

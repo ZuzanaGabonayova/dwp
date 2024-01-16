@@ -19,6 +19,9 @@ if (isset($_GET['ProductID'])) {
     $authorName = $readProductCrud->getAuthorName($product['AdminID']); // Adjust as per your table structure
 }
 
+// Fetch related products
+$recommendedProducts = $readProductCrud->readRandomProductsByCategory($categoryName, 4);
+
 ?>
 
 <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:max-w-7xl lg:gap-x-8 lg:px-8 py-16 sm:py-24 bg-white">
@@ -63,7 +66,38 @@ if (isset($_GET['ProductID'])) {
     <?php else : ?>
         <p class="text-center">Product not found.</p>
     <?php endif; ?>
+    <!-- Recommended Products Section -->
+    <div class="bg-white">
+        <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Customers also purchased</h2>
+
+            <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                <?php if ($recommendedProducts && $recommendedProducts->num_rows > 0) : ?>
+                    <?php while ($row = $recommendedProducts->fetch_assoc()) : ?>
+                        <div class="group relative">
+                            <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                                <img src="../<?= htmlspecialchars($row['ProductMainImage']) ?>" alt="Product Image" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                            </div>
+                            <div class="mt-4 flex justify-between">
+                                <div>
+                                    <h3 class="text-sm text-gray-700">
+                                        <a href="single_product.php?ProductID=<?= htmlspecialchars($row['ProductID']) ?>">
+                                            <span aria-hidden="true" class="absolute inset-0"></span>
+                                            <?= htmlspecialchars($row['Model']) ?>
+                                        </a>
+                                    </h3>
+                                    <p class="mt-1 text-sm text-gray-500"><?= htmlspecialchars($row['Description']) ?></p>
+                                </div>
+                                <p class="text-sm font-medium text-gray-900">$<?= htmlspecialchars($row['Price']) ?></p>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 <style>
     /* Style for disabled button */
