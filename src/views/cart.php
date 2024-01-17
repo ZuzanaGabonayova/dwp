@@ -36,8 +36,30 @@ if (isset($_GET["action"])) {
         $productModel = isset($_GET["hidden_name"]) ? $_GET["hidden_name"] : '';
         $productPrice = isset($_GET["hidden_price"]) ? $_GET["hidden_price"] : '';
         $selectedSize = isset($_GET["selected_size"]) ? $_GET["selected_size"] : ''; // Fetch selected size from the URL parameter
+
+        $uniqueCartItemId = $productID . "_" . $selectedSize; // Create a unique ID for each product-size combination
+
         $found = false;
-        if (!empty($_SESSION["shopping_cart"])) {
+        foreach ($_SESSION["shopping_cart"] as &$cart_item) {
+            if ($cart_item['unique_id'] === $uniqueCartItemId) { // Check unique ID instead of just item_id
+                $cart_item['item_quantity']++;
+                $found = true;
+                break;
+            }
+        }
+        if (!$found) {
+            $item_array = array(
+                'unique_id' => $uniqueCartItemId, // Add unique ID to the item array
+                'item_id' => $productID,
+                'item_name' => $productModel,
+                'item_price' => $productPrice,
+                'item_quantity' => 1,
+                'selected_size' => $selectedSize
+            );
+            $_SESSION["shopping_cart"][] = $item_array;
+        }
+
+        /* if (!empty($_SESSION["shopping_cart"])) {
             foreach ($_SESSION["shopping_cart"] as &$cart_item) {
                 if ($cart_item['item_id'] == $productID && $cart_item['selected_size'] == $selectedSize) {
                     $cart_item['item_quantity']++;
@@ -57,7 +79,7 @@ if (isset($_GET["action"])) {
             $_SESSION["shopping_cart"][] = $item_array;
             // Add the selected size to the selected_sizes session array
             $_SESSION['selected_sizes'][$productID] = $selectedSize;
-        }
+        } */
     } 
     /* elseif ($action == "delete" && isset($_GET["id"])) {
         $productID = $_GET["id"];
