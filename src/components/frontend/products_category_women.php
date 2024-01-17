@@ -30,16 +30,19 @@ if (isset($_GET['color']) && isset($_GET['brand'])) {
         <form action="products_category_women.php" method="get">
             <label for="color">Color:</label>
             <select name="color" id="color">
-                <?php foreach ($colors as $color) : ?>
-                    <option value="<?php echo htmlspecialchars($color); ?>"><?php echo htmlspecialchars($color); ?></option>
-                <?php endforeach; ?>
+            <?php foreach ($colors as $color): ?>
+                        <div class="items-center flex flex-row">
+                            <input type="checkbox" name="colors[]" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" value="<?= $color["ColorID"]; ?>">
+                            <label class="ml-3 text-sm text-gray-600"><?= htmlspecialchars($color["ColorName"]); ?></label>
+                        </div>
+            <?php endforeach; ?>
             </select>
 
             <label for="brand">Brand:</label>
             <select name="brand" id="brand">
-                <?php foreach ($brands as $brand) : ?>
-                    <option value="<?php echo htmlspecialchars($brand); ?>"><?php echo htmlspecialchars($brand); ?></option>
-                <?php endforeach; ?>
+            <?php foreach ($brands as $brand): ?>
+            <option value="<?= $brand["BrandID"]; ?>"><?= htmlspecialchars($brand["BrandName"]); ?></option>
+            <?php endforeach; ?>
             </select>
 
             <input type="submit" value="Filter">
