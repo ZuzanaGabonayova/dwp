@@ -48,7 +48,7 @@ if (isset($_GET["action"])) {
             }
         }
         unset($cart_item); // Add this line to unset the reference
-        
+
         if (!$found) {
             $item_array = array(
                 'unique_id' => $uniqueCartItemId, // Add unique ID to the item array
@@ -145,7 +145,10 @@ if (isset($_POST["action"]) && $_POST["action"] === "delete" && isset($_POST["id
                 foreach ($_SESSION["shopping_cart"] as &$cartItem) {
                     if ($cartItem['item_id'] == $row['ProductID']) {
                         $cartItem['quantity'] = $cartItem['item_quantity'];
-                        $cartItem['selected_size'] = $cartItem['selected_size'];
+                        // Ensure the selected_size from session is not overwritten by the database fetch
+                        $row['selected_size'] = $cartItem['selected_size'];
+                        $productDetails[] = array_merge($row, $cartItem);
+
                         $cartItem['stripe_price_id'] = $row['StripePriceID']; // Store Stripe Price ID in session
                         $productDetails[] = array_merge($row, $cartItem);
                         break;
@@ -154,6 +157,7 @@ if (isset($_POST["action"]) && $_POST["action"] === "delete" && isset($_POST["id
             }
         }
     }
+    unset($cartItem);
 // Handling the POST request to update quantity
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_quantity' && isset($_POST['id']) && isset($_POST['quantity'])) {
     $productID = $_POST['id'];
