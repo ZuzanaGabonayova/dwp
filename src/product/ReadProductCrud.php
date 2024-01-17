@@ -128,6 +128,28 @@ class ReadProductCrud {
             return false;
         }
     }
+
+
+    public function getBrands() {
+        return $this->conn->query("SELECT BrandID, BrandName FROM ProductBrand")->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getColors() {
+        return $this->conn->query("SELECT ColorID, ColorName FROM Color")->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function readProductsByColorAndBrand($color, $brand, $category) {
+        $stmt = $this->conn->prepare("SELECT * FROM Product WHERE color = ? AND brand = ? AND category = ?");
+        $stmt->bind_param("sss", $color, $brand, $category);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
 }
 
 ?>
