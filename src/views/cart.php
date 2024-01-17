@@ -192,7 +192,7 @@ if ($shouldRedirect) {
             <!-- Cart heading -->
             <div aria-labelledby="cart-heading" class="lg:col-span-7">
                 <h2 class="sr-only">Items in your shopping cart</h2>
-                <?php if (empty($productDetails)) : ?>
+                <?php if (empty($_SESSION["shopping_cart"])): ?>
                     <div class="flex items-center justify-center h-64">
                         <div class="text-center">
                             <h2 class="text-2xl font-bold mb-4 text-gray-700">Your cart is empty</h2>
@@ -201,12 +201,12 @@ if ($shouldRedirect) {
                         </div>
                     </div>
                 <?php else : ?>
-                    <?php foreach ($productDetails as $key => $product) : ?>
+                    <?php foreach ($_SESSION["shopping_cart"] as $cartItem): ?>
                         <ul role="list" class="border-b border-t border-gray-300">
                             <li class="flex py-6 sm:py-10">
                                 <div class="flex-shrink-0">
-                                    <a href="./frontend/single_product.php?ProductID=<?php echo $product['ProductID']; ?>" >
-                                        <img src="<?= htmlspecialchars($product['ProductMainImage']) ?>" alt="" class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48" />
+                                    <a href="./frontend/single_product.php?ProductID=<?php echo $cartItem['item_id']; ?>" >
+                                        <img src="<?= htmlspecialchars($cartItem['ProductMainImage']) ?>" alt="" class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48" />
                                     </a>
                                 </div>
                                 <div class="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
@@ -215,25 +215,25 @@ if ($shouldRedirect) {
                                             <div class="flex justify-between">
                                                 <!-- Product Name -->
                                                 <h3 class="text-sm">
-                                                    <a href="./frontend/single_product.php?ProductID=<?php echo $product['ProductID']; ?>" class="font-semibold text-gray-700"><?= htmlspecialchars($product['Model']) ?></a>
+                                                    <a href="./frontend/single_product.php?ProductID=<?php echo $cartItem['item_id']; ?>" class="font-semibold text-gray-700"><?= htmlspecialchars($cartItem['item_name']) ?></a>
                                                 </h3>
                                             </div>
                                             <div class="mt-1 text-sm">
                                                 <!-- Size -->
-                                                <p class="text-gray-500">Selected Size: <?= htmlspecialchars($_SESSION['selected_sizes'][$product['ProductID']]) ?></p>
+                                                <p class="text-gray-500">Selected Size: <?= htmlspecialchars($cartItem['selected_size']) ?></p>
                                             </div>
                                             <!-- Price -->
-                                            <p class="mt-1 text-sm font-semibold text-gray-900"><?= htmlspecialchars($product['Price']) ?></p>
+                                            <p class="mt-1 text-sm font-semibold text-gray-900"><?= htmlspecialchars($cartItem['item_price']) ?></p>
                                         </div>
                                         <div class="mt-4 sm:mt-0 sm:pr-9">
                                             <form method="post" action="cart.php">
                                                 <input type="hidden" name="action" value="update_quantity">
-                                                <input type="hidden" name="id" value="<?= $product['ProductID'] ?>">
+                                                <input type="hidden" name="id" value="<?= $cartItem['item_id'] ?>">
                                                 <label class="sr-only" for="quantity-<?= $key ?>">
                                                     Quantity Product Name</label>
                                                 <select name="quantity" id="quantity-<?= $key ?>" class="max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-semibold leading-5 text-gray-700 shadow-sm sm:text-sm" onchange="this.form.submit()">
                                                     <?php for ($i = 1; $i <= 10; $i++) : ?>
-                                                        <option value="<?= $i ?>" <?= ($i == $product['quantity']) ? 'selected' : '' ?>><?= $i ?></option>
+                                                        <option value="<?= $i ?>" <?= ($i == $cartItem['quantity']) ? 'selected' : '' ?>><?= $i ?></option>
                                                     <?php endfor; ?>
                                                 </select>
                                             </form>
@@ -241,7 +241,7 @@ if ($shouldRedirect) {
                                         <div class="absolute right-0 top-0">
                                             <form method="post" action="cart.php">
                                                 <input type="hidden" name="action" value="delete">
-                                                <input type="hidden" name="id" value="<?= $product['ProductID'] ?>">
+                                                <input type="hidden" name="id" value="<?= $cartItem['item_id'] ?>">
                                                 <button type="submit" class="r-[-0.5rem] text-gray400 p-2" name="delete">
                                                     <span class="sr-only">Remove</span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-5 w-5">
@@ -258,7 +258,7 @@ if ($shouldRedirect) {
                                         <span> In stock</span>
                                     </p>
                                     <div class="mt-1 text-sm">
-                                        <p class="text-gray-500">Total: <?= number_format($product['Price'] * $product['quantity'], 2) ?> kr.</p>
+                                        <p class="text-gray-500">Total: <?= number_format($cartItem['item_price'] * $cartItem['quantity'], 2) ?> kr.</p>
                                     </div>
                                 </div>
                             </li>
