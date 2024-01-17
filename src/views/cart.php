@@ -47,6 +47,8 @@ if (isset($_GET["action"])) {
                 break;
             }
         }
+        unset($cart_item); // Add this line to unset the reference
+        
         if (!$found) {
             $item_array = array(
                 'unique_id' => $uniqueCartItemId, // Add unique ID to the item array
